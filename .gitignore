@@ -27,4 +27,6 @@ venv.bak/
 
 node_modules/
 
+nohup.out
+
 Icon
