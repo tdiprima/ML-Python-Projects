@@ -8,4 +8,5 @@ sudo vim Frameworks/Python.framework/Versions/3.5/lib/python3.5/idlelib/config-m
 sudo vim Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/notebook/static/custom/embedding.less
 sudo vim Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/notebook/static/custom/kbd.less
 sudo vim Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/notebook/static/custom/rendered.less
+sudo vim Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/notebook/static/components/codemirror/addon/tern/tern.css
 ```
