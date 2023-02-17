@@ -1,5 +1,22 @@
 # kraddy
 
+### Core_Learning_Algorithms.ipynb
+
+```c
+Please type numeric values as prompted.
+SepalLength: 23
+SepalLength: 12
+SepalLength: 12
+SepalLength: 3
+SepalLength: 4
+SepalLength: 2
+SepalLength: 0.5
+SepalWidth: 2
+SepalWidth: 0.4
+PetalLength: 0.5
+PetalWidth: 0.3
+```
+
 ### Pineapple font
 
 ```sh
