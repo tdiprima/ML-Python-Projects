@@ -11,7 +11,7 @@ Out of the four options you provided, Linear Regression, Classification, Cluster
 
 This algorithm is used when you want to predict a continuous numeric value (e.g., predicting the price of a house based on its square footage).&nbsp;&nbsp;Linear Regression is a good choice when the relationship between the input variables and the output variable is linear.
 
-See: [Linear Relationships in Data](Linear Relationships in Data.md)
+See: [Linear Relationships in Data](Linear Relationship Graph.md)
 
 ## Classification
 

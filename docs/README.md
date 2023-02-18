@@ -1,6 +1,6 @@
 # kraddy
 
-### Core_Learning_Algorithms.ipynb
+### Core\_Learning\_Algorithms.ipynb
 
 ```c
 Please type numeric values as prompted.
