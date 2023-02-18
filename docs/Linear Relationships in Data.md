@@ -12,6 +12,8 @@ If the dots on the graph make a straight line like this, it means that the relat
 
 But if the dots on the graph don't make a straight line, it means that the relationship between the button you press and how far the car goes might not be linear.&nbsp;&nbsp;This means that pushing the button harder might not always make the car go further.
 
+On this graph, the buttons you press are on the x-axis (the bottom) and how far the [car goes is on the y-axis].
+
 ### Can you show me that graph?
 
 Sure, here's an example graph to help illustrate the idea. Let's say we want to see if there's a linear relationship between the number of hours someone studies for a test and their test score. We can plot the data on a graph, with the number of hours on the x-axis (horizontal) and the test score on the y-axis (vertical).
