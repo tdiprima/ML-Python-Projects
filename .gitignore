@@ -1,3 +1,5 @@
+*.h5
+
 # Code
 .vscode/
 

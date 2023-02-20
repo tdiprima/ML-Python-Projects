@@ -1,8 +1,3 @@
-## Keras Image Classification
-
-### Sure, here is an example of pseudocode for a typical Keras program for image classification:
-
-```py
 # Import required libraries
 import numpy as np
 from keras.models import Sequential
@@ -37,6 +32,3 @@ model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=10, batch_s
 # Evaluate model
 scores = model.evaluate(X_test, y_test, verbose=0)
 print("Accuracy: %.2f%%" % (scores[1]*100))
-```
-
-This program uses the Keras library to build a convolutional neural network (CNN) model to classify images of handwritten digits from the MNIST dataset. The program imports the required libraries, loads the data, preprocesses it, defines the model architecture, compiles the model, trains the model on the training data, and evaluates the model on the testing data.

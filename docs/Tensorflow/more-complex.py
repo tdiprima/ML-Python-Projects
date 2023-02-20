@@ -1,8 +1,3 @@
-## Tensorflow Pseudocode
-
-## Sure, here is some pseudocode for a typical TensorFlow program:
-
-```py
 # Import the necessary libraries
 import tensorflow as tf
 import numpy as np
@@ -45,13 +40,3 @@ predictions = model.predict(test_data)
 # Print out some results
 print('Test accuracy:', test_acc)
 print('Predictions:', predictions)
-
-```
-
-In this pseudocode, we first import the necessary libraries, then define some hyperparameters like the learning rate, number of epochs, and batch size. We then load and preprocess our data.
-
-Next, we define our model architecture using TensorFlow's `Sequential` API. We then define our loss function and optimizer and compile our model.
-
-We then train our model using the `fit` method, passing in the training data, training labels, batch size, and number of epochs. We also evaluate our model on test data and make some predictions with it.
-
-Finally, we print out some results like the test accuracy and predictions.

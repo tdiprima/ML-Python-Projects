@@ -2,15 +2,15 @@
 
 ### How do you know if the relationship between the input variables and the output variable is linear?
 
-Imagine you have a toy car that you can make go forward or backward by using a remote control.&nbsp;&nbsp;The car has different buttons on the remote control that you can press to make it move.
+Imagine you have a toy car that you can make go forward or backward by using a remote control.  The car has different buttons on the remote control that you can press to make it move.
 
-Now, let's say you want to know how pressing different buttons on the remote control affects how far the car moves.&nbsp;&nbsp;You could write down a list of which button you pressed and how far the car went each time.
+Now, let's say you want to know how pressing different buttons on the remote control affects how far the car moves.  You could write down a list of which button you pressed and how far the car went each time.
 
 If you plot this information on a graph, where the buttons you pressed are on the bottom and how far the car went is on the side, you might notice that the dots on the graph all line up in a straight line.
 
-If the dots on the graph make a straight line like this, it means that the relationship between the button you press and how far the car goes is probably linear.&nbsp;&nbsp;This means that the further you push the button, the further the car will go.
+If the dots on the graph make a straight line like this, it means that the relationship between the button you press and how far the car goes is probably linear.  This means that the further you push the button, the further the car will go.
 
-But if the dots on the graph don't make a straight line, it means that the relationship between the button you press and how far the car goes might not be linear.&nbsp;&nbsp;This means that pushing the button harder might not always make the car go further.
+But if the dots on the graph don't make a straight line, it means that the relationship between the button you press and how far the car goes might not be linear.  This means that pushing the button harder might not always make the car go further.
 
 On this graph, the buttons you press are on the x-axis (the bottom) and how far the [car goes is on the y-axis].
 
