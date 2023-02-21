@@ -2,32 +2,47 @@
 
 TensorFlow is a popular software library for building and training machine learning models. Here's some pseudocode to help explain how TensorFlow works:
 
-1. Load data into TensorFlow.
-2. Define the model architecture (what kind of model we want to build).
-3. Train the model using the loaded data.
-4. Use the trained model to make predictions on new data.
+1. <span style="color:blue;font-weight:bold">Load</span> data into TensorFlow.
+2. <span style="color:green;font-weight:bold">Define</span> the model architecture (what kind of model we want to build).
+3. <span style="color:purple;font-weight:bold">Train</span> the model using the loaded data.
+4. <span style="color:red;font-weight:bold">Use</span> the trained model to make predictions on new data.
 
-Let me break that down for you:
-
-### Load data into TensorFlow
+### Load data into TensorFlow 🚚
 
 In order to build a machine learning model, you need data. The first step is to load that data into TensorFlow, so that the model can use it to learn and make predictions.
 
-### Define the model architecture
+### Define the model architecture 📝
 
-Once the data is loaded, you need to define the structure of the machine learning model that you want to build. This includes things like the number and type of layers, the activation functions to use, and the optimization algorithm to use.
+Once the data is loaded, you need to define the structure of the machine learning model that you want to build. This includes things like:
 
-### Train the model
+* the number and type of layers
+* the activation functions to use
+* the optimization algorithm to use
 
-With the data and the model architecture defined, it's time to start training the model. This involves feeding the data into the model, letting the model make predictions, and then adjusting the model's parameters (weights and biases) based on how well those predictions match the actual data. This process is repeated multiple times, with the goal of minimizing the difference between the predicted values and the actual values in the data set.
+### Train the model 🐕
 
-### Use the trained model to make predictions
+With the data and the model architecture defined, it's time to start training the model.
 
-Once the model is trained, you can use it to make predictions on new data. This involves feeding the new data into the model and letting it make predictions based on what it learned during training.
+This involves:
+
+* feeding the data into the model, 
+* letting the model make predictions, and
+* then adjusting the model's parameters (weights and biases) based on how well those predictions match the actual data.
+
+This process is repeated multiple times, with the goal of **minimizing the difference** between the **predicted values** and the **actual values** in the data set.
+
+### Use the trained model to make predictions 🎾
+
+Once the model is trained, you can use it to make predictions on new data.
+
+This involves:
+
+* feeding the new data into the model, and
+* letting it make predictions based on what it learned during training.
 
 ### Sample Code
 
-Here's some example code in TensorFlow to help illustrate these steps:
+<mark>**Build a neural network that can classify handwritten digits from the MNIST data set.**</mark>
 
 ```py
 # Load data into TensorFlow
@@ -53,11 +68,14 @@ model.fit(x_train, y_train, epochs=10)
 predictions = model.predict(x_test)
 ```
 
-In this example, we're using TensorFlow to build a neural network that can classify handwritten digits from the MNIST data set.
+<br>
 
-We start by loading the data into TensorFlow, then defining the structure of the neural network (two layers, with the second layer having 10 output neurons, one for each possible digit).
+* We start by loading the data into TensorFlow, then 
+* defining the structure of the neural network:
+    * (two layers, with the second layer having 10 output neurons, one for each possible digit).
 
-We then train the model using the training data, and finally make predictions on the test data.
+* We then train the model using the training data, and finally
+* make predictions on the test data.
 
 ### Output
 
