@@ -121,10 +121,10 @@ plt.show()
 ```
 
 <br>
-In this example, we **generate some random data** for `x_data` and `y_data`, 
 
-and then define the model with variables 
-`W` and `b` 
+We **generated some random data** for `x_data` and `y_data`
+
+and then defined the model with variables `W` and `b` 
 
 representing the weights and biases, respectively.
 
