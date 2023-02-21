@@ -1,33 +1,146 @@
-## Explain how to create a Linear Regression program in tensorflow
+## Linear Regression
+
+### What is Linear Regression
 
 Sure, I'd be happy to explain how to create a Linear Regression program in TensorFlow!
 
 First, let's talk about what Linear Regression is.  Linear Regression is a type of machine learning model that helps us predict the value of a variable based on the values of one or more other variables.  It's called "linear" because it assumes that the relationship between the variables is a straight line.
 
-Now, here are the steps to create a Linear Regression program in TensorFlow:
+### Example
 
-### Step 1: Import TensorFlow
+<!--tensorflow 2.11-->
+<!-- All I wanted was a simple fluffin linear regression example to go with my "steps". -->
 
-To get started, we need to import TensorFlow into our Python program.  This is done with a simple command at the beginning of the program.
+[This guy got it right](https://stackoverflow.com/questions/68879963/valueerror-tape-is-required-when-a-tensor-loss-is-passed#70193400)
 
-### Step 2: Prepare the Data
+```python
+# An alternate implementation using the tf.GradientTape() directly
+import tensorflow as tf
 
-Next, we need to prepare the data we want to use to train the model.  For Linear Regression, we need to have a set of input variables (also called "features") and a set of output variables (also called "labels").  We'll use this data to train the model to predict the output variable based on the input variable.
+x_train = [1, 2, 3]
+y_train = [1, 2, 3]
 
-### Step 3: Create the Model
+W = tf.Variable(tf.random.normal([1]), trainable=True, name='weight')
+b = tf.Variable(tf.random.normal([1]), trainable=True, name='bias')
 
-Now we're ready to create the Linear Regression model.  In TensorFlow, we can do this by creating a new instance of the tf.keras.Sequential class and adding a tf.keras.layers.Dense layer to it.
 
-### Step 4: Compile the Model
+@tf.function
+def cost(W1, b1):
+    y_model = W1 * x_train + b1
+    error = tf.reduce_mean(tf.square(y_train - y_model))
+    return error
 
-After creating the model, we need to compile it.  This involves specifying the optimizer we want to use (such as stochastic gradient descent) and the loss function we want to use (such as mean squared error).
 
-### Step 5: Train the Model
+optimizer = tf.optimizers.SGD(learning_rate=0.01)
 
-Now we're ready to train the model.  We do this by calling the fit method on the model object and passing in the input and output data we prepared earlier.
+trainable_vars = [W, b]
 
-### Step 6: Use the Model
+epochs = 100  # (or however many iterations you want it to run)
+for _ in range(epochs):
+    with tf.GradientTape() as tp:
+        # your loss/cost function must always be contained within the gradient tape instantiation
+        cost_fn = cost(W, b)
+    gradients = tp.gradient(cost_fn, trainable_vars)
+    optimizer.apply_gradients(zip(gradients, trainable_vars))
 
-Finally, we can use the trained model to make predictions on new data.  We do this by calling the predict method on the model object and passing in the new input data we want to make predictions on.
+tf.print(W)
+tf.print(b)
 
-And that's it!  With these steps, you can create a Linear Regression program in TensorFlow.  Keep in mind that there are many variations and ways to improve this program, but this is a good starting point for understanding how it works.
+```
+
+<br>
+You can use this for different data:
+
+```python
+x_train = [3.3, 4.4, 5.5, 6.71, 6.93, 4.168, 9.779, 6.182, 7.59, 2.167,
+           7.042, 10.791, 5.313, 7.997, 5.654, 9.27, 3.1]
+
+y_train = [1.7, 2.76, 2.09, 3.19, 1.694, 1.573, 3.366, 2.596, 2.53, 1.221,
+           2.827, 3.465, 1.65, 2.904, 2.42, 2.94, 1.3]
+```
+
+
+## Try to fix
+
+[TypeError: minimize() missing 1 required positional argument: 'var_list'](https://stackoverflow.com/questions/58722591/typeerror-minimize-missing-1-required-positional-argument-var-list)
+
+[ValueError: tape is required when a Tensor loss is passed](https://stackoverflow.com/questions/68879963/valueerror-tape-is-required-when-a-tensor-loss-is-passed)
+
+[`tape` is required when a `Tensor` loss is passed](https://stackoverflow.com/questions/65913108/tape-is-required-when-a-tensor-loss-is-passed)
+
+[tensorflow.org | optimizers](https://www.tensorflow.org/api_docs/python/tf/keras/optimizers/Optimizer)
+
+```py
+import matplotlib.pyplot as plt
+import numpy as np
+import tensorflow as tf
+
+print(tf.version.VERSION)
+
+# Generate some random data
+x_data = np.random.rand(100).astype(np.float32)
+y_data = x_data * 0.1 + 0.3
+
+# Define the model
+W = tf.Variable(tf.random.uniform([1], -1.0, 1.0))
+b = tf.Variable(tf.zeros([1]))
+y = W * x_data + b
+
+# Define the loss function (mean squared error)
+loss = tf.reduce_mean(tf.square(y - y_data))
+
+try:
+    # Define the optimizer (gradient descent)
+    optimizer = tf.optimizers.SGD(learning_rate=0.5)
+except Exception as ex:
+    print("Exception:", ex)
+    exit(1)
+
+train = optimizer.minimize(loss)
+
+# Train the model
+init = tf.global_variables_initializer()
+sess = tf.Session()
+sess.run(init)
+
+for step in range(201):
+    sess.run(train)
+    if step % 20 == 0:
+        print(step, sess.run(W), sess.run(b))
+
+# Plot the results
+plt.plot(x_data, y_data, 'ro', label='Original data')
+plt.plot(x_data, sess.run(W) * x_data + sess.run(b), label='Fitted line')
+plt.legend()
+plt.show()
+
+```
+
+<br>
+In this example, we **generate some random data** for `x_data` and `y_data`, 
+
+and then define the model with variables 
+`W` and `b` 
+
+representing the weights and biases, respectively.
+
+The predicted `y` values are computed as `W * x_data + b`.
+
+The **loss function** used is **mean squared error**, which measures the difference between the **predicted** `y` values and the **actual** `y_data` values.
+
+The **optimizer** used is stochastic gradient descent **(SGD)**, which is a commonly used **optimization algorithm** 
+for training machine learning models.
+
+Finally, we initialize the variables, start a TensorFlow session, and run the training loop for 201 iterations.
+
+**After each 20 iterations**, we print the current values of `W` and `b`.
+
+### Display the results of linear regression with matplotlib
+
+After running the training loop, we use `plt.plot` to plot the original data as red circles `('ro')`
+
+and the fitted line as a blue line (generated by `sess.run(W) * x_data + sess.run(b)`).
+
+Finally, we call `plt.legend()` to display a legend, 
+
+and `plt.show()` to display the plot.
