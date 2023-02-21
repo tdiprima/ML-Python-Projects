@@ -2,9 +2,13 @@
 
 ### What is Linear Regression
 
-Sure, I'd be happy to explain how to create a Linear Regression program in TensorFlow!
+Linear regression is the most basic and commonly used predictive analysis.
 
-First, let's talk about what Linear Regression is.  Linear Regression is a type of machine learning model that helps us predict the value of a variable based on the values of one or more other variables.  It's called "linear" because it assumes that the relationship between the variables is a straight line.
+Regression estimates are used to describe data and to explain the relationship.
+
+Linear Regression is a type of machine learning model.
+
+It's called "linear" because it assumes that the relationship between the variables is a straight line.
 
 ### Example
 
