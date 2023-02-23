@@ -6,7 +6,7 @@ prints the Confusion matrix.
 
 import numpy as np
 import tensorflow as tf
-from sklearn.metrics import f1_score, confusion_matrix
+from sklearn.metrics import f1_score, confusion_matrix, classification_report
 
 # Load the MNIST dataset
 (x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
@@ -30,8 +30,8 @@ model.compile(optimizer='adam',
 # Train the model
 model.fit(x_train, y_train, epochs=5)
 
-# save the model to a file
-model.save('my_model.h5')
+# todo: save the model to a file
+# model.save('my_model.h5')
 
 # Make predictions on the test set
 y_pred = model.predict(x_test)
@@ -41,11 +41,9 @@ y_pred = np.argmax(y_pred, axis=1)
 f1 = f1_score(y_test, y_pred, average='macro')
 print("F1 score:", f1)
 
+# Assuming y_test is the true labels and y_pred is the predicted labels
+print(classification_report(y_test, y_pred))
+
 # Calculate confusion matrix
 # cm = confusion_matrix(y_test, y_pred)
 # print("Confusion matrix:\n", cm)
-
-from sklearn.metrics import classification_report
-
-# assuming y_test is the true labels and predicted_labels is the predicted labels
-print(classification_report(y_test, y_pred))
