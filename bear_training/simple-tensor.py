@@ -42,5 +42,10 @@ f1 = f1_score(y_test, y_pred, average='macro')
 print("F1 score:", f1)
 
 # Calculate confusion matrix
-cm = confusion_matrix(y_test, y_pred)
-print("Confusion matrix:\n", cm)
+# cm = confusion_matrix(y_test, y_pred)
+# print("Confusion matrix:\n", cm)
+
+from sklearn.metrics import classification_report
+
+# assuming y_test is the true labels and predicted_labels is the predicted labels
+print(classification_report(y_test, y_pred))
