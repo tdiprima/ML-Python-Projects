@@ -33,13 +33,20 @@ def growcut(image, markers, num_iters=5):
 
 
 # IMPLEMENT GROWCUT
+image_name = 'input.png'
 
 # Load the input image and convert it to grayscale
 try:
-    image = rgb2gray(imread('input_image.png'))
+    image = imread(image_name)
     print(image.shape)
+
+    # just use the first 3 channels instead of the 4 you have
+    # image = rgb2gray(image[..., 0:3])
+
+    img = rgb2gray(image)
+    print(image.shape)
+
     # image = image.reshape(512, 512, 3)
-    # print(image.shape)
 except Exception as ex:
     print("rgb2gray:", ex)
     exit(1)
