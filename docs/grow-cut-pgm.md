@@ -5,7 +5,12 @@ The GrowCut algorithm is an image segmentation technique that partitions an imag
 ```python
 import numpy as np
 from scipy.ndimage import label
-
+try:
+    plt.imshow(seg)  # plt.imshow expects image data as [height, width, 3]
+    plt.show()
+except Exception as ex:
+    print("Sigh. Wtf...", ex)
+    exit(1)
 def growcut(image, markers, num_iters=5):
     # Initialize the foreground and background labels
     labels = np.zeros_like(image)

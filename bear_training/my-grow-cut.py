@@ -1,3 +1,6 @@
+"""
+Algorithm returns 1 number. Something's not right.
+"""
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.ndimage import label
@@ -15,8 +18,6 @@ def growcut(image, markers, num_iters=5):
     fg_color = np.mean(image[markers == 1])
     bg_color = np.mean(image[markers == 2])
 
-    print(fg_color, bg_color)
-
     # Perform the GrowCut iterations
     for i in range(num_iters):
         # Compute the region means
@@ -32,24 +33,13 @@ def growcut(image, markers, num_iters=5):
     return regions
 
 
-# IMPLEMENT GROWCUT
-image_name = 'input.png'
+# Load the input image
+lulu = imread('../images/dragonball.jpg')  # Use this one, only.
+print("img shape:", lulu.shape)
 
-# Load the input image and convert it to grayscale
-try:
-    image = imread(image_name)
-    print(image.shape)
-
-    # just use the first 3 channels instead of the 4 you have
-    # image = rgb2gray(image[..., 0:3])
-
-    img = rgb2gray(image)
-    print(image.shape)
-
-    # image = image.reshape(512, 512, 3)
-except Exception as ex:
-    print("rgb2gray:", ex)
-    exit(1)
+# Convert it to grayscale
+image = rgb2gray(lulu)
+print("bw shape:", lulu.shape)
 
 # Define the markers
 markers = np.zeros_like(image)
@@ -58,11 +48,13 @@ markers[150:200, 150:200] = 2  # background
 
 # Perform the segmentation using the GrowCut algorithm
 seg = growcut(image, markers)
+print("seg", type(seg), seg)  # <class 'int'> 309
 
 # Visualize the segmentation
 try:
     plt.imshow(seg)  # plt.imshow expects image data as [height, width, 3]
-    plt.show()
 except Exception as ex:
-    print("Sigh. Wtf...", ex)
+    print("imshow:", ex)
     exit(1)
+
+plt.show()
