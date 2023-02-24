@@ -1,5 +1,6 @@
 """
 Algorithm returns 1 number. Something's not right.
+GrowCut-1.md
 """
 import matplotlib.pyplot as plt
 import numpy as np

@@ -35,7 +35,8 @@ loaded_model = keras.models.load_model('my_model.h5')
 predictions = loaded_model.predict(x_test)
 ```
 
-<br>
+## Display results
+
 When you make predictions with a model, the output is usually a set of numbers. The exact format of these numbers depends on the problem you are trying to solve.
 
 For example, if you are trying to **classify images of digits**, the output might be a **set of probabilities for each digit**.
@@ -50,9 +51,8 @@ e.g.
 
 etc.
 
-
-* Predict: price of house
-* Output: a single number representing the predicted price
+* **Predict:** price of house
+* **Output:** a single number representing the predicted price
 
 To **display the predictions** in a meaningful way, you might want to convert them into a more human-readable format.
 
@@ -62,6 +62,46 @@ If you are predicting the **price of a house**, you might want to display the **
 
 The exact format of the display will depend on your specific problem and the preferences of your users.
 
+## File extension
+
+[Save and load Keras models](https://www.tensorflow.org/guide/keras/save_and_serialize)
+
+Yes, I know "Keras"; bear with me...
+
+There are two formats you can use to save an entire model to disk:
+
+1. the TensorFlow **SavedModel** format
+2. the older Keras **H5** format.
+
+The recommended format is SavedModel. 
+
+It is the default when you use `model.save()`.
+
+### You can switch to the H5 format by:
+
+* Passing `save_format='h5'` to `save()`.
+* Passing a filename that ends in `.h5` or `.keras` to `save()`.
+
+### TensorFlow model in the SavedModel format
+
+The recommended file extension is `.pb`.
+
+However, the SavedModel format also consists of other files and directories in addition to the `.pb` file, 
+
+so it is typically saved as a directory instead of a single file.
+
+The SavedModel directory contains a version number, which can be **incremented** whenever you **save a new version** of your model.
+
+The directory structure should look something like this:
+
+```
+saved_model/
+    <version number>/
+        saved_model.pb
+        variables/
+            variables.data-00000-of-00001
+            variables.index
+```
 
 ## Troubleshooting
 
@@ -97,7 +137,7 @@ with open('predictions.txt', 'w') as filehandle:
 
 OK, data looks like the shapes are different.
 
-So it was suggested to **reshape** it (remember the data was wrong anyway, though):
+<mark>This is the way to **reshape** it:</mark>
 
 ```py
 predicted_labels = predictions.argmax(axis=1)

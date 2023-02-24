@@ -1,10 +1,12 @@
-# Import required libraries
-import numpy as np
-from keras.models import Sequential
-from keras.layers import Dense, Dropout, Flatten
-from keras.layers.convolutional import Conv2D, MaxPooling2D
-from keras.utils import np_utils
+"""
+Works.
+Pseudocode-Keras.md
+"""
 from keras.datasets import mnist
+from keras.layers import Dense, Flatten
+from keras.layers.convolutional import Conv2D, MaxPooling2D
+from keras.models import Sequential
+from keras.utils import np_utils
 
 # Load data
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
@@ -29,6 +31,9 @@ model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accur
 # Train model
 model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=10, batch_size=200)
 
+# Save it
+model.save("model_keras.h5")
+
 # Evaluate model
 scores = model.evaluate(X_test, y_test, verbose=0)
-print("Accuracy: %.2f%%" % (scores[1]*100))
+print("Accuracy: %.2f%%" % (scores[1] * 100))

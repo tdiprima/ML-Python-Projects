@@ -1,3 +1,7 @@
+"""
+Works.
+Cross-entropy.md
+"""
 import numpy as np
 
 

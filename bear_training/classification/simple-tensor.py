@@ -1,7 +1,6 @@
 """
-Here's a complete TensorFlow code example that loads data from MNIST,
-creates a model, makes predictions, and calculates the F1-score and
-prints the Confusion matrix.
+Works.
+TensorFlow Code for MNIST.md
 """
 
 import numpy as np
@@ -45,5 +44,5 @@ print("F1 score:", f1)
 print(classification_report(y_test, y_pred))
 
 # Calculate confusion matrix
-# cm = confusion_matrix(y_test, y_pred)
-# print("Confusion matrix:\n", cm)
+cm = confusion_matrix(y_test, y_pred)
+print("\nConfusion matrix:\n", cm)
