@@ -1,16 +1,14 @@
 ## Changes after testing the gym's cartPole error
 
-<!-- https://blog.csdn.net/insid1out/article/details/128654843 -->
+<span style="color: green; font-weight:bold; font-size: larger">Reinforcement_Learning.ipynb</span>
 
-<!--Interesting: https://raw.githubusercontent.com/openai/gym/master/gym/envs/toy_text/taxi.py-->
+<span style="color: blue; font-weight:bold; font-size: larger">FrozenLake-v0</span>
 
-Go back today and re-run the gym's CartPole use case. After updating the version of the package, an error occurred.
+[Article](https://blog.csdn.net/insid1out/article/details/128654843)
 
-python version: Python 3.9.13
+[Interesting: taxi.py](https://raw.githubusercontent.com/openai/gym/master/gym/envs/toy_text/taxi.py)
 
-gym version: gym 0.26.2
-
-Code block seen on the Internet:
+### Code block seen on the Internet:
 
 ```py
 import gym  # Import the Python interface environment package for Gym
@@ -26,7 +24,7 @@ for _ in range(1000):
 env.close() # close environment
 ```
 
-There will be three errors, the modified code
+### There will be 3 errors, the modified code:
 
 ```py
 env = gym.make("CartPole-v1", render_mode="human")
@@ -43,17 +41,23 @@ for episode in range(10):
 env.close()
 ```
 
-### First error:
+## First error:
 
-UserWarning: WARN: The environment CartPole-v0 is out of date. You should consider upgrading to version `v1`.
+UserWarning: WARN: The environment `CartPole-v0` is **out of date.** You should consider upgrading to version `v1`.
 
 ### Solution:
 
-'CartPole-v0' changed to: 'CartPole-v1'
+'CartPole**-v0**' changed to: 'CartPole**-v1**'
 
-###The second error:
+## The second error:
 
-UserWarning: WARN: You are calling render method without specifying any render mode. You can specify the render\_mode at initialization, eg gym("CartPole-v0", render\_mode="rgb_array") 
+UserWarning: WARN: You are calling render method without specifying any render mode.
+
+You can **specify the `render_mode` at initialization**, e.g.
+
+```py
+gym("CartPole-v0", render_mode="rgb_array")
+```
 
 ### Solution:
 
@@ -63,21 +67,29 @@ This sentence:
 env = gym.make('CartPole-v0') # Build the experimental environment
 ```
 
+<br>
 Change to:
 
 ```py
 env = gym.make('CartPole-v1', render_mode="human")
 ```
 
-### Third error:
+## Third error:
 
-UserWarning: WARN: You are calling 'step()' even though this environment has already returned terminated = True. You should always call 'reset()' once you receive 'terminated = True' &ndash; any further steps are undefined behavior.
+UserWarning: WARN: You are calling `step()` even though **this environment has already returned `terminated = True`**
 
-When done is equal to true, it is still in step, just add a judgment condition and
-change it to
+You should **always call `reset()`** once you receive `terminated = True` &ndash; any further steps are undefined behavior.
+
+### Solution:
+
+When `done` is equal to `true`, it is still in `step`.
+
+Just add a **judgment condition**, change it to:
 
 ```py
 observation, reward, done, info, _ = env.step(env.action_space.sample())
 if done:
     break
 ```
+
+<br>
