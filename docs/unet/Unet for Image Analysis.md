@@ -1,5 +1,7 @@
 ## Unet
 
+<span style="color: blue; font-size: larger">U-Net = image segmentation network</span>
+
 Imagine you're drawing a picture, but you don't want to color the entire thing. Instead, you want to color just one part of it, like a flower or a tree.
 
 Now, let's say you have a friend who's really good at coloring. You want your friend to color that one part of the picture for you, but you need to tell your friend exactly where to color.
