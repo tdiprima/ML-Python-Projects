@@ -1,6 +1,6 @@
 """
 Works.
-Pseudocode-Keras.md
+Keras.md
 """
 from keras.datasets import mnist
 from keras.layers import Dense, Flatten

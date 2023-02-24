@@ -1,6 +1,6 @@
 """
 Works.
-Python Image Segmentation.md
+Image Segmentation.md
 """
 import cv2
 
