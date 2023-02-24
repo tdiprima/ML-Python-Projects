@@ -1,4 +1,7 @@
 """
+Works.
+Deep Fake Using GAN
+GAN - Computer art game.md
 Epoch: 0, Discriminator Loss: 0.6365200877189636, Generator Loss: 0.7656040191650391
 """
 import numpy as np

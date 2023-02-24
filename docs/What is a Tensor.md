@@ -43,3 +43,5 @@ We can represent this tensor as a block of data with **three axes:**
 Each cell of the tensor represents a numerical value, which could be a pixel intensity value or some other kind of **feature value.**
 
 For example, if we wanted to represent a **grayscale image** instead of a color image, we could simply **remove the third axis** and represent each image as a 2-dimensional tensor with dimensions 32x32.
+
+<br>
