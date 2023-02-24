@@ -31,7 +31,7 @@ model.compile(optimizer='adam',
 model.fit(x_train, y_train, epochs=5)
 
 # todo: save the model to a file
-# model.save('my_model.h5')
+# model.save('model_T.h5')
 
 # Make predictions on the test set
 y_pred = model.predict(x_test)
