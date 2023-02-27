@@ -2,7 +2,6 @@
 Does not work.
 Instructions for updating:
 Use Variable.read_value. Variables in 2.X are initialized automatically both in eager and graph (inside tf.defun) contexts.
-from tensorflow.examples.tutorials.mnist import input_data
 """
 import tensorflow as tf
 
@@ -28,7 +27,8 @@ def input_fn():
 
 # ORIGINAL input function
 def input_fn1():
-    # Load the MNIST dataset
+    # from tensorflow.examples.tutorials.mnist import input_data
+    # import input_data
     # mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
 
     # TODO: we lost the "one hot" part
