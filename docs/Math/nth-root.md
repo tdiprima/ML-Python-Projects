@@ -1,6 +1,6 @@
-## Calculate the cube root of a number
+## Cube root
 
-In Python, you can calculate the cube root of a number by using the <span style="color: #000088; font-weight:bold">**</span> operator with <span style="color: #000088; font-weight:bold">1/3 as the exponent.</span>
+You can calculate the cube root of a number by using the <span style="color: #000088; font-weight:bold">**</span> operator with <span style="color: #000088; font-weight:bold">1/3 as the exponent.</span>
 
 ```py
 number = 64
@@ -65,9 +65,11 @@ And:
 <span style="color: green; font-weight:bold">2 * 2 * 2 = 8</span>
 
 
-## calculate the nth root on a calculator
+## Calculate the nth root on a calculator
 
-Look at the [formula](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/cbrt), there's a button on the calculator that looks like that.  It may automagically come up with the number that, multiplied by itself (n times), equals the first number you put in. <span style="font-size: 27px;">🪄🎩</span>
+Look at the [formula](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/cbrt), there's a button on the calculator that looks like that.
+
+It may automagically come up with the number that, multiplied by itself (n times), equals the first number you put in.
 
 Or:
 
@@ -81,18 +83,4 @@ If your calculator doesn't have a **fraction key**, you can enter the fraction a
 
 For example, to calculate the cube root of 64 on a calculator without a fraction key, you would press `64`, then `y^x`, then `0.333`, and then `=`.
 
-
-## Average
-
-### Get average of list
-
-```py
-def Average(lst):
-	return sum(lst) / len(lst)
-
-lst = [15, 9, 55, 41, 35, 20, 62, 49]
-average = Average(lst)
-
-print("Average of the list =", round(average, 2))
-```
 <br>
