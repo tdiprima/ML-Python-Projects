@@ -1,4 +1,4 @@
-## Deep Fakes Explained 🧙‍♂️ 🪄 🎩
+## Deep Fakes <span style="font-size: 27px;">🥸</span>
 
 Have you ever seen a magic trick where a magician makes something **disappear** or someone **appear** out of nowhere? Well, deep fakes are kind of like a magic trick, but with **videos**. 📺
 
@@ -33,8 +33,10 @@ This can be used to create deep fakes by feeding in an image of a person and gen
 
 There are also other **deep learning algorithms** used in the creation of Deep Fakes, such as:
 
-* Autoencoders
-* Variational autoencoders
+* **Autoencoders**
+    * [Generative Deep Learning with Autoencoders](https://emkademy.medium.com/1-first-step-to-generative-deep-learning-with-autoencoders-22bd41e56d18)
+    * [autoencoders-guide](https://www.v7labs.com/blog/autoencoders-guide)
+* **Variational autoencoders**
 
 which are used to generate latent representations of faces or other objects that can be manipulated to create new images.
 
