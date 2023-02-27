@@ -47,18 +47,15 @@ Automata
 
 "An Effective Interactive Medical Image Segmentation Method Using [Fast GrowCut](https://nac.spl.harvard.edu/files/nac/files/zhu-miccai2014.pdf)"
 
+* Grow cut algorithm
+* 20 lines of code
+* Foreground background
+* Nuclear material, not nuclear material
+* It figures out the boundary
+* Quickly segment
+
 [GrowCut algorithm}(https://en.wikipedia.org/wiki/GrowCut_algorithm)
 
 GrowCut is an interactive segmentation algorithm.
 
-It uses Cellular Automaton as an image model.
-
-Automata evolution models segmentation process.
-
 Each cell of the automata has some <mark>**label (in case of binary segmentation - 'object', 'background' and 'empty').**</mark>
-
-During automata evolution some cells capture their neighbours, replacing their labels.
-
-In GrowCut, a user vaguely draws some strokes inside the object of interest with an object brush, and outside the object with a background brush.
-
-In simple cases only a few strokes suffice for segmentation.

@@ -26,13 +26,11 @@ It's like when you **mix** two colors of **paint** together **really well** and 
 
 I hope that helps you understand stable diffusion!
 
-## Stable Diffusion in ML? 🧐
+## Stable Diffusion in ML 🥸
 
-<mark>**Maybe GAN or Deep Fake.**</mark>
+<mark>**Fake images better.**</mark>
 
-"Stable diffusion" is a term that is not commonly used in machine learning, so it's possible that you might be referring to a specific concept or technique that I'm not familiar with.
-
-However, in general, "diffusion" refers to the process of **spreading or dispersing** something over time or space.
+In general, "diffusion" refers to the process of **spreading or dispersing** something over time or space.
 
 In the context of machine learning, this could refer to the spread of **information** or **influence** through a network or dataset.
 
