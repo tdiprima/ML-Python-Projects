@@ -51,6 +51,7 @@ class UNet(nn.Module):
         x = self.upconv1(x2)
 
         try:
+            # TODO: problema
             x = torch.cat([x, x1], dim=1)
         except Exception as ex:
             print("torch.cat:", ex)
