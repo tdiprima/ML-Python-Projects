@@ -12,7 +12,10 @@ from torchvision import transforms, datasets
 
 # Define the UNet architecture
 class UNet(nn.Module):
+    print("UNet")
+
     def __init__(self, in_channels, out_channels):
+        print("__init__")
         super(UNet, self).__init__()
 
         # Define the encoder layers
@@ -34,6 +37,7 @@ class UNet(nn.Module):
         self.conv4 = nn.Conv2d(64, out_channels, kernel_size=3, stride=1, padding=1)
 
     def forward(self, x):
+        print("forward")
         # Encoder
         x1 = self.conv1(x)
         x1 = self.bn1(x1)
@@ -64,6 +68,7 @@ class UNet(nn.Module):
 
 # Define the training function
 def train(model, device, train_loader, optimizer, criterion):
+    print("train")
     model.train()
 
     for batch_idx, (data, target) in enumerate(train_loader):
@@ -90,6 +95,7 @@ def train(model, device, train_loader, optimizer, criterion):
 
 # Define the validation function
 def validate(model, device, val_loader, criterion):
+    print("validate")
     model.eval()
     val_loss = 0
     with torch.no_grad():
@@ -105,13 +111,13 @@ def validate(model, device, val_loader, criterion):
 
 # Define the main function
 def main():
+    print("MAIN")
     # Set up the device
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     # Load the data
     transform = transforms.Compose([
-        transforms.ToTensor(),
-
+        transforms.ToTensor()
     ])
 
     train_dataset = datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
