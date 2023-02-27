@@ -1,5 +1,7 @@
 ## Generative adversarial networks
 
+<span style="font-size: 30px;">⚙️ 🥊 🌐</span>
+
 Have you ever played a game of "guess who" with a friend? In that game, you each have a board with different characters on it, and you take turns asking **yes-or-no questions** to try and guess the other person's character.
 
 Now imagine that instead of a friend, you're playing against a computer. But instead of playing "guess who," you're trying to make **pictures of animals.** The computer will show you a picture of an animal, and you have to draw your own picture of the same animal. The computer will then compare your picture to the original picture and tell you how close you came.
