@@ -1,48 +1,50 @@
 ## Classification Report
 
-In Python, you can use **scikit-learn's** `classification_report` function to generate a comprehensive classification report for your **model's predictions.**
+You can use scikit-learn's `classification_report` function to generate a comprehensive classification report for your model's predictions.
 
-<mark>**The model gets a report card.**</mark> 
+To use this function, you'll need:
 
-To use this function, you'll need the **true labels** (i.e., **`y_test`**) and the **predicted labels.**
+*  True labels (i.e., **`y_test`**)
+*  Predicted labels (i.e., **`y_pred`**)
 
-(Is it y\_test or ***y\_train?***)
-
-Here's an example code snippet that shows how to **generate a classification report using scikit-learn:**
+<span style="color:maroon;font-size:larger;font-weight:bold;">Y = Labels</span>
 
 ```py
 from sklearn.metrics import classification_report
 
-# assuming y_test is the true labels and predicted_labels is the predicted labels
+# Generate a classification report
 print(classification_report(y_test, predicted_labels))
 ```
 
 <br>
-This will output a report containing **evaluation metrics** for each class (i.e., digit) in the MNIST dataset.
 
-The report includes:
+This will **output a report** containing **evaluation metrics**<br>
+<span style="color:#0000dd;font-weight:bold;font-size:larger;">for each class</span> (i.e., <span style="color:#0000dd;font-weight:bold;font-size:larger;">digit</span>) in the MNIST dataset.
 
-* precision
-* recall
+**The report includes:**
+
+* Precision
+* Recall
 * F1-score
-* and support for each class.
+* Support for each class
 
-The **support** is simply the **number of observations** in each **class.**
+<span style="color:green;font-weight:bold;font-size:larger;">Precision:</span> measures **how often** the model correctly predicted the positive class (i.e., the digit).
 
-The **precision** measures **how often** the model **correctly predicted** the positive class (i.e., the digit)
+<span style="color:purple;font-weight:bold;font-size:larger;">Recall:</span> measures **how well** the model identified all positive instances.
 
-The **recall** measures how well the model **identified** all positive instances.
+<span style="background:yellow;font-weight:bold;font-size:larger;">F1-score:</span> the **harmonic mean** of precision and recall.
 
-The **F1-score** is the **harmonic mean** of precision and recall, and it provides a balanced measure of the model's performance.
+It provides a **balanced measure** of the model's performance.
 
-### Example
+<span style="color:maroon;font-weight:bold;font-size:larger;">Support:</span> the **number of observations** in each class.
+
+### classification_report
 
 ```py
 print(classification_report(y_test, y_pred))
 ```
 
 ```
-F1 score: 0.9775296774672148
               precision    recall  f1-score   support
 
            0       0.98      0.99      0.98       980
@@ -61,15 +63,16 @@ F1 score: 0.9775296774672148
 weighted avg       0.98      0.98      0.98     10000
 ```
 
-### Versus
+### confusion_matrix
 
 ```py
-# Calculate confusion matrix
-cm = confusion_matrix(y_test, y_pred)
+print(confusion_matrix(y_test, y_pred))
 ```
 
+<br>
+Output:
+
 ```
-F1 score: 0.9723751743042686
 Confusion matrix:
  [[ 970    0    2    0    0    2    3    1    2    0]
  [   0 1126    5    0    0    0    2    0    2    0]
