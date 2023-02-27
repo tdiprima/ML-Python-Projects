@@ -1,4 +1,5 @@
 """
+Does not work.
 Instructions for updating:
 Use Variable.read_value. Variables in 2.X are initialized automatically both in eager and graph (inside tf.defun) contexts.
 from tensorflow.examples.tutorials.mnist import input_data
