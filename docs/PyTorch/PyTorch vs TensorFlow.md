@@ -1,22 +1,26 @@
 ## PyTorch vs TensorFlow <span style="font-size: 30px;">🔥🔦</span>
 
-What's the idea behind PyTorch?  Wasn't TensorFlow good enough? <span style="font-size: 27px;">🧐</span>
+<span style="color:#000088;font-size:larger;font-weight:bold;">Why do we need PyTorch, when we've already got TensorFlow?</span>
 
 **PyTorch** is a popular open-source machine learning framework that is primarily used for **building** and **training neural networks.** 
 
 The idea behind PyTorch is to provide researchers and developers with a 
 
-* more flexible
-* dynamic
-* intuitive
+* More Flexible
+* Dynamic
+* Intuitive
 
-tool for working with deep learning models compared to other frameworks like TensorFlow. <span style="font-size: 27px;">🔧</span>
+tool for working with deep learning models compared to other frameworks like TensorFlow.
 
-One of the main **differences** between PyTorch and TensorFlow is their approach to **building and training models.** <span style="font-size: 27px;">𝌭</span>
+<span style="font-size: 27px;">🔧</span>
 
-PyTorch uses a **dynamic computational graph**, which means that the graph is created on-the-fly as the model is being built and trained. This makes it **easier to modify** the model during development and to debug the code. <span style="font-size: 30px;">🦸🏻‍♀️</span>
+One of the main **differences** between PyTorch and TensorFlow is their approach to building and training models. <span style="font-size: 27px;">𝌭</span>
+
+PyTorch uses a **dynamic computational graph**, which means that the graph is created on-the-fly as the model is being built and trained. This makes it **easier to modify the model** during development and to debug the code. <span style="font-size: 30px;">🦸🏻‍♀️</span>
 
 TensorFlow, on the other hand, uses a **static computational graph**, which requires the entire graph to be defined before the model can be trained. <span style="font-size: 30px;">⚡️</span>
+
+<span style="font-size:27px;">💬</span>
 
 **Another advantage** of PyTorch is its ease of use and flexibility. <span style="font-size: 30px;">🧘🏼‍♀️</span>
 

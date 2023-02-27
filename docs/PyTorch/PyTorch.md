@@ -5,10 +5,15 @@
 ### Sure, here is some pseudocode for a typical PyTorch program:
 
 ```py
-# Import the necessary libraries
 import torch
 import torch.nn as nn
 import torch.optim as optim
+
+
+def load_and_preprocess_data():
+    print("Do something here.")
+    return {}
+
 
 # Define your hyperparameters
 learning_rate = 0.01
@@ -33,8 +38,8 @@ optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 for epoch in range(num_epochs):
     for i in range(0, len(train_data), batch_size):
         # Get a batch of data and labels
-        data_batch = train_data[i:i+batch_size]
-        labels_batch = train_labels[i:i+batch_size]
+        data_batch = train_data[i:i + batch_size]
+        labels_batch = train_labels[i:i + batch_size]
 
         # Zero out the gradients
         optimizer.zero_grad()
@@ -62,14 +67,33 @@ with torch.no_grad():
 # Print out some results
 print('Test accuracy:', test_acc.item())
 print('Predictions:', predictions)
+
 ```
 
-In this pseudocode, we first import the necessary libraries, then define some hyperparameters like the learning rate, number of epochs, and batch size. We then load and preprocess our data.
+<br>
 
-Next, we define our model architecture using PyTorch's `nn.Sequential` API. We then define our loss function and optimizer and set the model's parameters to be optimized.
+1. Import the necessary libraries, then define some **hyperparameters:**
+    * Learning rate
+    * Number of epochs
+    * Batch size
 
-We then train our model using a loop that goes through each epoch and each batch of data. We first zero out the gradients, perform a forward pass through the model, compute the loss, perform a backward pass, and update the model's weights.
+2. **Load** and preprocess data.
 
-We then evaluate our model on test data using the `with torch.no_grad()` context manager to turn off gradient computation. We also make some predictions with the model.
+3. Define our model **architecture** using PyTorch's `nn.Sequential` API.
 
-Finally, we print out some results like the test accuracy and predictions.
+4. Define our **loss function** and **optimizer** and set the model's parameters to be optimized.
+
+5. **Train** our model using a loop that goes through each epoch and each batch of data.
+    6. We first zero out the gradients
+    7. Perform a forward pass through the model
+    8. Compute the loss
+    9. Perform a backward pass
+    10. Update the model's weights
+
+6. **Evaluate** our model on test data using the `with torch.no_grad()` context manager to turn off gradient computation. We also make some predictions with the model.
+
+7. **Print out some results**:
+    * Test accuracy
+    * Predictions
+
+<br>
