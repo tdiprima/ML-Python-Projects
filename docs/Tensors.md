@@ -1,4 +1,4 @@
-## What is a "tensor" anyway?
+## What is a tensor?
 
 A tensor is a mathematical object used to represent **multi-dimensional arrays** of **numerical data.**
 
@@ -43,5 +43,37 @@ We can represent this tensor as a block of data with **three axes:**
 Each cell of the tensor represents a numerical value, which could be a pixel intensity value or some other kind of **feature value.**
 
 For example, if we wanted to represent a **grayscale image** instead of a color image, we could simply **remove the third axis** and represent each image as a 2-dimensional tensor with dimensions 32x32.
+
+## Match Tensor Sizes
+
+```
+torch.cat: Sizes of tensors must match except in dimension 1.
+Expected size 64 but got size 32 for tensor number 1 in the list.
+```
+
+<br>
+<span style="color: #000088; font-size:larger">I have one torch tensor of shape [64, 64, 64, 64], and another torch tensor of shape [64, 64, 32, 32].  How do I make the sizes of tensors match?</span>
+
+To make the sizes of the two tensors match, you can use the `torch.nn.functional.interpolate()` function to upsample or downsample the second tensor to the same shape as the first tensor. Here's an example code snippet that upsamples the second tensor to the shape of the first tensor:
+
+```py
+import torch.nn.functional as F
+
+# Assume the two tensors are named tensor1 and tensor2
+new_tensor2 = F.interpolate(tensor2, size=(64, 64, 64), mode='trilinear', align_corners=False)
+
+# The new_tensor2 will have shape [64, 64, 64, 64]
+```
+
+<br>
+
+In the above code, `F.interpolate()` function takes the following parameters:
+
+* `tensor2`: The tensor to be resized
+* `size`: The new size of the tensor, which is specified as a tuple of dimensions
+* `mode`: The interpolation mode. 'trilinear' is used for 3D data, which performs linear interpolation in 3 dimensions
+* `align_corners`: Specifies whether the corners of the input and output tensors should be aligned. In this case, we set it to False.
+
+After calling `F.interpolate()`, the new tensor will have the same shape as the first tensor, i.e., [64, 64, 64, 64].
 
 <br>

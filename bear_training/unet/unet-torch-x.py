@@ -3,6 +3,8 @@ Doesn't work.
 PyTorch UNet Image Segmentation.md
 Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz to ./data/cifar-10-python.tar.gz
 """
+# import os
+
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -56,8 +58,10 @@ class UNet(nn.Module):
         except Exception as ex:
             # Sizes of tensors must match except in dimension 1.
             # Expected size 64 but got size 32 for tensor number 1 in the list.
-            print("torch.cat:", ex)
+            print("\nProblema:", ex)
             exit(1)
+            # There appear to be 14 leaked semaphore objects to clean up at shutdown:
+            # os._exit(1)  # Not a good idea!
 
         x = self.conv3(x)
         x = self.bn3(x)
