@@ -1,37 +1,29 @@
-## In 10 words or less, what is the "harmonic mean"?
+## What is the "harmonic mean"?
 
-A **type of average** that emphasizes **small** values.
+A type of average that emphasizes small values.
 
-### In very simple terms, what is the "harmonic mean"?
+It's used for averaging rates or ratios.
 
-In very simple terms, the harmonic mean is a type of average that is used to calculate a central or representative value for a set of numbers.
+Harmonic mean is a type of average that is used to calculate a central or **representative value** for a set of numbers.
 
-It is calculated by dividing the **number of values in the set** by the sum of the reciprocal of each value in the set.
+It is calculated by dividing the number of values in the set<br>by the sum of the reciprocal of each value in the set.
 
 The **reciprocal** of a number is simply 1 divided by the number.
 
-For example, the reciprocal of `4` is `1/4`, and the reciprocal of `5` is `1/5`.
+The reciprocal of 4 is <sup>1</sup>/<sub>4</sub>
 
-## Calculate the harmonic mean
+The reciprocal of 5 is <sup>1</sup>/<sub>5</sub>
+
+### Calculate
 
 To calculate the harmonic mean of a set of numbers:
 
-1. calculate the reciprocal of each number
-2. take the sum of those reciprocals
-3. divide the number of values in the set by the sum of the reciprocals.
-
-# 📈 🚙
-
-The harmonic mean is often used to calculate **averages** for **rates or ratios**, such as the average speed of a journey or the average price-to-earnings ratio of a stock market index.
-
-It is generally **less affected by extreme values** than other types of averages, such as the arithmetic mean or the geometric mean.
-
-## Python code example
-
-Let's say we want to find the harmonic mean of the numbers 2, 4, 6, and 8:
+1. Calculate the reciprocal of each number
+2. Take the sum of those reciprocals
+3. Divide the number of values in the set by the sum of the reciprocals.
 
 ```py
-# Define a list of numbers
+# Find the harmonic mean of the numbers 2, 4, 6, and 8
 numbers = [2, 4, 6, 8]
 
 # Calculate the reciprocal of each number
@@ -58,22 +50,23 @@ Finally, the **reciprocal of the average** is taken to find the harmonic mean.
 
 This is because the harmonic mean is the reciprocal of the arithmetic mean of the reciprocals.
 
-## Why?
+### Find the average of rates or ratios
 
-Harmonic mean is useful for averaging rates or ratios, like speed or fuel efficiency.
+Harmonic mean is useful for **averaging rates or ratios,** like speed or fuel efficiency.
 
-### So it's used for continuous variables? 🤔
+It is generally less affected by extreme values than other types of averages, such as the arithmetic mean or the geometric mean.
 
-*Like, if I see a continuous variable, this is the type of averaging method I should use?*
-
-Not necessarily. The harmonic mean is generally used when you want to find the average of rates or ratios, regardless of whether the variables are continuous or discrete.
 
 For example, the harmonic mean could be used to find the **average speed of a car over a journey** with varying speeds.
 
-In this case, the **speeds are continuous variables.**
+In this case, the speeds are continuous variables.
 
-But the harmonic mean could also be used to find the **average price-to-earnings ratio** of a set of stocks, which is a **discrete variable.**
+But the harmonic mean could also be used to find the **average price-to-earnings ratio** of a set of stocks, which is a discrete variable.
 
-However, for **data with outliers**, the harmonic mean can be strongly influenced by them and may not provide a representative measure of the central tendency.
+**However!** For data with outliers, the harmonic mean can be strongly influenced by them and 
+
+may not provide a **representative measure of the central tendency.**
 
 In such cases, other measures like the arithmetic mean or median may be more appropriate.
+
+<br>
