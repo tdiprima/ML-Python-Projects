@@ -69,4 +69,18 @@ may not provide a **representative measure of the central tendency.**
 
 In such cases, other measures like the arithmetic mean or median may be more appropriate.
 
+## Regular mean
+
+### Get average of list
+
+```py
+def Average(lst):
+	return sum(lst) / len(lst)
+
+lst = [15, 9, 55, 41, 35, 20, 62, 49]
+average = Average(lst)
+
+print("Average of the list =", round(average, 2))
+```
+
 <br>
