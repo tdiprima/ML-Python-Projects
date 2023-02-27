@@ -54,6 +54,8 @@ class UNet(nn.Module):
             # TODO: problema
             x = torch.cat([x, x1], dim=1)
         except Exception as ex:
+            # Sizes of tensors must match except in dimension 1.
+            # Expected size 64 but got size 32 for tensor number 1 in the list.
             print("torch.cat:", ex)
             exit(1)
 
