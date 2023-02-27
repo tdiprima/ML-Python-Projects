@@ -1,16 +1,24 @@
-## Unet
+## U-Net
 
-<span style="color: blue; font-size: larger">U-Net = image segmentation network</span>
+<span style="color: #0000dd; font-size: larger">U-Net is a convolutional neural network that was developed for biomedical image segmentation<!-- at the Computer Science Department of the University of Freiburg-->.</span>
 
 Imagine you're drawing a picture, but you don't want to color the entire thing. Instead, you want to color just one part of it, like a flower or a tree.
 
 Now, let's say you have a friend who's really good at coloring. You want your friend to color that one part of the picture for you, but you need to tell your friend exactly where to color.
 
-This is kind of like what Unet does in machine learning! Unet is a type of neural network that helps computers "color" specific parts of an image. It's often used in medical imaging to highlight certain parts of an X-ray or MRI scan.
+This is kind of like what U-Net does in machine learning! U-Net is a type of neural network that helps computers "color" specific parts of an image.
 
-Unet works by taking an image and breaking it down into smaller pieces, sort of like a puzzle. Then, it analyzes each piece to figure out which parts of the image are important and should be highlighted. Finally, it puts all the pieces back together and shows you the final result.
+It's often used in **medical imaging** to **highlight certain parts** of an X-ray or MRI scan.
 
-So, just like how you need to tell your friend exactly where to color in your picture, Unet uses a lot of complicated math to figure out which parts of an image are important to highlight. But once it's done, it can help doctors and researchers better understand what's going on inside the human body!
+### U-Net works by...
+
+* Taking an image and breaking it down into smaller pieces, sort of like a puzzle. <span style="font-size: 27px;">🧩</span>
+* Then, it analyzes each piece to figure out which parts of the image are important and should be highlighted. <span style="font-size: 27px;">🔍</span>
+* Finally, it puts all the pieces back together and shows you the final result. <span style="font-size: 27px;">🏞️</span>
+
+So, just like how you need to tell your friend exactly where to color in your picture, U-Net uses a lot of complicated math to figure out which parts of an image are important to highlight. 
+
+But once it's done, it can help doctors and researchers better understand what's going on inside the human body!
 
 ## U-Net Implementation
 
@@ -80,26 +88,29 @@ class UNet(nn.Module):
 ```
 
 <br>
-This code defines a basic U-Net architecture that takes a 3-channel input image and outputs a single-channel segmentation mask.
+
+This code defines a basic U-Net architecture that takes a **3-channel input image** and outputs a **single-channel segmentation mask.**
 
 It consists of a downsampling path and an upsampling path, with skip connections between them.
 
-The `DoubleConv` class defines a module that applies two convolutional layers with batch normalization and ReLU activation.
+<mark>The `DoubleConv` class defines a module that **applies two convolutional layers** with **batch normalization** and **ReLU activation.**</mark>
 
-The `UNet` class defines the U-Net architecture, with the `features` parameter specifying the number of channels for each layer.
+The `UNet` class defines the U-Net architecture, with the `features` parameter specifying the **number of channels** for each layer.
 
-The `downs` list contains the downsampling blocks, while the `ups` list contains the upsampling blocks.
+The `downs` list contains the **downsampling** blocks.
 
-The `bottleneck` block is the central block in the network that connects the downsampling and upsampling paths.
+The `ups` list contains the **upsampling** blocks.
 
-The `forward` method performs the forward pass of the U-Net network.
+The `bottleneck` block is the central block in the network that **connects** the downsampling and upsampling paths.
 
-The `skip_connections` list stores the outputs of the downsampling blocks for later use in the upsampling path.
+The `forward` method performs the **forward pass** of the U-Net network.
 
-The bottleneck block connects the downsampling and upsampling paths.
+The `skip_connections` list **stores the outputs** of the downsampling blocks for later use in the upsampling path.
 
-The upsampling blocks upsample the feature maps and concatenate them with the corresponding skip connection from the downsampling path.
+The **bottleneck** block connects the downsampling and upsampling paths.
 
-Finally, the `final_conv` layer performs the final convolution to produce the segmentation mask.
+The **upsampling** blocks upsample the **feature maps** and **concatenate** them with the corresponding **skip connection** from the downsampling path.
 
-Note that you will need to customize this...
+Finally, the **`final_conv`** layer performs the final **convolution** to produce the **segmentation mask.**
+
+<br>
