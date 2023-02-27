@@ -12,10 +12,6 @@ def input_fn():
     # TODO: Note
     # (x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
     (train_images, train_labels), (test_images, test_labels) = tf.keras.datasets.mnist.load_data()
-    assert train_images.shape == (60000, 28, 28)
-    assert train_labels.shape == (10000, 28, 28)
-    assert test_images.shape == (60000,)
-    assert test_labels.shape == (10000,)
 
     # Normalize the pixel values
     train_images = train_images / 255.0
