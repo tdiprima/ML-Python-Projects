@@ -39,3 +39,26 @@ Then, it starts coloring in the parts of the picture that it thinks are part of 
 Eventually, the algorithm has colored in all the parts of the picture that belong to the cat, and all the parts that belong to the dog. Then, it can separate the picture into two different images, one of the cat and one of the dog.
 
 It's like if you had a big box of Legos with different colors and shapes, and you wanted to separate them by color and put them in different boxes. The Grow cut algorithm helps the computer separate the colors in the picture, just like you separate the Legos by color.
+
+### Misc
+
+["GrowCut"](https://www.graphicon.ru/oldgr/en/publications/text/gc2005vk.pdf) - Interactive Multi-Label N-D Image Segmentation By Cellular
+Automata
+
+"An Effective Interactive Medical Image Segmentation Method Using [Fast GrowCut](https://nac.spl.harvard.edu/files/nac/files/zhu-miccai2014.pdf)"
+
+[GrowCut algorithm}(https://en.wikipedia.org/wiki/GrowCut_algorithm)
+
+GrowCut is an interactive segmentation algorithm.
+
+It uses Cellular Automaton as an image model.
+
+Automata evolution models segmentation process.
+
+Each cell of the automata has some <mark>**label (in case of binary segmentation - 'object', 'background' and 'empty').**</mark>
+
+During automata evolution some cells capture their neighbours, replacing their labels.
+
+In GrowCut, a user vaguely draws some strokes inside the object of interest with an object brush, and outside the object with a background brush.
+
+In simple cases only a few strokes suffice for segmentation.
