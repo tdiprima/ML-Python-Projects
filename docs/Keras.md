@@ -1,7 +1,6 @@
 ## Keras Image Classification
 
 ```py
-# Import required libraries
 import numpy as np
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten
@@ -54,7 +53,9 @@ from the **MNIST** dataset.
 * Trains the model on the training data
 * Evaluates the model on the testing data
 
-(OK, so that's step 1.  Then we wanna try it out on real world data.)
+Both **Conv2D** and **MaxPooling2D** are layers commonly used in Convolutional Neural Networks (CNNs).
+
+**Conv2D** is a type of convolutional layer, while **MaxPooling2D** is a type of pooling layer, which are both fundamental components of CNNs.
 
 ### Pro-tip!
 
