@@ -1,7 +1,7 @@
 """
 Basic U-Net architecture
 Takes a 3-channel input image and outputs a single-channel segmentation mask.
-Unet for Image Analysis.md
+what-is-unet.md
 """
 import torch
 import torch.nn as nn

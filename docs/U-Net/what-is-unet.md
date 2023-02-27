@@ -1,4 +1,4 @@
-## U-Net
+## U-Net for Image Analysis
 
 <span style="color: #0000dd; font-size: larger">U-Net is a convolutional neural network that was developed for biomedical image segmentation<!-- at the Computer Science Department of the University of Freiburg-->.</span>
 
