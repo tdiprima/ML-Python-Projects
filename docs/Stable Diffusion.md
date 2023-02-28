@@ -1,53 +1,66 @@
-## Stable diffusion explained
+<!-- Explain stable diffusion in a way that's easy to understand -->
+## Stable diffusion in deep fakes 🥸
 
-<!--
-Sure, I'd be happy to explain stable diffusion in a way that's easy to understand!
--->
+Stable diffusion is a technique used in deep fake generation to create more realistic and high-quality videos.
 
-### Diffusion
+In traditional deep fake generation, a neural network is trained to **generate a new face** by studying and mimicking the facial features of a real person.
 
-Imagine that you have a **glass of water** with some **food coloring** in it. 🥃
+However, this can often lead to the generated face looking unnatural or distorted, especially if the original image is low-quality or has poor lighting.
 
-If you take a toothpick and **stir** the water, you'll see that the color starts to spread out and **mix** with the rest of the water.
+Stable diffusion seeks to overcome this problem by **adding noise to the image** during the deep fake generation process.
 
-This is called **diffusion.**
+This noise helps to **smooth out any rough or distorted features,** making the generated face look more natural and realistic.
 
-### Stable Diffusion
+To achieve this, the stable diffusion technique uses a process called **"diffusion,"** which involves **gradually adding noise** to the image over time.
 
-Now, stable diffusion is when the **food coloring spreads out evenly throughout** the water and stays that way.
+This noise is then **"smoothed out"** by applying a series of **filters** that help to reduce the rough edges and create a more cohesive image.
 
-This means that if you leave the glass of water alone for a while, the food coloring won't separate or clump together in one spot.
+By using stable diffusion, deep fake generators can create more convincing and realistic images that are less likely to be **detected** as fake.
 
-Instead, it will stay **evenly distributed** throughout the water.
+However, it's worth noting that this technique is **not foolproof,** and there are still ways to detect and identify deep fakes using other methods.
 
-Stable diffusion happens when the particles that are being diffused are the same size and weight, and when the temperature and pressure of the environment are consistent.
 
-It's like when you **mix** two colors of **paint** together **really well** and end up with a new color that stays the same no matter how long you leave it alone.
+### Simple pseudocode example of how stable diffusion can be implemented
 
-I hope that helps you understand stable diffusion!
+```py
+# Initialize variables
+image = original_image
+noise_scale = starting_noise_scale
+num_steps = total_steps
 
-## Stable Diffusion in ML 🥸
+# Iterate over diffusion steps
+for step in range(num_steps):
+    # Generate noise
+    noise = sample_noise(image.shape, noise_scale)
+    
+    # Add noise to image
+    image = image + noise
+    
+    # Apply diffusion filter
+    image = apply_filter(image, diffusion_filter)
+    
+    # Update noise scale
+    noise_scale = update_noise_scale(noise_scale, step, num_steps)
+    
+# Finalize image
+final_image = apply_filter(image, final_filter)
+```
 
-<mark>**Fake images better.**</mark>
+<br>
 
-In general, "diffusion" refers to the process of **spreading or dispersing** something over time or space.
+In this example, we **start with an original image** and **gradually add noise to it** over a series of diffusion steps.
 
-In the context of machine learning, this could refer to the spread of **information** or **influence** through a network or dataset.
+Each step involves:
 
-One possible scenario where "stable diffusion" might be relevant in machine learning is in the **training** of deep neural networks, where the **weights and biases** of the model are **updated** through a process called **backpropagation.**
+* Generating a new noise pattern
+* Adding it to the image
+* Applying a diffusion filter to smooth out the image
+* Updating the noise scale for the next step
 
-### Backpropagation
+Finally, we **apply a final filter to the image** to produce the stable diffusion result.
 
-In this process, the **error** or **loss of the model** is propagated backwards through the layers of the network, **gradually adjusting** the weights and biases to improve the model's performance.
+Of course, this is just a very simple example...
 
-If the updates to the weights and biases are too large or too frequent, it can lead to instability or "exploding gradients" that prevent the model from **converging on a good solution.**
+In practice, the code would be much more complex and involve more advanced techniques for generating and filtering noise.
 
-In this case, techniques like **gradient clipping** or **weight decay** can be used to ensure a more stable diffusion of the updates through the network.
-
-### Recommendation system
-
-Another possible application of stable diffusion in machine learning is in the spread of information or influence through a social network or other **graph structure.**
-
-For example, in a recommendation system that uses **collaborative filtering** to make personalized product recommendations, the preferences of one user might **"diffuse"** through their social connections to influence the recommendations for other users in their network.
-
-**Ensuring a stable diffusion** of these preferences could improve the accuracy and fairness of the recommendations.
+<br>
