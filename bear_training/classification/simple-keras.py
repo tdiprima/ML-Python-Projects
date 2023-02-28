@@ -1,6 +1,6 @@
 """
 Works.
-Keras.md
+CNNs.md
 """
 from keras.datasets import mnist
 from keras.layers import Dense, Flatten
@@ -28,12 +28,9 @@ model.add(Dense(10, activation='softmax'))
 # Compile model
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-# Train model
+# Train model on training data
 model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=10, batch_size=200)
 
-# Save it
-model.save("model_keras.h5")
-
-# Evaluate model
+# Evaluate model on testing data
 scores = model.evaluate(X_test, y_test, verbose=0)
 print("Accuracy: %.2f%%" % (scores[1] * 100))

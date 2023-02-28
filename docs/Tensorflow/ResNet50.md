@@ -28,6 +28,9 @@ Between 3 and 20 layers.
 1. YOLOv3
 1. U-Net
 
+<br>
+<span style="color:#0000dd;font-size:larger;">See:</span> [CNNs.md](../CNNs.md)
+
 ### Residual connections <span style="font-size:27px;">🚇</span>
 
 These connections allow the network to **"skip"** over some of the layers, which can help prevent the vanishing gradient problem. <span style="font-size:27px;">💨</span>
