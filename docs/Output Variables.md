@@ -1,35 +1,36 @@
 ## Discrete, categorical, continuous
 
-Discrete or categorical output variables are **things that can be counted or labeled.**
+<span style="color:#000088;font-weight:bold;">Discrete / categorical</span> = things that can be counted or labeled.
 
-For example, the **number of apples** in a basket is discrete, because you can **count** the exact number of apples. <span style="font-size: 27px;">🍎</span>
+A discrete or categorical output variable is a type of variable that can only take on a limited number of values or categories.
 
-Another example is the **color of a car**, because it can only be **labeled as one** of a limited number of options. <span style="font-size: 27px;">🚙</span>
+This type of output variable is typically associated with **classification** tasks, where the goal is to predict the **category** or **class** to which an input belongs.
 
-On the other hand, a continuous output variable is something that can take on **any value within a certain range.**
+* Dog or cat
+* Churn or not churn
+* Type of flower
+* Classifying the sentiment of text as positive or negative
+* Predicting outcome of sports game as win, lose, or draw
 
-For example, the **weight** of an apple is continuous because it can be any value between a certain minimum and maximum weight. <span style="font-size: 27px;">⚖️ 🏋️</span>
+<span style="color:#000088;font-weight:bold;">Continuous</span> = can take on any value within a certain range.
 
-### Discrete (number):
+A continuous output variable can take on any numeric value within a certain range.
+
+* Predicting the price of a house
+* Predicting the temperature outside
 
 ```py
-# Example of a discrete variable (counting apples)
+# discrete variable (counting apples)
 num_apples = 5
 print("There are", num_apples, "apples in the basket")
-```
 
-### Categorical (label):
-
-```py
-# Example of a categorical variable (color of a car)
+# categorical variable (color of a car)
 car_color = "red"
 print("The car is", car_color)
-```
 
-### Continuous (number):
-
-```py
-# Example of a continuous variable (weight of an apple)
+# continuous variable (weight of an apple)
 apple_weight = 0.153
 print("The weight of the apple is", apple_weight, "kg")
 ```
+
+<br>
