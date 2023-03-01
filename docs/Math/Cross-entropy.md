@@ -1,4 +1,4 @@
-## Cross-Entropy
+## Cross-Entropy <span style="font-size:35px;">🎿</span>
 
 When we're training the program, we want to make sure that it's getting better over time.
 
@@ -16,7 +16,7 @@ Well, it's used to measure the difference between **two sets** of probabilities.
 
 Imagine you have two sets of data, and you want to compare how similar (different?) they are to each other.
 
-The "cross" part of the name comes from the fact that you're comparing two different sets of data, or **crossing them.** <span style="font-size:30px;">🎿</span>
+The "cross" part of the name comes from the fact that you're comparing two different sets of data, or **crossing them.** <span style="font-size:27px;">🎿</span>
 
 ### Code <span style="font-size:27px;">👩🏻‍💻</span>
 
