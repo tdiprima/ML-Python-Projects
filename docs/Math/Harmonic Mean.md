@@ -1,4 +1,4 @@
-## What is the "harmonic mean"?
+## Harmonic mean ⚖️ 
 
 A type of average that emphasizes small values.
 
@@ -13,6 +13,16 @@ The **reciprocal** of a number is simply 1 divided by the number.
 The reciprocal of 4 is <sup>1</sup>/<sub>4</sub>
 
 The reciprocal of 5 is <sup>1</sup>/<sub>5</sub>
+
+### Picture it
+<!-- Sicily, 1922 -->
+<!-- If you were to express "harmonic mean" as a picture, or an image, what would it be? -->
+
+One possible way to represent the harmonic mean as an image is to imagine a seesaw or a balance beam. The two sides of the balance beam represent the different values that are being averaged, and the position of the fulcrum represents the harmonic mean.
+
+To explain further, imagine that one side of the balance beam has a weight of 10 pounds, and the other side has a weight of 5 pounds. If the fulcrum is placed at the midpoint of the beam, the beam will balance perfectly, with each side weighing an average of 7.5 pounds. However, if the fulcrum is moved closer to the side with the smaller weight, the average weight of the two sides will decrease. To find the harmonic mean, the fulcrum must be moved in such a way that the product of the two weights on either side of the fulcrum is equal. In this example, the harmonic mean of 10 and 5 is 6.67, which is the position of the fulcrum that would balance the two weights.
+
+Thus, the image of a seesaw or a balance beam can be used to represent the harmonic mean, where the position of the fulcrum represents the balance point that takes into account the relationship between the two values being averaged.
 
 ### Calculate
 
