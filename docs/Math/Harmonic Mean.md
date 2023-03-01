@@ -1,28 +1,14 @@
 ## Harmonic mean ⚖️ 
 
-A type of average that emphasizes small values.
-
-It's used for averaging rates or ratios.
-
-Harmonic mean is a type of average that is used to calculate a central or **representative value** for a set of numbers.
-
-It is calculated by dividing the number of values in the set<br>by the sum of the reciprocal of each value in the set.
-
-The **reciprocal** of a number is simply 1 divided by the number.
-
-The reciprocal of 4 is <sup>1</sup>/<sub>4</sub>
-
-The reciprocal of 5 is <sup>1</sup>/<sub>5</sub>
-
-### Picture it
-<!-- Sicily, 1922 -->
 <!-- If you were to express "harmonic mean" as a picture, or an image, what would it be? -->
 
-One possible way to represent the harmonic mean as an image is to imagine a seesaw or a balance beam. The two sides of the balance beam represent the different values that are being averaged, and the position of the fulcrum represents the harmonic mean.
+To get them to balance, we could either add more weight, or torque...
 
-To explain further, imagine that one side of the balance beam has a weight of 10 pounds, and the other side has a weight of 5 pounds. If the fulcrum is placed at the midpoint of the beam, the beam will balance perfectly, with each side weighing an average of 7.5 pounds. However, if the fulcrum is moved closer to the side with the smaller weight, the average weight of the two sides will decrease. To find the harmonic mean, the fulcrum must be moved in such a way that the product of the two weights on either side of the fulcrum is equal. In this example, the harmonic mean of 10 and 5 is 6.67, which is the position of the fulcrum that would balance the two weights.
+<img src="https://content.bartleby.com/qna-images/question/f2dd9976-7a4a-4591-9974-6149fe8e4744/92da5228-952e-412a-a8c2-4667a2739a8a/xkwf4u8_processed.jpeg" width="400">
 
-Thus, the image of a seesaw or a balance beam can be used to represent the harmonic mean, where the position of the fulcrum represents the balance point that takes into account the relationship between the two values being averaged.
+or move the fulcrum:
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9iDf6nc58CvqLYKHQpmXXhdTpsp5zYFJ32iie6d2oMHHgRau0J4n_sV8v_WdKZyO8Zlc&usqp=CAU" width="450">
 
 ### Calculate
 
@@ -33,8 +19,9 @@ To calculate the harmonic mean of a set of numbers:
 3. Divide the number of values in the set by the sum of the reciprocals.
 
 ```py
-# Find the harmonic mean of the numbers 2, 4, 6, and 8
-numbers = [2, 4, 6, 8]
+# Calculate the harmonic mean of
+numbers = [10, 5]
+# numbers = [2, 4, 6, 8]
 
 # Calculate the reciprocal of each number
 reciprocals = [1/x for x in numbers]
@@ -47,6 +34,9 @@ harmonic_mean = 1 / average
 
 # Print the result
 print("The harmonic mean is:", harmonic_mean)
+
+# The harmonic mean of 10 and 5 is 6.67
+# The harmonic mean of 2, 4, 6, and 8 is 3.84
 ```
 
 <br>
@@ -91,6 +81,8 @@ lst = [15, 9, 55, 41, 35, 20, 62, 49]
 average = Average(lst)
 
 print("Average of the list =", round(average, 2))
+# 35.75
+# Harmonic mean is 23.84 ;)
 ```
 
 <br>
