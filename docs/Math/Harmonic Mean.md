@@ -4,7 +4,7 @@
 
 To get them to balance, we could either add more weight, or torque...
 
-<img src="https://content.bartleby.com/qna-images/question/f2dd9976-7a4a-4591-9974-6149fe8e4744/92da5228-952e-412a-a8c2-4667a2739a8a/xkwf4u8_processed.jpeg" width="400">
+<img src="../images/seesaw.jpeg" width="400">
 
 or move the fulcrum:
 
@@ -40,6 +40,7 @@ print("The harmonic mean is:", harmonic_mean)
 ```
 
 <br>
+
 In this example, the reciprocal of each number is calculated using a **list comprehension**, which is a way to create a new list by applying an operation to each element of an existing list.
 
 The **`sum()`** function is used to find the sum of the reciprocals, and the **`len()`** function is used to find the number of reciprocals in the list.

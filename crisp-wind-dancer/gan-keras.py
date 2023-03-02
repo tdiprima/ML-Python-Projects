@@ -1,7 +1,6 @@
 """
-Works.
+GAN.md
 Deep Fake Using GAN
-GAN - Computer art game.md
 Epoch: 0, Discriminator Loss: 0.6365200877189636, Generator Loss: 0.7656040191650391
 """
 import numpy as np
@@ -67,4 +66,4 @@ for epoch in range(epochs):
     if epoch % 100 == 0:
         print(f"Epoch: {epoch}, Discriminator Loss: {d_loss}, Generator Loss: {g_loss}")
 
-    # todo: final output??
+    # TODO: output & display

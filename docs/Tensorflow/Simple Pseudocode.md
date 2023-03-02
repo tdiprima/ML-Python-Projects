@@ -40,9 +40,7 @@ This involves:
 * feeding the new data into the model, and
 * letting it make predictions based on what it learned during training.
 
-### Sample Code
-
-<mark>**Build a neural network that can classify handwritten digits from the MNIST data set.**</mark>
+### Build a neural network that can classify handwritten digits from the MNIST data set
 
 ```py
 # Load data into TensorFlow
@@ -77,32 +75,4 @@ predictions = model.predict(x_test)
 * We then train the model using the training data, and finally
 * make predictions on the test data.
 
-### Output
-
-```haskell
-2023-02-20 10:37:57.087401: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
-To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2023-02-20 10:38:03.140218: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
-To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
-Epoch 1/10
-1875/1875 [==============================] - 3s 1ms/step - loss: 2.5089 - accuracy: 0.8474     
-Epoch 2/10
-1875/1875 [==============================] - 2s 1ms/step - loss: 0.3879 - accuracy: 0.9099
-Epoch 3/10
-1875/1875 [==============================] - 2s 1ms/step - loss: 0.2813 - accuracy: 0.9285
-Epoch 4/10
-1875/1875 [==============================] - 2s 1ms/step - loss: 0.2397 - accuracy: 0.9399
-Epoch 5/10
-1875/1875 [==============================] - 2s 1ms/step - loss: 0.2165 - accuracy: 0.9444
-Epoch 6/10
-1875/1875 [==============================] - 3s 1ms/step - loss: 0.2142 - accuracy: 0.9454
-Epoch 7/10
-1875/1875 [==============================] - 2s 1ms/step - loss: 0.1995 - accuracy: 0.9495
-Epoch 8/10
-1875/1875 [==============================] - 3s 1ms/step - loss: 0.1931 - accuracy: 0.9514
-Epoch 9/10
-1875/1875 [==============================] - 2s 1ms/step - loss: 0.1848 - accuracy: 0.9549
-Epoch 10/10
-1875/1875 [==============================] - 2s 1ms/step - loss: 0.1823 - accuracy: 0.9550
-313/313 [==============================] - 0s 709us/step
-```
+<br>

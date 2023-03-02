@@ -44,27 +44,6 @@ But using an exponent, you can write it like this: <span style="color: purple; f
 The "4" is the exponent, and it tells you how many times to multiply 5 by itself.
 
 
-## to the power of 1/3
-
-When we say we raised a number to the power of 1/3, we can say it in a few different ways, but one common way is to say **"to the power of one-third".**
-
-In this case, "to the power of" means the same thing as "**raised** to the power of".
-
-"One-third" means the fraction 1/3, of course.
-
-So, if we were talking about **the cube root of 8**, we could say:
-
-<span style="color: green; font-weight:bold">the cube root of 8 is 2</span>
-
-because 
-
-<span style="color: green; font-weight:bold">2 to the power of one-third equals 8</span>
-
-And:
-
-<span style="color: green; font-weight:bold">2 * 2 * 2 = 8</span>
-
-
 ## Calculate the nth root on a calculator
 
 Look at the [formula](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/cbrt), there's a button on the calculator that looks like that.

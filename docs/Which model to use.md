@@ -1,3 +1,20 @@
+### Machine learning algorithms 🤖
+
+* Linear regression
+* Logistic regression
+* Decision trees
+* Random forests
+* Support vector machines
+* K-nearest neighbors
+* Neural networks
+* Etc.
+
+It's worth noting that some machine learning algorithms use parameters that are set to a value of 50 or multiples of 50.
+
+For example, the **k-nearest neighbors algorithm** uses a parameter **k** that specifies the number of nearest neighbors to consider when making predictions, and this value could be set to 50 or a multiple of 50.
+
+However, the value of k is typically chosen based on cross-validation or other model selection techniques, rather than being set to a fixed value.
+
 ### How do you know which algorithm to use?
 
 To select the appropriate algorithm, you should consider the **type of data** you have and **what** you're trying to **predict.**

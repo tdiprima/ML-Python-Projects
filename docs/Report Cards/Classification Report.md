@@ -38,7 +38,7 @@ It provides a **balanced measure** of the model's performance.
 
 <span style="color:maroon;font-weight:bold;font-size:larger;">Support:</span> the **number of observations** in each class.
 
-### classification_report
+### Classification_report
 
 ```py
 print(classification_report(y_test, y_pred))
@@ -61,27 +61,4 @@ print(classification_report(y_test, y_pred))
     accuracy                           0.98     10000
    macro avg       0.98      0.98      0.98     10000
 weighted avg       0.98      0.98      0.98     10000
-```
-
-### confusion_matrix
-
-```py
-print(confusion_matrix(y_test, y_pred))
-```
-
-<br>
-Output:
-
-```
-Confusion matrix:
- [[ 970    0    2    0    0    2    3    1    2    0]
- [   0 1126    5    0    0    0    2    0    2    0]
- [   1    0 1021    1    1    0    2    4    2    0]
- [   0    0    9  987    0    7    0    4    3    0]
- [   0    0   10    0  952    1    8    2    1    8]
- [   3    1    1    8    2  868    5    2    2    0]
- [   3    3    4    0    1    5  941    1    0    0]
- [   0    3   11    0    0    0    0 1006    2    6]
- [   7    1    9   13    3   10    2    6  920    3]
- [   4    6    4   14   12    2    1   29    2  935]]
 ```

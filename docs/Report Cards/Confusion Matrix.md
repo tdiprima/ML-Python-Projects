@@ -2,7 +2,30 @@
 
 A confusion matrix is a way to see **how well a machine learning model** is doing at **classifying things correctly.**
 
-### Example 🐱 🐶 🦆
+### Code
+
+```py
+print(confusion_matrix(y_test, y_pred))
+```
+
+**Output:**
+
+```
+Confusion matrix:
+ [[ 970    0    2    0    0    2    3    1    2    0]
+ [   0 1126    5    0    0    0    2    0    2    0]
+ [   1    0 1021    1    1    0    2    4    2    0]
+ [   0    0    9  987    0    7    0    4    3    0]
+ [   0    0   10    0  952    1    8    2    1    8]
+ [   3    1    1    8    2  868    5    2    2    0]
+ [   3    3    4    0    1    5  941    1    0    0]
+ [   0    3   11    0    0    0    0 1006    2    6]
+ [   7    1    9   13    3   10    2    6  920    3]
+ [   4    6    4   14   12    2    1   29    2  935]]
+```
+
+
+## Example 🐱 🐶 🦆
 
 Ok, so we're playing "recognize the animal."
 
@@ -61,5 +84,6 @@ By looking at these results, you can think about how to **improve** the computer
 * Adding more training data
 * or
 * Tweaking the algorithm
+
 
 <br>
