@@ -27,7 +27,7 @@ const data = tf.data.generator(function*() {
 await model.fitDataset(data, { epochs: 10 });
 
 // Make a prediction
-const input = tf.tensor2d([[0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+const input = tf.tensor2d([[...]]);
 
 // Stopped at 185 digits.
 ```
@@ -65,9 +65,11 @@ model.fit(xs, ys, {epochs: 100}).then(() => {
 });
 ```
 
-In this updated code, we use a loop to generate an identity matrix as the input xs tensor, and an array of consecutive numbers as the output ys tensor. We then train the model on this data, and finally use another loop to generate an input tensor of all zeros to make a prediction, which we print to the console.
+In this updated code, we use a loop to generate an **identity matrix** as the **input** `xs` tensor, and an array of **consecutive numbers** as the **output** `ys` tensor.
 
-Note that because this example uses the tfjs-node package, you'll need to run this code using Node.js rather than a browser.
+We then train the model on this data, and finally use another loop to generate an **input tensor of all zeros to make a prediction**, which we print to the console.
+
+Note that because this example uses the `tfjs-node` package, you'll need to run this code using Node.js rather than a browser.
 
 ## Tensorflow / Node
 
@@ -95,7 +97,13 @@ Here's a breakdown of the code:
 
 So the end result is an array of 100 sub-arrays, each containing a single number representing the index of that sub-array in the original array. This array is then passed to the `tf.tensor2d()` function, which creates a new 2D tensor with this data.
 
-In other words, we're **creating a simple dataset** where the input is a 100-dimensional vector of all zeros, and the output is a 100-dimensional vector where each element corresponds to its index in the vector. This is a **toy example** used to demonstrate how to train and use a basic machine learning model with TensorFlow.js.
+In other words, we're **creating a simple dataset** where
+
+* the input is a 100-dimensional vector of all zeros, and 
+* the output is a 100-dimensional vector
+  * where each element corresponds to its index in the vector.
+
+This is a toy example used to demonstrate how to train and use a basic machine learning model with TensorFlow.js. 🚂
 
 ### What the heck is this (2)
 
@@ -137,7 +145,6 @@ for (let i = 0; i < 100; i++) {
 const xs = tf.tensor2d(rows);
 ```
 
-
 This code does the same thing as the previous code, but it's broken down into smaller steps to make it easier to understand. Here's what it does:
 
 1. Create an empty array called `rows` to hold the rows of our 2D tensor.
@@ -152,9 +159,11 @@ This code does the same thing as the previous code, but it's broken down into sm
 
 ## What is "diagonal of the tensor" and why is it important
 
-The diagonal of a 2D tensor is the set of elements that run from the top left to the bottom right corner of the tensor. For example, in a 3x3 tensor, the diagonal would be the elements at (0, 0), (1, 1), and (2, 2).
+The diagonal of a 2D tensor is the **set of elements** that run from the **top left to the bottom right** corner of the tensor. For example, in a 3x3 tensor, the diagonal would be the elements at (0, 0), (1, 1), and (2, 2).
 
-In the code we looked at earlier, we were creating a 2D tensor where the elements on the diagonal are 1, and all other elements are 0. This is important because this particular tensor is known as the **identity matrix**, which is a very useful mathematical tool in many fields, including linear algebra, computer graphics, and machine learning.
+In the code we looked at earlier, we were creating a 2D tensor where the elements on the diagonal are 1, and all other elements are 0.
+
+This is important, because this particular tensor is known as the **identity matrix**, which is a very useful mathematical tool...
 
 The identity matrix is used to perform certain types of **matrix operations**, such as multiplying a matrix by the identity matrix, which results in the same matrix.
 
@@ -174,7 +183,7 @@ In this example, we're including TensorFlow.js from the jsDelivr CDN using the s
 
 After you've included TensorFlow.js in your HTML file, you can write your TensorFlow.js code directly in a `<script>` tag. For example:
 
-```php
+```html
 <!DOCTYPE html>
 <html>
   <head>
@@ -182,7 +191,9 @@ After you've included TensorFlow.js in your HTML file, you can write your Tensor
   </head>
   <body>
     <h1>TensorFlow.js Example</h1>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.8.0/dist/tf.min.js"></script>
+    <!-- That ain't it -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.8.0/dist/tf.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
     <script>
       // Create a tensor with some data
       const input = tf.tensor2d([[1, 2], [3, 4]]);
@@ -197,7 +208,7 @@ This code will create a 2D tensor with some data and log it to the console. You 
 
 ## What is the JavaScript equivalent of Python's array.shape?
 
-No problem!  In vanilla JavaScript, you can get the shape of an array using the .length property of each dimension. Here's an example:
+No problem!  In vanilla JavaScript, you can get the shape of an array using the `.length` property of each dimension:
 
 ```js
 // Create a 2D array
@@ -241,7 +252,15 @@ const shape = [arr.length, arr[0].length, arr[0][0].length];
 console.log(shape); // Output: [2, 3, 2]
 ```
 
-In this example, we're creating a 3D array with some data. The array has two "sheets", each of which has three "rows", and each row has two "columns". We're getting the shape of the array by getting the .length property of each dimension and storing them in an array. Note that we're assuming that all "sheets", "rows", and "columns" have the same length, so we're getting the .length property of the first "row" and "column" of the first "sheet" to get the number of "rows" and "columns". If any of the dimensions have different lengths, you'll need to modify this code to handle that case.
+In this example, we're creating a 3D array with some data.
+
+The array has two "sheets", each of which has three "rows", and each row has two "columns".
+
+We're getting the shape of the array by getting the `.length` property of each dimension and storing them in an array.
+
+Note that we're assuming that all "sheets", "rows", and "columns" have the same length, so we're getting the `.length` property of the first "row" and "column" of the first "sheet" to get the number of "rows" and "columns".
+
+If any of the dimensions have different lengths, you'll need to modify this code to handle that case.
 
 <br>
 
