@@ -1,19 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>TensorFlow.js Example</title>
-    <!-- https://www.tensorflow.org/js/tutorials/setup -->
-    <!-- https://cdnjs.com/libraries/tensorflow -->
+<title>TensorFlow.js Example</title>
 </head>
 <body>
 <h1>TensorFlow.js Example</h1>
+
+<p><a href="https://www.tensorflow.org/js/tutorials/setup">Setup</a></p>
+<p><a href="https://cdnjs.com/libraries/tensorflow">CDN</a></p>
+<p><a href="https://www.tensorflow.org/js/guide/tensors_operations">Tensors and operations</a></p>
+
 <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.8.0/dist/tf.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+
+See console &ndash;&gt;
+
 <script>
-    // Create a tensor with some data
-    const input = tf.tensor2d([[1, 2], [3, 4]]);
+    // Create a rank-2 tensor (matrix) matrix tensor from a multidimensional array.
+    // i.e. Create a tensor with some data
+    const a = tf.tensor([[1, 2], [3, 4]]);
+
+    console.log('shape:', a.shape);
+
     // Log the tensor to the console
-    input.print();
+    a.print();
 </script>
+
 </body>
 </html>
