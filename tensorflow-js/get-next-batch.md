@@ -190,14 +190,14 @@ console.log(tf.version);
 
 ```json
 {
-  tfjs-core: 4.2.0,
-  tfjs-backend-cpu: 4.2.0,
-  tfjs-backend-webgl: 4.2.0,
-  tfjs-data: 4.2.0,
-  tfjs-layers: 4.2.0,
-  tfjs-converter: 4.2.0,
-  tfjs: 4.2.0,
-  tfjs-node: 4.2.0
+  "tfjs-core": "4.2.0",
+  "tfjs-backend-cpu": "4.2.0",
+  "tfjs-backend-webgl": "4.2.0",
+  "tfjs-data": "4.2.0",
+  "tfjs-layers": "4.2.0",
+  "tfjs-converter": "4.2.0",
+  "tfjs": "4.2.0",
+  "tfjs-node": "4.2.0"
 }
 ```
 
