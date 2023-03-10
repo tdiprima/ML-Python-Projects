@@ -15,6 +15,7 @@ const data = tf.data.generator(function*() {
 }).batch(32);
 
 // Train the model
+// TODO: await can only be used inside async fuctions (async function foo() {} or async () => {})
 await model.fitDataset(data, { epochs: 10 });
 
 // Make a prediction
