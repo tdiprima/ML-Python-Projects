@@ -1,3 +1,5 @@
+const tf = require('@tensorflow/tfjs-node');
+
 // Create an empty array to hold the rows of our 2D tensor
 const rows = [];
 
@@ -19,5 +21,9 @@ for (let i = 0; i < 100; i++) {
   rows.push(row);
 }
 
+const shape = [rows.length, rows[0].length];
+console.log("shape:", shape);
+
 // Create a tensor from our array of rows
-// const xs = tf.tensor2d(rows);
+const xs = tf.tensor2d(rows);
+console.log("shape:", xs.shape);

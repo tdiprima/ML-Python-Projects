@@ -1,3 +1,4 @@
+// Train a simple model to recognize handwritten digits (with error):
 const tf = require('@tensorflow/tfjs-node');
 
 // Define the model

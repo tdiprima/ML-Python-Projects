@@ -5,6 +5,8 @@ TensorFlow.js is a library that allows you to run machine learning models direct
 Here is an example of how to use TensorFlow.js to train a simple model to recognize handwritten digits:
 
 ```js
+const tf = require('@tensorflow/tfjs-node');
+
 // Define the model architecture
 const model = tf.sequential();
 model.add(tf.layers.dense({ units: 16, activation: 'relu', inputShape: [784] }));
@@ -71,7 +73,7 @@ Note that because this example uses the tfjs-node package, you'll need to run th
 
 To use TensorFlow.js in a Node.js environment, you can install the `@tensorflow/tfjs-node` package, which includes the TensorFlow.js library optimized for use with Node.js.
 
-To use the `tf` variable to reference the TensorFlow.js library in your code, you can import it at the beginning of your script using the `require()` function
+To use the `tf` variable to reference the TensorFlow.js library in your code, you can import it at the beginning of your script using the `require()` function.
 
 ### What the heck is this (1)
 
@@ -108,6 +110,8 @@ const xs = tf.tensor2d(new Array(100).fill(0).map((_, i) => {
 Here is an alternative way of writing that line of code that might be easier to understand:
 
 ```js
+const tf = require('@tensorflow/tfjs-node');
+
 // Create an empty array to hold the rows of our 2D tensor
 const rows = [];
 
