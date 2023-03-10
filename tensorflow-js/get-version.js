@@ -1,7 +1,7 @@
 const tf = require('@tensorflow/tfjs-node');
 
 // Version
-console.log(tf.version.tfjs);
+console.log("\nVersion:", tf.version.tfjs);
 
 // Everything
-console.log(tf.version);
+console.log("\nEverything:", tf.version);

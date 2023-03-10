@@ -62,6 +62,8 @@ model.add(
 
 Note that the shape argument is optional when passing in a multidimensional array, but is required when passing in a flat array or a TypedArray.
 
-<span style="color:red;">IT WORKED!</span>
+<span style="color:red;">THANKS, THAT WORKED!</span>
+
+You're welcome! I'm glad to hear that the solution worked for you. If you have any further questions or run into any more issues, feel free to ask!
 
 <br>
