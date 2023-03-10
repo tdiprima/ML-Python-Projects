@@ -1,3 +1,4 @@
+// Generate an identity matrix as the input tensor
 const tf = require('@tensorflow/tfjs-node');
 
 // Create an empty array to hold the rows of our 2D tensor
