@@ -69,11 +69,13 @@ class LinearRegressionModel(nn.Module):
         self.bias = nn.Parameter(torch.randn(1, dtype=torch.float), requires_grad=True)
 
     # Forward defines the computation in the model
+    # "x" is the input data (e.g. training/testing features)
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return self.weights * x + self.bias  # <- this is the linear regression formula (y = m*x + b)
+        # linear regression formula (y = m*x + b)
+        return self.weights * x + self.bias
 
 
-# Set manual seed since nn.Parameter are randomly initialzied
+# Set manual seed since nn.Parameter are randomly initialized
 torch.manual_seed(42)
 
 # Create an instance of the model (this is a subclass of nn.Module that contains nn.Parameter(s))
