@@ -23,13 +23,13 @@ Direction = _Which way_ it's going
 
 <!-- https://hadrienj.github.io/deep-learning-book-series-home/ -->
 
-The way to remember how many dimensions a tensor has, is by counting the number of square brackets.
+The way to remember how many dimensions a tensor has, is by **counting the number of square brackets.**
 
 ```py
 vector = torch.tensor([7, 7])
 vector.ndim  # 1 set of brackets
 vector.shape  # 2 (it's 2 by 1 elements)
-matrix = torch.tensor([[7, 8], [8, 10]])
+MATRIX = torch.tensor([[7, 8], [8, 10]])
 MATRIX.ndim. # 2 (count the number of square brackets on the outside of one side)
 MATRIX.shape  # [2, 2] two elements deep, two elements wide
 ```
