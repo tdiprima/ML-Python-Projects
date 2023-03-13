@@ -4,7 +4,7 @@
 
 To get them to balance, we could either add more weight, or torque...
 
-<img src="../images/seesaw.jpeg" width="400">
+<img src="../../images/seesaw.jpeg" width="400">
 
 or move the fulcrum:
 

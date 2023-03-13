@@ -20,7 +20,7 @@ A logarithmic graph with a base of 10 will have a curved shape.
 
 A logarithmic graph with a base of 2 will have a steeper slope.
 
-![Figure_1.png](../../images/Figure_1.png)
+![Figure_1.png](../../../images/Figure_1.png)
 
 ### Plot graph with base 10 and 2
 
@@ -98,7 +98,7 @@ y1 = np.log10(x)
 y2 = np.log2(x)
 ```
 
-![Figure_2.png](../../images/Figure_2.png)
+![Figure_2.png](../../../images/Figure_2.png)
 
 The 2 got flatter, and the 10 was already flat.
 

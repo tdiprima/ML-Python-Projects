@@ -62,7 +62,9 @@ If the gradient is "hotter" (larger), the optimizer will take a bigger step in t
 
 If the gradient is "colder" (smaller), the optimizer will take a smaller step.
 
-*Sounds like reinforcement learning to me.*
+*Sounds like [reinforcement learning](https://www.kdnuggets.com/2019/10/mathworks-reinforcement-learning.html) to me.*
+
+<img src="https://www.mathworks.com/discovery/reinforcement-learning/_jcr_content/mainParsys3/discoverysubsection_603098216/mainParsys3/image.adapt.full.medium.png/1675723381147.png" width="600">
 
 By **adjusting the learning rate** based on the gradient, the Adam optimizer can quickly find the optimal values of the parameters and make accurate predictions on new data.
 
