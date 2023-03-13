@@ -19,8 +19,11 @@ bias = 0.3  # a (y intercept)
 start = 0
 end = 1
 step = 0.02
+
 # Capital = matrix; lowercase = vector
+
 X = torch.arange(start, end, step).unsqueeze(dim=1)
+
 y = weight * X + bias
 
 # Create train/test split
@@ -31,6 +34,9 @@ X_train, y_train = X[:train_split], y[:train_split]
 
 # X[train_split:] means: Get everything from the train split, onwards.
 X_test, y_test = X[train_split:], y[train_split:]
+
+
+# len(X_train), len(y_train), len(X_test), len(y_test)
 
 
 def plot_predictions(train_data=X_train,
@@ -44,15 +50,14 @@ def plot_predictions(train_data=X_train,
     plt.figure(figsize=(10, 7))
 
     # Plot training data in blue
-    # plt.scatter(train_data, train_labels, c="b", s=4, label="Training data")
-    plt.scatter(train_data, train_labels, c="b", s=16, label="Training data")
+    plt.scatter(train_data, train_labels, c="b", s=4, label="Training data")
 
     # Plot test data in green
-    plt.scatter(test_data, test_labels, c="g", s=16, label="Testing data")
+    plt.scatter(test_data, test_labels, c="g", s=4, label="Testing data")
 
     if predictions is not None:
         # Plot the predictions in red (predictions were made on the test data)
-        plt.scatter(test_data, predictions, c="r", s=16, label="Predictions")
+        plt.scatter(test_data, predictions, c="r", s=4, label="Predictions")
 
     # Show the legend
     plt.legend(prop={"size": 14})
@@ -60,10 +65,14 @@ def plot_predictions(train_data=X_train,
     plt.show()
 
 
+plot_predictions()
+
+
 # Create a Linear Regression model class
 class LinearRegressionModel(nn.Module):
     def __init__(self):
         super().__init__()
+
         self.weights = nn.Parameter(torch.randn(1, dtype=torch.float), requires_grad=True)
 
         self.bias = nn.Parameter(torch.randn(1, dtype=torch.float), requires_grad=True)
