@@ -24,7 +24,13 @@ By **following the slope downhill**, the computer can find the weights and biase
 
 So, in summary, weights and biases are like knobs and starting points that a computer uses to make guesses, and gradient descent is the process the computer uses to figure out the best possible values for those knobs and starting points.
 
-### so "weights" are kind of like "this feature doesn't count as much"? 🤔
+<img src="../images/grad-desc.jpg" width="600">
+
+<img src="https://qph.cf2.quoracdn.net/main-qimg-2134a82fcbc7c507fe2f276e14bac11f-pjlq" width="600">
+
+<hr>
+
+### "Weights" are kind of like "this feature doesn't count as much"? 🤔
 
 Yes, that's a good way to think about it!
 
@@ -40,19 +46,13 @@ The **values** of the weights are learned by the machine learning algorithm duri
 
 During training, the algorithm **adjusts** the weights to **minimize the error** between the predicted output and the true output. Once training is complete, the weights are fixed and used to make predictions on new, unseen data.
 
-### oh.  so i don't have to pick the number, the algorithm decides that?
+### Okay.
 
-That's right!
+We give the algorithm some example data and the correct answers, and it learns how to make accurate predictions by adjusting the weights and biases.
 
-In machine learning, we let the algorithm figure out the best values for the weights and biases automatically.
+This is typically done through a process called "training," where the algorithm iteratively adjusts the weights and biases based on the error between its predictions and the correct answers, until the error is minimized. Once the training is complete, the algorithm has learned the optimal values of the weights and biases, and can use them to make predictions on new, unseen data.
 
-This is one of the advantages of using machine learning - we don't have to manually choose the weights and biases, which can be time-consuming and error-prone. Instead, we give the algorithm some example data and the correct answers, and it learns how to make accurate predictions by adjusting the weights and biases.
-
-This is typically done through a process called **"training,"** where the algorithm iteratively adjusts the weights and biases based on the error between its predictions and the correct answers, until the error is minimized. Once the training is complete, the algorithm has learned the optimal values of the weights and biases, and can use them to make predictions on new, unseen data.
-
-<scpan style="color:blue">Note: This is because Andrew Ng had us code sh!t from scratch, first, but real-world application is different.  So I got confused.<span>
-
-### ok. so weights and biases are related to features?
+### Weights and biases are related to features?
 
 Yes, that's right! Both weights and biases are used to make predictions in machine learning models and are related to the features of the input data.
 
@@ -71,7 +71,7 @@ For example, in the case of predicting house prices, there might be a baseline p
 The bias term helps to capture this baseline price. Like the weights, the bias term is also learned during training to minimize the error between the predicted output and the true output.
 
 
-### so bias is kind of like a handicap in golf? ⛳️
+### Bias is kind of like a handicap in golf? ⛳️
 
 Yes, that's a good analogy!
 
@@ -80,3 +80,5 @@ In golf, a handicap is a system used to **level the playing field** between play
 Just as a golfer's handicap is subtracted from their final score to account for their skill level, **the bias term is added to the predicted output of the model** to account for factors that aren't captured by the input features.
 
 The bias term helps to make the model more **flexible** and able to fit a wider range of input data. Like the weights, the bias term is learned during training and adjusted to minimize the error between the predicted output and the true output.
+
+<br>
