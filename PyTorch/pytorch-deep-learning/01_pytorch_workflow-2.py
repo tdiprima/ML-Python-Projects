@@ -123,10 +123,10 @@ print(model_0.state_dict())
 print("\nAnd the original values for weights and bias are:")
 print(f"weights: {weight}, bias: {bias}")
 
-model_0.eval()  # Again?
+model_0.eval()  # turns off testing settings
 
 # MAKE PREDICTIONS
-with torch.inference_mode():
+with torch.inference_mode():  # turns of gradient tracking (testing stuff)
     y_preds = model_0(X_test)
 
 plot_predictions(predictions=y_preds)
