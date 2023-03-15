@@ -24,10 +24,11 @@ y = weight * X + bias  # y = a + bX
 
 split_position = int(0.8 * len(X))  # <class 'int'> 40
 
-# X[:split_position] means: Get all examples up until the train split.
+"""
+X[:split_position] means: Get all examples up until the train split.
+X[split_position:] means: Get everything from the train split, onwards.
+"""
 X_train, y_train = X[:split_position], y[:split_position]
-
-# X[split_position:] means: Get everything from the train split, onwards.
 X_test, y_test = X[split_position:], y[split_position:]
 
 print("\nlengths:", len(X_train), len(y_train), len(X_test), len(y_test))
@@ -50,7 +51,10 @@ print("\nmodel parameters:", list(model_0.parameters()))
 # List named parameters
 print("\nmodel dict:", model_0.state_dict())
 
-# MAKE PREDICTIONS
+"""
+MAKE PREDICTIONS
+inference_mode is torch.no_grad ++
+"""
 with torch.inference_mode():
     y_preds = model_0(X_test)
 
