@@ -1,5 +1,5 @@
 import torch
-from torch import nn
+from torch import nn  # nn contains all of PyTorch's building blocks for neural networks
 
 
 class LinearRegressionModel(nn.Module):

@@ -6,44 +6,37 @@ import torch
 from my_models import LinearRegressionModel
 from plotting import plot_predictions
 
-print("Torch version:", torch.__version__)
+# Check PyTorch version
+print(torch.__version__)
 
-# CREATE AND MASSAGE DATA
-weight = 0.7  # b (slope)
-bias = 0.3  # a (y intercept)
+# Create *known* parameters
+weight = 0.7
+bias = 0.3
 
+# Create data
 start = 0
 end = 1
 step = 0.02
-
-# X <class 'torch.Tensor'> len 50
 X = torch.arange(start, end, step).unsqueeze(dim=1)
+y = weight * X + bias
 
-# y <class 'torch.Tensor'> len 50
-y = weight * X + bias  # y = a + bX
+print(X[:10], y[:10])
 
-split_position = int(0.8 * len(X))  # <class 'int'> 40
-
-"""
-X[:split_position] means: Get all examples up until the train split.
-X[split_position:] means: Get everything from the train split, onwards.
-"""
-X_train, y_train = X[:split_position], y[:split_position]
-X_test, y_test = X[split_position:], y[split_position:]
+# Create train/test split
+split_pos = int(0.8 * len(X))  # 80% of data used for training set, 20% for testing
+X_train, y_train = X[:split_pos], y[:split_pos]
+X_test, y_test = X[split_pos:], y[split_pos:]
 
 print("\nlengths:", len(X_train), len(y_train), len(X_test), len(y_test))
 
 # Set manual seed since nn.Parameter are randomly initialized
 torch.manual_seed(42)
 
-# MODEL.
+# Create an instance of the model (this is a subclass of nn.Module that contains nn.Parameter(s))
 model_0 = LinearRegressionModel()
 
-# Define the path to save the model
-PATH = "my_model.pth"
-
-# Save the model state dictionary
-torch.save(model_0.state_dict(), PATH)
+# SAVE
+# torch.save(model_0.state_dict(), "models/my_model.pth")
 
 # Check the nn.Parameter(s) within the nn.Module subclass we created
 print("\nmodel parameters:", list(model_0.parameters()))
@@ -51,12 +44,13 @@ print("\nmodel parameters:", list(model_0.parameters()))
 # List named parameters
 print("\nmodel dict:", model_0.state_dict())
 
-"""
-MAKE PREDICTIONS
-inference_mode is torch.no_grad ++
-"""
+# Make predictions with model
 with torch.inference_mode():
     y_preds = model_0(X_test)
+
+# Note: inference_mode is torch.no_grad ++
+# with torch.no_grad():
+#   y_preds = model_0(X_test)
 
 # Check the predictions
 print(f"\nNumber of testing samples: {len(X_test)}")
@@ -65,4 +59,5 @@ print(f"\nPredicted values:\n{y_preds}")
 
 print("\nHow close were we?", y_test - y_preds)
 
+# plot_predictions(predictions=y_preds)
 plot_predictions(X_train, y_train, X_test, y_test, predictions=y_preds)
