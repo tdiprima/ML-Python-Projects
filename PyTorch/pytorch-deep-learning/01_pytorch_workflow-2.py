@@ -1,7 +1,9 @@
+import matplotlib.pyplot as plt
 import torch
 from torch import nn
+
+from my_models import LinearRegressionModel
 from plotting import plot_predictions
-import matplotlib.pyplot as plt
 
 weight = 0.7
 bias = 0.3
@@ -17,25 +19,11 @@ split_position = int(0.8 * len(X))
 X_train, y_train = X[:split_position], y[:split_position]
 X_test, y_test = X[split_position:], y[split_position:]
 
-
-# Define your model class
-class MyModel(nn.Module):
-    def __init__(self):
-        super(MyModel, self).__init__()
-        # define your model layers here
-        self.weights = nn.Parameter(torch.randn(1, dtype=torch.float), requires_grad=True)
-        self.bias = nn.Parameter(torch.randn(1, dtype=torch.float), requires_grad=True)
-
-    # Forward = computation
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return self.weights * x + self.bias
-
-
 torch.manual_seed(42)
 
 # LOAD THE PRE-TRAINED MODEL
 PATH = "my_model.pth"
-model_0 = MyModel()
+model_0 = LinearRegressionModel()
 model_0.load_state_dict(torch.load(PATH))
 
 """

@@ -2,7 +2,8 @@
 Build a PyTorch model that learns the pattern of a straight line and matches it.
 """
 import torch
-from torch import nn
+
+from my_models import LinearRegressionModel
 from plotting import plot_predictions
 
 print("Torch version:", torch.__version__)
@@ -23,30 +24,13 @@ y = weight * X + bias  # y = a + bX
 
 split_position = int(0.8 * len(X))  # <class 'int'> 40
 
-# X[:split_position] means: Get all of the examples up until the train split.
+# X[:split_position] means: Get all examples up until the train split.
 X_train, y_train = X[:split_position], y[:split_position]
 
 # X[split_position:] means: Get everything from the train split, onwards.
 X_test, y_test = X[split_position:], y[split_position:]
 
 print("\nlengths:", len(X_train), len(y_train), len(X_test), len(y_test))
-
-
-# BUILD MODEL
-class LinearRegressionModel(nn.Module):
-    def __init__(self):
-        super().__init__()
-
-        self.weights = nn.Parameter(torch.randn(1, dtype=torch.float), requires_grad=True)
-
-        self.bias = nn.Parameter(torch.randn(1, dtype=torch.float), requires_grad=True)
-
-    # Forward defines the computation in the model
-    # "x" is the input data (e.g. training/testing features)
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        # linear regression formula (y = m*x + b)
-        return self.weights * x + self.bias
-
 
 # Set manual seed since nn.Parameter are randomly initialized
 torch.manual_seed(42)
