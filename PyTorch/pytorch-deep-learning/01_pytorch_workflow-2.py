@@ -32,8 +32,8 @@ model_0.load_state_dict(torch.load(PATH))
 loss_fn = nn.L1Loss()  # Mean absolute error is same as L1Loss
 
 # Create the optimizer
-optimizer = torch.optim.SGD(params=model_0.parameters(),  # parameters of target model to optimize
-                            lr=0.01)
+# parameters of target model to optimize
+optimizer = torch.optim.SGD(params=model_0.parameters(), lr=0.01)
 
 """
 The testing loop involves going through the testing data and evaluating how good the patterns are that the model learned on the training data (the model never see's the testing data during training).
@@ -41,7 +41,7 @@ Each of these is called a "loop" because we want our model to look (loop through
 """
 
 # Training loop
-# Train our model for 100 epochs (forward passes through the data) and we'll evaluate it every 10 epochs.
+# Train our model for N epochs (forward passes through the data) and we'll evaluate it every 10 epochs.
 
 torch.manual_seed(42)
 
@@ -55,7 +55,7 @@ test_loss_values = []
 epoch_count = []
 
 for epoch in range(epochs):
-    # Training
+    # TRAINING
 
     # Put model in training mode (this is the default state of a model)
     model_0.train()
@@ -76,7 +76,7 @@ for epoch in range(epochs):
     # 5. Progress the optimizer
     optimizer.step()
 
-    # Testing
+    # TESTING
 
     # Put the model in evaluation mode
     model_0.eval()
@@ -85,9 +85,9 @@ for epoch in range(epochs):
         # 1. Forward pass on test data
         test_pred = model_0(X_test)
 
-        # 2. Caculate loss on test data
-        test_loss = loss_fn(test_pred, y_test.type(
-            torch.float))  # predictions come in torch.float, so comparisons need to be done with tensors in torch.float
+        # 2. Calculate loss on test data
+        test_loss = loss_fn(test_pred, y_test.type(torch.float))
+        # predictions come in torch.float, so comparisons need to be done with tensors in torch.float
 
         # Print out what's happening
         if epoch % 10 == 0:
@@ -97,6 +97,7 @@ for epoch in range(epochs):
             print(f"Epoch: {epoch} | MAE Train Loss: {loss} | MAE Test Loss: {test_loss} ")
 
 # Plot the loss curves
+# todo: idk why this is all fluffed up now
 plt.plot(epoch_count, train_loss_values, label="Train loss")
 plt.plot(epoch_count, test_loss_values, label="Test loss")
 plt.title("Training and test loss curves")
@@ -116,7 +117,7 @@ print(f"weights: {weight}, bias: {bias}")
 # 1. Set the model in evaluation mode
 model_0.eval()
 
-# 2. Setup the inference mode context manager
+# 2. Set up the inference mode context manager
 with torch.inference_mode():
     # 3. Make sure the calculations are done with the model and data on the same device
     # in our case, we haven't setup device-agnostic code yet so our data and model are
@@ -128,7 +129,7 @@ with torch.inference_mode():
 print("\ny_preds", y_preds)
 
 # SAVE IT
-torch.save(model_0.state_dict(), "my_model.pth")
+# torch.save(model_0.state_dict(), "my_model-2.pth")
 
 # plot_predictions(predictions=y_preds)
 plot_predictions(X_train, y_train, X_test, y_test, predictions=y_preds)
