@@ -61,7 +61,7 @@ This will ensure that the saved model parameters are loaded onto the CPU, rather
 
 <!-- OK.  Before we do model.load_state_dict(torch.load(PATH)), we create an instance of our model class.  How do I create an instance?  I imagine it can be an "empty" instance? -->
 
-Okay, how do I create an plain old instance?
+Okay, how do I create a plain old instance?
 
 Yes, you can create an instance of your model class **without any trained parameters** by calling the constructor of your model class.
 
