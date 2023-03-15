@@ -84,6 +84,12 @@ By calling `model = MyModel()`, you're creating an instance of your model with t
 
 You can then load the saved parameters into this instance using `model.load_state_dict(torch.load(PATH))`, as described in the previous answer.
 
+### TODO
+
+Check this out, because maybe I can save the entire model.  (Serialize = save; deserialize = load.)
+
+[save-load-entire-model](https://pytorch.org/tutorials/beginner/saving_loading_models.html#save-load-entire-model)
+
 ## Double work?
 
 Why do you still need to create an instance of your model class, even when loading a pre-trained PyTorch model?
