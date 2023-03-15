@@ -1,5 +1,6 @@
 import torch
 from torch import nn
+from plotting import plot_predictions
 import matplotlib.pyplot as plt
 
 weight = 0.7
@@ -15,29 +16,6 @@ y = weight * X + bias
 split_position = int(0.8 * len(X))
 X_train, y_train = X[:split_position], y[:split_position]
 X_test, y_test = X[split_position:], y[split_position:]
-
-
-def plot_predictions(train_data=X_train,
-                     train_labels=y_train,
-                     test_data=X_test,
-                     test_labels=y_test,
-                     predictions=None):
-    plt.figure(figsize=(10, 7))
-
-    # Training data = blue
-    plt.scatter(train_data, train_labels, c="b", s=4, label="Training data")
-
-    # Test data = green
-    plt.scatter(test_data, test_labels, c="g", s=4, label="Testing data")
-
-    if predictions is not None:
-        # Predictions = red
-        plt.scatter(test_data, predictions, c="r", s=4, label="Predictions")
-
-    # Legend
-    plt.legend(prop={"size": 14})
-
-    plt.show()
 
 
 # Define your model class
@@ -129,4 +107,4 @@ model_0.eval()  # turns off testing settings
 with torch.inference_mode():  # turns of gradient tracking (testing stuff)
     y_preds = model_0(X_test)
 
-plot_predictions(predictions=y_preds)
+plot_predictions(X_train, y_train, X_test, y_test, predictions=y_preds)

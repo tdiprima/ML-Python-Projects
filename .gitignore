@@ -2,8 +2,6 @@
 data/
 *.h5
 
-models/
-
 # Code
 .vscode/
 
@@ -35,4 +33,5 @@ node_modules/
 
 nohup.out
 
-Icon
+Icon
+

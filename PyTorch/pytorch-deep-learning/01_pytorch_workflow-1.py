@@ -3,7 +3,7 @@ Build a PyTorch model that learns the pattern of a straight line and matches it.
 """
 import torch
 from torch import nn
-import matplotlib.pyplot as plt
+from plotting import plot_predictions
 
 print("Torch version:", torch.__version__)
 
@@ -30,33 +30,6 @@ X_train, y_train = X[:split_position], y[:split_position]
 X_test, y_test = X[split_position:], y[split_position:]
 
 print("\nlengths:", len(X_train), len(y_train), len(X_test), len(y_test))
-
-
-# VISUALIZE
-def plot_predictions(train_data=X_train,
-                     train_labels=y_train,
-                     test_data=X_test,
-                     test_labels=y_test,
-                     pred_labels=None):
-    """
-    Plots training data, test data and compares predictions.
-    """
-    plt.figure(figsize=(10, 7))
-
-    # Training data = blue
-    plt.scatter(train_data, train_labels, c="b", s=4, label="Training data")
-
-    # Test data = green
-    plt.scatter(test_data, test_labels, c="g", s=4, label="Testing data")
-
-    if pred_labels is not None:
-        # Predictions = red
-        plt.scatter(test_data, pred_labels, c="r", s=4, label="Predictions")
-
-    # Legend
-    plt.legend(prop={"size": 14})
-
-    plt.show()
 
 
 # BUILD MODEL
@@ -102,6 +75,6 @@ print(f"\nNumber of testing samples: {len(X_test)}")
 print(f"Number of predictions made: {len(y_preds)}")
 print(f"\nPredicted values:\n{y_preds}")
 
-plot_predictions(pred_labels=y_preds)
-
 print("\nHow close were we?", y_test - y_preds)
+
+plot_predictions(X_train, y_train, X_test, y_test, predictions=y_preds)
