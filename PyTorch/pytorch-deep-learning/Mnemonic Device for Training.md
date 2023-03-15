@@ -18,7 +18,7 @@ for epoch in range(epochs):
 
 <br>
 
-Actually it's like "lolo". Lol! 😂 Loss, optimizer, loss, optimizer.  And before that, we train and predict (i.e. train mode).
+Actually it's like "lolo". Lol! 😂 Loss, optimizer, loss, optimizer.  And before that, we train and predict (train mode, that is).
 
 One possible mnemonic device for remembering the order in which the model is trained using the code provided could be "FLOZP", which stands for **"Forward pass, Loss, Optimizer zero grad, Loss backwards, Progress optimizer".**
 
