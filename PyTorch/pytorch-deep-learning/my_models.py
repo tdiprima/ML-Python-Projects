@@ -32,3 +32,17 @@ class LinearRegressionModel(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.weights * x + self.bias
+
+
+# SUBCLASS nn.Module
+class CircleModelV0(nn.Module):
+    def __init__(self):
+        super().__init__()
+        # CREATE LAYERS
+        self.layer_1 = nn.Linear(in_features=2, out_features=5)  # takes in 2 features and up-scales to 5 features
+        self.layer_2 = nn.Linear(in_features=5, out_features=1)
+        # out_features=1 takes in 5 features from previous layer and outputs a single feature (same shape as y)
+
+    # CREATE forward() METHOD
+    def forward(self, x):
+        return self.layer_2(self.layer_1(x))  # x -> layer_1 ->  layer_2 -> output
