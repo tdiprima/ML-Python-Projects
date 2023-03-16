@@ -4,11 +4,11 @@
 
 <span style="color:#0000dd;font-size:larger;">Output activation:</span>
 
-<span style="color:#0000dd;font-size:larger;">Binary Classification = Sigmoid; Multiclass Classification = Softmax</span>
+<span style="color:aquamarine;font-size:larger;">Binary Classification = Sigmoid; Multiclass Classification = Softmax</span>
 
-<span style="color:seafoam;font-size:larger;">Loss function: Binary class = binary crossentropy; Multiclass class = crossentropy</span>
+<span style="color:#0000dd;font-size:larger;">Loss function: Binary class = binary crossentropy; Multiclass class = crossentropy</span>
 
-<span style="color:#0000dd;font-size:larger;">Optimizer: SGD and Adam</span>
+<span style="color:#00ffff;font-size:larger;">Optimizer: SGD and Adam</span>
 
 Activation functions are like a gatekeeper for each neuron in a neural network. When the neuron receives input, the activation function determines whether or not the neuron should "fire" or activate.
 
