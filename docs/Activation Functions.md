@@ -1,5 +1,15 @@
 ## Activation Functions Summary
 
+<span style="color:orange;font-size:larger;">Hidden layer activation = usually ReLU</span>
+
+<span style="color:#0000dd;font-size:larger;">Output activation:</span>
+
+<span style="color:#0000dd;font-size:larger;">Binary Classification = Sigmoid; Multiclass Classification = Softmax</span>
+
+<span style="color:seafoam;font-size:larger;">Loss function: Binary class = binary crossentropy; Multiclass class = crossentropy</span>
+
+<span style="color:#0000dd;font-size:larger;">Optimizer: SGD and Adam</span>
+
 Activation functions are like a gatekeeper for each neuron in a neural network. When the neuron receives input, the activation function determines whether or not the neuron should "fire" or activate.
 
 In this particular problem of classifying images of digits, ReLU activation is often used in hidden layers due to its ability to speed up the training process and improve the performance of the neural network. Softmax activation is used in the output layer because it normalizes the output to a probability distribution over the classes, which is suitable for multi-class classification problems like MNIST.
