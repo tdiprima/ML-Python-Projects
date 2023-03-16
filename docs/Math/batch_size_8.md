@@ -51,6 +51,13 @@ So there's your 2, your 8, and your 256!
 
 `log2()` gives you the exponent that 2 needs to be raised to in order to get 256.
 
+And 512 would be...
+
+```py
+import math
+math.log2(512)  # 9.0
+```
+
 <!--## The long way around
 
 You can use a **loop** to repeatedly multiply 2 by itself until you reach 256, and count the number of iterations it takes to get there.
