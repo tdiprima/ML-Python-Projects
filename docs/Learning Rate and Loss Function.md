@@ -45,4 +45,43 @@ For a **classification problem**, use:
 * Loss function `nn.BCELoss()`
     * (binary cross entropy loss)
 
+<table border="1">
+<tr>
+<th>Loss function/Optimizer</th>
+<th>Problem type</th>
+<th>PyTorch Code</th>
+</tr>
+<tr>
+<td>Stochastic Gradient Descent (SGD) optimizer</td>
+<td>Classification, regression, etc.</td>
+<td>torch.optim.SGD()</td>
+</tr>
+<tr>
+<td>Adam Optimizer</td>
+<td>Classification, regression, etc.</td>
+<td>torch.optim.Adam()</td>
+</tr>
+<tr>
+<td>Binary cross entropy loss</td>
+<td>Binary classification</td>
+<td>torch.nn.BCELossWithLogits or torch.nn.BCELoss</td>
+</tr>
+<tr>
+<td>Cross entropy loss</td>
+<td>Multi-class classification</td>
+<td>torch.nn.CrossEntropyLoss</td>
+</tr>
+<tr>
+<td>Mean absolute error (MAE) or L1 Loss</td>
+<td>Regression</td>
+<td>torch.nn.L1Loss</td>
+</tr>
+<tr>
+<td>Mean squared error (MSE) or L2</td>
+<td>Regression</td>
+<td>torch.nn.MSELoss</td>
+</tr>
+</table>
+<!-- DivTable.com -->
+
 <br>
