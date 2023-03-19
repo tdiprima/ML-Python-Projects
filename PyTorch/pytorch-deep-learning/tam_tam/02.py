@@ -73,8 +73,6 @@ def accuracy_fn(y_true, y_pred):
 
 # 3.1 Going from raw logits -> prediction probabilities -> prediction labels
 # View the first 5 outputs of the forward pass on the test data
-# TODO: WAIT, WHAT?
-# y_logits = model_0(X_test.to(device))[:5]
 model_0.eval()
 with torch.inference_mode():
     y_logits = model_0(X_test.to(device))[:5]
