@@ -1,4 +1,4 @@
-# Make and plot data
+# CircleModelV2 model_3
 # import matplotlib.pyplot as plt
 import torch
 from sklearn.datasets import make_circles

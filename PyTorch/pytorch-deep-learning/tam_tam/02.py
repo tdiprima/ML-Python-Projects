@@ -1,5 +1,5 @@
 """
-Reduce sample size, it works.
+CircleModelV0 model_0
 Results: Accuracy doesn't go above 50%
 2.1 Setup loss function and optimizer
 import os

@@ -1,4 +1,5 @@
-# 5. SEQUENTIAL model_2
+# 5. SEQUENTIAL
+# model_2 = nn.Sequential
 import torch
 import torch.nn as nn
 from sklearn.datasets import make_circles

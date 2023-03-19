@@ -1,5 +1,5 @@
 """
-02. PYTORCH CLASSIFICATION
+CircleModelV0 model_0
 Untrained, predictions are negative numbers.
 """
 from sklearn.datasets import make_circles
