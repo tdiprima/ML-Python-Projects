@@ -21,6 +21,14 @@ Now it's all good.  With 1000 samples.
 
 Note!  I'll betcha if I play with the numbers, I could come up with more ideas; but we get the point, and it works.
 
+OK &ndash; also, remember to put the `params` param; don't just leave it:
+
+```python
+# Create an optimizer
+# optimizer = torch.optim.SGD(model_3.parameters(), lr=0.1)
+optimizer = torch.optim.SGD(params=model_3.parameters(), lr=0.1)
+```
+
 ## Some intel
 
 A "segmentation fault" error typically indicates that your program is trying to access memory that it is not supposed to access. This can happen when you use an uninitialized pointer or array, access memory beyond the bounds of an array, or attempt to write to read-only memory, among other things.</mark>
