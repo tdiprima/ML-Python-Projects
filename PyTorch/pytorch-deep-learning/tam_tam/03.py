@@ -1,4 +1,5 @@
 # 5. Improving a model (from a model perspective)
+# CircleModelV1
 import torch
 from sklearn.datasets import make_circles
 from sklearn.model_selection import train_test_split
