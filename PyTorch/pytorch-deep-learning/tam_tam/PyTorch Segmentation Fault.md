@@ -1,4 +1,4 @@
-<span style="color:#0000dd;font-size:larger;">I'm using ReLU on the fashion mnist dataset.  But it's saying "31530 segmentation fault".  What's that supposed to mean?</span>
+<span style="color:#00e6c1;font-size:larger;font-weight:bold">I'm using ReLU on the fashion mnist dataset.  But it's saying "31530 segmentation fault".  What's that supposed to mean?</span>
 
 Here.  [StackOver](https://stackoverflow.com/questions/49414841/process-finished-with-exit-code-139-interrupted-by-signal-11-sigsegv#49414907)
 
@@ -6,22 +6,31 @@ Here.  [StackOver](https://stackoverflow.com/questions/49414841/process-finished
 
 ## I'd like to solve the puzzle
 
-<mark>I reduced code #2 from 1000 to 256 samples and it worked.</mark>
+These have to be at the end of the script, just before we use 'em.  The End.
 
-<mark>Another thing that can mess it up: IMPORT ORDER MATTERS.</mark>
+```python
+import matplotlib.pyplot as plt
+from helper_functions import plot_decision_boundary
+```
 
-I think this is what messed up #2.
+Because the guy from StackOverflow was right about the 3rd party crap.
+
+Also...
+
+I reduced code #2 from 1000 to 256 samples, and it worked.
+
+Another thing that can mess it up: IMPORT ORDER MATTERS.
+
+Also...
 
 * He wanted 1000 samples.
-* But then he set # epochs to 100.
-* **It shoulda been 1000.**
+* But then he set num epochs to 100.
+* **It shoulda been 1000, maybe.**
 * And then instead of (if epoch % 10 == 0:), do (if epoch % 100 == 0:).
 
 Now it's all good.  With 1000 samples.
 
-Note!  I'll betcha if I play with the numbers, I could come up with more ideas; but we get the point, and it works.
-
-OK &ndash; also, remember to put the `params` param; don't just leave it:
+Also... remember to put the `params` param; don't just leave it:
 
 ```python
 # Create an optimizer
@@ -49,7 +58,7 @@ Additionally, using debugging tools such as **gdb** or **valgrind** can help you
 
 I just copy/pasted; it should be right.  Especially since I ran it on the GPU and it all worked.
 
-<span style="color:#0000dd;font-size:larger;">Is it possible to get that error simply because I'm using CPU and not GPU?</span>
+<span style="color:#00e6c1;font-size:larger;font-weight:bold">Is it possible to get that error simply because I'm using CPU and not GPU?</span>
 
 **It's possible** that using CPU instead of GPU can cause a "segmentation fault" error, but it would be unusual for that to be the sole cause of the error.
 
@@ -60,7 +69,7 @@ That being said, it's important to note that a segmentation fault error is typic
 <center>To err is to be human<br>
 To debug, divine.</center>
 
-<span style="color:#0000dd;font-size:larger;">What does it mean if you get "segmentation fault" on pytorch loss.backward()?</span>
+<span style="color:#00e6c1;font-size:larger;font-weight:bold">What does it mean if you get "segmentation fault" on pytorch loss.backward()?</span>
 
 The error typically indicates a **bug in the program's memory management.**
 
@@ -77,3 +86,9 @@ Here are a few steps you could take to try and resolve the issue:
 4. **Upgrade PyTorch version:** If you are running an old version of PyTorch, it may be worth upgrading to the latest version as there may be bug fixes related to the backward pass computation.
 
 If none of the above steps resolve the segmentation fault issue, you may need to seek assistance from the **PyTorch community** or consult with an expert in PyTorch programming.
+
+```py
+import os
+
+os.environ["CUDA_LAUNCH_BLOCKING"] = "1"
+```

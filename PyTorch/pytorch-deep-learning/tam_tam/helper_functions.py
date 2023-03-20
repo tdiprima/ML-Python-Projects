@@ -71,7 +71,7 @@ def plot_decision_boundary(model: torch.nn.Module, X: torch.Tensor, y: torch.Ten
 
 # Plot linear data or training and test and predictions (optional)
 def plot_predictions(
-        train_data, train_labels, test_data, test_labels, predictions=None
+    train_data, train_labels, test_data, test_labels, predictions=None
 ):
     """
   Plots linear training data and test data and compares predictions.
@@ -114,7 +114,7 @@ def print_train_time(start, end, device=None):
     """Prints difference between start and end time.
 
     Args:
-        start (float): Start time of computation (preferred in timeit format). 
+        start (float): Start time of computation (preferred in timeit format).
         end (float): End time of computation.
         device ([type], optional): Device that compute is running on. Defaults to None.
 
@@ -173,11 +173,11 @@ import torchvision
 
 
 def pred_and_plot_image(
-        model: torch.nn.Module,
-        image_path: str,
-        class_names: List[str] = None,
-        transform=None,
-        device: torch.device = "cuda" if torch.cuda.is_available() else "cpu",
+    model: torch.nn.Module,
+    image_path: str,
+    class_names: List[str] = None,
+    transform=None,
+    device: torch.device = "cuda" if torch.cuda.is_available() else "cpu",
 ):
     """Makes a prediction on a target image with a trained model and plots the image.
 
@@ -187,7 +187,7 @@ def pred_and_plot_image(
         class_names (List[str], optional): different class names for target image. Defaults to None.
         transform (_type_, optional): transform of target image. Defaults to None.
         device (torch.device, optional): target device to compute on. Defaults to "cuda" if torch.cuda.is_available() else "cpu".
-    
+
     Returns:
         Matplotlib plot of target image and model prediction as title.
 
@@ -262,10 +262,10 @@ def download_data(source: str,
         source (str): A link to a zipped file containing data.
         destination (str): A target directory to unzip data to.
         remove_source (bool): Whether to remove the source after downloading and extracting.
-    
+
     Returns:
         pathlib.Path to downloaded data.
-    
+
     Example usage:
         download_data(source="https://github.com/mrdbourke/pytorch-deep-learning/raw/main/data/pizza_steak_sushi.zip",
                       destination="pizza_steak_sushi")
@@ -274,7 +274,7 @@ def download_data(source: str,
     data_path = Path("data/")
     image_path = data_path / destination
 
-    # If the image folder doesn't exist, download it and prepare it... 
+    # If the image folder doesn't exist, download it and prepare it...
     if image_path.is_dir():
         print(f"[INFO] {image_path} directory exists, skipping download.")
     else:

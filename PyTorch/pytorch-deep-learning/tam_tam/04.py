@@ -1,31 +1,28 @@
-# 5. SEQUENTIAL
-# model_2 = nn.Sequential
+"""
+5. SEQUENTIAL
+model_2 = nn.Sequential
+Basically, we didn't need to do all that (with the class); all we had to do is this.
+"""
 import torch
 import torch.nn as nn
 from sklearn.datasets import make_circles
+from sklearn.model_selection import train_test_split
 
 from plotting import plot_predictions
 
-# TODO: NOTE! 1000 SAMPLES WORKS HERE
+# TODO: Num samples
 # n_samples = 100
 n_samples = 1000
 
 # Create circles
-X, y = make_circles(n_samples,
-                    noise=0.03,
-                    random_state=42)
+X, y = make_circles(n_samples, noise=0.03, random_state=42)
 
 # Turn data into tensors
 X = torch.from_numpy(X).type(torch.float)
 y = torch.from_numpy(y).type(torch.float)
 
 # Split data into training and test sets
-from sklearn.model_selection import train_test_split
-
-X_train, X_test, y_train, y_test = train_test_split(X,
-                                                    y,
-                                                    test_size=0.2,  # 0.2 = 20% of data will be test & 80% will be train
-                                                    random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 print(len(X_train), len(X_test), len(y_train), len(y_test))
 
@@ -33,12 +30,13 @@ print(len(X_train), len(X_test), len(y_train), len(y_test))
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 # 5.2 Adjusting model_1 to fit a straight line
-# Same architecture as model_1 (but using nn.Sequential())
 model_2 = nn.Sequential(
     nn.Linear(in_features=1, out_features=10),
     nn.Linear(in_features=10, out_features=10),
     nn.Linear(in_features=10, out_features=1)
 ).to(device)
+
+# print("\nState dict:", model_2.state_dict())
 
 # Loss and optimizer
 loss_fn = nn.L1Loss()  # MAE loss with regression data
@@ -52,9 +50,8 @@ torch.manual_seed(42)
 # epochs = 100
 epochs = 1000
 
-# TODO: Here's the "extra" stuff
+# TODO: TROUBLESHOOTING
 # 5.1 Preparing data to see if our model can fit a straight line
-# Create some data (same as notebook 01)
 weight = 0.7
 bias = 0.3
 start = 0
@@ -66,8 +63,8 @@ X_regression = torch.arange(start, end, step).unsqueeze(dim=1)
 y_regression = weight * X_regression + bias  # Linear regression formula (without epsilon)
 
 # Check the data
-print(len(X_regression))
-# X_regression[:5], y_regression[:5]
+print("\nlen X_regression:", len(X_regression))
+print("\nX and y:", X_regression[:5], y_regression[:5])
 
 # Create train and test splits
 train_split = int(0.8 * len(X_regression))
@@ -81,7 +78,7 @@ plot_predictions(train_data=X_train_regression,
                  train_labels=y_train_regression,
                  test_data=X_test_regression,
                  test_labels=y_test_regression)
-# END "EXTRA"
+# END "TROUBLESHOOTING"
 
 # Put the data on the target device
 X_train_regression, y_train_regression = X_train_regression.to(device), y_train_regression.to(device)
@@ -101,9 +98,9 @@ for epoch in range(epochs):
         test_pred = model_2(X_test_regression)
         test_loss = loss_fn(test_pred, y_test_regression)
 
-    # TODO: Print out what's happenin'
+    # TODO: modulus
     if epoch % 100 == 0:
-    # if epoch % 10 == 0:
+        # if epoch % 10 == 0:
         print(f"Epoch: {epoch} | Loss: {loss:.5f} | Test loss: {test_loss:.5f}")
 
 # Turn on evaluation mode
@@ -119,5 +116,3 @@ plot_predictions(train_data=X_train_regression.cpu(),
                  test_data=X_test_regression.cpu(),
                  test_labels=y_test_regression.cpu(),
                  predictions=y_preds.cpu())
-
-# TODO: 6. The missing piece: non-linearity
