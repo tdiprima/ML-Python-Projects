@@ -43,4 +43,14 @@ Aphasia is a language disorder that affects a person's ability to communicate. D
 
 <img src="https://www.herbsmithinc.com/wp-content/uploads/elementor/thumbs/AKYVPCVJZYI6XPFFASFSOWNERE-scaled-p9c3js0pmr85b46v6b3uqji9wm8a3gbfv1jox9m8hc.jpg" width="500">
 
+## Short & sweet
+
+Machine learning is when computers learn to do things by themselves without being explicitly programmed to do so. It's kind of like when you learn how to ride a bike &ndash; at first, someone helps you and tells you what to do, but eventually, you get better at it and can ride by yourself without any help.
+
+Now, when it comes to Aphasia, machine learning can be used to help people who have trouble with their language. For example, let's say someone has trouble remembering certain words or phrases. Machine learning algorithms can be trained to recognize those words or phrases and suggest them when the person is having trouble remembering.
+
+To train the algorithm, lots of examples of the words or phrases would be given to the computer. The computer would then look for patterns and similarities among the examples and use that information to make predictions about new words or phrases that it hasn't seen before.
+
+The more examples the computer is given, the better it gets at recognizing and suggesting the right words or phrases. And over time, with enough practice, it can become very good at helping people with Aphasia communicate more effectively.
+
 <br>

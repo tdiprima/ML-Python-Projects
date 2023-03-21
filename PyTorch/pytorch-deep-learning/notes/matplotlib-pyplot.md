@@ -49,3 +49,4 @@ plt.show()
 
 In this example, **`plt.title()`** sets the title of the plot itself to "My Custom Title".
 
+<br>

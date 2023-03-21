@@ -1,44 +1,39 @@
-## Grow Cut Algorithm ✂️
+## Grow Cut Algorithm explained
 
-**"Background and Foreground"**
+The Grow Cut algorithm is a technique used in machine learning for image segmentation, which means separating different parts of an image into individual segments. The idea behind the Grow Cut algorithm is to start with a seed point, which is a pixel that belongs to a particular segment, and grow the segment by gradually adding pixels to it.
 
-The **GrowCut** algorithm is like a magic tool that can help us color and separate different parts of a picture. 🪄
+e.g. It grows the colored part and cuts off the parts that are different.
 
-Imagine you have a picture of a garden with flowers, grass, and trees. 👩‍🌾 🪴
+Here's a simple example in Python:
 
-But you want to color only the flowers and leave the rest of the picture in black and white. 🌷
+```python
+import numpy as np
+from skimage import io, segmentation, color
 
-The GrowCut algorithm helps you do this. 
+# Load an image
+img = io.imread('example_image.png')
 
-It works like this: you start by **choosing a small part of the picture** that you want to color, like one of the flowers.
+# Convert the image to grayscale
+gray_img = color.rgb2gray(img)
 
-You tell the algorithm, **"this is the color I want,"** and the algorithm colors that part of the picture with that color.
+# Set a seed point in the middle of the image
+seed = (gray_img.shape[0] // 2, gray_img.shape[1] // 2)
 
-Then, the magic happens!
+# Use the grow cut algorithm to segment the image
+labels = segmentation.grow_cut(gray_img, [seed])
 
-The algorithm looks at the **nearby parts** of the picture and decides whether those parts should also be colored with the same color or not.
+# Display the segmented image
+io.imshow(color.label2rgb(labels, img))
+io.show()
+```
 
-If the nearby parts are **similar** to the colored part, the algorithm will color them too.
+In this example, we first load an image and convert it to grayscale. We then set a seed point in the middle of the image. Finally, we use the `grow_cut` function from the `skimage` library to segment the image based on the seed point. The resulting labels are then displayed using the `imshow` function from `skimage.io`.
 
-But if they're **different**, the algorithm will leave them in black and white.
-
-So, the algorithm **grows** the colored part of the picture and **cuts off** the parts that are different.
-
-<mark>**That's why it's called the GrowCut algorithm!**</mark>
-
-By repeating this process for all the flowers in the picture, you can color them all without coloring the rest of the picture. And the same algorithm can be used to separate different parts of the picture, like separating the trees from the grass.
-
-## How the Grow cut algorithm does image segmentation
+### Segmentation
 
 Image segmentation is like cutting out a picture from a magazine, so you can use it for a project. The Grow cut algorithm is a special tool that helps computers do this cutting out automatically.
 
-The way it works is like this: Imagine you have a picture of a cat and a picture of a dog, but the cat and dog are in the same picture, and you want to separate them into two different pictures. The Grow cut algorithm looks at the colors and patterns in the picture and decides where the cat and dog are.
-
-Then, it starts coloring in the parts of the picture that it thinks are part of the cat, and it colors in other parts that it thinks are part of the dog. It keeps doing this over and over, making more and more accurate guesses about which parts of the picture belong to each animal.
-
-Eventually, the algorithm has colored in all the parts of the picture that belong to the cat, and all the parts that belong to the dog. Then, it can separate the picture into two different images, one of the cat and one of the dog.
-
-It's like if you had a big box of Legos with different colors and shapes, and you wanted to separate them by color and put them in different boxes. The Grow cut algorithm helps the computer separate the colors in the picture, just like you separate the Legos by color.
+So that's how you can remember right away that "grow cut" does segmentation.
 
 ### Misc
 
@@ -54,8 +49,12 @@ Automata
 * It figures out the boundary
 * Quickly segment
 
-[GrowCut algorithm}(https://en.wikipedia.org/wiki/GrowCut_algorithm)
+[GrowCut algorithm](https://en.wikipedia.org/wiki/GrowCut_algorithm)
 
 GrowCut is an interactive segmentation algorithm.
 
+"Background and Foreground"
+
 Each cell of the automata has some <mark>**label (in case of binary segmentation - 'object', 'background' and 'empty').**</mark>
+
+<br>

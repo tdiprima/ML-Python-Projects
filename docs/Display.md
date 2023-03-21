@@ -1,4 +1,22 @@
-## Mismatched Array Lengths
+## Make nice display
+
+When you make predictions with a model, the output is usually a set of numbers. The exact format of these numbers depends on the problem you are trying to solve.
+
+For example, if you are trying to classify images of digits, the output might be a set of probabilities for each digit (e.g. "0.1 for 0, 0.8 for 1, 0.05 for 2, etc.").
+
+If you are trying to predict the price of a house, the output might be a single number representing the predicted price.
+
+To display the predictions in a meaningful way, you might want to convert them into a more human-readable format.
+
+For example, if you are classifying images of digits, you might want to display the digit with the highest probability.
+
+If you are predicting the price of a house, you might want to display the predicted price in dollars.
+
+The exact format of the display will depend on your specific problem and the preferences of your users.
+
+## ¿Problemas?
+
+### Mismatched Array Lengths
 
 When we plot the true outputs vs. the predicted outputs, it says: "x and y must be the same size".
 How do I solve this?
@@ -155,8 +173,5 @@ The goal is to train a machine learning model that can correctly classify the di
 
 The **MNIST dataset** has become a **standard benchmark** for evaluating the performance of machine learning models, particularly for image classification tasks.
 
-# Furk!
+<br>
 
-OK.  How do I output a comprehensive classification report in python (or tensorflow)?
-
-[Classification Report.md](Classification Report.md)

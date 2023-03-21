@@ -1,11 +1,12 @@
 """
-Works, but run on server.
+Works, but run on server if increase hyper-parameters
+Multi-class classification
 """
 import torch
 import torchvision.datasets as datasets
 import torchvision.transforms as transforms
 
-# Define your hyperparameters
+# Define your hyper-parameters
 num_epochs = 10
 # batch_size = 32
 batch_size = 64

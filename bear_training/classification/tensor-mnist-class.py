@@ -20,7 +20,7 @@ x_test = x_test / 255.0
 
 """
 Define the model architecture
-The model consists of a single Flatten layer, a Dense layer with 128 neurons 
+The model consists of a single Flatten layer, a Dense layer with 128 neurons
 and ReLU activation, and a Dense layer with 10 neurons and softmax activation.
 Softmax normalizes the output of the layer to a probability distribution over the classes.
 """
@@ -33,7 +33,7 @@ model = tf.keras.models.Sequential([
 ])
 
 """
-Compile the model, specifying the optimizer as "adam", the loss function as 
+Compile the model, specifying the optimizer as "adam", the loss function as
 sparse_categorical_crossentropy, and the metrics as "accuracy".
 """
 model.compile(optimizer='adam',
@@ -44,14 +44,14 @@ model.compile(optimizer='adam',
 model.fit(x_train, y_train, epochs=5)
 
 # TODO
-# model.save('model_T.h5')
+# model.save('my_model.h5')
 
 # Use the trained model to make predictions on the test set
 y_pred = model.predict(x_test)
 
 """
 Convert the predicted probabilities to class labels
-The output of the last layer in the neural network (softmax) is a probability 
+The output of the last layer in the neural network (softmax) is a probability
 distribution over the classes. Taking the argmax gives the predicted class label.
 """
 y_pred = np.argmax(y_pred, axis=1)

@@ -1,6 +1,6 @@
 */.Rhistory
 data/
-*.h5
+#*.h5
 
 # Code
 .vscode/
