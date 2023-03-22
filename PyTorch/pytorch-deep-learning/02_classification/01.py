@@ -3,6 +3,7 @@ CircleModelV0 model_0
 Untrained, predictions are negative numbers.
 """
 import matplotlib.pyplot as plt
+import pandas as pd
 import torch
 from sklearn.datasets import make_circles
 from sklearn.model_selection import train_test_split
@@ -11,6 +12,13 @@ from torch import nn
 # Create circles
 n_samples = 1000
 X, y = make_circles(n_samples, noise=0.03, random_state=42)
+
+# Make DataFrame of circle data
+# This is just a dictionary
+circles = pd.DataFrame({"X1": X[:, 0],
+                        "X2": X[:, 1],
+                        "label": y})
+print("DataFrame:", circles.head(10))
 
 # What's it look like?
 plt.scatter(x=X[:, 0], y=X[:, 1], c=y, cmap=plt.cm.RdYlBu)
@@ -50,8 +58,6 @@ with torch.inference_mode():
     untrained_preds = model_0(X_test.to(device))
 
 print(f"\nLength of predictions: {len(untrained_preds)}, Shape: {untrained_preds.shape}")
-# print(f"Length of test samples: {len(y_test)}, Shape: {y_test.shape}")
 print(f"Length of test samples: {len(X_test)}, Shape: {X_test.shape}")
-print(f"\nFirst 10 predictions:\n{torch.round(untrained_preds[:10])}")
-# print(f"\nFirst 10 predictions:\n{untrained_preds[:10]}")
+print(f"\nFirst 10 predictions:\n{torch.round(untrained_preds[:10])}")  # ROUNDED
 print(f"\nFirst 10 test labels:\n{y_test[:10]}")
