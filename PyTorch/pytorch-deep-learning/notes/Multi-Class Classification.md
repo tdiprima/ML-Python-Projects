@@ -68,7 +68,7 @@ Note that this is a very simple example, and more complex models may be necessar
 
 ## Visualize X and y using scatter plot
 
-Yes, we can visualize the dataset X and corresponding labels y using matplotlib.pyplot.scatter as follows:
+Yes, we can visualize the dataset `X` and corresponding labels `y` using `matplotlib.pyplot.scatter` as follows:
 
 ```python
 import matplotlib.pyplot as plt
@@ -88,7 +88,7 @@ plot_dataset(X, y)
 plt.show()
 ```
 
-In this example, we define a function `plot_dataset` to plot the dataset X and corresponding labels y.
+In this example, we define a function `plot_dataset` to plot the dataset `X` and corresponding labels `y`.
 
 We generate a random multilabel classification dataset with 100 samples and 2 features using `make_multilabel_classification`, and then call `plot_dataset` to visualize the dataset.
 
