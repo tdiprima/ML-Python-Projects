@@ -48,23 +48,37 @@ class_to_idx = train_data.class_to_idx
 import matplotlib.pyplot as plt
 
 figure = plt.gcf()
-plt.gcf().canvas.manager.set_window_title('Black & White Image')
+
+# IN GRAY.
+# figure.canvas.manager.set_window_title('Black & White Image')
+# plt.imshow(image.squeeze(), cmap="gray")
+
+# IN COLOR.
+figure.canvas.manager.set_window_title('Image (displayed with a colormap)')
 plt.imshow(image.squeeze())
+
+# OR!
+# cmap='inferno', cmap='plasma'
+
 # plt.title(label)  # Class label of the image
-plt.imshow(image.squeeze(), cmap="gray")
 plt.title(class_names[label])  # Class name
+
 plt.axis(False)
 # plt.show()  # TODO: Uncomment plt.show()
 
 # Plot more images
-# torch.manual_seed(42)
-fig = plt.figure(figsize=(9, 9))
+# torch.manual_seed(42)  # Uncomment to get the same every time
 rows, cols = 4, 4
+fig = plt.figure(figsize=(9, 9))
 for i in range(1, rows * cols + 1):
     random_idx = torch.randint(0, len(train_data), size=[1]).item()
     img, label = train_data[random_idx]
     fig.add_subplot(rows, cols, i)
-    plt.imshow(img.squeeze(), cmap="gray")
+    plt.imshow(img.squeeze(), cmap="jet")
+    # plt.imshow(img.squeeze(), cmap="inferno")
+    # plt.imshow(img.squeeze(), cmap="coolwarm")
+    # plt.imshow(img.squeeze(), cmap="cool")
+    # plt.imshow(img.squeeze(), cmap="winter")
     plt.title(class_names[label])
     plt.axis(False)
 
@@ -88,12 +102,12 @@ test_dataloader = DataLoader(dataset=test_data,
                              batch_size=BATCH_SIZE,
                              shuffle=False)
 
-# Let's check out what we've created
+# Check out the data loaders
 print(f"\nDataLoaders: {train_dataloader, test_dataloader}")
 print(f"\nLength of train_dataloader: {len(train_dataloader)} batches of {BATCH_SIZE}...")
 print(f"Length of test_dataloader: {len(test_dataloader)} batches of {BATCH_SIZE}...")
 
-# Check out what's inside the training dataloader
+# Turn data loader into an iterable, and get the next batch.
 train_features_batch, train_labels_batch = next(iter(train_dataloader))
 print("\ntrain features batch shape:", train_features_batch.shape)
 print("train labels batch shape:", train_labels_batch.shape)
