@@ -1,6 +1,8 @@
 """
 https://machinelearning.apple.com/research/panoptic-segmentation
 """
+import sys
+
 import torch
 import torchvision
 from torch import nn
@@ -8,8 +10,8 @@ from torchvision import datasets
 from torchvision.transforms import ToTensor
 
 # Check versions
-# print("torch:", torch.__version__)
-# print("torchvision:", torchvision.__version__)
+print("torch:", torch.__version__)
+print("torchvision:", torchvision.__version__)
 
 train_data = datasets.FashionMNIST(
     root="data",  # where to download data to?
@@ -27,23 +29,11 @@ test_data = datasets.FashionMNIST(
     target_transform=None
 )
 
-# print("\nLength\nTrain:", len(train_data), "Test:", len(test_data))
-
 # First training example returns an image and a label
 image, label = train_data[0]
-# print("\ntrain_data[0]:", train_data[0])  # BEST VIEWED ON JUPYTER.
 
 class_names = train_data.classes
-# print("\nclass_names:", class_names)
-
 class_to_idx = train_data.class_to_idx
-# print("\nclass_to_idx:", class_to_idx)
-
-# print("\ntrain_data.targets", train_data.targets)
-
-# Check the shape of our image
-# print(f"\nImage shape: {image.shape} -> [color_channels, height, width]")
-# print(f"\nImage label: {class_names[label]}")
 
 import matplotlib.pyplot as plt
 
@@ -56,18 +46,12 @@ figure = plt.gcf()
 # IN COLOR.
 figure.canvas.manager.set_window_title('Image (displayed with a colormap)')
 plt.imshow(image.squeeze())
-
-# OR!
-# cmap='inferno', cmap='plasma'
-
-# plt.title(label)  # Class label of the image
-plt.title(class_names[label])  # Class name
-
+plt.title(class_names[label])
 plt.axis(False)
-# plt.show()  # TODO: Uncomment plt.show()
+# plt.show()
 
 # Plot more images
-# torch.manual_seed(42)  # Uncomment to get the same every time
+torch.manual_seed(42)  # Uncomment to get the same every time
 rows, cols = 4, 4
 fig = plt.figure(figsize=(9, 9))
 for i in range(1, rows * cols + 1):
@@ -84,9 +68,6 @@ for i in range(1, rows * cols + 1):
 
 fig.canvas.manager.set_window_title('Hello Images')
 # plt.show()
-
-# print("\nTRAIN DATA:\n", train_data)
-# print("\nTEST DATA:\n", test_data)
 
 from torch.utils.data import DataLoader
 
@@ -113,7 +94,7 @@ print("\ntrain features batch shape:", train_features_batch.shape)
 print("train labels batch shape:", train_labels_batch.shape)
 
 # Show a sample
-# torch.manual_seed(42)
+torch.manual_seed(42)
 random_idx = torch.randint(0, len(train_features_batch), size=[1]).item()
 img, label = train_features_batch[random_idx], train_labels_batch[random_idx]
 
@@ -175,121 +156,96 @@ print("\ndummy x:", dummy_tensor)
 print("\ndummy shape:", dummy_tensor.shape)
 # [1, 10] cool - one logit per class.
 
-# print(model_0.state_dict())
+# Weight, tensor, bias
+# print("\nmodel_0 state_dict:", model_0.state_dict())
 
 # 3.1 Setup loss, optimizer and evaluation metrics
 
-# import requests
-# from pathlib import Path
-#
-# # Download helper functions from Learn PyTorch repo
-# if Path("helper_functions.py").is_file():
-#     # print("helper_functions.py already exists, skipping download...")
-# else:
-#     # print("Downloading helper_functions.py")
-#     request = requests.get("https://raw.githubusercontent.com/mrdbourke/pytorch-deep-learning/main/helper_functions.py")
-#     with open("helper_functions.py", "wb") as f:
-#         f.write(request.content)
+# Setup loss function and optimizer
+loss_fn = nn.CrossEntropyLoss()
+optimizer = torch.optim.SGD(params=model_0.parameters(), lr=0.1)
+
+# 3.3 Creating a training loop and training a model on batches of data
+
+# Import tqdm for progress bar
+from tqdm.auto import tqdm
+from timeit import default_timer as timer
+
+# Set the seed and start the timer
+torch.manual_seed(42)
+train_time_start_on_cpu = timer()
+
+# Set the number of epochs (we'll keep this small for faster training time)
+epochs = 3
 
 # Import accuracy metric
-# from helper_functions import accuracy_fn
-#
-# # Setup loss function and optimizer
-# loss_fn = nn.CrossEntropyLoss()
-# optimizer = torch.optim.SGD(params=model_0.parameters(), lr=0.1)
-#
-# # 3.2 Creating a function to time our experiments
-#
-# from timeit import default_timer as timer
-#
-#
-# def print_train_time(start: float,
-#                      end: float,
-#                      device: torch.device = None):
-#     # Prints difference between start and end time.
-#     total_time = end - start
-#     print(f"\nTrain time on {device}: {total_time:.3f} seconds")
-#     return total_time
-#
-#
-# start_time = timer()
-# # some code...
-# end_time = timer()
-# print_train_time(start=start_time, end=end_time, device="cpu")
-#
-# # 3.3 Creating a training loop and training a model on batches of data
-#
-# # Import tqdm for progress bar
-# from tqdm.auto import tqdm
-#
-# # Set the seed and start the timer
-# torch.manual_seed(42)
-# train_time_start_on_cpu = timer()
-#
-# # Set the number of epochs (we'll keep this small for faster training time)
-# epochs = 3
-#
-# # Create training and test loop
-# for epoch in tqdm(range(epochs)):
-#     print(f"\n\nEpoch: {epoch}\n------")
-#     # Training
-#     train_loss = 0
-#     # Add a loop to loop through the training batches
-#     for batch, (X, y) in enumerate(train_dataloader):
-#         model_0.train()
-#         # 1. Forward pass
-#         y_pred = model_0(X)
-#
-#         # 2. Calculate loss (per batch)
-#         loss = loss_fn(y_pred, y)
-#         train_loss += loss  # accumulate train loss
-#
-#         # 3. Optimizer zero grad
-#         optimizer.zero_grad()
-#
-#         # 4. Loss backward
-#         loss.backward()
-#
-#         # 5. Optimizer step (update the model's parameters once *per batch*)
-#         optimizer.step()
-#
-#         # Print out what's happening
-#         if batch % 400 == 0:
-#             print(f"Looked at {batch * len(X)}/{len(train_dataloader.dataset)} samples.")
-#
-#     # Divide total train loss by length of train dataloader
-#     train_loss /= len(train_dataloader)
-#
-#     # Testing
-#     test_loss, test_acc = 0, 0
-#     model_0.eval()
-#     with torch.inference_mode():
-#         for X_test, y_test in test_dataloader:
-#             # 1. Forward pass
-#             test_pred = model_0(X_test)
-#
-#             # 2. Calculate loss (cumulatively)
-#             test_loss += loss_fn(test_pred, y_test)
-#
-#             # 3. Calculate accuracy
-#             test_acc += accuracy_fn(y_true=y_test, y_pred=test_pred.argmax(dim=1))
-#
-#         # Calculate the test loss average per batch
-#         test_loss /= len(test_dataloader)
-#
-#         # Calculate the test acc average per batch
-#         test_acc /= len(test_dataloader)
-#
-#     # Print out what's happening
-#     print(f"\nTrain loss: {train_loss:.4f} | Test loss: {test_loss:.4f}, Test acc: {test_acc:.4f}")
-#
-# # Calculate training time
-# train_time_end_on_cpu = timer()
-# total_train_time_model_0 = print_train_time(start=train_time_start_on_cpu,
-#                                             end=train_time_end_on_cpu,
-#                                             device=str(next(model_0.parameters()).device))
-#
-# # 4. Make predictions and get Model 0 results
+
+
+sys.path.append('../toolbox')
+from helper_functions import accuracy_fn
+from my_timer import print_train_time
+
+# Create training and test loop
+for epoch in tqdm(range(epochs)):
+    print(f"\n\nEpoch: {epoch}\n------")
+    # Training
+    train_loss = 0
+    # Add a loop to loop through the training batches
+    for batch, (X, y) in enumerate(train_dataloader):
+        model_0.train()
+        # 1. Forward pass
+        y_pred = model_0(X)
+
+        # 2. Calculate loss (per batch)
+        loss = loss_fn(y_pred, y)
+        train_loss += loss  # accumulate train loss
+
+        # 3. Optimizer zero grad
+        optimizer.zero_grad()
+
+        # 4. Loss backward
+        loss.backward()
+
+        # 5. Optimizer step (update the model's parameters once *per batch*)
+        optimizer.step()
+
+        # Print out what's happening
+        if batch % 400 == 0:
+            print(f"Looked at {batch * len(X)}/{len(train_dataloader.dataset)} samples.")
+
+    # Divide total train loss by length of train dataloader
+    train_loss /= len(train_dataloader)
+
+    # Testing
+    test_loss, test_acc = 0, 0
+    model_0.eval()
+    with torch.inference_mode():
+        for X_test, y_test in test_dataloader:
+            # 1. Forward pass
+            test_pred = model_0(X_test)
+
+            # 2. Calculate loss (cumulatively)
+            test_loss += loss_fn(test_pred, y_test)
+
+            # 3. Calculate accuracy
+            test_acc += accuracy_fn(y_true=y_test, y_pred=test_pred.argmax(dim=1))
+
+        # Calculate the test loss average per batch
+        test_loss /= len(test_dataloader)
+
+        # Calculate the test acc average per batch
+        test_acc /= len(test_dataloader)
+
+    # Print out what's happening
+    print(f"\nTrain loss: {train_loss:.4f} | Test loss: {test_loss:.4f}, Test acc: {test_acc:.4f}")
+
+# Calculate training time
+train_time_end_on_cpu = timer()
+total_train_time_model_0 = print_train_time(start=train_time_start_on_cpu,
+                                            end=train_time_end_on_cpu,
+                                            device=str(next(model_0.parameters()).device))
+
+# 4. Make predictions and get Model 0 results
 # torch.manual_seed(42)
 #
 #
