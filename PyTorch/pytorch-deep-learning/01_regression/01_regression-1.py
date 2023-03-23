@@ -1,9 +1,14 @@
 """
 Build a PyTorch model that learns the pattern of a straight line and matches it.
 """
+import sys
+
 import torch
 
+sys.path.append('../toolbox')
+
 from my_models import LinearRegressionModel
+
 from plotting import plot_predictions
 
 # Check PyTorch version

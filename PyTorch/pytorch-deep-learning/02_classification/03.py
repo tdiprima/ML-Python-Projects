@@ -100,11 +100,14 @@ for epoch in range(epochs):
 
     # TODO: modulus
     if epoch % 100 == 0:
-    # if epoch % 10 == 0:
+        # if epoch % 10 == 0:
         print(
             f"Epoch: {epoch} | Loss: {loss:.5f}, Acc: {acc:.2f}% | Test loss: {test_loss:.5f}, Test acc: {test_acc:.2f}%")
 
 import matplotlib.pyplot as plt
+import sys
+
+sys.path.append('../toolbox')
 from helper_functions import plot_decision_boundary
 
 # Plot decision boundary of the model

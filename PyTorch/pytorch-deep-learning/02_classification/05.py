@@ -121,6 +121,8 @@ print("\npredictions:", y_preds[:10])
 print("\ny_test:", y_test[:10])
 
 import matplotlib.pyplot as plt
+import sys
+sys.path.append('../toolbox')
 from helper_functions import plot_decision_boundary
 
 # Plot decision boundaries

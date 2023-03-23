@@ -1,8 +1,13 @@
+import sys
+
 import matplotlib.pyplot as plt
 import torch
 from torch import nn
 
+sys.path.append('../toolbox')
+
 from my_models import LinearRegressionModel
+
 from plotting import plot_predictions
 
 weight = 0.7
@@ -22,7 +27,7 @@ X_test, y_test = X[split_position:], y[split_position:]
 torch.manual_seed(42)
 
 # LOAD THE PRE-TRAINED MODEL
-PATH = "models/my_model.pth"
+PATH = "../models/my_model.pth"
 model_0 = LinearRegressionModel()
 model_0.load_state_dict(torch.load(PATH))
 

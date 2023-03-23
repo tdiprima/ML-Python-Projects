@@ -9,9 +9,9 @@ The notation with the arrow `->` in the function signature is called a function 
 
 It is used to specify the type of the function's **input arguments** and **return value.**
 
-In the given example, `x: torch.Tensor` indicates that the `x` **parameter** of the forward function should be a `torch.Tensor` object.
+In the given example, `x: torch.Tensor` indicates that the `x` **parameter** of the `forward` function should be a `torch.Tensor` object.
 
-Similarly, `-> torch.Tensor` indicates that the forward function should **return** a `torch.Tensor` object.
+Similarly, `-> torch.Tensor` indicates that the `forward` function should **return** a `torch.Tensor` object.
 
 Function annotations are optional in Python, but they can be helpful in specifying the expected types of function arguments and return values, which can help catch type-related errors during development.
 

@@ -1,6 +1,10 @@
 # Import PyTorch and matplotlib
+import sys
+
 import torch
 from torch import nn  # nn contains all of PyTorch's building blocks for neural networks
+
+sys.path.append('../toolbox')
 
 from plotting import plot_predictions
 
@@ -142,7 +146,7 @@ plot_predictions(X_train, y_train, X_test, y_test, predictions=y_preds.cpu())
 from pathlib import Path
 
 # 1. Create models directory
-MODEL_PATH = Path("models")
+MODEL_PATH = Path("../models")
 MODEL_PATH.mkdir(parents=True, exist_ok=True)
 
 # 2. Create model save path

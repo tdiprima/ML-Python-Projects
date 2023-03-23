@@ -3,15 +3,14 @@
 model_2 = nn.Sequential
 Basically, we didn't need to do all that (with the class); all we had to do is this.
 """
-# import sys
+import sys
 
 import torch
 import torch.nn as nn
 from sklearn.datasets import make_circles
 from sklearn.model_selection import train_test_split
 
-# sys.path.append('..')  # add parent directory to system path
-
+sys.path.append('../toolbox')
 from plotting import plot_predictions
 
 # TODO: Num samples

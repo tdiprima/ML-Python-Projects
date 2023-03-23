@@ -118,9 +118,13 @@ for epoch in range(epochs):
     # Print out what's happening every 10 epochs
     # if epoch % 10 == 0:
     if epoch % 100 == 0:
-        print(f"Epoch: {epoch} | Train Loss: {loss:.5f}, Train Accuracy: {acc:.2f}% | Test loss: {test_loss:.5f}, Test acc: {test_acc:.2f}%")
+        print(
+            f"Epoch: {epoch} | Train Loss: {loss:.5f}, Train Accuracy: {acc:.2f}% | Test loss: {test_loss:.5f}, Test acc: {test_acc:.2f}%")
 
 import matplotlib.pyplot as plt
+import sys
+
+sys.path.append('../toolbox')
 from helper_functions import plot_decision_boundary
 
 # Plot decision boundary of the model
