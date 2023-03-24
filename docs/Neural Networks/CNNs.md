@@ -43,7 +43,8 @@ Different CNN architectures:
 
 * **LeNet**
     * Simple convolutional neural network, developed for handwritten digit recognition.
-    * "LeCun et al." 🇫🇷
+    * "**Le**Cu**n et** al." 🇫🇷
+    * "LeNet" is typically pronounced as "luh-net."
 * **AlexNet**
     * Object-detection, computer vision
     * Alex Krizhevsky 🇨🇦
