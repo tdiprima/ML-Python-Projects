@@ -26,6 +26,8 @@ However, this code may not work as intended if the size of the image tensor is l
 
 *I wanted an HTML table, but it couldn't do that.*
 
+<span style="color:red;font-size:larger;">See: display_images.ipynb</span>
+
 Assuming `test_data` is a PyTorch dataset object that contains images and their corresponding labels, `test_data[0]` returns a tuple containing the image and label for the first example in the dataset.
 
 For example, let's say that the image is a 3x32x32 tensor (3 channels, 32x32 pixels), and the label is an integer. Then, test_data[0] might look like this:
