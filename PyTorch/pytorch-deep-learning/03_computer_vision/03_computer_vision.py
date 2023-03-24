@@ -1,6 +1,3 @@
-"""
-https://machinelearning.apple.com/research/panoptic-segmentation
-"""
 import sys
 
 import torch
@@ -483,17 +480,20 @@ print("\nModel 0", model_0_results)
 # Model 2: Building a Convolutional Neural Network (CNN)
 # Create a convolutional neural network
 class FashionMNISTModelV2(nn.Module):
-    # Model architecture that replicates the TinyVGG
-    # model from CNN explainer website.
+    """
+    Model architecture that replicates the TinyVGG
+    model from the CNN Explainer website
+    """
+
+    # Initialize the class
     def __init__(self, input_shape: int, hidden_units: int, output_shape: int):
         super().__init__()
         self.conv_block_1 = nn.Sequential(
-            # Create a conv layer - https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html
             nn.Conv2d(in_channels=input_shape,
                       out_channels=hidden_units,
                       kernel_size=3,
                       stride=1,
-                      padding=1),  # values we can set ourselves in our NN's are called hyperparameters
+                      padding=1),
             nn.ReLU(),
             nn.Conv2d(in_channels=hidden_units,
                       out_channels=hidden_units,
@@ -520,7 +520,7 @@ class FashionMNISTModelV2(nn.Module):
         )
         self.classifier = nn.Sequential(
             nn.Flatten(),
-            nn.Linear(in_features=hidden_units * 7 * 7,  # there's a trick to calculating this...
+            nn.Linear(in_features=hidden_units * 7 * 7,
                       out_features=output_shape)
         )
 

@@ -1,3 +1,4 @@
+import torch
 from torch import nn
 
 
@@ -37,8 +38,8 @@ class FashionMNISTModel(nn.Module):
             nn.MaxPool2d(
                 kernel_size=2
             )
+        )
 
-        ),
         self.conv_block_2 = nn.Sequential(
             nn.Conv2d(
                 in_channels=hidden_units,
@@ -64,7 +65,39 @@ class FashionMNISTModel(nn.Module):
         self.classifier = nn.Sequential(
             nn.Flatten(),  # Flatten to single feature vector
             nn.Linear(
-                in_features=hidden_units * 0,
+                in_features=hidden_units * 7 * 7,
+                # in_features=hidden_units * 0,
                 out_features=output_shape  # The length of how many classes we have. One value for each class.
             )
         )
+
+    def forward(self, x):
+        x = self.conv_block_1(x)
+        print(1, "x.shape:", x.shape)
+        x = self.conv_block_2(x)
+        print(2, "x.shape:", x.shape)
+        x = self.classifier(x)
+        print(3, "x.shape:", x.shape)
+        return x
+
+
+model = FashionMNISTModel(
+    input_shape=1,
+    hidden_units=10,
+    output_shape=10
+)
+
+# create dummy tensor
+input_tensor = torch.randn(1, 1, 28, 28)
+
+# pass through model and check output shape
+output_tensor = model(input_tensor)
+assert output_tensor.shape == (1, 10)
+print(f"\noutput_tensor shape: {output_tensor.shape}")
+
+"""
+1 x.shape: torch.Size([1, 10, 14, 14])
+2 x.shape: torch.Size([1, 10, 7, 7])
+3 x.shape: torch.Size([1, 10])
+torch.Size([1, 10])
+"""

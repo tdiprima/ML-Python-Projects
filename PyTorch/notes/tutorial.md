@@ -26,6 +26,8 @@
 
 1. [CNN Explainer](https://poloclub.github.io/cnn-explainer/)
 
+1. [Apple Machine Learning Research](https://machinelearning.apple.com/research/panoptic-segmentation)
+
 Please leave a [discussion](https://github.com/mrdbourke/pytorch-deep-learning/discussions) or send me an email directly: daniel@mrdbourke.com
 
 <hr class="rainbow2">
