@@ -28,6 +28,17 @@
 
 1. [Apple Machine Learning Research](https://machinelearning.apple.com/research/panoptic-segmentation)
 
+1. [Nutrify - TorchVision](https://www.nutrify.app/)
+
+1. [Food 101 Dataset](https://www.tensorflow.org/datasets/catalog/food101)
+   * [Custom Data Creation](https://github.com/mrdbourke/pytorch-deep-learning/blob/main/extras/04_custom_data_creation.ipynb)
+   * [PyTorch Custom Datasets](https://www.learnpytorch.io/04_pytorch_custom_datasets/)
+
+"If I had 8 hours to build a machine learning model,
+I'd spend the first 6 hours preparing my dataset."
+
+&ndash; Abraham Lossfunction 🤦‍♀️
+
 Please leave a [discussion](https://github.com/mrdbourke/pytorch-deep-learning/discussions) or send me an email directly: daniel@mrdbourke.com
 
 <hr class="rainbow2">

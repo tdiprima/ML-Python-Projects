@@ -664,7 +664,6 @@ compare_results["training_time"] = [total_train_time_model_0,
 print("\ncompare_results 2", compare_results)
 
 # Visualize our model results
-# TODO: graph didn't show... but on previous?
 compare_results.set_index("model_name")["model_acc"].plot(kind="barh")
 plt.xlabel("accuracy (%)")
 plt.ylabel("model")
