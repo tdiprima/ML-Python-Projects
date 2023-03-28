@@ -101,11 +101,8 @@ class TinyVGG(nn.Module):
 
     def forward(self, x):
         x = self.conv_block_1(x)
-        # print(x.shape)
         x = self.conv_block_2(x)
-        # print(x.shape)
         x = self.classifier(x)
-        # print(x.shape)
         return x
         # return self.classifier(self.conv_block_2(self.conv_block_1(x))) # benefits from operator fusion: https://horace.io/brrr_intro.html
 
@@ -241,9 +238,6 @@ def train(model: torch.nn.Module,
 
 
 # TRAIN AND EVALUATE model 0
-# Set random seeds
-torch.manual_seed(42)
-torch.cuda.manual_seed(42)
 
 # Set number of epochs
 NUM_EPOCHS = 5
@@ -264,14 +258,6 @@ from timeit import default_timer as timer
 start_time = timer()
 
 # Train model_0
-model_0_results = train(model=model_0,
-                        train_dataloader=train_dataloader_simple,
-                        test_dataloader=test_dataloader_simple,
-                        optimizer=optimizer,
-                        loss_fn=loss_fn,
-                        epochs=NUM_EPOCHS)
-
-# TODO: TRY/EXCEPT DOESN'T DO DIDDLY SQUAT.
 model_0_results = train(model=model_0,
                         train_dataloader=train_dataloader_simple,
                         test_dataloader=test_dataloader_simple,
