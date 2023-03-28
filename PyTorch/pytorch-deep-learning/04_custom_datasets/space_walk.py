@@ -1,4 +1,6 @@
 import os
+# TODO: It's assuming that if the directory has a file, it's an image.
+# So then if you've got a .DS_Store, the image count for that folder is wrong.
 
 
 def walk_through_dir(dir_path):

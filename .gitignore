@@ -1,6 +1,5 @@
 */.Rhistory
 data/
-#*.h5
 
 # Code
 .vscode/
@@ -25,6 +24,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+
+.pytest_cache/
 
 # pyenv
 .python-version

@@ -1,8 +1,7 @@
-# Import PyTorch and matplotlib
 import sys
 
 import torch
-from torch import nn  # nn contains all of PyTorch's building blocks for neural networks
+from torch import nn
 
 sys.path.append('../toolbox')
 
@@ -25,8 +24,7 @@ end = 1
 step = 0.02
 
 # Create X and y (features and labels)
-X = torch.arange(start, end, step).unsqueeze(
-    dim=1)  # without unsqueeze, errors will happen later on (shapes within linear layers)
+X = torch.arange(start, end, step).unsqueeze(dim=1)
 y = weight * X + bias
 print(X[:10], y[:10])
 
@@ -37,8 +35,6 @@ X_test, y_test = X[split_pos:], y[split_pos:]
 
 print(len(X_train), len(y_train), len(X_test), len(y_test))
 
-# Note: If you've reset your runtime, this function won't work,
-# you'll have to rerun the cell above where it's instantiated.
 plot_predictions(X_train, y_train, X_test, y_test)
 
 
@@ -63,19 +59,14 @@ torch.manual_seed(42)
 model_1 = LinearRegressionModelV2()
 model_1, model_1.state_dict()
 
-# Check model device
-next(model_1.parameters()).device
-
 # Set model to GPU if it's available, otherwise it'll default to CPU
 model_1.to(device)  # the device variable was set above to be "cuda" if available or "cpu" if not
-next(model_1.parameters()).device
 
 # Create loss function
 loss_fn = nn.L1Loss()
 
 # Create optimizer
-optimizer = torch.optim.SGD(params=model_1.parameters(),  # optimize newly created model's parameters
-                            lr=0.01)
+optimizer = torch.optim.SGD(params=model_1.parameters(), lr=0.01)
 
 torch.manual_seed(42)
 
@@ -137,8 +128,6 @@ with torch.inference_mode():
     y_preds = model_1(X_test)
 print("\ny_preds", y_preds)
 
-# plot_predictions(predictions=y_preds) # -> won't work... data not on CPU
-
 # Put data on the CPU and plot it
 # plot_predictions(predictions=y_preds.cpu())
 plot_predictions(X_train, y_train, X_test, y_test, predictions=y_preds.cpu())
@@ -155,8 +144,8 @@ MODEL_SAVE_PATH = MODEL_PATH / MODEL_NAME
 
 # 3. Save the model state dict
 print(f"Saving model to: {MODEL_SAVE_PATH}")
-torch.save(obj=model_1.state_dict(),  # only saving the state_dict() only saves the models learned parameters
-           f=MODEL_SAVE_PATH)
+# Only saving the state_dict() only saves the model's learned parameters
+torch.save(obj=model_1.state_dict(), f=MODEL_SAVE_PATH)
 
 # Instantiate a fresh instance of LinearRegressionModelV2
 loaded_model_1 = LinearRegressionModelV2()

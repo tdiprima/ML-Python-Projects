@@ -305,7 +305,7 @@ class FashionMNISTModelV1(nn.Module):
 model_1 = FashionMNISTModelV1(input_shape=784,  # this is the output of the flatten after our 28*28 image goes in
                               hidden_units=10,
                               output_shape=len(class_names)).to(device)  # send to the GPU if it's available
-print("What next =>", next(model_1.parameters()).device)
+# print("What next =>", next(model_1.parameters()).device)
 
 # 6.1 Setup loss, optimizer and evaluation metrics
 
@@ -419,6 +419,7 @@ total_train_time_model_1 = print_train_time(start=train_time_start_on_gpu,
                                             end=train_time_end_on_gpu,
                                             device=device)
 
+# dict_keys(['model_name', 'model_loss', 'model_acc'])
 print("\nModel_0 Results:", model_0_results)
 
 # Train time on CPU
