@@ -86,3 +86,63 @@ Think of it like running until you hit a wall.  The wall is the colon and the po
 `[:pos]` means run *into* the wall.
 
 <br>
+
+## shape = ()
+
+<span style="color:#0000dd;font-size:larger;">Let's say I have an array any_data, and its shape is ().  Is () the same as (1)?  A one-dimensional array?</span>
+
+An array with a shape of `()` is called a scalar or a 0-dimensional array.
+
+It represents **a single value**, such as a number or a boolean.
+
+On the other hand, an array with a shape of `(1)` is a one-dimensional array with a single element.
+
+So, `()` and `(1)` are not the same. A scalar array is different from a one-dimensional array with a single element.
+
+Here's an example to demonstrate this:
+
+```python
+import numpy as np
+
+scalar_arr = np.array(5)
+print(scalar_arr)
+print(scalar_arr.shape)
+
+# Output:
+# 5
+# ()
+
+one_dim_arr = np.array([5])
+print(one_dim_arr)
+print(one_dim_arr.shape)
+
+# Output:
+# [5]
+# (1,)
+```
+
+In this example, we create a scalar array `scalar_arr` and a one-dimensional array `one_dim_arr` with a single element.
+
+As you can see, `scalar_arr` does not have any dimensions, while `one_dim_arr` has a shape of `(1,)`, indicating that it has a single dimension.
+
+<span style="color:#0000dd;font-size:larger;">Wait a minute... is np.array(5) creating an empty array of 5 elements, or is it creating an array with one element, and that element is int 5?</span>
+
+`np.array(5)` creates a NumPy array with a single element, and that element is the integer 5.
+
+The `np.array()` function can take various types of input, such as lists, tuples, or scalars.
+
+When you pass a scalar to the `np.array()` function, it creates an array with a single element.
+
+In this case, the scalar is the integer 5, so `np.array(5)` creates an array with a single element, which is the integer 5.
+
+### Grammar
+
+Is it "it's shape", or "its shape"?
+
+The correct phrase is "its shape", without an apostrophe.
+
+"Its" is a possessive pronoun that denotes ownership or possession, just like "his", "her", "their", or "your". The apostrophe is used to indicate a contraction or to show possession with nouns, but not with possessive pronouns like "its".
+
+Therefore, in the context of the question, the correct phrase is "its shape".
+
+<br>

@@ -9,7 +9,7 @@ from tensorflow import keras
 (x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
 
 # Load the saved model from a file
-loaded_model = keras.models.load_model('my_model.h5')
+loaded_model = keras.models.load_model('models/my_model.h5')
 
 # Use the loaded model to make predictions
 predicted_labels = np.argmax(loaded_model.predict(x_test), axis=-1)

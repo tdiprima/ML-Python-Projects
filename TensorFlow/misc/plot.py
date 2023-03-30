@@ -5,7 +5,7 @@ from tensorflow import keras
 
 (x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
 
-loaded_model = keras.models.load_model('my_model.h5')
+loaded_model = keras.models.load_model('models/my_model.h5')
 
 predictions = loaded_model.predict(x_test)
 

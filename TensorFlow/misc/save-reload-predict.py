@@ -23,7 +23,7 @@ from tensorflow import keras
 
 # Load the trained model back in
 # This function returns a new model object that has the same architecture and weights as the saved model.
-model = keras.models.load_model('my_model.h5')
+model = keras.models.load_model('models/my_model.h5')
 
 # Use the trained model to make predictions
 # predictions = model.predict(x_test)

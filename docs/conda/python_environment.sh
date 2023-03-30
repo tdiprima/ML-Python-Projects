@@ -34,15 +34,17 @@ conda activate sklearn-env
 conda install -c anaconda cudatoolkit
 
 # https://stackoverflow.com/questions/39977808/anaconda-cannot-import-cv2-even-though-opencv-is-installed-how-to-install-open
-conda config --add channels menpo
-conda install opencv
+#conda config --add channels menpo
+#conda install opencv
+# https://anaconda.org/conda-forge/opencv
+conda install -c conda-forge opencv
 
 conda env remove -n name
 conda info --envs
 conda search openslide
 
-# You can create a copy of the environment by using 
-conda env export > environment.yml 
-# on all platforms 
-# and then create that env with 
+# You can create a copy of the environment by using
+conda env export > environment.yml
+# on all platforms
+# and then create that env with
 conda env create -f environment.yml

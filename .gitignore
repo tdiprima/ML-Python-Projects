@@ -1,5 +1,8 @@
 */.Rhistory
 data/
+models/
+*.h5
+*.pth
 
 # Code
 .vscode/
