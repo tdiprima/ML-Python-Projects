@@ -1,12 +1,16 @@
 ## Learn PyTorch for Deep Learning
 
-1. https://github.com/mrdbourke/pytorch-deep-learning
+1. [GitHub Repo](https://github.com/mrdbourke/pytorch-deep-learning)
 
 1. [Online book](https://learnpytorch.io)
 
 1. [Google Colab Notebooks](https://colab.research.google.com)
 
 1. [Zero to Mastery Data Science and Machine Learning Bootcamp](https://dbourke.link/ZTMMLcourse)
+
+1. [Interpreting Loss Curves](https://developers.google.com/machine-learning/testing-debugging/metrics/interpretic)
+
+1. [Pre-trained Models](https://pytorch.org/vision/stable/models.html)
 
 1. [Draw a Flowchart](https://www.figma.com/)
 
@@ -33,6 +37,20 @@
 1. [Food 101 Dataset](https://www.tensorflow.org/datasets/catalog/food101)
    * [Custom Data Creation](https://github.com/mrdbourke/pytorch-deep-learning/blob/main/extras/04_custom_data_creation.ipynb)
    * [PyTorch Custom Datasets](https://www.learnpytorch.io/04_pytorch_custom_datasets/)
+
+
+## Compare model results
+After evaluating our modelling experiments on their own, it's important to compare them to each other.
+
+There's a few different ways to do this:
+
+* Hard coding (what we're doing)
+* PyTorch + Tensorboard - https://pytorch.org/docs/stable/tensorboard.html
+* Weights & Biases - https://wandb.ai/site/experiment-tracking
+* MLFlow - https://mlflow.org/
+
+
+## Cheesy
 
 "If I had 8 hours to build a machine learning model,
 I'd spend the first 6 hours preparing my dataset."

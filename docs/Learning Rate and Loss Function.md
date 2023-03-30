@@ -1,10 +1,16 @@
 ## Loss Function
 
+```py
+loss_fn = nn.CrossEntropyLoss()
+```
+
+Loss function is often called "criterion"; the criterion you're trying to reduce.  But I just like to call it "loss function".
+
 In machine learning, we use a **"loss function"** to measure how well our model is doing at making predictions. The loss function takes in the predicted output of the model and the true output (i.e. the "ground truth") and returns a number that represents how well the model is doing.
 
 The goal of the learning process is to **minimize the loss function**, which means we want to make the model's predictions as close as possible to the true outputs. To do this, we use an optimization algorithm called "gradient descent" to update the model's parameters (i.e. the weights and biases of the neurons) in the direction that reduces the loss.
 
-```ruby
+```python
 # Create loss function
 loss_fn = nn.L1Loss()
 
@@ -24,10 +30,12 @@ However, if the learning rate is too low, the model may take a long time to conv
 
 **Choosing a good learning rate** is an important part of training a machine learning model. In practice, you usually start with a reasonable learning rate (such as 0.01) and experiment with adjusting it to see how it affects the performance of the model.
 
-```ruby
+### SGD and Adam are 2 of the most popular optimizers
+
+```python
 # Create optimizer
 optimizer = torch.optim.SGD(
-    params=model_0.parameters(), 
+    params=model_0.parameters(),  # The parameter's we're gonna optimize
     lr=0.01
 )
 ```

@@ -1,4 +1,27 @@
-## Running PyTorch code on a GPU.
+## Running PyTorch code on a GPU
+
+<span style="color:red;">The Model and the Tensors get put on the device.</span>
+
+The End.
+
+```python
+# Make device agnostic code
+device = "cuda" if torch.cuda.is_available() else "cpu"
+
+# Put model on target device
+model_2 = nn.Sequential(
+    nn.Linear(in_features=1, out_features=10),
+    nn.Linear(in_features=10, out_features=10),
+    nn.Linear(in_features=10, out_features=1)
+).to(device)
+
+# Put data on target device
+X_train_regression, y_train_regression = X_train_regression.to(device), y_train_regression.to(device)
+X_test_regression, y_test_regression = X_test_regression.to(device), y_test_regression.to(device)
+
+```
+
+<br>
 
 > "Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu!"
 
@@ -65,34 +88,5 @@ for batch, (X, y) in enumerate(train_dataloader):
 ```
 
 This will ensure that both `X` and `y` are on the same device (in this case, the GPU) as the model's parameters, which should eliminate the "same device" error you're seeing.
-
-## Missing an argument
-
-```python
-confmat = ConfusionMatrix(num_classes=len(class_names))
-```
-
-> "TypeError: __new__() missing 1 required positional argument: 'task'
-
-<br>
-
-This error occurs when you're trying to create an instance of the `ConfusionMatrix` class without providing the required argument `task`.
-
-<span style="color:#0000dd;font-size:larger;">Duh. 🤦‍♀️</span>
-
-This error typically occurs when you're using an older version of the `confusion_matrix` library, which requires the `task` argument.
-
-```c
-from confusion_matrix import ConfusionMatrix
-confmat = ConfusionMatrix(num_classes=len(class_names), task='classification')
-```
-
-**Task options:**
-
-* binary
-* multiclass
-* multilabel
-
-***Note that 'classification' is not one of them!***
 
 <br>

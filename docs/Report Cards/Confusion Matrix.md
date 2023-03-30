@@ -5,10 +5,11 @@ A confusion matrix is a way to see **how well a machine learning model** is doin
 ### Code
 
 ```py
-print(confusion_matrix(y_test, y_pred))
+confusion_matrix(truth, prediction)
+confusion_matrix(y_test, y_pred)
 ```
 
-**Output:**
+### Output
 
 ```
 Confusion matrix:
@@ -24,8 +25,48 @@ Confusion matrix:
  [   4    6    4   14   12    2    1   29    2  935]]
 ```
 
+## Missing an argument
 
-## Example 🐱 🐶 🦆
+```python
+confmat = ConfusionMatrix(num_classes=len(class_names))
+```
+
+> "TypeError: __new__() missing 1 required positional argument: 'task'
+
+<br>
+
+This error occurs when you're trying to create an instance of the `ConfusionMatrix` class without providing the required argument `task`.
+
+<span style="color:#0000dd;font-size:larger;">Duh. 🤦‍♀️</span>
+
+This error typically occurs when you're using a version of the `confusion_matrix` library that requires the `task` argument.
+
+So it goes like this:
+
+```py
+from confusion_matrix import ConfusionMatrix
+
+# Setup confusion instance and compare predictions to targets
+confmat = ConfusionMatrix(num_classes=len(class_names), task="multiclass")
+
+# Move back to CPU
+y_pred_tensor = torch.cat(y_preds).to("cpu")
+
+confmat_tensor = confmat(
+    preds=y_pred_tensor, 
+    target=test_data.targets  # Labels
+)
+```
+
+### Options
+
+* binary
+* multiclass
+* multilabel
+
+<br>
+
+## Example for Fun 🐱 🐶 🦆
 
 Ok, so we're playing "recognize the animal."
 

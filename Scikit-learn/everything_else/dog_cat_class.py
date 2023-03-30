@@ -1,3 +1,9 @@
+"""
+Traditional example dog vs cat classification
+3 images of dogs and 3 images of cats; images have only 2 pixel values x, y (so we can easily plot them)
+Import -> Initialize -> Fit(Train) -> Predict
+https://medium.com/@parthvadhadiya424/hello-world-program-with-scikit-learn-a869beb55deb
+"""
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn import neighbors  # import model building
@@ -13,8 +19,8 @@ testing_set = [15, 20]
 c = 'x'
 for data in training_set:
     print(data)
-
     # print(training_set[data])
+
     for i in training_set[data]:
         plt.plot(i[0], i[1], c, color='c')
 
@@ -32,7 +38,8 @@ for group in training_set:
 
 """
 K Neighbors Classifier
-KNN is very simple algorithm which works on measuring distance between testing sample to training samples and determine k nearest neighbors.
+Simple algorithm which works on measuring distance between testing
+sample to training samples and determine k nearest neighbors.
 """
 # Initialize and fit
 clf = neighbors.KNeighborsClassifier()
