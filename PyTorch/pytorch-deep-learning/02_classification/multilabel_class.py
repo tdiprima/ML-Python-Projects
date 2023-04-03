@@ -4,6 +4,7 @@ from sklearn.datasets import make_multilabel_classification
 
 # Generate a random multilabel classification dataset with 100 samples and 10 features
 X, y = make_multilabel_classification(n_samples=100, n_features=10, n_classes=5)
+print(len(X), len(y))
 
 # Convert the numpy arrays to PyTorch tensors
 X = torch.tensor(X, dtype=torch.float32)
@@ -31,7 +32,7 @@ class Net(nn.Module):
 net = Net(input_size=10, hidden_size=5, output_size=5)
 
 # Define the loss function and optimizer
-criterion = nn.BCELoss()
+criterion = nn.BCELoss()  # Notice - no "with logits"
 optimizer = torch.optim.SGD(net.parameters(), lr=0.1)
 
 # Train the model for 1000 epochs
@@ -50,3 +51,26 @@ for epoch in range(1000):
     # Print statistics every 100 epochs
     if (epoch + 1) % 100 == 0:
         print('Epoch [{}/{}], Loss: {:.4f}'.format(epoch + 1, 1000, loss.item()))
+
+# PREDICTIONS
+from sklearn.model_selection import train_test_split
+
+# Split into train and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+print(len(X_train), len(X_test), len(y_train), len(y_test))
+
+# Make predictions with model
+net.eval()
+with torch.inference_mode():
+    # Forward pass on test data
+    test_pred = net(X_test)
+
+    # Calculate loss on test data
+    test_loss = criterion(test_pred, y_test.type(torch.float))
+
+# Check the predictions
+print(f"\nNumber of testing samples: {len(X_test)}")
+print(f"Number of predictions made: {len(test_pred)}")
+# print(f"\nPredicted values:\n{test_pred}")
+print("\nHow close were we? (test_loss)", test_loss)
