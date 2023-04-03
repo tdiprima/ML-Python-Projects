@@ -1,11 +1,8 @@
 import sys
 
-import torch
-from matplotlib import pyplot as plt
 from torch import nn
 
 # Creating a toy multi-class dataset
-# Import dependencies
 import torch
 import matplotlib.pyplot as plt
 # https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_blobs.html#sklearn.datasets.make_blobs
