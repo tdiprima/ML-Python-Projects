@@ -139,7 +139,7 @@ results = engine.train(model=model,
                        test_dataloader=test_dataloader,
                        optimizer=optimizer,
                        loss_fn=loss_fn,
-                       epochs=3,  # 5
+                       epochs=5,
                        device=device)
 
 # End the timer and print out how long it took
