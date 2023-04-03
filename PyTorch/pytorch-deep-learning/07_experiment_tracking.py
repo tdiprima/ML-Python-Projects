@@ -1,3 +1,6 @@
+# 🤦‍♀️ Forget this guy.  Read this:
+# https://towardsdatascience.com/a-complete-guide-to-using-tensorboard-with-pytorch-53cb2301e8c3
+
 # For this notebook to run with updated APIs, we need torch 1.12+ and torchvision 0.13+
 try:
     import torch
