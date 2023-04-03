@@ -92,7 +92,6 @@ if __name__ == '__main__':
     # Run the training loop
     loss_idx_value = 0
     for epoch in range(0, 5):  # 5 epochs at maximum
-        loss_idx_value = 0  # todo: But...
 
         # Visualize weight histograms
         weight_histograms(writer, epoch, convnet)
