@@ -47,6 +47,7 @@ warnings.simplefilter(action="ignore", category=FutureWarning)
 from matplotlib import pyplot as plt
 
 sns.countplot(df["cardio"])
+plt.show()
 
 # x = data['Healthy life expectancy']
 # y = data['max_dead']
@@ -65,6 +66,7 @@ sns.countplot(
     data=df, palette="colorblind",
     edgecolor=sns.color_palette("dark", n_colors=1)
 )
+plt.show()
 
 # Remember we only have 7 rows in our data
 # If we had more rows, we could easily see the ages where cv disease exceeds no cv disease.
@@ -80,6 +82,7 @@ plt.figure(figsize=(7, 7))
 # sns.heatmap(df.corr, annot=True, fmt=".0%")  # Percentage w/o decimal places
 # Error: Must pass 2-d input. shape=() - simply means you forgot the "()"!
 sns.heatmap(df.corr(), annot=True, fmt=".0%")
+plt.show()
 
 # Cardio &ndash; 30% positive correlation with age.
 #
