@@ -7,7 +7,7 @@ usage and improve the efficiency of computations that involve the matrix.
 import numpy as np
 
 # Create 10 samples with 5 feature-sets each
-X = np.random.random((10, 5))
+X = np.random.random((10, 5))  # random.sample()?
 
 # Shape of X
 print(f"X.shape: {X.shape}")

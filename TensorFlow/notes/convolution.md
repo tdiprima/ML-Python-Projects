@@ -46,4 +46,12 @@ In this example, we create a simple convolutional neural network that consists o
 
 The input shape is `(28, 28, 1)`, which corresponds to a single-channel (grayscale) image with a size of 28x28 pixels. The output shape is also `(28, 28, 1)`, which...
 
+## ack certain file type
+
+<!-- specific file type -->
+
+```sh
+ find . -iname "*.md" | ack -x "import tensorflow"
+```
+
 <br>

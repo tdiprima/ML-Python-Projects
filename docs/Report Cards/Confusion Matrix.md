@@ -4,47 +4,22 @@ A confusion matrix is a way to see **how well a machine learning model** is doin
 
 ### Code
 
-```py
+```ruby
 confusion_matrix(truth, prediction)
-confusion_matrix(y_test, y_pred)
 ```
 
-### Output
+### Missing an argument
 
-```
-Confusion matrix:
- [[ 970    0    2    0    0    2    3    1    2    0]
- [   0 1126    5    0    0    0    2    0    2    0]
- [   1    0 1021    1    1    0    2    4    2    0]
- [   0    0    9  987    0    7    0    4    3    0]
- [   0    0   10    0  952    1    8    2    1    8]
- [   3    1    1    8    2  868    5    2    2    0]
- [   3    3    4    0    1    5  941    1    0    0]
- [   0    3   11    0    0    0    0 1006    2    6]
- [   7    1    9   13    3   10    2    6  920    3]
- [   4    6    4   14   12    2    1   29    2  935]]
-```
-
-## Missing an argument
-
-```python
-confmat = ConfusionMatrix(num_classes=len(class_names))
-```
-
-> "TypeError: __new__() missing 1 required positional argument: 'task'
-
-<br>
+"TypeError: `__new__()` missing 1 required positional argument: 'task'
 
 This error occurs when you're trying to create an instance of the `ConfusionMatrix` class without providing the required argument `task`.
 
 <span style="color:#0000dd;font-size:larger;">Duh. 🤦‍♀️</span>
 
-This error typically occurs when you're using a version of the `confusion_matrix` library that requires the `task` argument.
-
 So it goes like this:
 
 ```py
-from confusion_matrix import ConfusionMatrix
+from confusion_matrix import ConfusionMatrix  # <- torch
 
 # Setup confusion instance and compare predictions to targets
 confmat = ConfusionMatrix(num_classes=len(class_names), task="multiclass")
@@ -64,67 +39,54 @@ confmat_tensor = confmat(
 * multiclass
 * multilabel
 
-<br>
+## sklearn confusion matrix axes
 
-## Example for Fun 🐱 🐶 🦆
+The return value from `confusion_matrix` &ndash; Is the x axis "Predicted Labels" and the y axis "True Labels"?
 
-Ok, so we're playing "recognize the animal."
+Yes, when you use the `confusion_matrix` function from `sklearn.metrics`, the returned confusion matrix is arranged such that the rows represent the true labels and the columns represent the predicted labels.
 
-Let's say you've trained your computer program on a bunch of pictures and it's time to see how well it does at recognizing new pictures it hasn't seen before.
+* x-axis: predicted labels
+* y-axis: true labels
 
-You can use a confusion matrix to help you see how well it did.
 
-The **confusion matrix is like a table** that shows you how many pictures the computer program got right and how many it got wrong.
+```python
+from sklearn.metrics import confusion_matrix
+import numpy as np
 
-**Top:** actual animals
+# Example true and predicted labels
+y_true = np.array([1, 0, 0, 1, 1, 0, 1, 0])
+y_pred = np.array([0, 0, 1, 1, 0, 1, 1, 0])
 
-**Side:** guessed animals
+# Compute the confusion matrix
+conf_mat = confusion_matrix(y_true, y_pred)
 
-Using the confusion matrix, you can see **how many times** the computer program got each animal right and wrong.
+print(conf_mat)
+```
 
-You can also calculate some **statistics** like **accuracy** (how often it got the animal right) and **precision** (how often it got the animal right when it said it was that animal).
+This would output:
 
-## Table
+```py
+array([[2, 2],
+       [2, 2]])
+```
 
-Here's a make-believe confusion matrix table based on the above  example:
+The first row represents the true labels for the negative class (0) and<br>the second row represents the true labels for the positive class (1).
 
-<table><thead><tr><th></th><th>Actual: Dog</th><th>Actual: Cat</th><th>Actual: Bird</th></tr></thead><tbody><tr><td>Guessed: Dog</td><td align="right">10</td><td align="right">2</td><td align="right">1</td></tr><tr><td>Guessed: Cat</td><td align="right">3</td><td align="right">8</td><td align="right">2</td></tr><tr><td>Guessed: Bird</td><td align="right">0</td><td align="right">1</td><td align="right">9</td></tr></tbody></table>
+The first column represents the predicted labels for the negative class and<br>the second column represents the predicted labels for the positive class.
 
-<br>
+## False positive
 
-The computer program guessed that...
+So, for example, **`conf_mat[0, 1]`** represents the number of samples that were actually negative **(true label 0)** but were predicted to be positive **(predicted label 1)**, which is 2 in this case.
 
-<span style="font-size:20px;">Dogs</span> <span style="font-size:27px;">🐶</span>
+```py
+y_pred = model.predict(X_test)
+cm = confusion_matrix(y_test, y_pred)
 
-* 13 pictures were dogs, and out of those,
-* 10 were actually dogs, 
-* 2 were cats, and 
-* 1 was a bird.
+true_negative = cm[0][0]
+true_positive = cm[1][1]
 
-<span style="font-size:20px;">Cats</span> <span style="font-size:27px;">🐱</span>
-
-* 13 pictures were cats, and out of those 
-* 8 were actually cats, 
-* 3 were dogs, and 
-* 2 were birds.
-
-<span style="font-size:20px;">Birds</span> <span style="font-size:27px;">🦆</span>
-
-* 10 pictures were birds, and out of those 
-* 9 were actually birds, and 
-* 1 was a cat.
-
-From this confusion matrix, you can see that <mark>the **computer program was best at recognizing birds** (it got **9 out of 10** correct).</mark>
-
-It got 10 out of 13 dogs correct.
-
-It got 8 out of 13 cats correct.
-
-By looking at these results, you can think about how to **improve** the computer program's performance, such as:
-
-* Adding more training data
-* or
-* Tweaking the algorithm
-
+false_negative = cm[1][0]
+false_positive = cm[0][1]
+```
 
 <br>
