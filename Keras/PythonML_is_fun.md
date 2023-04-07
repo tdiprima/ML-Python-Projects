@@ -1,7 +1,9 @@
 ## PythonML is Fun
 
-This repo contains the Python code for a number of machine learniing algorithms such as Decision Trees and SVM.
+This repo contains the Python code for a number of **machine learning algorithms** such as Decision Trees and SVM (Support Vector Machines).
 
-There is also code for artifical neural networks (ANN) and Deep Learning applications such as CNN. The deep learning applications have been demonstrated using the Keras library.
+There is also code for **artificial neural networks** (ANN) and Deep Learning applications such as CNN.
 
-https://github.com/Jojo666/PythonML_is_fun
+The **deep learning applications** have been demonstrated using the Keras library.
+
+[GitHub Repo](https://github.com/Jojo666/PythonML_is_fun)
