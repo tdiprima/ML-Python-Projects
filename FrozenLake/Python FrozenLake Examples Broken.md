@@ -1,6 +1,6 @@
 ## Python FrozenLake Examples Broken
 
-none of the examples seem to work for the python ai `gym` FrozenLake environment.  Is it deprecated or broken?
+None of the examples seem to work for the python ai `gym` FrozenLake environment.  Is it deprecated or broken?
 
 I'm sorry to hear that the examples you tried for the Python AI `gym` FrozenLake environment didn't work. The OpenAI `gym` environments are frequently updated, so it's possible that the examples you found are no longer compatible with the latest version of the FrozenLake environment.
 
@@ -11,27 +11,36 @@ Additionally, make sure to carefully review the documentation for the FrozenLake
 
 ## Nothing renders #:(
 
-When I do `environment.`render()``, nothing renders.  I imported "`gym`"; what else might I need?
+When I do `environment.render()`, nothing renders.  I imported `gym`; what else might I need?
 
 If you're using the `gym` library to interact with an environment, the `render()` method is used to visualize the environment. If nothing appears when you call `render()`, there could be a few reasons why.
 
 Firstly, make sure you're calling the `render()` method after you've created an instance of the environment and before you've taken any actions. This is because the `render()` method should be called only once the environment has been initialized and is ready to be rendered.
 
-Secondly, not all environments support rendering, so you should check whether the environment you're using supports it. You can do this by calling the env.`render()` method and checking whether it returns a value or not. If it doesn't, it means that the environment doesn't support rendering.
+Secondly, not all environments support rendering, so you should check whether the environment you're using supports it. You can do this by calling the **`env.render()`** method and checking whether it returns a value or not. If it doesn't, it means that the environment doesn't support rendering.
 
-Thirdly, the rendering may not be visible if it's being displayed on a different screen or window. You can try adjusting the screen settings or calling env.render(mode='human') to ensure that the rendering is displayed in a visible window on your screen.
+Thirdly, the rendering may not be visible if it's being displayed on a different screen or window. You can try adjusting the screen settings or calling **`env.render(mode='human')`** to ensure that the rendering is displayed in a visible window on your screen.
 
 Lastly, depending on the environment and the operating system you're using, you may need to install additional libraries or dependencies to enable rendering. For example, if you're using the `gym` library with a `MuJoCo` environment, you may need to install additional dependencies such as **OpenGL** and **GLFW** to enable rendering.
 
-In summary, to ensure that the rendering is displayed properly, make sure that you call the `render()` method after initializing the environment, check that the environment supports rendering, adjust the screen settings, and ensure that any necessary dependencies are installed.
+### Summary
 
-## Ahh!
+1. Make sure that you call the **`render()`** method after initializing the environment
+2. Check that the environment supports rendering
+3. Adjust the screen settings
+4. Ensure that any necessary dependencies are installed
 
-All of the examples I've seen say `observation, reward, done, info = env.step(action)`.  But then you get an error: too many values to unpack (expected 4).  Would it be correct to do: `observation, reward, done, _, info = env.step(action)`?
+## AAUGH!
 
-Yes, you are correct. If you get an error message "too many values to unpack (expected 4)" when you use the statement observation, reward, done, info = env.step(action), it's likely because the step() method is returning more than four values. In this case, using the underscore (_) as a placeholder for the unused value is a valid way to unpack the values.
+All the examples I've seen say `observation, reward, done, info = env.step(action)`.  But then you get an error: too many values to unpack (expected 4).  Would it be correct to do: `observation, reward, done, _, info = env.step(action)`?
 
-The underscore (_) is commonly used as a placeholder for any values that you want to ignore or discard in Python. So, if the step() method is returning more than four values, you can use the statement observation, reward, done, _, info = env.step(action) to unpack the first four values and discard the rest.
+_That was a hint for you to give me the answer, Buddy._
+
+Yes, you are correct. If you get an error message "too many values to unpack (expected 4)" when you use the statement `observation, reward, done, info = env.step(action)`, it's likely because the `step()` method is returning more than four values.
+
+In this case, using the underscore (`_`) as a **placeholder for the unused value** is a valid way to unpack the values.
+
+The underscore (`_`) is commonly used as a placeholder for any values that you want to ignore or discard in Python. So, if the `step()` method is returning more than four values, you can use the statement `observation, reward, done, _, info = env.step(action)` to unpack the first four values and discard the rest.
 
 However, keep in mind that by using the underscore to discard the extra value, you are essentially saying that you don't care about that value and don't want to use it in your code. If you actually need that value for some reason, you should use a variable name instead of the underscore to capture and use that value.
 
