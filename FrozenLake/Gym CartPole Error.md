@@ -47,7 +47,7 @@ UserWarning: WARN: The environment `CartPole-v0` is **out of date.** You should 
 
 ### Solution:
 
-'CartPole**-v0**' changed to: 'CartPole**-v1**'
+CartPole **-v0** changed to: CartPole **-v1**
 
 ## The second error:
 
