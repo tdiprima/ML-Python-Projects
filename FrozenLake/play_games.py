@@ -1,10 +1,13 @@
+"""
+This is a quick display and animation, using random steps.
+"""
 import time
 
 import gym
 
 # name = 'FrozenLake-v1'  # TODO: LOL do this one manually.
-# name = 'LunarLander-v2'  # This works the best!
-name = 'CartPole-v1'  # idk wth it's doing, but it works lol
+name = 'LunarLander-v2'  # This works the best!
+# name = 'CartPole-v1'  # idk wth it's doing, but it works lol
 
 env = gym.make(name, render_mode="human")
 env.reset()

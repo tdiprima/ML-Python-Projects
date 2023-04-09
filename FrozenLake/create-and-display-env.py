@@ -1,6 +1,5 @@
 """
-Make a FrozenLake-v1 environment with the gym module, display
-the environment, and then close the window in 15 seconds.
+Just create an environment and display it. Close after 5 seconds.
 """
 import time
 
@@ -17,8 +16,8 @@ env.reset()
 # Display the environment
 env.render()
 
-# Wait for 15 seconds
-time.sleep(15)
+# Wait for 5 seconds
+time.sleep(5)
 
 # Close the window
 env.close()
