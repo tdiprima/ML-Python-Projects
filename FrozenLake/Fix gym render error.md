@@ -1,18 +1,27 @@
 ## TL;DR: None of it works.
 
-The gym("CartPole-v0") error told me to do: `gym("CartPole-v0", render_mode="rgb_array")`, but I get an error when I do what they said!  The error is: 'module' object is not callable.  How do I fix?
+The gym("CartPole-v0") error told me to do: 
+
+```py
+gym("CartPole-v0", render_mode="human")
+```
+
+but I get an error when I do what they said!  The error is: **'module' object is not callable**.  How do I fix?
 
 It looks like you are trying to call a module as if it were a function, which is causing the error message you see. In this case, it seems that you are trying to call the gym module as if it were a function.
 
-To fix this, you need to make sure that you are calling the correct function from the gym module. If you want to create an environment for the CartPole-v0 problem and render it as an RGB array, you can use the following code:
+To fix this, you need to make sure that you are calling the correct function from the gym module. 
 
-python
-Copy code
+If you want to create an environment for the `CartPole-v0` problem and render it as an RGB array, you can use the following code:
+
+```python
 import gym
 
 env = gym.make("CartPole-v0")
 observation = env.reset()
 rendered = env.render(mode="rgb_array")
+```
+
 Here, we import the gym module and create an instance of the CartPole-v0 environment using the make function. We then reset the environment to get the initial observation, and finally, we render the environment as an RGB array using the render method with mode="rgb_array".
 
 Note that the render method must be called after the reset method, or else it may not work correctly.
