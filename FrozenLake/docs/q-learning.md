@@ -1,4 +1,6 @@
-## Q-learning algorithm
+# Q-learning algorithm
+
+## Read "Explain" first
 
 Q-learning is a popular algorithm used in Reinforcement Learning, a subfield of machine learning. It's used to make an agent learn the optimal policy to take actions in an environment by estimating the value of each action in each state.
 
