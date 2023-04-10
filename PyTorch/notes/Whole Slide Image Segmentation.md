@@ -1,4 +1,59 @@
-## Slide Image Segmentation
+# Slide Image Segmentation
+
+## Write a model architecture class in PyTorch that segments an image.
+
+Sure! Here is an example of a PyTorch implementation of a model architecture for image segmentation using a fully convolutional neural network (FCN):
+
+```python
+import torch.nn as nn
+
+class FCN(nn.Module):
+    def __init__(self, in_channels, num_classes):
+        super(FCN, self).__init__()
+        
+        # Encoder
+        self.conv1 = nn.Conv2d(in_channels, 64, kernel_size=3, padding=1)
+        self.bn1 = nn.BatchNorm2d(64)
+        self.conv2 = nn.Conv2d(64, 128, kernel_size=3, padding=1)
+        self.bn2 = nn.BatchNorm2d(128)
+        self.conv3 = nn.Conv2d(128, 256, kernel_size=3, padding=1)
+        self.bn3 = nn.BatchNorm2d(256)
+        
+        # Decoder
+        self.upconv3 = nn.ConvTranspose2d(256, 128, kernel_size=2, stride=2)
+        self.bn_up3 = nn.BatchNorm2d(128)
+        self.upconv2 = nn.ConvTranspose2d(128, 64, kernel_size=2, stride=2)
+        self.bn_up2 = nn.BatchNorm2d(64)
+        self.upconv1 = nn.ConvTranspose2d(64, num_classes, kernel_size=2, stride=2)
+        
+    def forward(self, x):
+        # Encoder
+        x = self.conv1(x)
+        x = self.bn1(x)
+        x = nn.functional.relu(x)
+        x = self.conv2(x)
+        x = self.bn2(x)
+        x = nn.functional.relu(x)
+        x = self.conv3(x)
+        x = self.bn3(x)
+        x = nn.functional.relu(x)
+        
+        # Decoder
+        x = self.upconv3(x)
+        x = self.bn_up3(x)
+        x = nn.functional.relu(x)
+        x = self.upconv2(x)
+        x = self.bn_up2(x)
+        x = nn.functional.relu(x)
+        x = self.upconv1(x)
+        
+        return x
+```
+
+This is a simple architecture consisting of an encoder and a decoder. The encoder is made up of three convolutional layers with batch normalization and ReLU activation, while the decoder is made up of three transpose convolutional layers with batch normalization and ReLU activation. The architecture takes an input image with `in_channels` and outputs a segmentation map with `num_classes` channels. The decoder upsamples the features from the encoder using transposed convolutional layers, effectively increasing the resolution of the output segmentation map.
+
+Note that this is just an example architecture and can be modified based on the specific requirements of the segmentation task at hand. Additionally, you may want to consider adding skip connections between the encoder and decoder to improve the segmentation performance.
+
 
 <!--Sometimes it's all in how you say it.-->
 
