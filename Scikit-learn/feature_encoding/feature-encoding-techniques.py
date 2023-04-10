@@ -27,8 +27,6 @@ T = pd.DataFrame({'animal': ["butterfly", "frog", "sparrow", "salmon", "ant", "j
 D = pd.DataFrame({'type': ['insect', 'amphibian', 'bird', 'fish', 'insect', 'invertebrate', 'mammal']})
 
 data_test = pd.concat([T, D], axis=1)
-
-
 # print("\ndata_test\n", data_test)
 
 
@@ -59,11 +57,16 @@ def label_encoder():
 
 def ordinal_encoder():
     """
-    TODO: Create data.
     Used for ordinal categorical variables (categories with order i.e., small, medium, large)
     It can encode multiple columns at once, and the order of the categories can be specified.
     """
     from sklearn.preprocessing import OrdinalEncoder
+
+    data_train = pd.DataFrame(
+        {'color': ['red', 'green', 'blue', 'red'], 'shape': ['circle', 'square', 'triangle', 'triangle'],
+         'size': ['small', 'medium', 'large', 'medium']})
+
+    data_test = data_train.copy(deep=True)
 
     # Initialize Ordinal Encoder
     encoder = OrdinalEncoder(
@@ -211,7 +214,8 @@ def hash_encoding_2(data_train=None, data_test=None):
 
 
 if __name__ == '__main__':
-    label_encoder()
+    # label_encoder()
+    ordinal_encoder()
     # one_hot(data_train, data_test)
     # hey_dummies(data_train)
     # target_encoding()
