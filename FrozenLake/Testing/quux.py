@@ -1,4 +1,5 @@
-# CartPole
+# Buddy thought I was trying to get an rgb_array for some reason.
+# So they recommended this.
 import sys
 
 import gym

@@ -1,5 +1,6 @@
 """
 This is a quick display and animation, using random steps.
+See: CartPole-error.md
 """
 import time
 

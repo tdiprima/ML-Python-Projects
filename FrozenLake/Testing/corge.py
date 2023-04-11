@@ -1,4 +1,4 @@
-# CartPole - Monitor?
+# Since quux.py didn't work, Buddy recommends this.
 import sys
 
 import gym

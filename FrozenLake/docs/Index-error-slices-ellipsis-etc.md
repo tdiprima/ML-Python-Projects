@@ -1,14 +1,11 @@
+## Index Error in NumPy
+
 In python, I'm trying to print `qtable[state]`.  But it says: "IndexError: only integers, slices (`:`), ellipsis (`...`), numpy.newaxis (`None`) and integer or boolean arrays are valid indices"
 
-<span style="color:#0000dd;font-size:larger;">Answer: "state" is not a number.  Set it to a valid value: state = environment.action_space.sample()</span>
-
-They're setting state to `state = environment.reset()`.  Which is `(0, {'prob': 1})`; obviously not an integer.
-
-In the while loop, they set the state `state, reward, done, _, info = environment.step(action)`.  So...
+<span style="color:#0000dd;font-size:larger;">They're setting state to state = environment.reset().  Which is (0, {'prob': 1}); obviously not an integer. So...</span>
 
 ```python
-# Randomly choose an action
-state = environment.action_space.sample()
+state = environment.reset()[0]
 ```
 
 ## Further reading
@@ -56,3 +53,5 @@ print(qtable[state])  # prints 3
 In this example, `state` is a scalar variable containing the index of the element we want to access. 
 
 We use this index to access the element of the `qtable` array.
+
+<br>

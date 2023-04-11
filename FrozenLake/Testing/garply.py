@@ -1,7 +1,7 @@
-# CartPole
-# import gymgrid
+# Since quux and corge didn't work, Buddy recommends this.
+# Fix gym render error.md
 import sys
-
+# import gymgrid
 import gym
 
 try:
@@ -18,7 +18,7 @@ try:
     env7.render()
     screen = viewer.get_image()
 
-    print(screen.shape)  # should output (400, 600, 3)
+    print(screen.shape)  # (400, 600, 3)
 
     # Close the rendering window
     viewer.close()
