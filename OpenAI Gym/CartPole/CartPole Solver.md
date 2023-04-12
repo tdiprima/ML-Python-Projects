@@ -138,7 +138,7 @@ env.close()
 print(Q)
 ```
 
-1. Define the hyperparameters for the Q-learning algorithm, such as the learning rate alpha, the discount factor gamma, the exploration rate epsilon, the number of episodes num_episodes, and the maximum number of steps per episode max_steps.
+1. Define the hyperparameters for the Q-learning algorithm, such as the learning rate alpha, the discount factor gamma, the exploration rate epsilon, the number of episodes `num_episodes`, and the maximum number of steps per episode `max_steps`.
 
 1. Create the CartPole environment using `gym.make()`, and initialize the Q-table with zeros.
     * The Q-table is a multidimensional array that stores the **expected rewards** for each **state-action** pair in the game.
@@ -228,7 +228,7 @@ We **also convert** the `next_state` tuple into a single index and use it to upd
 
 Finally, we print the final Q-table at the end of the training loop.
 
-# dang
+# todo: discretization, and compare with frozen lake
 
 <span style="color:red;">In your last example, we changed "action = np.argmax(Q[state])" to "state\_index = np.ravel\_multi\_index([state], Q.shape[:-1])" in order to fix the index error.  Now there's a new error: "ValueError: parameter multi\_index must be a sequence of length 4".</span>
 
@@ -295,17 +295,15 @@ env.close()
 print(Q)
 ```
 
-In this updated code, we modify the num_states variable to be the number of elements in the state tuple, which is 4 in this case. We also modify the Q table to have shape (num_states, num_actions) to match the shape of the state-action pairs.
+In this updated code, we modify the `num_states` variable to be the number of elements in the state tuple, which is 4 in this case. We also modify the Q table to have shape (`num_states`, `num_actions`) to match the shape of the state-action pairs.
 
-We update the state_index calculation to use only the first element of the state tuple. We also update the next_state_index calculation to use next_state directly because it is already an integer representing the index of the next state.
+We update the `state_index` calculation to use only the first element of the state tuple. We also update the `next_state_index` calculation to use `next_state` directly because it is already an integer representing the index of the next state.
 
 <span style="color:red;">We're back to square-1, with the IndexError again on "state_index = np.argmax(Q[state])".  Thanks anyway.</span>
 
-I apologize for the continued confusion. The issue seems to be that the state variable is a tuple with a 1D numpy array as its first element. This is causing issues when trying to use it as an index for the Q-table.
+I apologize for the continued confusion. The issue seems to be that the `state` variable is a tuple with a 1D numpy array as its first element. This is causing issues when trying to use it as an index for the Q-table.
 
-To fix this, we can modify the state variable to be a 1D numpy array directly, rather than a tuple containing a 1D numpy array. We can do this by using state = state[0] after resetting the environment.
-
-Here's the updated code:
+To fix this, we can modify the state variable to be a 1D numpy array directly, rather than a tuple containing a 1D numpy array. We can do this by using `state = state[0]` after resetting the environment.
 
 ```py
 import gym
@@ -365,7 +363,7 @@ env.close()
 print(Q)
 ```
 
-In this updated code, we modify the state variable to be a 1D numpy array directly by using state = state[0] after resetting the environment. We also modify the state_index calculation to use state directly as an index for the Q-table.
+In this updated code, we modify the state variable to be a 1D numpy array directly by using `state = state[0]` after resetting the environment. We also modify the `state_index` calculation to use state directly as an index for the Q-table.
 
 <br>
 
