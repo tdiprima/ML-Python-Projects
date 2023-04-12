@@ -70,8 +70,8 @@ for episode in range(EPISODES + 1):  # go through the episodes
 
         new_discrete_state = get_discrete_state(new_state)
 
-        if episode % 2000 == 0:  # render
-            env.render()
+        # if episode % 2000 == 0:
+        #     env.render()
 
         if not done:  # update q-table
             max_future_q = np.max(q_table[new_discrete_state])
