@@ -1,11 +1,11 @@
-# CartPole
-# https://github.com/openai/gym/issues/762
-
+"""
+https://github.com/openai/gym/issues/762
+https://pythonprogramming.net/static/downloads/ipynbs/Reinforcement+Learning+-+Playing+Games+with+Neural+Networks+and+Artificial+Intelligence.html
+"""
 import gym
 
 LR = 1e-3
 env = gym.make("CartPole-v1", render_mode="human")
-# env = gym.make("CartPole-v1", render_mode="rgb_array")
 
 env.reset()
 goal_steps = 500
@@ -20,9 +20,9 @@ def some_random_games_first():
         # this is each frame, up to 200... but we won't make it that far.
         for t in range(200):
             # This will display the environment
-            # Only display if you really want to see it.
+            # todo: Only display if you really want to see it.
             # Takes much longer to display it.
-            env.render()
+            # env.render()
 
             # This will just create a sample action in any environment.
             # In this environment, the action can be 0 or 1, which is left or right
@@ -31,9 +31,10 @@ def some_random_games_first():
             # this executes the environment with an action,
             # and returns the observation of the environment,
             # the reward, if the env is over, and other info.
-            # observation, reward, done, info = env.step(action)
             observation, reward, done, truncated, info = env.step(action)
+
             if done:
+                print("reward:", reward)
                 break
 
 
