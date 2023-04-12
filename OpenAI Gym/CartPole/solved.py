@@ -9,13 +9,14 @@ import numpy as np  # used for arrays
 
 # create the environment
 env = gym.make("CartPole-v1")
-print(env.action_space.n)
+print("\naction space:", env.action_space.n)
 
 # variables
 LEARNING_RATE = 0.1
 
 DISCOUNT = 0.95
-EPISODES = 60000
+# EPISODES = 60000  # takes forever, tbh
+EPISODES = 10000
 total = 0
 total_reward = 0
 prior_reward = 0
@@ -29,7 +30,7 @@ epsilon_decay_value = 0.99995
 
 # set up the Q-Table
 q_table = np.random.uniform(low=0, high=1, size=(Observation + [env.action_space.n]))
-print(q_table.shape)
+print("\nq_table shape:", q_table.shape)
 
 
 def get_discrete_state(state):
@@ -51,7 +52,7 @@ for episode in range(EPISODES + 1):  # go through the episodes
     episode_reward = 0  # reward starts as 0 for each episode
 
     if episode % 2000 == 0:
-        print("Episode: " + str(episode))
+        print("\nEpisode: " + str(episode))
 
     while not done:
 
@@ -86,7 +87,7 @@ for episode in range(EPISODES + 1):  # go through the episodes
             epsilon = math.pow(epsilon_decay_value, episode - 10000)
 
             if episode % 500 == 0:
-                print("Epsilon: " + str(epsilon))
+                print("\nEpsilon: " + str(epsilon))
 
     t1 = time.time()  # episode has finished
     episode_total = t1 - t0  # episode total time
@@ -97,7 +98,7 @@ for episode in range(EPISODES + 1):  # go through the episodes
 
     if episode % 1000 == 0:  # every 1000 episodes print the average time and the average reward
         mean = total / 1000
-        print("Time Average: " + str(mean))
+        print("\nTime Average: " + str(mean))
         total = 0
 
         mean_reward = total_reward / 1000
