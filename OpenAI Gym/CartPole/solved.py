@@ -9,7 +9,7 @@ import numpy as np  # used for arrays
 
 # create the environment
 env = gym.make("CartPole-v1")
-print("\naction space:", env.action_space.n)
+# print("\naction space:", env.action_space.n)  # 2
 
 # variables
 LEARNING_RATE = 0.1
@@ -30,7 +30,7 @@ epsilon_decay_value = 0.99995
 
 # set up the Q-Table
 q_table = np.random.uniform(low=0, high=1, size=(Observation + [env.action_space.n]))
-print("\nq_table shape:", q_table.shape)
+# print("\nq_table shape:", q_table.shape). # (30, 30, 50, 50, 2)
 
 
 def get_discrete_state(state):
@@ -40,7 +40,9 @@ def get_discrete_state(state):
     :return:
     """
     discrete_state = state / np_array_win_size + np.array([15, 10, 1, 10])
-    return tuple(discrete_state.astype(np.int))
+
+    return tuple(discrete_state.astype(int))
+    # return tuple(discrete_state.astype(np.int))
 
 
 # run the Q-Learning algorithm
