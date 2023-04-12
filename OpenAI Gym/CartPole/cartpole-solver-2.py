@@ -16,8 +16,10 @@ env = gym.make('CartPole-v1')
 # Initialize the Q-table with zeros
 num_states = (1,) * env.observation_space.shape[0]
 num_actions = env.action_space.n
+
 Q = np.zeros(num_states + (num_actions,))
 
+# TODO: It's gotta be this [state] thing that's effing it up.
 # Loop over episodes
 for episode in range(num_episodes):
     # Reset the environment and get the initial state

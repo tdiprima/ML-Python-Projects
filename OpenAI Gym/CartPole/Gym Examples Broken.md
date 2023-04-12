@@ -74,11 +74,7 @@ print(screen.shape)  # (400, 600, 3)
 env.close()
 ```
 
-### After quux and corge
-
-Nothing we are doing is working.  When I do a Google search, all that comes up is code that fails.  There's got to be a working piece of code somewhere.
-
-Buddy then proceeds to write code that again, does not work.  See garply.py
+<!--Nothing we are doing is working.  When I do a Google search, all that comes up is code that fails.  There's got to be a working piece of code somewhere.-->
 
 ## Reset
 
