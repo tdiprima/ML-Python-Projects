@@ -17,7 +17,7 @@ def some_random_games_first():
     # Each of these is its own game.
     for episode in range(5):
         env.reset()
-        # this is each frame, up to 200... but we wont make it that far.
+        # this is each frame, up to 200... but we won't make it that far.
         for t in range(200):
             # This will display the environment
             # Only display if you really want to see it.
