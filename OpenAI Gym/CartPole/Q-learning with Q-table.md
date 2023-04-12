@@ -127,11 +127,11 @@ This type of exponential decay is commonly used in reinforcement learning to gra
 
 <img src="https://i.dailymail.co.uk/1s/2020/07/17/16/30885042-8534193-image-m-11_1594999287944.jpg" width="100">
 
-We typically set `state = env.reset()`.  In 'CartPole-v1', `env.reset()` is a tuple (array([-0.04022462,  0.04057121, -0.00033032,  0.01596019], dtype=float32), {}).   Throughout the code, use use "state" as an index to an array.  Capisci?  State is supposed to be a number.  How am I supposed to use this tuple?
+<span style="color:green;font-size:larger;">We typically set state = env.reset().  In 'CartPole-v1', env.reset() is a tuple (array([-0.04022462,  0.04057121, -0.00033032,  0.01596019], dtype=float32), {}).   Throughout the code, we use "state" as an index to an array.  Capisci?  State is supposed to be a number.  How am I supposed to use this tuple?</span>
 
-I understand your confusion. In the CartPole-v1 environment of OpenAI Gym, the `env.reset()` method returns a tuple of two elements: **the initial state** of the environment, which is a 4-dimensional array of floating-point values, and an **empty dictionary** that can be used to store additional information about the state if needed.
+I understand your confusion. In the CartPole-v1 environment of OpenAI Gym, the `env.reset()` method returns a tuple of two elements: **the initial state** of the environment, which is a **4-dimensional array** of floating-point values, and an **empty dictionary** that can be used to store additional information about the state if needed.
 
-However, in the context of the reinforcement learning algorithm, the `state` variable is typically used to represent the current state of the environment as a **single scalar index** into an array or a tensor. This can be a bit confusing, especially since the state in CartPole-v1 is represented as a 4-dimensional array.
+However, in the context of the reinforcement learning algorithm, the **`state`** variable is typically used to represent the current state of the environment as a **single scalar index** into an array or a tensor. This can be a bit confusing, especially since the state in CartPole-v1 is represented as a 4-dimensional array.
 
 To convert the 4-dimensional array state to a scalar index, you can use a method such as **linear discretization** or a **neural network to map the state to an index.**
 
