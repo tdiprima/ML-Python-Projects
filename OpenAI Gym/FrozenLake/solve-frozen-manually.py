@@ -8,28 +8,27 @@ environment1.render()
 
 for x in range(2):
     # Implement this action and move our agent in the desired direction
-    environment1.step(2)
+    new_state, reward, done, c, info = environment1.step(2)
+    # Print out what's happening
+    print(new_state, reward, done, info)
     # Display the current map to see what we're doing
     environment1.render()
 
 for x in range(3):
-    environment1.step(1)
+    new_state, reward, done, c, info = environment1.step(1)
+    print(new_state, reward, done, info)
     environment1.render()
 
 new_state, reward, done, c, info = environment1.step(2)
 environment1.render()
 
+print('===========================================')
 print(f'Reward = {reward}')
-
-print(new_state, reward, done, c, info)
-
-# Reward = 1.0
-# 15 1.0 True False {'prob': 1.0}
+print(new_state, reward, done, info)
 
 environment1.reset()
-# (0, {'prob': 1})
 
-# Wait for 5 seconds
+# Wait 5 seconds
 time.sleep(5)
 
 # Close the window

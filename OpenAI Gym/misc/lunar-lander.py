@@ -1,6 +1,5 @@
 """
-Lunar Lander
-Compare to do_1000.py
+Compare to do_1000
 https://www.gymlibrary.dev/content/basic_usage/
 """
 import gym
