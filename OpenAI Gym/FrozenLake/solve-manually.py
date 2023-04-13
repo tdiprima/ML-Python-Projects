@@ -4,23 +4,26 @@ import gym
 
 
 def play_frozen():
+    """
+    https://github.com/openai/gym/blob/master/gym/envs/toy_text/frozen_lake.py
+    """
     env = gym.make("FrozenLake-v1", is_slippery=False, render_mode="human")
     env.reset()
     env.render()
 
     for x in range(2):
-        # Implement this action and move our agent in the desired direction
+        # Right
         new_state, reward, done, c, info = env.step(2)
-        # Print out what's happening
         print(new_state, reward, done, info)
-        # Display the current map to see what we're doing
         env.render()
 
     for x in range(3):
+        # Down
         new_state, reward, done, c, info = env.step(1)
         print(new_state, reward, done, info)
         env.render()
 
+    # Right
     new_state, reward, done, c, info = env.step(2)
     env.render()
 
@@ -30,10 +33,8 @@ def play_frozen():
 
     env.reset()
 
-    # Wait 5 seconds
     time.sleep(5)
 
-    # Close the window
     env.close()
 
 
@@ -65,10 +66,8 @@ def play_cliffwalker():
 
     env.reset()
 
-    # Wait 5 seconds
     time.sleep(5)
 
-    # Close the window
     env.close()
 
 
