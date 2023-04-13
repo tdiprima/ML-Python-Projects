@@ -6,9 +6,10 @@ import time
 
 import gym
 
-# name = 'FrozenLake-v1'  # TODO: LOL do this one manually.
-name = 'LunarLander-v2'  # This works the best!
-# name = 'CartPole-v1'  # idk wth it's doing, but it works lol
+# name = "FrozenLake-v1"
+# name = "LunarLander-v2"
+# name = "CartPole-v1"
+name = "CliffWalking-v0"
 
 env = gym.make(name, render_mode="human")
 env.reset()
