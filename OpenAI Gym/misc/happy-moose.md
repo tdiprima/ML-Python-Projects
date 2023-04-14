@@ -48,3 +48,21 @@ By applying the assignment `= 0` to this selection, we are setting the red chann
 Similarly, the code `image[image == 109]` is selecting all pixels in the image whose green channel has a value of 109, and the subsequent assignment `= 0` is setting the green channel of those pixels to 0.
 
 So, the reason we know that the code is affecting the red and green channels, rather than blue and green, is that we are selecting pixels based on their red and green channel values, respectively. If we wanted to select pixels based on their blue channel values, we would use <span style="color:#0000dd;">image[image == x, 2]</span>, where `x` is the desired blue channel value.
+
+# Urls
+
+[Atari Pong | Reinforcement-Learning](https://deepanshut041.github.io/Reinforcement-Learning/cgames/01_ping_pong/)
+
+[A.I. learns to play Pong with Deep Q Network](https://pylessons.com/DQN-PONG)
+
+[Beating Pong using Reinforcement Learning – Part 1 DDDQN](https://antonai.blog/beating-pong-using-reinforcement-learning-part-1-dddqn/)
+
+[Fundamentals of Reinforcement Learning | Pong Keras](https://medium.com/gradientcrescent/fundamentals-of-reinforcement-learning-automating-pong-in-using-a-policy-model-an-implementation-b71f64c158ff)
+
+[Tutorial : AI to play game Pong using reinforcement learning](https://therobotcamp.com/2020/04/21/tutorial-teach-ai-to-play-pong-from-scratch-with-reinforcement-learning/)
+
+[Reinforcement Q-Learning from Scratch with OpenAI Gym](https://www.learndatasci.com/tutorials/reinforcement-q-learning-scratch-python-openai-gym/)
+
+[Playing Pong using Reinforcement Learning](https://towardsdatascience.com/intro-to-reinforcement-learning-pong-92a94aa0f84d)
+
+[White Paper | West Chester University](https://digitalcommons.wcupa.edu/cgi/viewcontent.cgi?article=1307&context=all_theses)
