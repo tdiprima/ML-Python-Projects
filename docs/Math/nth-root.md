@@ -31,6 +31,16 @@ You say: **2 to the power of 3.**
 
 <span style="font-size: 27px;">⭐️</span> The **"3" is the exponent**, and it tells you **how many times to multiply 2 by itself.**
 
+### Scientific Notation of 0.0001
+
+**What does 1e-4 mean?**
+
+1e-4 is a scientific notation that represents a decimal number in a more compact form. Specifically, 1e-4 means 1 multiplied by 10 to the power of -4, which is equivalent to 0.0001. The "e" in 1e-4 stands for "exponent," and the number after it (-4 in this case) represents the power to which 10 is raised. So, 1e-4 is a shorthand way of writing 0.0001, which is one ten-thousandth of 1.
+
+```py
+learning_rate = 1e-4
+```
+
 ### Another example
 
 Let's say you want to multiply 5 by itself four times.

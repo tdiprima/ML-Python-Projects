@@ -5,13 +5,13 @@ import time
 
 import gym
 
-# name = "FrozenLake-v1"
-# name = "LunarLander-v2"
-# name = "CartPole-v1"
-name = "CliffWalking-v0"
+# game = "FrozenLake-v1"
+# game = "LunarLander-v2"
+# game = "CartPole-v1"
+game = "CliffWalking-v0"
 
 # Create the FrozenLake-v1 environment
-env = gym.make(name, render_mode="human")
+env = gym.make(game, render_mode="human")
 env.reset()
 
 # Display the environment

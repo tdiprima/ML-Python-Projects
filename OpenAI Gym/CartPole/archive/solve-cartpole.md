@@ -99,7 +99,11 @@ A policy is like a rulebook for a video game character. It tells the character w
 
 # [Playing Pong using Reinforcement Learning](https://towardsdatascience.com/intro-to-reinforcement-learning-pong-92a94aa0f84d)
 
-In RL land, a policy is a rule, strategy, or behavior function, that evaluates and recommends the next action given a specific state; effectively it can be thought of as a map from state to action. A policy may be deterministic or stochastic in nature, and since the ultimate goal of a RL agent is to maximize its rewards, we want to select the policy that maximizes the future expected reward for a given action. The policy in the case of Pong helps the Agent selects one of the possible actions, which are moving the paddle up, down or doing nothing.
+In RL land, a policy is a rule, strategy, or behavior function, that evaluates and recommends the next action given a specific state; effectively it can be thought of as **a map from state to action.**
+
+A policy may be deterministic or stochastic in nature, and since the ultimate goal of a RL agent is to maximize its rewards, we want to select the policy that maximizes the future expected reward for a given action.
+
+The policy in the case of Pong helps the Agent select one of the possible actions, which are moving the paddle up, down or doing nothing.
 
 ## Discretization
 

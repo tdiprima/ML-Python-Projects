@@ -40,9 +40,11 @@ Overall, this code is updating the Q-table to help the computer learn which acti
 
 In machine learning, the learning rate is a hyperparameter that controls the step size of the optimization algorithm during model training. The learning rate determines how much the model weights and biases are updated in response to the error gradient calculated during backpropagation.
 
-When updating the weights and biases, the learning rate is multiplied by the gradient. For example, if the gradient is 0.5 and the learning rate is 0.1, the weight update would be 0.05. However, some optimization algorithms, such as stochastic gradient descent, benefit from a small amount of stochasticity in the updates, which can help the algorithm avoid getting stuck in local optima. One way to introduce this stochasticity is to randomly scale the learning rate.
+When updating the weights and biases, the learning rate is multiplied by the gradient. For example, if the gradient is 0.5 and the learning rate is 0.1, the weight update would be 0.05. However, some optimization algorithms, such as **stochastic gradient descent,** benefit from a small amount of stochasticity in the updates, which can help the algorithm avoid getting stuck in local optima. One way to introduce this stochasticity is to randomly scale the learning rate.
 
-One common technique to introduce randomness in the learning rate is to use a technique called learning rate decay, where the learning rate is reduced over time. One way to implement this is to multiply the learning rate by a decay factor at each iteration. A common decay factor is to use `1 - learning_rate`, which reduces the learning rate by a fixed percentage at each iteration.
+One common technique to introduce randomness in the learning rate is to use a technique called **learning rate decay,** where the learning rate is reduced over time. One way to implement this is to multiply the learning rate by a decay factor at each iteration.
+
+A common decay factor is to use `1 - learning_rate`, which reduces the learning rate by a fixed percentage at each iteration.
 
 By using `1 - learning_rate` as the decay factor, the learning rate is reduced by a fixed percentage at each iteration. This can help the optimization algorithm to explore different areas of the parameter space and avoid getting stuck in local optima. Additionally, it can help the model to converge to a better solution over time.
 
