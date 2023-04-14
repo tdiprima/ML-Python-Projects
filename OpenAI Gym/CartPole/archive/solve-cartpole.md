@@ -3,7 +3,7 @@
 To solve the CartPole game in Python, you can use a reinforcement learning algorithm such as:
 
 1. Q-learning
-1. SARSA
+1. [SARSA](https://towardsdatascience.com/reinforcement-learning-with-sarsa-a-good-alternative-to-q-learning-algorithm-bf35b209e1c)
 
 or deep reinforcement learning algorithms such as:
 
@@ -96,6 +96,10 @@ After training the agent, the code **tests the agent's performance** by running 
 ## What's a policy?
 
 A policy is like a rulebook for a video game character. It tells the character what to do in different situations to get the highest score or win the game. In the `CartPole` game, the policy tells the agent whether it should move the cart to the left or right to keep the pole balanced on top of it. The agent learns this rulebook by trying different actions and seeing which ones get it closer to winning the game.
+
+# [Playing Pong using Reinforcement Learning](https://towardsdatascience.com/intro-to-reinforcement-learning-pong-92a94aa0f84d)
+
+In RL land, a policy is a rule, strategy, or behavior function, that evaluates and recommends the next action given a specific state; effectively it can be thought of as a map from state to action. A policy may be deterministic or stochastic in nature, and since the ultimate goal of a RL agent is to maximize its rewards, we want to select the policy that maximizes the future expected reward for a given action. The policy in the case of Pong helps the Agent selects one of the possible actions, which are moving the paddle up, down or doing nothing.
 
 ## Discretization
 
