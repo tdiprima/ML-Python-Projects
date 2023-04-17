@@ -5,6 +5,7 @@ See: CartPole-error.md
 import time
 
 import gym
+print(gym.__version__)
 
 # name = "FrozenLake-v1"
 # name = "LunarLander-v2"
