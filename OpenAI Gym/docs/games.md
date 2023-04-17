@@ -32,6 +32,14 @@ for _ in range(1000):
 env.close()
 ```
 
+### Hello, World!
+
+Which is the easiest python gymnasium atari game to write a q-learning algorithm for?  and which game has the most examples of q-learning?
+
+The easiest Atari game to write a Q-learning algorithm for may vary depending on one's experience with reinforcement learning and programming in general. However, some of the simpler games to start with include "Pong" and "Boxing." Both of these games have a low-dimensional state space and simple action space, making them ideal for beginners to practice Q-learning.
+
+On the other hand, the game that has the most examples of Q-learning is "Breakout." "Breakout" is a classic Atari game that has been used in many research papers and tutorials to demonstrate the effectiveness of Q-learning algorithms. It has a relatively simple gameplay mechanic and a clear reward signal,
+
 ## There's Space Invaders, too!
 
 ["gymnasium" documentation](https://gymnasium.farama.org/)
