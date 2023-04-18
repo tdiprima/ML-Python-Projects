@@ -1,6 +1,5 @@
 """
 q-learning seeks to learn a policy that maximizes the total reward
-https://towardsdatascience.com/simple-reinforcement-learning-q-learning-fcddc4b6fe56
 """
 import gym
 import numpy as np
@@ -50,8 +49,7 @@ for episode in range(EPISODES):
         # Update q values
         # Q[state, action] = Q[state, action] + lr * (reward + gamma * np.max(Q[new_state, :]) - Q[state, action])
 
-        Q[state, action] = Q[state, action] + LEARNING_RATE * (
-            reward + GAMMA * np.max(Q[next_state, :]) - Q[state, action])
+        Q[state, action] = Q[state, action] + LEARNING_RATE * (reward + GAMMA * np.max(Q[next_state, :]) - Q[state, action])
 
         state = next_state
 
@@ -60,9 +58,9 @@ for episode in range(EPISODES):
             epsilon -= 0.001
             break  # reached goal
 
-print(Q)
 print(f"\nAverage reward: {sum(rewards) / len(rewards)}:")
 # and now we can see our Q values!
+print("\nQ-Table:\n", Q)
 
 # we can plot the training progress and see how the agent improved
 import matplotlib.pyplot as plt
