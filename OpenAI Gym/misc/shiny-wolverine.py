@@ -11,7 +11,7 @@ import numpy as np
 def preprocess_observations(input_observation, prev_processed_observation, input_dimensions):
     # convert the 210 x 160 x 3 uint8 frame into a 6400 float vector
     processed_observation = input_observation[35:195]  # crop
-    processed_observation = downsample(processed_observation)
+    processed_observation = down_sample(processed_observation)
     processed_observation = remove_color(processed_observation)
     processed_observation = remove_background(processed_observation)
     processed_observation[processed_observation != 0] = 1  # everything else (paddles, ball) just set to 1
@@ -34,7 +34,7 @@ def remove_background(image):
     return image
 
 
-def downsample(image):
+def down_sample(image):
     # TODO: TypeError: tuple indices must be integers or slices, not tuple
     # We will take only half of the image resolution
     return image[::2, ::2, :]
@@ -67,7 +67,7 @@ def neural_net(observation_matrix, weights):
     return hidden_layer_values, output_layer_values
 
 
-def Move_up_or_down(probability):
+def move_up_or_down(probability):
     random_value = np.random.uniform()
     if random_value < probability:
         # up in openai gym
@@ -164,10 +164,10 @@ def main():
         episode_observations.append(processed_observations)
         episode_hidden_layer_values.append(hidden_layer_values)
 
-        action = Move_up_or_down(up_probability)
+        action = move_up_or_down(up_probability)
 
         # carry out the chosen action
-        observation, reward, done, info = env.step(action)
+        observation, reward, done, _, info = env.step(action)
 
         reward_sum += reward
         episode_rewards.append(reward)

@@ -20,10 +20,13 @@ How?
 import gym
 from gym.utils import env_checker
 
-env = gym.make('CartPole-v1')
+env = gym.make("CartPole-v1", render_mode="human")
 raw_env = env.unwrapped
+result = env_checker.check_env(raw_env)
 
-env_checker.check_env(raw_env)
+print(f"\nType: {type(result)}\nThing: {result}")
+
+env.close()
 ```
 
 By using the unwrapped method, you are ensuring that the environment checker is applied to the raw environment without any wrappers, providing a **more accurate evaluation** of the environment's behavior.
