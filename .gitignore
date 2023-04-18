@@ -1,16 +1,17 @@
 */.Rhistory
+
 data/
+
+logs/
+
 models/
 *.h5
 *.pth
 
-# Code
 .vscode/
 
-# PyCharm
 .idea/
 
-# Mac/OSX
 .DS_Store
 
 # Byte-compiled / optimized / DLL files
@@ -36,6 +37,3 @@ venv.bak/
 node_modules/
 
 nohup.out
-
-Icon
-
