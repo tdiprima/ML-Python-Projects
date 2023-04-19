@@ -54,4 +54,18 @@ The upsampling blocks upsample the feature maps and concatenate them with the co
 
 Finally, the `final_conv` layer performs the final convolution to produce the segmentation mask.
 
+## Question
+
+<span style="color:#0000dd;">Why would we do image segmentation using UNet, when we could just use OpenCV?</span>
+
+UNet and OpenCV and are two different approaches to image segmentation that serve different purposes.
+
+<!--OpenCV is a library of programming functions mainly aimed at real-time computer vision, with a focus on image processing, feature detection, and object recognition. It provides many image processing functions such as filtering, thresholding, edge detection, etc. that can be used for image segmentation.-->
+
+<span style="color:red;">OpenCV is primarily used for low-level image processing tasks (simple segmentation).</span>
+
+On the other hand, UNet is a convolutional neural network architecture designed for **semantic segmentation** tasks. It is specifically designed to segment images into **pixel-level masks** and is capable of **detecting** complex boundaries and objects. UNet has been widely used in medical image analysis, satellite image segmentation, and many other image segmentation applications.
+
+While OpenCV can be used for simple segmentation tasks, it may not be suitable for more complex segmentation problems where **objects have intricate boundaries** or where the objects of interest are difficult to distinguish from the background. UNet, on the other hand, is designed to handle these more complex problems and can achieve high accuracy in segmenting objects.
+
 <br>
