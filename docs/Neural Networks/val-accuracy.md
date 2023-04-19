@@ -1,4 +1,4 @@
-## Training Output
+## Training a Neural Network
 
 When TensorFlow trains a model with `model.fit()`, it prints one output per epoch.
 
