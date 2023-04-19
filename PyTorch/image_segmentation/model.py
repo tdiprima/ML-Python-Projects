@@ -32,6 +32,9 @@ class UNET(nn.Module):
         super(UNET, self).__init__()
         self.ups = nn.ModuleList()  # Instead of a regular list.
         self.downs = nn.ModuleList()
+
+        # Common: down-sampling using a convolutional layer with a stride greater than 1
+        # Reduces the spatial size of the input feature map by a factor of 2:
         self.pool = nn.MaxPool2d(kernel_size=2, stride=2)
         # eg. 161 x 161, output: 160 x 160 (MaxPool floors the shapes)
 
@@ -43,6 +46,8 @@ class UNET(nn.Module):
         # Up part of UNET
         for feature in reversed(features):
             # ConvTranspose2d + DoubleConv
+            # To up-sample the feature maps, one can use a transposed convolutional layer.
+            # Doubles the spatial size of the input feature map:
             self.ups.append(
                 nn.ConvTranspose2d(
                     feature * 2, feature, kernel_size=2, stride=2,
@@ -85,6 +90,8 @@ class UNET(nn.Module):
                 x = TF.resize(x, size=skip_connection.shape[2:])
 
             # Add along channel dimension (batch, channel, height, width)
+            # Concatenate the feature maps from an earlier layer with those from a later layer, 
+            # in order to preserve more detailed information from the input image.
             concat_skip = torch.cat((skip_connection, x), dim=1)
             # Get skip, concatenate, run it through double-conv.
             x = self.ups[idx + 1](concat_skip)
