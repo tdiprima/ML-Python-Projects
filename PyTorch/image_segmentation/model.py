@@ -1,3 +1,6 @@
+"""
+A U-Net network has two parts: an encoder (downsampler) and decoder (upsampler).
+"""
 import torch
 import torch.nn as nn
 import torchvision.transforms.functional as TF
