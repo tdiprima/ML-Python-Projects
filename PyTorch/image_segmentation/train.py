@@ -137,5 +137,4 @@ def main():
 
 if __name__ == "__main__":
     # So that you don't get any issues when running NUM_WORKERS.
-    # TODO: nope!  I still got 23586 segmentation fault.
     main()
