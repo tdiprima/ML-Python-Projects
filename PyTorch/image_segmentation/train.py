@@ -19,7 +19,8 @@ LEARNING_RATE = 1e-4
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 BATCH_SIZE = 16
 NUM_EPOCHS = 3
-NUM_WORKERS = 2
+# NUM_WORKERS = 2
+NUM_WORKERS = 0
 
 # You'd want to change it to original size, and then resize to nearest interpolation.
 IMAGE_HEIGHT = 160  # 1280 originally
@@ -137,4 +138,5 @@ def main():
 
 if __name__ == "__main__":
     # So that you don't get any issues when running NUM_WORKERS.
+    # TODO: nope!  I still got 23586 segmentation fault.
     main()

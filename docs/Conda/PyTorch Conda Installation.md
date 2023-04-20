@@ -6,7 +6,15 @@ conda install pytorch torchvision -c pytorch
 
 https://pytorch.org/get-started/locally/#mac-anaconda
 
-### What does `-c` mean?
+### Add conda forge!
+
+```sh
+conda config --add channels conda-forge
+# May as well add pytorch
+conda config --add channels pytorch
+```
+
+### What does -c mean?
 
 The flag `-c` is short for `--channel`.
 

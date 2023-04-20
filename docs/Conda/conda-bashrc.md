@@ -1,8 +1,18 @@
+## CommandNotFoundError
+
 ```sh
 conda activate
 ```
 
 CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
+
+## Solution
+
+```sh
+conda init
+```
+
+## Solution 2
 
 If your shell is Bash or a Bourne variant, enable conda for the current user with
 
@@ -37,4 +47,3 @@ export PATH="/cm/shared/apps/anaconda3/current/bin:$PATH"
 ```
 
 ^^^ The above line should NO LONGER be in your `~/.bashrc` file! ^^^
-
