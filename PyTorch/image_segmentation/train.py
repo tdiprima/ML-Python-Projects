@@ -1,10 +1,9 @@
-import albumentations as A
 import torch
+import albumentations as A
+from albumentations.pytorch import ToTensorV2
+from tqdm import tqdm
 import torch.nn as nn
 import torch.optim as optim
-from albumentations.pytorch import ToTensorV2
-from tqdm import tqdm  # for "loading" progress bar
-
 from model import UNET
 from utils import (
     load_checkpoint,
