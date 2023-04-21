@@ -18,8 +18,9 @@ LEARNING_RATE = 1e-4
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 BATCH_SIZE = 16
 NUM_EPOCHS = 3
+# TODO:
 # NUM_WORKERS = 2
-NUM_WORKERS = 0
+NUM_WORKERS = 4
 
 # You'd want to change it to original size, and then resize to nearest interpolation.
 IMAGE_HEIGHT = 160  # 1280 originally
