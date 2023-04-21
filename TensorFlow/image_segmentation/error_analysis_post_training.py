@@ -47,8 +47,8 @@ TRAIN_MASKS_DATA = os.path.join(DATA_PATH, "/train_masks")
 
 WIDTH = 512  # actual : 1918//1920 divisive by 64
 HEIGHT = 512  # actual : 1280
-# BATCH_SIZE = 5
-BATCH_SIZE = 2
+# BATCH_SIZE = 8
+BATCH_SIZE = 16
 
 import cv2
 from PIL import Image
