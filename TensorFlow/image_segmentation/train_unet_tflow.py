@@ -1,8 +1,5 @@
 #!/usr/bin/env python
-"""
-https://stackoverflow.com/questions/50304156/tensorflow-allocation-memory-allocation-of-38535168-exceeds-10-of-system-memor
-https://stackoverflow.com/questions/35911252/disable-tensorflow-debugging-information/42121886#42121886
-"""
+
 # If you don't leave it like this, you get errors:
 import numpy as np
 import pandas as pd
