@@ -1,9 +1,4 @@
 #!/usr/bin/env python
-"""
-https://towardsdatascience.com/image-segmentation-predicting-image-mask-with-carvana-data-32829ca826a0
-https://github.com/ZeeTsing/Carvana_challenge.git
-"""
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -111,7 +106,7 @@ def _get_image_data_pil(image_id, image_type, return_exif_md=False, return_shape
         return img, img_pil._getexif()
 
 
-# Load trained Unet model
+# Load trained Unet model (OK great; where's "load_model" then?)
 
 def dice_coef(y_true, y_pred):
     smooth = 1.
@@ -220,8 +215,7 @@ nb_samples = len(filenames)
 
 train_ids = [fn.split('\\')[-1][:-4] for fn in filenames]
 
-predict = model.predict(train_date_gen, steps=
-np.ceil(nb_samples / BATCH_SIZE))
+predict = model.predict(train_date_gen, steps=np.ceil(nb_samples / BATCH_SIZE))
 
 with open(main_dir + '/output/train-prediction.txt', 'wb') as file:
     file.write(predict)
