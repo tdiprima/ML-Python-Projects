@@ -220,18 +220,35 @@ Overall, the line of code generates a DataFrame with two columns: `make` and `ma
 
 ## ¿Problemas?
 
+### cpu_allocator_impl.cc:83] Allocation of 1207959552 exceeds 10% of free system memory.
+
 https://stackoverflow.com/questions/50304156/tensorflow-allocation-memory-allocation-of-38535168-exceeds-10-of-system-memor
 
 https://stackoverflow.com/questions/35911252/disable-tensorflow-debugging-information/42121886#42121886
 
+
+Just a warning, it even says you can ignore it:
+
+### You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,?,?,?]
+
+[post](https://de-de.facebook.com/groups/TensorFlowKR/posts/753755691632158/)
+
+Jung Hye-min feels finished.<br>
+18. September 2018
+
+I get an error like this.  If you take a picture of the input that goes into the feed dict, it comes out as 50,256,256,3.
+
+(They're getting the error at `sess.run()`, but I'm not using it.)
+
+**Answer:** If only the global variable is initialized, it will probably work.
+
+(Maybe it has to do with the "None" batch size.  Batch size actually does work, but IDK why it's saying None.)
+
+### You must feed a value for placeholder tensor 'Placeholder/\_0' with dtype int32
+
+I'm not using tf.placeholder()!
+
 <!--
-You must feed a value for placeholder tensor 'Placeholder/_0' with dtype int32
-	 [[{{node Placeholder/_0}}]]
-
-2023-04-21 09:39:36.456703: W tensorflow/tsl/framework/cpu_allocator_impl.cc:83] Allocation of 1207959552 exceeds 10% of free system memory.
-
-[/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,?,?,?]
-
 WARNING:absl:Found untraced functions such as _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 24). These functions will not be directly callable after loading.
 -->
 <br>
