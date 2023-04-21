@@ -1,5 +1,10 @@
 ## Setting number of workers
 
+<!--
+https://towardsdatascience.com/image-segmentation-predicting-image-mask-with-carvana-data-32829ca826a0
+https://github.com/ZeeTsing/Carvana_challenge.git
+-->
+
 In TensorFlow, the number of workers is typically set when using a distributed computing approach, such as in a multi-node or multi-GPU environment. The exact method for setting the number of workers may vary depending on the specific approach being used, but generally it involves setting the appropriate environment variables or passing arguments to the TensorFlow program.
 
 Here is an example of how to set the number of workers in TensorFlow when using the `tf.distribute` module for distributed training:
