@@ -26,19 +26,24 @@ sess_config = tf.compat.v1.ConfigProto(gpu_options=tf.compat.v1.GPUOptions(per_p
 sess = tf.compat.v1.Session(config=sess_config)
 tf.compat.v1.keras.backend.set_session(sess)
 
-train_dir = '/home/tdiprima/projects/image_segmentation/data/train_flow/'
-validate_dir = '/home/tdiprima/projects/image_segmentation/data/validate_flow/'
-checkpoint_dir = '/home/tdiprima/projects/image_segmentation/output/unet-cp'
+home_dir = os.path.expanduser('~')
 
-DATA_PATH = '/home/tdiprima/projects/image_segmentation/data/'
+# TODO: (grinder)
+main_dir = home_dir + "/projects/image_segmentation"
+
+DATA_PATH = main_dir + '/data'
+
+train_dir = DATA_PATH + '/train_flow/'
+validate_dir = DATA_PATH + '/validate_flow/'
+checkpoint_dir = main_dir + '/output/unet-cp'
 
 # TODO:
-# TEST_DATA = os.path.join(DATA_PATH, "test")
-# TRAIN_DATA = os.path.join(DATA_PATH, "train")
-TEST_DATA = os.path.join(DATA_PATH, "val_images")
-TRAIN_DATA = os.path.join(DATA_PATH, "train_images")
+# TEST_DATA = os.path.join(DATA_PATH, "/test")
+# TRAIN_DATA = os.path.join(DATA_PATH, "/train")
+TEST_DATA = os.path.join(DATA_PATH, "/val_images")
+TRAIN_DATA = os.path.join(DATA_PATH, "/train_images")
 
-TRAIN_MASKS_DATA = os.path.join(DATA_PATH, "train_masks")
+TRAIN_MASKS_DATA = os.path.join(DATA_PATH, "/train_masks")
 
 WIDTH = 512  # actual : 1918//1920 divisive by 64
 HEIGHT = 512  # actual : 1280
@@ -218,10 +223,10 @@ train_ids = [fn.split('\\')[-1][:-4] for fn in filenames]
 predict = model.predict(train_date_gen, steps=
 np.ceil(nb_samples / BATCH_SIZE))
 
-with open('/home/tdiprima/projects/image_segmentation/output/train-prediction.txt', 'wb') as file:
+with open(main_dir + '/output/train-prediction.txt', 'wb') as file:
     file.write(predict)
 
-with open('/home/tdiprima/projects/image_segmentation/output/train-prediction_name.txt', 'w') as file:
+with open(main_dir + '/output/train-prediction_name.txt', 'w') as file:
     for line in filenames:
         file.write(line + '\n')
 
@@ -404,10 +409,10 @@ val_ids = [fn.split('\\')[-1][:-4] for fn in filenames]
 predict_val = model.predict(val_data_gen, steps=
 np.ceil(nb_samples / BATCH_SIZE))
 
-with open('/home/tdiprima/projects/image_segmentation/output/val-prediction.txt', 'wb') as file:
+with open(main_dir + '/output/val-prediction.txt', 'wb') as file:
     file.write(predict_val)
 
-with open('/home/tdiprima/projects/image_segmentation/output/val-prediction_name.txt', 'w') as file:
+with open(main_dir + '/output/val-prediction_name.txt', 'w') as file:
     for line in val_ids:
         file.write(line + '\n')
 
@@ -483,8 +488,8 @@ for i in range(5):
 # Try to predict a car that the data has never seen before; We chose 18 pictures from the original test set (the original test set is too big and would take hours to predict it one by one)
 
 # todo:
-# test_dir = '/home/tdiprima/projects/image_segmentation/data/test/'
-test_dir = '/home/tdiprima/projects/image_segmentation/data/val_images/'
+# test_dir = DATA_PATH + '/test/'
+test_dir = DATA_PATH + '/val_images/'
 
 test_data_gen = test_datagen.flow_from_directory(
     test_dir,
@@ -501,10 +506,10 @@ test_ids = [fn.split('\\')[-1][:-4] for fn in filenames]
 
 test_predict = model.predict(test_data_gen, steps=np.ceil(nb_samples / BATCH_SIZE))
 
-with open('/home/tdiprima/projects/image_segmentation/output/test-prediction.txt', 'wb') as file:
+with open(main_dir + '/output/test-prediction.txt', 'wb') as file:
     file.write(test_predict)
 
-with open('/home/tdiprima/projects/image_segmentation/output/test-prediction_name.txt', 'w') as file:
+with open(main_dir + '/output/test-prediction_name.txt', 'w') as file:
     for line in test_ids:
         file.write(line + '\n')
 
