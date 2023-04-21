@@ -1,5 +1,8 @@
 #!/usr/bin/env python
-# coding: utf-8
+"""
+https://towardsdatascience.com/image-segmentation-predicting-image-mask-with-carvana-data-32829ca826a0
+https://github.com/ZeeTsing/Carvana_challenge.git
+"""
 
 import numpy as np
 import pandas as pd
@@ -28,8 +31,13 @@ validate_dir = '/home/tdiprima/projects/image_segmentation/data/validate_flow/'
 checkpoint_dir = '/home/tdiprima/projects/image_segmentation/output/unet-cp'
 
 DATA_PATH = '/home/tdiprima/projects/image_segmentation/data/'
-TEST_DATA = os.path.join(DATA_PATH, "test")
-TRAIN_DATA = os.path.join(DATA_PATH, "train")
+
+# TODO:
+# TEST_DATA = os.path.join(DATA_PATH, "test")
+# TRAIN_DATA = os.path.join(DATA_PATH, "train")
+TEST_DATA = os.path.join(DATA_PATH, "val_images")
+TRAIN_DATA = os.path.join(DATA_PATH, "train_images")
+
 TRAIN_MASKS_DATA = os.path.join(DATA_PATH, "train_masks")
 
 WIDTH = 512  # actual : 1918//1920 divisive by 64
@@ -474,7 +482,9 @@ for i in range(5):
 #
 # Try to predict a car that the data has never seen before; We chose 18 pictures from the original test set (the original test set is too big and would take hours to predict it one by one)
 
-test_dir = '/home/tdiprima/projects/image_segmentation/data/test/'
+# todo:
+# test_dir = '/home/tdiprima/projects/image_segmentation/data/test/'
+test_dir = '/home/tdiprima/projects/image_segmentation/data/val_images/'
 
 test_data_gen = test_datagen.flow_from_directory(
     test_dir,
