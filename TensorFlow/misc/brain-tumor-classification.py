@@ -117,27 +117,28 @@ print(model.summary())
 
 # Model Compile
 # `tf.keras.model`
-
 model.compile(loss='categorical_crossentropy', optimizer='Adam', metrics=['accuracy'])
 
-# Model Fit
-# `tf.keras.model`
-# Trains the model for a fixed number of epochs (dataset iterations).
-# validation_split
-# Float between 0 and 1. Fraction of the training data to be used as validation data. The model will set apart this fraction of the training data, will not train on it, and will evaluate the loss and any model metrics on this data at the end of each epoch.
+"""
+Model Fit `tf.keras.model`
+Trains the model for a fixed number of epochs (dataset iterations).
+validation_split
+Float between 0 and 1. Fraction of the training data to be used as validation data.
+The model will set apart this fraction of the training data, will not train on it, 
+and will evaluate the loss and any model metrics on this data at the end of each epoch.
+"""
 
 # Training model for 20 epochs will take forever, FYI.
 num_epochs = 5
 # num_epochs = 20
 history = model.fit(X_train, y_train, epochs=num_epochs, validation_split=0.1)
 
-# model.save('models/brain_class_1.pth')
+model.save('models/brain_class_1.pth')
 # model.save('models/braintumor.h5')
 
 import matplotlib.pyplot as plt
 
 # Plot training accuracy
-
 acc = history.history['accuracy']
 val_acc = history.history['val_accuracy']
 epochs = range(len(acc))
@@ -158,7 +159,6 @@ plt.legend(loc='upper left')
 plt.show()
 
 # Show image
-
 img = cv2.imread('data/brain-tumor-classification-mri/Training/pituitary_tumor/p (107).jpg')
 img = cv2.resize(img, (150, 150))
 img_array = np.array(img)
@@ -177,7 +177,6 @@ plt.imshow(img, interpolation='nearest')
 plt.show()
 
 # Prediction
-
 a = model.predict(img_array)
 indices = a.argmax()
 print(f"\nFor image 'p (107).jpg', model predicted: {labels[indices]}")

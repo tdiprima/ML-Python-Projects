@@ -1,13 +1,12 @@
 ## Setting number of workers
 
-<!--
-https://towardsdatascience.com/image-segmentation-predicting-image-mask-with-carvana-data-32829ca826a0
-https://github.com/ZeeTsing/Carvana_challenge.git
--->
+[Image Seg Carvana](https://towardsdatascience.com/image-segmentation-predicting-image-mask-with-carvana-data-32829ca826a0)
 
-In TensorFlow, the number of workers is typically set when using a distributed computing approach, such as in a multi-node or multi-GPU environment. The exact method for setting the number of workers may vary depending on the specific approach being used, but generally it involves setting the appropriate environment variables or passing arguments to the TensorFlow program.
+[GitHub](https://github.com/ZeeTsing/Carvana_challenge.git)
 
-Here is an example of how to set the number of workers in TensorFlow when using the `tf.distribute` module for distributed training:
+In TensorFlow, the number of workers is typically set when using a distributed computing approach, such as in a **multi-node** or **multi-GPU** environment.
+
+Here's how to set the number of workers in TensorFlow when using the `tf.distribute` module for distributed training:
 
 ```python
 import tensorflow as tf
@@ -24,21 +23,23 @@ with strategy.scope():
     model.compile([...])
 ```
 
-In this example, we set the `num_workers` variable to 4 to indicate that we have **4 worker nodes.**
+* We set the `num_workers` variable to 4 to indicate that we have **4 worker nodes.**
 
-We then create a `MultiWorkerMirroredStrategy` object with this value, which will enable us to distribute the training across multiple worker nodes.
+* We then create a `MultiWorkerMirroredStrategy` object with this value, which will enable us to distribute the training across multiple worker nodes.
 
-Finally, we **build and compile** the model within the distribution strategy scope using `strategy.scope()`, which will ensure that the model is replicated and trained in parallel across all the worker nodes.
+* Finally, we **build and compile** the model within the distribution strategy scope using `strategy.scope()`, which will ensure that the model is **replicated and trained in parallel** across all the worker nodes.
 
 ## Nope.
 
 `_CollectiveAllReduceStrategyExperimental.__init__()` got an unexpected keyword argument 'num_workers'
 
-The CollectiveAllReduceStrategyExperimental is a TensorFlow strategy that can be used for distributed training. However, it does not have a num_workers argument in its constructor.
+<span style="color:red;">I ain't usin' that, I'm usin' MultiWorkerMirroredStrategy.</span>
 
-The CollectiveAllReduceStrategyExperimental strategy uses all available devices on a single machine to perform synchronous training. When using this strategy, there is no need to specify the number of workers since it automatically uses all available devices.
+The `CollectiveAllReduceStrategyExperimental` is a TensorFlow strategy that can be used for distributed training. However, it does not have a `num_workers` argument in its constructor.
 
-Here's an example of how to use CollectiveAllReduceStrategyExperimental:
+The `CollectiveAllReduceStrategyExperimental` strategy **uses all available devices** on a single machine to perform synchronous training.
+
+When using this strategy, there is **no need to specify** the number of workers since it automatically uses all available devices.
 
 ```python
 import tensorflow as tf
@@ -54,7 +55,9 @@ with strategy.scope():
 
 <span style="color:red;">It didn't like this one, either.</span>
 
-In this example, we create an instance of the CollectiveAllReduceStrategyExperimental strategy, which will use all available devices on a single machine for training. We then define and compile the model within the strategy scope, which will ensure that the model is replicated and trained in parallel across all available devices.
+* First, we create an instance of the `CollectiveAllReduceStrategyExperimental` strategy, which will use all available devices on a single machine for training.
+
+* Then we **define and compile the model** within the strategy scope, which will ensure that the model is replicated and trained in parallel across all available devices.
 
 ## Take part of the dataset
 
@@ -67,11 +70,11 @@ to_train = 1  # all
 total_train_images = all_images[:int(len(all_images) * to_train)]
 ```
 
-This code is reading the names of all files in a directory located at "/path/to/data" and storing them in the list `all_images`.
+* This code is reading the names of all files in a directory located at "/path/to/data" and storing them in the list `all_images`.
 
-Then, it is setting a variable `to_train` to 1, indicating that we want to use all the available images for training.
+* Then, it is setting a variable `to_train` to 1, indicating that we want to use all the available images for training.
 
-Next, it selects a subset of the images to use for training by slicing the `all_images` list.
+* Next, it selects a subset of the images to use for training by slicing the `all_images` list.
 
 The slice includes the first `int(len(all_images) * to_train)` elements of the list.
 
@@ -163,7 +166,7 @@ Your function will **return a huge set of values** that you will only need to **
 
 ## TensorFlow Memory Usage Warning
 
-`Allocation of 1207959552 exceeds 10% of free system memory.`
+<span style="color:red;">Allocation of 1207959552 exceeds 10% of free system memory.</span>
 
 Would reducing the batch size help?
 
@@ -192,6 +195,8 @@ Therefore, you may want to experiment with different batch sizes to find a balan
 Just a warning, it even says you can ignore it:
 
 <span style="color:red;">You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,?,?,?]</span>
+
+<span style="color:green;">In the brain tumor one, it said shape [?,73,73,64].  There you go.</span>
 
 [post](https://de-de.facebook.com/groups/TensorFlowKR/posts/753755691632158/)
 
