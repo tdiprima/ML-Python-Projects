@@ -218,4 +218,20 @@ Here's how the line of code works step by step:
 
 Overall, the line of code generates a DataFrame with two columns: `make` and `make_count`. The `make` column contains the unique values in the `make` column of `train_metadata_csv`, while the `make_count` column contains the count of each unique value in the `make` column.
 
+## ¿Problemas?
+
+https://stackoverflow.com/questions/50304156/tensorflow-allocation-memory-allocation-of-38535168-exceeds-10-of-system-memor
+
+https://stackoverflow.com/questions/35911252/disable-tensorflow-debugging-information/42121886#42121886
+
+<!--
+You must feed a value for placeholder tensor 'Placeholder/_0' with dtype int32
+	 [[{{node Placeholder/_0}}]]
+
+2023-04-21 09:39:36.456703: W tensorflow/tsl/framework/cpu_allocator_impl.cc:83] Allocation of 1207959552 exceeds 10% of free system memory.
+
+[/device:CPU:0] (DEBUG INFO) Executor start aborting (this does not indicate an error and you can ignore this message): INVALID_ARGUMENT: You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,?,?,?]
+
+WARNING:absl:Found untraced functions such as _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 24). These functions will not be directly callable after loading.
+-->
 <br>
