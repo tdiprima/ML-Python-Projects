@@ -185,7 +185,7 @@ Something like that.
 select * from table as t where t.id = (select distinct id from blah)
 ```
 
-## How
+## Mammoth pandas statement
 
 Let's say the result of that goes into a variable called `train_metadata_csv`.  What does this do? 
 
