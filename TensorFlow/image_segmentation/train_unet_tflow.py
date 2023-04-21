@@ -17,6 +17,12 @@ import os
 from tensorflow.keras.backend import flatten
 import tensorflow.keras.backend as K
 
+import absl.logging
+absl.logging.set_verbosity(absl.logging.ERROR)
+
+# filter out the logs to only Warning and above
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 home_dir = os.path.expanduser('~')
 
 # TODO:

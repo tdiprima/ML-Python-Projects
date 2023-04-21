@@ -15,7 +15,11 @@ from glob import glob
 
 # Set up kernel
 gpus = tf.config.experimental.list_physical_devices('GPU')
-tf.config.experimental.set_memory_growth(gpus[0], True)
+print("GPUs:", gpus)
+
+if gpus:
+    tf.config.experimental.set_memory_growth(gpus[0], True)
+
 sess_config = tf.compat.v1.ConfigProto(gpu_options=tf.compat.v1.GPUOptions(per_process_gpu_memory_fraction=0.7),
                                        allow_soft_placement=True)
 sess = tf.compat.v1.Session(config=sess_config)
@@ -25,19 +29,16 @@ home_dir = os.path.expanduser('~')
 
 # TODO: (grinder)
 main_dir = home_dir + "/projects/image_segmentation"
-
 DATA_PATH = main_dir + '/data'
-
-train_dir = DATA_PATH + '/train_flow/'
-validate_dir = DATA_PATH + '/validate_flow/'
+# train_dir = DATA_PATH + '/train_flow/'
+# validate_dir = DATA_PATH + '/validate_flow/'
 checkpoint_dir = main_dir + '/output/unet-cp'
 
 # TODO:
 # TEST_DATA = os.path.join(DATA_PATH, "/test")
 # TRAIN_DATA = os.path.join(DATA_PATH, "/train")
-TEST_DATA = os.path.join(DATA_PATH, "/val_images")
-TRAIN_DATA = os.path.join(DATA_PATH, "/train_images")
-
+TEST_DATA = "/home/tdiprima/projects/image_segmentation/data/val_images"
+TRAIN_DATA = "/home/tdiprima/projects/image_segmentation/data/train_images"
 TRAIN_MASKS_DATA = os.path.join(DATA_PATH, "/train_masks")
 
 WIDTH = 512  # actual : 1918//1920 divisive by 64
@@ -203,7 +204,8 @@ if latest is not None:
 test_datagen = ImageDataGenerator(rescale=1. / 255)
 
 train_date_gen = test_datagen.flow_from_directory(
-    train_dir,
+    # train_dir,
+    TRAIN_DATA,
     target_size=(WIDTH, HEIGHT),
     color_mode="rgb",
     shuffle=False,
@@ -388,7 +390,8 @@ show_diff(sorted_train_id[1], sorted_predict[1])
 # Get prediction - validation set
 
 val_data_gen = test_datagen.flow_from_directory(
-    validate_dir,
+    # validate_dir,
+    TEST_DATA,
     target_size=(WIDTH, HEIGHT),
     color_mode="rgb",
     shuffle=False,

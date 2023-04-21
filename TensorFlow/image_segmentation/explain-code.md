@@ -159,77 +159,39 @@ So in short, `(input_layer)` at the end of the `Conv2D` call is not multiplying 
 
 Your function will **return a huge set of values** that you will only need to **read once.**
 
-## Selecting rows based on unique values
+# ¿Problemas?
 
-```python
-import pandas as pd
+## TensorFlow Memory Usage Warning
 
-METADATA_CSV = pd.read_csv("path/to/file")
-TRAIN_MASKS_CSV = pd.read_csv("path/to/file1")
+`Allocation of 1207959552 exceeds 10% of free system memory.`
 
-train_metadata_csv = METADATA_CSV.loc[TRAIN_MASKS_CSV['id'].unique(), :]
-```
+Would reducing the batch size help?
 
-This line of code is selecting rows from the `METADATA_CSV` DataFrame based on the unique values in the `id` column of the `TRAIN_MASKS_CSV` DataFrame.
+[post](https://stackoverflow.com/questions/50304156/tensorflow-allocation-memory-allocation-of-38535168-exceeds-10-of-system-memor)
 
-Specifically, `TRAIN_MASKS_CSV['id'].unique()` returns an array of unique values in the `id` column of the `TRAIN_MASKS_CSV` DataFrame.
+[another post](https://stackoverflow.com/questions/35911252/disable-tensorflow-debugging-information/42121886#42121886)
 
-This array is then used to index into the `METADATA_CSV` DataFrame using the `.loc` accessor, which allows you to select rows and columns by label or boolean mask.
+The warning you are seeing in your TensorFlow program is indicating that the system memory usage has exceeded the limit set by TensorFlow. This can happen if your program is allocating more memory than the system can provide.
 
-The `:` in the second argument of the `.loc` accessor means to **select all columns** in the DataFrame.
+Reducing the batch size can help to reduce the memory usage and alleviate the warning. However, it may not always be the best solution as it can also impact the accuracy of your model.
 
-The first argument `TRAIN_MASKS_CSV['id'].unique()` **specifies the rows to select** based on the unique values in the `id` column of `TRAIN_MASKS_CSV`.
+Before you reduce the batch size, you may want to check if there are any other parts of your program that could be causing the high memory usage. Here are a few things to consider:
 
-So overall, the line of code is selecting all rows from `METADATA_CSV` whose `id` column matches a **unique value** in the `id` column of `TRAIN_MASKS_CSV`.
+1. Check if there are any other programs running that are using a lot of memory. You may want to close them or reduce their memory usage.
 
-## Like sql
+2. Check if there are any large variables being created in your program that are not needed. You may want to remove them or store them in a file instead.
 
-Something like that.
+3. Check if you are using any unnecessary data types or operations that are causing high memory usage. For example, using float64 instead of float32 can double the memory usage.
 
-```sql
-select * from table as t where t.id = (select distinct id from blah)
-```
+If you have done all of the above and are still seeing the warning, then reducing the batch size may be a reasonable solution. However, it is important to keep in mind that reducing the batch size can also impact the convergence rate and the quality of your model's predictions.
 
-## Mammoth pandas statement
+Therefore, you may want to experiment with different batch sizes to find a balance between memory usage and model accuracy.
 
-Let's say the result of that goes into a variable called `train_metadata_csv`.  What does this do? 
-
-```py
-pd.DataFrame.from_dict(dict(Counter(train_metadata_csv.make)), orient='index').reset_index().rename(columns={'index': 'make', 0: 'make_count'})
-```
-
-This line of code generates a Pandas DataFrame with two columns: `make` and `make_count`.
-
-The `make` column contains the **unique values** in the `make` column of the `train_metadata_csv` DataFrame.
-
-The `make_count` column contains the **count** of each unique value in the `make` column.
-
-Here's how the line of code works step by step:
-
-* `Counter(train_metadata_csv.make)` **creates a dictionary** where the keys are the unique values in the make column of train_metadata_csv, and the values are the count of each unique value in the make column.
-
-* `dict(Counter(train_metadata_csv.make))` **converts this dictionary** into a regular Python dictionary.
-
-* `pd.DataFrame.from_dict(dict(Counter(train_metadata_csv.make)), orient='index')` **converts the dictionary** into a Pandas DataFrame where the keys are used as the row labels and the counts are the values in a single column.
-
-* `.reset_index()` **resets the row index** of the DataFrame and moves the current index (which is the unique values in the `make` column) into a new column called `index`.
-
-* `.rename(columns={'index': 'make', 0: 'make_count'})` **renames the index column** to `make` and renames the single value column to `make_count`.
-
-Overall, the line of code generates a DataFrame with two columns: `make` and `make_count`. The `make` column contains the unique values in the `make` column of `train_metadata_csv`, while the `make_count` column contains the count of each unique value in the `make` column.
-
-## ¿Problemas?
-
-### cpu_allocator_impl.cc:83] Allocation of 1207959552 exceeds 10% of free system memory.
-
-https://stackoverflow.com/questions/50304156/tensorflow-allocation-memory-allocation-of-38535168-exceeds-10-of-system-memor
-
-https://stackoverflow.com/questions/35911252/disable-tensorflow-debugging-information/42121886#42121886
-
+## Placeholder Error
 
 Just a warning, it even says you can ignore it:
 
-### You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,?,?,?]
+<span style="color:red;">You must feed a value for placeholder tensor 'inputs' with dtype float and shape [?,?,?,?]</span>
 
 [post](https://de-de.facebook.com/groups/TensorFlowKR/posts/753755691632158/)
 
@@ -244,11 +206,31 @@ I get an error like this.  If you take a picture of the input that goes into the
 
 (Maybe it has to do with the "None" batch size.  Batch size actually does work, but IDK why it's saying None.)
 
-### You must feed a value for placeholder tensor 'Placeholder/\_0' with dtype int32
+## Placeholder Warning Troubleshooting
 
-I'm not using tf.placeholder()!
+<span style="color:red;">You must feed a value for placeholder tensor 'Placeholder/_0' with dtype int32.</span>
 
-<!--
-WARNING:absl:Found untraced functions such as _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 24). These functions will not be directly callable after loading.
--->
+There could be several reasons why you are getting this error, even if you are not using `tf.placeholder()` directly in your code. Here are some possible explanations:
+
+1. You may have used a pre-trained model or a code snippet that includes `tf.placeholder()`, and you are not providing the required input to the placeholder when running the model. In this case, you may need to inspect the code or documentation for the pre-trained model or snippet to understand what input is expected.
+
+2. You may have defined a `tf.Variable()` or `tf.constant()` with the same name as the placeholder tensor, and the error message is referring to that instead. For example, if you have a variable named `Placeholder` and you try to run a part of the code that expects a placeholder tensor with the same name, you could get this error. To fix this, you should rename the variable to something else.
+
+3. You may be using a library or function that internally uses `tf.placeholder()` without exposing it in the API. In this case, you may need to inspect the source code of the library or function to see if there is any mention of placeholders, and try to understand how they are being used.
+
+4. It is also possible that the error message is misleading, and the issue is actually related to a different part of your code. To troubleshoot this, you can try to narrow down the scope of the problem by commenting out parts of your code and running it again to see if the error goes away.
+
+## Found untraced functions such as...
+
+I often see this warning when saving custom models such as graph NNs. You should be good to go as long as you don't want to access those non-callable functions.
+
+However, if you're annoyed by this big chunk of text, you can suppress this warning by adding the following at the top of the code.
+
+```py
+import absl.logging
+absl.logging.set_verbosity(absl.logging.ERROR)
+```
+
+[another answer](https://stackoverflow.com/questions/65697623/tensorflow-warning-found-untraced-functions-such-as-lstm-cell-6-layer-call-and#73229760)
+
 <br>
