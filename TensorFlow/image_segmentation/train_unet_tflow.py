@@ -20,8 +20,13 @@ import tensorflow.keras.backend as K
 import absl.logging
 absl.logging.set_verbosity(absl.logging.ERROR)
 
-# filter out the logs to only Warning and above
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+# Set TensorFlow logging level to WARNING and disable messages of type INFO
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # or any {'0', '1', '2', '3'}
+
+# Set logging verbosity to ERROR
+import tensorflow as tf
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 home_dir = os.path.expanduser('~')
 
