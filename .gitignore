@@ -1,17 +1,13 @@
 */.Rhistory
 
 data/
-
+training_checkpoints/
 logs/
-
 models/
 *.h5
 *.pth
-
 .vscode/
-
 .idea/
-
 .DS_Store
 
 # Byte-compiled / optimized / DLL files
