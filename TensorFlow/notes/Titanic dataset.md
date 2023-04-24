@@ -80,6 +80,8 @@ Keep in mind that label encoding may not always be the best approach for convert
 
 Oh!  The dummies thing!
 
+[One-Hot Encoding Categorical Data](https://www.kaggle.com/tammydiprima/one-hot-encoding-categorical-data)
+
 One-hot encoding is a technique used to convert categorical data into numerical data that can be used for machine learning models. In one-hot encoding, a new binary column is created for each category in the original column, with a value of 1 indicating that the category is present and a value of 0 indicating that it is not. Here's an example of how to perform one-hot encoding using the pandas library in Python:
 
 ```python
