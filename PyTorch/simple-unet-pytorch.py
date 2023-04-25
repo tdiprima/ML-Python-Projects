@@ -15,8 +15,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import torch
 import torch.nn.functional as F
-from albumentations.pytorch import ToTensor
-# from albumentations.pytorch.transforms import ToTensorV2
+# from albumentations.pytorch import ToTensor
+from albumentations.pytorch.transforms import ToTensorV2
 from skimage import io, transform
 from torch import nn
 from torch.utils.data import Dataset, DataLoader, random_split
@@ -59,8 +59,8 @@ def get_train_transform():
             A.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
             A.HorizontalFlip(p=0.25),
             A.VerticalFlip(p=0.25),
-            ToTensor()
-            # ToTensorV2()
+            # ToTensor()
+            ToTensorV2()
         ])
 
 
@@ -95,11 +95,14 @@ class LoadDataSet(Dataset):
         augmented = self.transforms(image=img, mask=mask)
         img = augmented['image']
         mask = augmented['mask']
+        # TODO: input.dim() = 2 is not equal to len(dims) = 3
+        # Because of the stupid bool thing, I think
         mask = mask[0].permute(2, 0, 1)
         return img, mask
 
     def get_mask(self, mask_folder, IMG_HEIGHT, IMG_WIDTH):
-        mask = np.zeros((IMG_HEIGHT, IMG_WIDTH, 1), dtype=np.bool)
+        mask = np.zeros((IMG_HEIGHT, IMG_WIDTH, 1), dtype=np.bool_)
+        # mask = np.zeros((IMG_HEIGHT, IMG_WIDTH, 1), dtype=np.bool)
         # mask = np.zeros((IMG_HEIGHT, IMG_WIDTH, 1), dtype=bool)
         for mask_ in os.listdir(mask_folder):
             mask_ = io.imread(os.path.join(mask_folder, mask_))
@@ -411,13 +414,13 @@ def load_ckp(checkpoint_fpath, model, optimizer):
 if not os.path.exists("model"):
     os.makedirs("model")
 
-# Train
-
+# TRAIN
 
 # from engine import evaluate
 criterion = DiceLoss()
 accuracy_metric = IoU()
-num_epochs = 20
+# num_epochs = 20
+num_epochs = 1
 valid_loss_min = np.Inf
 
 checkpoint_path = 'model/chkpoint_'
