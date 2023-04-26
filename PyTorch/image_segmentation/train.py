@@ -2,6 +2,8 @@
 Main code; start here.
 https://github.com/AladdinPerzon/Machine-Learning-Collection/blob/master/ML/Pytorch/image_segmentation/semantic_segmentation_unet/
 """
+import os
+
 import torch
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
@@ -27,8 +29,8 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 BATCH_SIZE = 16
 
 # TODO:
-# NUM_EPOCHS = 3
-NUM_EPOCHS = 1
+NUM_EPOCHS = 3
+# NUM_EPOCHS = 1
 
 # TODO:
 # NUM_WORKERS = 2
@@ -41,8 +43,8 @@ IMAGE_WIDTH = 240  # 1918 originally
 PIN_MEMORY = True
 
 # TODO:
-# LOAD_MODEL = False
-LOAD_MODEL = True
+LOAD_MODEL = False
+# LOAD_MODEL = True
 
 # TODO:
 TRAIN_IMG_DIR = "../data/train_images/"
@@ -152,6 +154,11 @@ def main():
     check_accuracy(val_loader, model, device=DEVICE)
     scaler = torch.cuda.amp.GradScaler()
 
+    # Folder for predictions
+    op_dir = "saved_images"
+    if not os.path.exists(op_dir):
+        os.makedirs(op_dir)
+
     print("=> Starting training")
     for epoch in range(NUM_EPOCHS):
         train_fn(train_loader, model, optimizer, loss_fn, scaler)
@@ -168,7 +175,7 @@ def main():
 
         # print some examples to a folder
         save_predictions_as_imgs(
-            val_loader, model, folder="saved_images/", device=DEVICE
+            val_loader, model, folder=op_dir, device=DEVICE
         )
 
 

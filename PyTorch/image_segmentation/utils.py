@@ -105,7 +105,7 @@ def check_accuracy(loader, model, device="cuda"):
 
 
 def save_predictions_as_imgs(
-        loader, model, folder="saved_images/", device="cuda"
+        loader, model, folder="saved_images", device="cuda"
 ):
     """
     Get a visualization of what it's doing.
@@ -119,6 +119,6 @@ def save_predictions_as_imgs(
 
         # Output prediction + corresponding correct one
         torchvision.utils.save_image(preds, f"{folder}/pred_{idx}.png")
-        torchvision.utils.save_image(y.unsqueeze(1), f"{folder}{idx}.png")
+        torchvision.utils.save_image(y.unsqueeze(1), f"{folder}/{idx}.png")
 
     model.train()
