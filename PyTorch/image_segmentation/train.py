@@ -66,10 +66,10 @@ def train_fn(loader, model, optimizer, loss_fn, scaler):
         print("targets.float", tensor_a.shape)
 
         # un-squeeze 1 (adding a channel dimension)
-        tensor_b = a.unsqueeze(1)
+        tensor_b = tensor_a.unsqueeze(1)
         print("targets un-squeeze", tensor_b.shape)
 
-        targets = b.to(device=DEVICE)
+        targets = tensor_b.to(device=DEVICE)
 
         # forward
         with torch.cuda.amp.autocast():
