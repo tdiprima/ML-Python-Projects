@@ -4,7 +4,9 @@ No, but you can use third-party libraries to achieve similar functionality.
 
 One popular library for this purpose is `torchsummary`, which provides a `summary` function to display a summary of the PyTorch model architecture, similar to what `model.summary()` does in TensorFlow.
 
-Here's an example of how to use `torchsummary` to display a summary of a PyTorch model:
+<mark>**This works.**</mark>
+
+How to use `torchsummary` to display a summary of a PyTorch model:
 
 ```python
 import torch
@@ -41,3 +43,17 @@ summary(model, (3, 32, 32))
 
 The `summary` function takes two arguments: the PyTorch model instance and the input shape of the data. The output of the function is a summary of the model architecture, including the layer types, input and output shapes, and the number of parameters in each layer.
 
+### This works too
+
+```python
+import torch
+from torchsummary import summary
+
+model = YourPyTorchModel()
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model.to(device)
+
+summary(model, input_size=(input_shape), device=device.type)
+```
+
+<br>
