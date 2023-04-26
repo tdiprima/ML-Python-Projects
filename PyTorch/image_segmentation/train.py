@@ -63,11 +63,11 @@ def train_fn(loader, model, optimizer, loss_fn, scaler):
 
         # float for binary cross-entropy loss
         tensor_a = targets.float()
-        print("targets.float", tensor_a.shape)
+        # targets.float: torch.Size([16, 160, 240])
 
         # un-squeeze 1 (adding a channel dimension)
         tensor_b = tensor_a.unsqueeze(1)
-        print("targets un-squeeze", tensor_b.shape)
+        # targets un-squeeze shape: torch.Size([16, 1, 160, 240])
 
         targets = tensor_b.to(device=DEVICE)
 
@@ -124,6 +124,11 @@ def main():
     print("=> Creating model")
     model = UNET(in_channels=3, out_channels=1).to(DEVICE)
 
+    from torchsummary import summary
+    # Tuple specifies the shape of the input tensor to the PyTorch model
+    # The order of the dimensions in the input shape tuple is (channels, height, width)
+    summary(model, (3, IMAGE_HEIGHT, IMAGE_WIDTH))
+
     # You could use BCELoss() if you did: return torch.sigmoid(self.final_conv(x)) on the output of the model.
     loss_fn = nn.BCEWithLogitsLoss()  # bc we're not doing sigmoid on our output
 
@@ -165,18 +170,6 @@ def main():
         save_predictions_as_imgs(
             val_loader, model, folder="saved_images/", device=DEVICE
         )
-
-    import sys
-    try:
-        from torchsummary import summary
-        # (channels, height, width)
-        summary(model, (3, IMAGE_HEIGHT, IMAGE_WIDTH))
-    except Exception as e:
-        exc_type, exc_obj, exc_tb = sys.exc_info()
-        print("\nType", exc_type)
-        print("\nErr:", exc_obj)
-        print("\nLine:", exc_tb.tb_lineno)
-        sys.exit(1)
 
 
 if __name__ == "__main__":
