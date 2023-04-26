@@ -62,12 +62,12 @@ def train_fn(loader, model, optimizer, loss_fn, scaler):
         # targets = targets.float().unsqueeze(1).to(device=DEVICE)
 
         # float for binary cross-entropy loss
-        a = targets.float()
-        print("targets.float", a)
+        tensor_a = targets.float()
+        print("targets.float", tensor_a.shape)
 
         # un-squeeze 1 (adding a channel dimension)
-        b = a.unsqueeze(1)
-        print("targets un-squeeze", b)
+        tensor_b = a.unsqueeze(1)
+        print("targets un-squeeze", tensor_b.shape)
 
         targets = b.to(device=DEVICE)
 
