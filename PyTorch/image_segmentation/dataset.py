@@ -1,7 +1,8 @@
 import os
+
+import numpy as np
 from PIL import Image
 from torch.utils.data import Dataset
-import numpy as np
 
 
 class CarvanaDataset(Dataset):
@@ -9,8 +10,12 @@ class CarvanaDataset(Dataset):
         self.image_dir = image_dir
         self.mask_dir = mask_dir
         self.transform = transform
+
         # List all the files that are in that folder (listdir)
         self.images = os.listdir(image_dir)
+        # TODO: Not all.
+        # self.images = os.listdir(image_dir)[:16]
+        # print("Dataset len:", len(self.images))
 
     def __len__(self):
         """

@@ -1,7 +1,9 @@
 import torch
 import torchvision
-from dataset import CarvanaDataset
 from torch.utils.data import DataLoader
+
+# The dataset module is a custom module defined in dataset.py
+from dataset import CarvanaDataset
 
 
 def save_checkpoint(state, filename="my_checkpoint.pth.tar"):
@@ -25,6 +27,7 @@ def get_loaders(
         num_workers=4,
         pin_memory=True,
 ):
+    print("=> Getting loaders")
     train_ds = CarvanaDataset(
         image_dir=train_dir,
         mask_dir=train_maskdir,
@@ -83,7 +86,7 @@ def check_accuracy(loader, model, device="cuda"):
             preds = (preds > 0.5).float()
             # All less, convert to zero. todo: where is it?
 
-            num_correct += (preds == y).sum()  # sum all of the correct pixels
+            num_correct += (preds == y).sum()  # sum all the correct pixels
             num_pixels += torch.numel(preds)  # number of elements
 
             # Dice is "better metrics"; this one's for binary (vs multi classes)
@@ -102,7 +105,7 @@ def check_accuracy(loader, model, device="cuda"):
 
 
 def save_predictions_as_imgs(
-        loader, model, folder="saved_images/", device="cuda"
+        loader, model, folder="saved_images", device="cuda"
 ):
     """
     Get a visualization of what it's doing.
@@ -116,6 +119,6 @@ def save_predictions_as_imgs(
 
         # Output prediction + corresponding correct one
         torchvision.utils.save_image(preds, f"{folder}/pred_{idx}.png")
-        torchvision.utils.save_image(y.unsqueeze(1), f"{folder}{idx}.png")
+        torchvision.utils.save_image(y.unsqueeze(1), f"{folder}/{idx}.png")
 
     model.train()

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Whelp. It doesn't successfully complete yet.
+Does not successfully complete yet.
 """
 import numpy as np
 import pandas as pd
@@ -15,6 +15,7 @@ import os
 from tensorflow.keras.backend import flatten
 import tensorflow.keras.backend as K
 from glob import glob
+import sys
 
 # Set up kernel
 gpus = tf.config.experimental.list_physical_devices('GPU')
@@ -28,19 +29,22 @@ sess_config = tf.compat.v1.ConfigProto(gpu_options=tf.compat.v1.GPUOptions(per_p
 sess = tf.compat.v1.Session(config=sess_config)
 tf.compat.v1.keras.backend.set_session(sess)
 
-# Relative paths
-train_dir = 'data/train/'  # train_flow
-validate_dir = 'data/val_images/'  # validate_flow
+# TODO:
+train_dir = './train_flow/'
+# train_dir = '../data/train/'
+validate_dir = '../data/val_images/'  # validate_flow
 # checkpoint_dir = 'output/unet-cp'
 checkpoint_dir = 'output/unet-cp/cp-0001.ckpt.data-00000-of-00001'
 
-DATA_PATH = 'data/'
+DATA_PATH = '../data/'
 TEST_DATA = os.path.join(DATA_PATH, "val_images")  # "test"
 TRAIN_DATA = os.path.join(DATA_PATH, "train")
 TRAIN_MASKS_DATA = os.path.join(DATA_PATH, "train_masks")
 
 WIDTH = 512  # actual : 1918//1920 divisive by 64
 HEIGHT = 512  # actual : 1280
+
+# TODO:
 BATCH_SIZE = 5
 # BATCH_SIZE = 2
 
@@ -106,7 +110,6 @@ def _get_image_data_pil(image_id, image_type, return_exif_md=False, return_shape
 
 
 # Load trained Unet model (OK great; where's "load_model" then?)
-
 def dice_coef(y_true, y_pred):
     smooth = 1.
     y_true_f = flatten(y_true)
@@ -137,7 +140,9 @@ def up(input_layer, residual, filters):
 
 # Make a custom U-net implementation.
 filters = 64
-input_layer = Input(shape=[WIDTH, HEIGHT, 3])
+# https://www.tensorflow.org/api_docs/python/tf/keras/layers/Conv2D
+#  (batch_size, height, width, channels)
+input_layer = Input(shape=[HEIGHT, WIDTH, 3])  # But here - don't put batch_size)
 layers = [input_layer]
 residuals = []
 
@@ -189,8 +194,10 @@ out = Conv2D(filters=1, kernel_size=(1, 1), activation="sigmoid")(up4)
 
 model = Model(input_layer, out)
 
+# todo: Found 0 images belonging to 0 classes.
 print(model.summary())
 
+# todo: Latest: NONE
 latest = tf.train.latest_checkpoint(checkpoint_dir)
 print("Latest:", latest)
 
@@ -198,29 +205,34 @@ if latest is not None:
     model.load_weights(latest)
 
 # Get prediction - Train set
-
 test_datagen = ImageDataGenerator(rescale=1. / 255)
 
-train_date_gen = test_datagen.flow_from_directory(
+print("\ntrain_dir:", train_dir)
+train_data_gen = test_datagen.flow_from_directory(
     train_dir,
-    target_size=(WIDTH, HEIGHT),
+    target_size=(HEIGHT, WIDTH),
     color_mode="rgb",
-    shuffle=False,
+    # shuffle=False, TODO
+    shuffle=True,
     class_mode=None,
     batch_size=BATCH_SIZE)
 
-# filenames = train_date_gen.filenames
+# filenames = train_data_gen.filenames
 filenames = os.listdir(train_dir)
+# print("\nfilenames:", filenames)
+# print("\nfilenames:", train_data_gen.filenames)
+print("\nlen(train_data_gen):", len(train_data_gen))
+
 nb_samples = len(filenames)
 print("\nnb_samples:", nb_samples)
 
 train_ids = [fn.split('\\')[-1][:-4] for fn in filenames]
 print("\ntrain_ids:", len(train_ids))
 
-import sys
-
 try:
-    predict = model.predict(train_date_gen, steps=np.ceil(nb_samples / BATCH_SIZE))
+    # train_data_gen: DirectoryIterator
+    # np.ceil(nb_samples / BATCH_SIZE): 1018.0
+    predict = model.predict(train_data_gen, steps=np.ceil(nb_samples / BATCH_SIZE))
 except Exception as e:
     exc_type, exc_obj, exc_tb = sys.exc_info()
     print("\nType", exc_type)
@@ -242,7 +254,7 @@ def dice(y_true, y_pred):
     return (2. * intersection) / (sum(map(sum, y_true)) + sum(map(sum, y_pred)))
 
 
-def get_img_resize(fn, image_type, DIM=(WIDTH, HEIGHT)):
+def get_img_resize(fn, image_type, DIM=(HEIGHT, WIDTH)):
     """
     function to get mask image and return as array
     """
@@ -257,7 +269,7 @@ def get_img_resize(fn, image_type, DIM=(WIDTH, HEIGHT)):
     return np.asarray(mask)
 
 
-def get_prediction_dice(ids, prediction, DIM=(WIDTH, HEIGHT)):
+def get_prediction_dice(ids, prediction, DIM=(HEIGHT, WIDTH)):
     """
     calculates dice coefficient for each item and its predicted mask
     """
@@ -274,7 +286,7 @@ def get_prediction_dice(ids, prediction, DIM=(WIDTH, HEIGHT)):
     return results
 
 
-def get_predicted_img(output, DIM=(WIDTH, HEIGHT)):
+def get_predicted_img(output, DIM=(HEIGHT, WIDTH)):
     data = np.reshape(output, DIM)
     mask = data > 0.5
     return np.asarray(Image.fromarray(mask, 'L'))
@@ -286,6 +298,7 @@ idxmin_train = np.argmin(train_dice)
 
 print("Smallest dice coefficient found in training set is {:.4f}. The file name is {}.jpg".format(
     train_dice[idxmin_train], train_ids[idxmin_train]))
+
 
 # Show the mask that has the smallest dice coefficient
 # plt.imshow(get_predicted_img(predict[idxmin_train]))
@@ -369,9 +382,10 @@ def show_pic_and_predicted_mask(image_id, pred_mask, dicecoef):
 
 sorted_train_dice, sorted_train_id, sorted_predict = zip(*sorted(zip(train_dice, train_ids, predict)))
 
+
 # todo:
-show_pic_and_original_mask(train_ids[idxmin_train])
-show_pic_and_predicted_mask(sorted_train_id[0], sorted_predict[0], sorted_train_dice[0])
+# show_pic_and_original_mask(train_ids[idxmin_train])
+# show_pic_and_predicted_mask(sorted_train_id[0], sorted_predict[0], sorted_train_dice[0])
 
 
 def show_diff(image_id, pred_mask):
@@ -384,15 +398,15 @@ def show_diff(image_id, pred_mask):
     plt.yticks([])
 
 
-show_diff(sorted_train_id[0], sorted_predict[0])
+# show_diff(sorted_train_id[0], sorted_predict[0])
 
 # Missing window details and antenna
 
 # todo:
-show_pic_and_original_mask(sorted_train_id[1])
-show_pic_and_predicted_mask(sorted_train_id[1], sorted_predict[1], sorted_train_dice[1])
+# show_pic_and_original_mask(sorted_train_id[1])
+# show_pic_and_predicted_mask(sorted_train_id[1], sorted_predict[1], sorted_train_dice[1])
 
-show_diff(sorted_train_id[1], sorted_predict[1])
+# show_diff(sorted_train_id[1], sorted_predict[1])
 
 # Some minor outline was not predicted
 
@@ -400,7 +414,7 @@ show_diff(sorted_train_id[1], sorted_predict[1])
 
 val_data_gen = test_datagen.flow_from_directory(
     validate_dir,
-    target_size=(WIDTH, HEIGHT),
+    target_size=(HEIGHT, WIDTH),
     color_mode="rgb",
     shuffle=False,
     class_mode=None,
@@ -424,11 +438,12 @@ with open('output/val-prediction_name.txt', 'w') as file:
 predict_dice = get_prediction_dice(val_ids, predict_val)
 sorted_val_dice, sorted_val_id, sorted_val_predict = zip(*sorted(zip(predict_dice, val_ids, predict_val)))
 
+
 # Show 5 pictures with the lowest dice coefficient
-for i in range(5):
-    show_pic_and_original_mask(sorted_val_id[i])
-    # show_pic_and_predicted_mask(sorted_val_id[i], sorted_val_predict[i], sorted_val_dice[i])
-    show_diff(sorted_val_id[i], sorted_val_predict[i])
+# for i in range(5):
+#     show_pic_and_original_mask(sorted_val_id[i])
+#     show_pic_and_predicted_mask(sorted_val_id[i], sorted_val_predict[i], sorted_val_dice[i])
+#     show_diff(sorted_val_id[i], sorted_val_predict[i])
 
 
 # Common prediction mistake:
@@ -437,10 +452,9 @@ for i in range(5):
 # * Missing detail when car color is close to environment color (i.e. black details near shadow or white details near white background)
 # * Borderlines
 
-# Organize the pictures slightly better
-
 def show_pic_and_original_mask_and_predicted(image_id, pred_mask, dicecoef):
     """
+    Organize the pictures slightly better
     Helper function to plot original image, original mask and predicted mask
     """
     # load data
@@ -481,22 +495,22 @@ def show_pic_and_original_mask_and_predicted(image_id, pred_mask, dicecoef):
 
 # Train set high error pics
 # TODO:
-show_pic_and_original_mask_and_predicted(sorted_train_id[0], sorted_predict[0], sorted_train_dice[0])
-show_pic_and_original_mask_and_predicted(sorted_train_id[1], sorted_predict[1], sorted_train_dice[1])
-show_pic_and_original_mask_and_predicted(sorted_train_id[2], sorted_predict[2], sorted_train_dice[2])
+# show_pic_and_original_mask_and_predicted(sorted_train_id[0], sorted_predict[0], sorted_train_dice[0])
+# show_pic_and_original_mask_and_predicted(sorted_train_id[1], sorted_predict[1], sorted_train_dice[1])
+# show_pic_and_original_mask_and_predicted(sorted_train_id[2], sorted_predict[2], sorted_train_dice[2])
 # Now validation set
-for i in range(5):
-    show_pic_and_original_mask_and_predicted(sorted_val_id[i], sorted_val_predict[i], sorted_val_dice[i])
+# for i in range(5):
+#     show_pic_and_original_mask_and_predicted(sorted_val_id[i], sorted_val_predict[i], sorted_val_dice[i])
 
 # Predict for unseen data
-#
-# Try to predict a car that the data has never seen before; We chose 18 pictures from the original test set (the original test set is too big and would take hours to predict it one by one)
+# Try to predict a car that the data has never seen before;
+# We chose 18 pictures from the original test set (the original test set is too big and would take hours to predict it one by one)
 
 test_dir = 'data/val_images/'  # test
 
 test_data_gen = test_datagen.flow_from_directory(
     test_dir,
-    target_size=(WIDTH, HEIGHT),
+    target_size=(HEIGHT, WIDTH),
     color_mode="rgb",
     shuffle=False,
     class_mode=None,
@@ -548,9 +562,8 @@ def show_test_pic_and_predicted_mask(image_id, pred_mask):
     plt.yticks([])
     plt.title("Original + Pred Mask")
 
-
 # TODO:
-for i in range(nb_samples):
-    show_test_pic_and_predicted_mask(test_ids[i], test_predict[i])
+# for i in range(nb_samples):
+#     show_test_pic_and_predicted_mask(test_ids[i], test_predict[i])
 
 # The outcome looks decent despite some details still missing (dark color near shadow area, fine details etc.)

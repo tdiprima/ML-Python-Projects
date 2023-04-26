@@ -1,0 +1,114 @@
+=> Creating train and val transforms
+=> Creating model
+
+----------------------------------------------------------------
+        Layer (type)               Output Shape         Param #
+================================================================
+            Conv2d-1         [-1, 64, 160, 240]           1,728
+       BatchNorm2d-2         [-1, 64, 160, 240]             128
+              ReLU-3         [-1, 64, 160, 240]               0
+            Conv2d-4         [-1, 64, 160, 240]          36,864
+       BatchNorm2d-5         [-1, 64, 160, 240]             128
+              ReLU-6         [-1, 64, 160, 240]               0
+        DoubleConv-7         [-1, 64, 160, 240]               0
+         MaxPool2d-8          [-1, 64, 80, 120]               0
+            Conv2d-9         [-1, 128, 80, 120]          73,728
+      BatchNorm2d-10         [-1, 128, 80, 120]             256
+             ReLU-11         [-1, 128, 80, 120]               0
+           Conv2d-12         [-1, 128, 80, 120]         147,456
+      BatchNorm2d-13         [-1, 128, 80, 120]             256
+             ReLU-14         [-1, 128, 80, 120]               0
+       DoubleConv-15         [-1, 128, 80, 120]               0
+        MaxPool2d-16          [-1, 128, 40, 60]               0
+           Conv2d-17          [-1, 256, 40, 60]         294,912
+      BatchNorm2d-18          [-1, 256, 40, 60]             512
+             ReLU-19          [-1, 256, 40, 60]               0
+           Conv2d-20          [-1, 256, 40, 60]         589,824
+      BatchNorm2d-21          [-1, 256, 40, 60]             512
+             ReLU-22          [-1, 256, 40, 60]               0
+       DoubleConv-23          [-1, 256, 40, 60]               0
+        MaxPool2d-24          [-1, 256, 20, 30]               0
+           Conv2d-25          [-1, 512, 20, 30]       1,179,648
+      BatchNorm2d-26          [-1, 512, 20, 30]           1,024
+             ReLU-27          [-1, 512, 20, 30]               0
+           Conv2d-28          [-1, 512, 20, 30]       2,359,296
+      BatchNorm2d-29          [-1, 512, 20, 30]           1,024
+             ReLU-30          [-1, 512, 20, 30]               0
+       DoubleConv-31          [-1, 512, 20, 30]               0
+        MaxPool2d-32          [-1, 512, 10, 15]               0
+           Conv2d-33         [-1, 1024, 10, 15]       4,718,592
+      BatchNorm2d-34         [-1, 1024, 10, 15]           2,048
+             ReLU-35         [-1, 1024, 10, 15]               0
+           Conv2d-36         [-1, 1024, 10, 15]       9,437,184
+      BatchNorm2d-37         [-1, 1024, 10, 15]           2,048
+             ReLU-38         [-1, 1024, 10, 15]               0
+       DoubleConv-39         [-1, 1024, 10, 15]               0
+  ConvTranspose2d-40          [-1, 512, 20, 30]       2,097,664
+           Conv2d-41          [-1, 512, 20, 30]       4,718,592
+      BatchNorm2d-42          [-1, 512, 20, 30]           1,024
+             ReLU-43          [-1, 512, 20, 30]               0
+           Conv2d-44          [-1, 512, 20, 30]       2,359,296
+      BatchNorm2d-45          [-1, 512, 20, 30]           1,024
+             ReLU-46          [-1, 512, 20, 30]               0
+       DoubleConv-47          [-1, 512, 20, 30]               0
+  ConvTranspose2d-48          [-1, 256, 40, 60]         524,544
+           Conv2d-49          [-1, 256, 40, 60]       1,179,648
+      BatchNorm2d-50          [-1, 256, 40, 60]             512
+             ReLU-51          [-1, 256, 40, 60]               0
+           Conv2d-52          [-1, 256, 40, 60]         589,824
+      BatchNorm2d-53          [-1, 256, 40, 60]             512
+             ReLU-54          [-1, 256, 40, 60]               0
+       DoubleConv-55          [-1, 256, 40, 60]               0
+  ConvTranspose2d-56         [-1, 128, 80, 120]         131,200
+           Conv2d-57         [-1, 128, 80, 120]         294,912
+      BatchNorm2d-58         [-1, 128, 80, 120]             256
+             ReLU-59         [-1, 128, 80, 120]               0
+           Conv2d-60         [-1, 128, 80, 120]         147,456
+      BatchNorm2d-61         [-1, 128, 80, 120]             256
+             ReLU-62         [-1, 128, 80, 120]               0
+       DoubleConv-63         [-1, 128, 80, 120]               0
+  ConvTranspose2d-64         [-1, 64, 160, 240]          32,832
+           Conv2d-65         [-1, 64, 160, 240]          73,728
+      BatchNorm2d-66         [-1, 64, 160, 240]             128
+             ReLU-67         [-1, 64, 160, 240]               0
+           Conv2d-68         [-1, 64, 160, 240]          36,864
+      BatchNorm2d-69         [-1, 64, 160, 240]             128
+             ReLU-70         [-1, 64, 160, 240]               0
+       DoubleConv-71         [-1, 64, 160, 240]               0
+           Conv2d-72          [-1, 1, 160, 240]              65
+================================================================
+Total params: 31,037,633
+Trainable params: 31,037,633
+Non-trainable params: 0
+----------------------------------------------------------------
+Input size (MB): 0.44
+Forward/backward pass size (MB): 544.63
+Params size (MB): 118.40
+Estimated Total Size (MB): 663.47
+----------------------------------------------------------------
+
+=> Getting loaders
+Dataset len: 16
+Dataset len: 16
+
+=> Loading checkpoint
+/home/tdiprima/anaconda3/lib/python3.10/site-packages/torch/cuda/amp/grad_scaler.py:120: UserWarning: torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.
+  warnings.warn("torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.")
+
+Got 609978/614400 with acc 99.28
+Dice score: 0.9845475554466248
+
+=> Starting training
+
+  0%|          | 0/1 [00:00<?, ?it/s]/home/tdiprima/anaconda3/lib/python3.10/site-packages/
+
+torch/amp/autocast_mode.py:204: UserWarning: User provided device_type of 'cuda', but CUDA is not available. Disabling
+  warnings.warn('User provided device_type of \'cuda\', but CUDA is not available. Disabling')
+
+  0%|          | 0/1 [00:06<?, ?it/s, loss=0.0782]
+100%|██████████| 1/1 [00:06<00:00,  6.82s/it, loss=0.0782]
+100%|██████████| 1/1 [00:06<00:00,  6.87s/it, loss=0.0782]
+
+=> Saving checkpoint
+Got 606491/614400 with acc 98.71
+Dice score: 0.973064124584198
