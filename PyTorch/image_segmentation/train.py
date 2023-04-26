@@ -1,10 +1,18 @@
+"""
+Main code; start here.
+https://github.com/AladdinPerzon/Machine-Learning-Collection/blob/master/ML/Pytorch/image_segmentation/semantic_segmentation_unet/
+"""
 import torch
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
 from tqdm import tqdm
 import torch.nn as nn
 import torch.optim as optim
+
+# The model module is a custom module defined model.py
 from model import UNET
+
+# Custom module from utils.py
 from utils import (
     load_checkpoint,
     save_checkpoint,
@@ -17,8 +25,10 @@ from utils import (
 LEARNING_RATE = 1e-4
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 BATCH_SIZE = 16
-NUM_EPOCHS = 3
+
 # TODO:
+# NUM_EPOCHS = 3
+NUM_EPOCHS = 1
 # NUM_WORKERS = 2
 NUM_WORKERS = 4
 
@@ -27,11 +37,16 @@ IMAGE_HEIGHT = 160  # 1280 originally
 IMAGE_WIDTH = 240  # 1918 originally
 
 PIN_MEMORY = True
-LOAD_MODEL = False
-TRAIN_IMG_DIR = "data/train_images/"
-TRAIN_MASK_DIR = "data/train_masks/"
-VAL_IMG_DIR = "data/val_images/"
-VAL_MASK_DIR = "data/val_masks/"
+
+# TODO:
+# LOAD_MODEL = False
+LOAD_MODEL = True
+
+# TODO:
+TRAIN_IMG_DIR = "../data/train_images/"
+TRAIN_MASK_DIR = "../data/train_masks/"
+VAL_IMG_DIR = "../data/val_images/"
+VAL_MASK_DIR = "../data/val_masks/"
 
 
 def train_fn(loader, model, optimizer, loss_fn, scaler):
@@ -42,13 +57,24 @@ def train_fn(loader, model, optimizer, loss_fn, scaler):
 
     for batch_idx, (data, targets) in enumerate(loop):
         data = data.to(device=DEVICE)
+        # targets = targets.float().unsqueeze(1).to(device=DEVICE)
+
         # float for binary cross-entropy loss
+        a = targets.float()
+        print("targets.float", a)
+
         # un-squeeze 1 (adding a channel dimension)
-        targets = targets.float().unsqueeze(1).to(device=DEVICE)
+        b = a.unsqueeze(1)
+        print("targets un-squeeze", b)
+
+        targets = b.to(device=DEVICE)
 
         # forward
         with torch.cuda.amp.autocast():
-            # Use float-16 training, reducing VRAM (video RAM) & speeding up training.
+            """
+            Use the computer's GPU to do math quickly and accurately.
+            Use float-16 training, reducing VRAM (video RAM) & speeding up training.
+            """
             predictions = model(data)
             loss = loss_fn(predictions, targets)
 
@@ -63,6 +89,7 @@ def train_fn(loader, model, optimizer, loss_fn, scaler):
 
 
 def main():
+    print("=> Creating train and val transforms")
     train_transform = A.Compose(
         [
             A.Resize(height=IMAGE_HEIGHT, width=IMAGE_WIDTH),
@@ -92,6 +119,7 @@ def main():
 
     # If you wanted multiclass segmentation, you could do:
     # out_channels=3 (eg. 3 colors, 2 classes), and loss fn to cross entropy loss
+    print("=> Creating model")
     model = UNET(in_channels=3, out_channels=1).to(DEVICE)
 
     # You could use BCELoss() if you did: return torch.sigmoid(self.final_conv(x)) on the output of the model.
@@ -117,6 +145,7 @@ def main():
     check_accuracy(val_loader, model, device=DEVICE)
     scaler = torch.cuda.amp.GradScaler()
 
+    print("=> Starting training")
     for epoch in range(NUM_EPOCHS):
         train_fn(train_loader, model, optimizer, loss_fn, scaler)
 
@@ -134,6 +163,18 @@ def main():
         save_predictions_as_imgs(
             val_loader, model, folder="saved_images/", device=DEVICE
         )
+
+    import sys
+    try:
+        from torchsummary import summary
+        # (channels, height, width)
+        summary(model, (3, IMAGE_HEIGHT, IMAGE_WIDTH))
+    except Exception as e:
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        print("\nType", exc_type)
+        print("\nErr:", exc_obj)
+        print("\nLine:", exc_tb.tb_lineno)
+        sys.exit(1)
 
 
 if __name__ == "__main__":
