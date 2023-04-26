@@ -1,5 +1,9 @@
 ## Setting number of workers
 
+<mark>**Note: This code sux, and it literally takes forever. Use the PyTorch one.**</mark>
+
+### The End.
+
 [Image Seg Carvana](https://towardsdatascience.com/image-segmentation-predicting-image-mask-with-carvana-data-32829ca826a0)
 
 [GitHub](https://github.com/ZeeTsing/Carvana_challenge.git)
