@@ -1,4 +1,37 @@
-# TL;DR
+# U-Net segmentation
+
+https://www.kaggle.com/tammydiprima/u-net-segmentation/
+
+## Explain this:
+
+```python
+all_images = [s.split("/")[-1].split(".")[0] for s in train_val_images]
+```
+
+<br>
+This creates a new list called `all_images` by iterating over the elements in the `train_val_images` list. For each element in the `train_val_images` list, the code performs the following operations:
+
+1. It splits the element by the forward slash ("/") separator using the `split("/")` method.
+2. It takes the last element of the resulting list using the `[-1]` index.
+3. It splits the resulting string by the period (".") separator using the `split(".")` method.
+4. It takes the first element of the resulting list using the `[0]` index.
+
+The end result is a new list of strings called `all_images`, where each string is the filename of an image in the `train_val_images` list without the file extension.
+
+For example, if `train_val_images` contained the string `"path/to/image1.jpg"`, the corresponding element in `all_images` would be `"image1"`.
+
+### Real Example:
+
+```python
+blah = train_val_images[0]  # I just want 1 for this example
+# blah.split("/")  # ['00087a6bd4dc_01']
+# blah.split("/")[-1]  # '00087a6bd4dc_01'
+blah.split("/")[-1].split(".")[0]  # remove .ext (if there is one!)
+```
+
+# simple-unet-pytorch
+
+## Albumentations ToTensor ImportError
 
 All this works on [kaggle](https://www.kaggle.com/code/tammydiprima/simple-unet-pytorch/).  On Google Colab - error.  Grinder - error.  I followed the bouncing error messages, and I've got yet another error.  This is all because I told Kaggle to use GPU and it's freakin' not using it.  Yes, I did `.to(device)`.  Tried `.cuda()` - same thing; it's using freakin' CPU anyway.
 
@@ -114,4 +147,3 @@ mask = mask[0].permute(2, 0, 1)
 RuntimeError: permute(sparse_coo): number of dimensions in the tensor input does not match the length of the desired ordering of dimensions i.e. input.dim() = 2 is not equal to len(dims) = 3
 
 <br>
-

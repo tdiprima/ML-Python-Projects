@@ -15,7 +15,7 @@ from keras.models import Sequential
 from sklearn.model_selection import train_test_split
 from sklearn.utils import shuffle
 
-# for dirname, _, filenames in os.walk('data'):
+# for dirname, dirnames, filenames in os.walk('data'):
 #     for filename in filenames:
 #         print(os.path.join(dirname, filename))
 

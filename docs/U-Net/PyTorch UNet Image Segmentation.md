@@ -50,22 +50,4 @@ While `x` has **size 64** along the same dimension.
 
 Once you've identified the source of the size mismatch, you can try to adjust the sizes of the tensors or adjust the network architecture to ensure that the tensors have matching sizes along all dimensions except the concatenating dimension.
 
-## Find U-Net Input Size
-
-In a U-Net model implemented in Python, you can find the input size of the model by looking at the definition of the input layer. 
-
-The input layer is typically defined using a function from a deep learning framework such as TensorFlow or PyTorch. In TensorFlow, for example, the input layer is created using the `tf.keras.layers.Input` function. 
-
-You can inspect the input layer by looking for the line of code where the input layer is defined. The function call to define the input layer should include the `input_shape` parameter, which specifies the shape of the input data. 
-
-For example, in TensorFlow, the input layer for a U-Net model that takes 256x256 grayscale images as input could be defined like this:
-
-```py
-input_layer = tf.keras.layers.Input(shape=(256, 256, 1))
-```
-
-In this example, the `shape` parameter of the `Input` function specifies that the input data is 256 pixels wide and 256 pixels tall, and has 1 channel (i.e., it's a grayscale image). 
-
-So in your Python script, you should look for the definition of the input layer and check the `input_shape` parameter to determine the input size of the U-Net model.
-
 <br>

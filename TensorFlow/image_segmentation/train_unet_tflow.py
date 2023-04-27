@@ -1,13 +1,11 @@
 #!/usr/bin/env python
-
-# If you don't leave it like this, you get errors:
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import tensorflow_addons as tfa
 import PIL
 from tensorflow.keras.layers import Dense, Conv2D, Input, MaxPool2D, UpSampling2D, Concatenate, Conv2DTranspose
-from tensorflow.keras import Sequential,Model
+from tensorflow.keras import Sequential, Model
 from tensorflow.keras.losses import BinaryCrossentropy
 import tensorflow as tf
 from tqdm.notebook import tqdm
@@ -18,19 +16,27 @@ from tensorflow.keras.backend import flatten
 import tensorflow.keras.backend as K
 
 import absl.logging
+
 absl.logging.set_verbosity(absl.logging.ERROR)
 
 # Set TensorFlow logging level to WARNING and disable messages of type INFO
 import os
+
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # or any {'0', '1', '2', '3'}
 
 # Set logging verbosity to ERROR
 import tensorflow as tf
+
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
-home_dir = os.path.expanduser('~')
+import datetime
+
+now = datetime.datetime.now()
+print("\nStart time: ")
+print(now.strftime("%Y-%m-%d %H:%M:%S"))
 
 # TODO:
+home_dir = os.path.expanduser('~')
 grinder = "/projects/image_segmentation/data"
 local = "/Documents/data"
 
@@ -57,6 +63,12 @@ BATCH_SIZE = 16
 # TODO: Set the number of worker nodes
 # NUM_WORKERS = os.cpu_count()
 NUM_WORKERS = 4
+
+# TODO: You really need GPU for this.
+# NUM_EPOCHS = 100
+NUM_EPOCHS = 1
+
+print(f"\n*** {1} epoch(s) and {len(total_train_images)} images ***")
 
 # split train set and test set
 train_images, validation_images = train_test_split(total_train_images, train_size=0.8, test_size=0.2, random_state=0)
@@ -138,12 +150,9 @@ def data_gen_aug(data_dir, mask_dir, images, batch_size, dims):
 train_gen = data_gen_aug(data_dir, mask_dir, train_images, BATCH_SIZE, (WIDTH, HEIGHT))
 val_gen = data_gen_small(data_dir, mask_dir, validation_images, BATCH_SIZE, (WIDTH, HEIGHT))
 
-"""
-Set up U-Net model
-Define down and up layers that will be used in U-Net model
-"""
 
-
+# Set up U-Net model
+# Define down and up layers that will be used in U-Net model
 def down(input_layer, filters, pool=True):
     """
     filters: numbers of filters that convolutional layers will learn from.
@@ -174,10 +183,9 @@ def up(input_layer, residual, filters):
 # Make a custom U-net implementation.
 filters = 64
 
-"""
-Input fn returns a KerasTensor
-What's wigging me out is: shape=(None, 512, 512, 3). Whaddya mean batch size "None"??
-"""
+# Input fn returns a KerasTensor
+# NOTE! It is incorrect to put the batch size here.
+# Input 0 of layer "max_pooling2d" is incompatible with the layer: expected ndim=4, found ndim=5. Full shape received: (None, 16, 512, 512, 64)
 input_layer = Input(shape=[WIDTH, HEIGHT, 3])
 layers = [input_layer]
 residuals = []
@@ -275,8 +283,6 @@ def try2():
 
 # Original
 model = Model(input_layer, out)
-model.compile(optimizer=adam, loss=BinaryCrossentropy(), metrics=['accuracy', dice_coef])
-
 print(model.summary())
 
 # Train model
@@ -314,12 +320,11 @@ try:
     if latest is not None:
         model.load_weights(latest)
 
-    # model.compile(optimizer=adam, loss=BinaryCrossentropy(), metrics=['accuracy', dice_coef])
+    model.compile(optimizer=adam, loss=BinaryCrossentropy(), metrics=['accuracy', dice_coef])
 
     model.fit(train_gen, callbacks=[cp_callback, early_stop, reduce_lr],
               steps_per_epoch=np.ceil(float(len(train_images)) / float(BATCH_SIZE)),
-              # todo: epochs=100,
-              epochs=1,
+              epochs=NUM_EPOCHS,
               validation_steps=np.ceil(float(len(validation_images)) / float(BATCH_SIZE)),
               validation_data=val_gen)
 
@@ -332,3 +337,7 @@ except Exception as e:
     print("\nErr:", exc_obj)
     print("\nLine:", exc_tb.tb_lineno)
     sys.exit(1)
+finally:
+    now = datetime.datetime.now()
+    print("\nEnd time: ")
+    print(now.strftime("%Y-%m-%d %H:%M:%S"))
