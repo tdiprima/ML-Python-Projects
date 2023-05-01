@@ -1,10 +1,14 @@
 """
 Basic U-Net architecture
 Takes a 3-channel input image and outputs a single-channel segmentation mask.
-what-is-unet.md
+U-Net.md
 """
 import torch
 import torch.nn as nn
+
+
+# from PIL import Image
+# from tensorflow.keras.preprocessing import image
 
 
 class DoubleConv(nn.Module):
@@ -12,10 +16,8 @@ class DoubleConv(nn.Module):
     The DoubleConv class defines a module that applies two convolutional layers
     with batch normalization and ReLU activation.
     """
-    print("DoubleConv")
 
     def __init__(self, in_channels, out_channels):
-        print("__init__")
         super(DoubleConv, self).__init__()
         self.conv = nn.Sequential(
             nn.Conv2d(in_channels, out_channels, kernel_size=3, padding=1),
@@ -27,7 +29,6 @@ class DoubleConv(nn.Module):
         )
 
     def forward(self, x):
-        print("forward")
         return self.conv(x)
 
 
@@ -36,10 +37,8 @@ class UNet(nn.Module):
     The UNet class defines the U-Net architecture, with the features parameter
     specifying the number of channels for each layer. (Orly?)
     """
-    print("UNet")
 
     def __init__(self, in_channels=3, out_channels=1, features=[64, 128, 256, 512]):
-        print("init 1")
         super(UNet, self).__init__()
         self.ups = nn.ModuleList()  # contains the up-sampling blocks.
         self.downs = nn.ModuleList()  # contains the down-sampling blocks.
@@ -63,9 +62,8 @@ class UNet(nn.Module):
 
     # The forward method performs the forward pass of the U-Net network
     def forward(self, x):
-        print("forward 1")
         """
-        The skip_connections list stores the outputs of the down-sampling blocks 
+        The skip_connections list stores the outputs of the down-sampling blocks
         for later use in the up-sampling path.
         """
         skip_connections = []
@@ -89,3 +87,44 @@ class UNet(nn.Module):
         # Final convolution
         x = self.final_conv(x)
         return x
+
+
+import matplotlib.pyplot as plt
+
+
+# Display results
+def display_results(model, test_image):
+    # Make a prediction on the test image
+    output = model(test_image)
+    prediction = output[-1].item()
+
+    # Plot the original image, ground truth, and predicted mask
+    fig, ax = plt.subplots(1, 3, figsize=(15, 5))
+    ax[0].imshow(test_image[0, :, :, 0], cmap='gray')
+    ax[0].set_title('Input Image')
+    ax[1].imshow(test_mask[0, :, :, 0], cmap='gray')
+    ax[1].set_title('Ground Truth')
+    ax[2].imshow(prediction[0, :, :, 0], cmap='gray')
+    ax[2].set_title('Prediction')
+    plt.show()
+
+
+model = UNet()  # Using the defaults
+
+# Test the model with a sample image
+# TODO: Given groups=1, weight of size [64, 3, 3, 3], expected input[1, 256, 256, 1] to have 3 channels, but got 256 channels instead
+
+# test_image = Image.open("../TensorFlow/augmentation/ale.png")
+# img = image.img_to_array(test_image)
+# img = img.reshape((1,) + img.shape)
+# test_image = img
+# test_mask = torch.from_numpy(test_image)
+
+# Test the model with a sample image
+test_image = torch.ones((256, 256, 3))
+test_mask = torch.zeros((256, 256, 3))
+
+test_image = test_image.squeeze()
+test_mask = test_mask.squeeze()
+
+display_results(model, test_image)
