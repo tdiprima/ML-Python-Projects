@@ -75,9 +75,10 @@ class UNET(nn.Module):
             x = self.pool(x)
 
         x = self.bottleneck(x)
+
         """
         We wanna go backwards in that order when doing the concatenation;
-        first element = highest res, so reverse that list.
+        first element = highest res, so reverse that list with [::-1].
         """
         skip_connections = skip_connections[::-1]
 

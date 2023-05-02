@@ -99,6 +99,7 @@ def _get_image_data_pil(image_id, image_type, return_exif_md=False, return_shape
         assert False, "Failed to read image : %s, %s. Error message: %s" % (image_id, image_type, e)
 
     if return_shape_only:
+        # The [::-1] syntax is used to reverse a sequence, such as a list, tuple, or NumPy array.
         return img_pil.size[::-1] + (len(img_pil.getbands()),)
 
     img = np.asarray(img_pil)
