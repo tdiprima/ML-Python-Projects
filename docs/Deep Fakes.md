@@ -72,3 +72,9 @@ In the case of faces, the latent representation might capture features such as
 * and other facial features
 
 This latent representation can be used to generate new faces with different attributes, such as **different expressions** or **poses**, by modifying the values in the latent space.
+
+# PyTorch
+
+[Deep Convolution Generative Adversarial Networks](https://github.com/pytorch/examples/tree/main/dcgan)
+
+<br>

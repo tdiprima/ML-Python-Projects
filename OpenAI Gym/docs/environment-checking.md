@@ -39,5 +39,9 @@ The output should be a **string** that describes any issues found in the environ
 
 If no issues are found, the output will be an empty string.  <span style="color:#0000dd;font-size:larger;">Or "None", as it were.</span>
 
+# Sure, now I see it:
+
+[Reinforcement Learning (DQN) Tutorial](https://pytorch.org/tutorials/intermediate/reinforcement_q_learning.html)
+
 <br>
 
