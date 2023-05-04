@@ -43,9 +43,7 @@ class Encoder(Module):
 
         # Each Block takes the input channels of the previous block and doubles
         # the channels in the output feature map.
-        self.encBlocks = ModuleList(
-            [Block(channels[i], channels[i + 1])
-             for i in range(len(channels) - 1)])
+        self.encBlocks = ModuleList([Block(channels[i], channels[i + 1]) for i in range(len(channels) - 1)])
 
         # Initialize a MaxPool2d() layer, which reduces the spatial dimension
         # of the feature maps by a factor of 2
@@ -83,15 +81,13 @@ class Decoder(Module):
 
         # Define a list of upsampling blocks that use the ConvTranspose2d layer
         # to upsample the spatial dimension of the feature maps by a factor of 2.
+        # upconvolution 64 to 32, 32 to 16 respectively
         self.upconvs = ModuleList(
-            [ConvTranspose2d(channels[i], channels[i + 1], 2, 2)
-             for i in range(len(channels) - 1)]
-        )
+            [ConvTranspose2d(channels[i], channels[i + 1], 2, 2) for i in range(len(channels) - 1)])
 
+        # define 3*3 conv and RELU block
         # The layer also reduces the number of channels by a factor of 2.
-        self.dec_blocks = ModuleList(
-            [Block(channels[i], channels[i + 1])
-             for i in range(len(channels) - 1)])
+        self.dec_blocks = ModuleList([Block(channels[i], channels[i + 1]) for i in range(len(channels) - 1)])
 
     def forward(self, x, encFeatures):
         """
@@ -114,6 +110,7 @@ class Decoder(Module):
             x = torch.cat([x, encFeat], dim=1)
 
             # Pass the concatenated output through our i-th decoder block
+            # 3*3 conv and RELU for each upscending layer.
             x = self.dec_blocks[i](x)
 
         # return the final decoder output
@@ -158,6 +155,7 @@ class UNet(Module):
             We set this to the same dimension as our input image (config.INPUT_IMAGE_HEIGHT, config.INPUT_IMAGE_WIDTH)
         """
         super().__init__()
+
         # initialize the encoder and decoder
         self.encoder = Encoder(encChannels)
         self.decoder = Decoder(decChannels)
@@ -173,17 +171,16 @@ class UNet(Module):
 
         # pass the encoder features through decoder making sure that
         # their dimensions are suited for concatenation
-        decFeatures = self.decoder(encFeatures[::-1][0],
-                                   encFeatures[::-1][1:])
+        decFeatures = self.decoder(encFeatures[::-1][0], encFeatures[::-1][1:])
 
         # pass the decoder features through the regression head to
         # obtain the segmentation mask
-        map = self.head(decFeatures)
+        map_ = self.head(decFeatures)
 
         # check to see if we are retaining the original output
         # dimensions and if so, then resize the output to match them
         if self.retainDim:
-            map = F.interpolate(map, self.outSize)
+            map_ = F.interpolate(map_, self.outSize)
 
         # return the segmentation map
-        return map
+        return map_

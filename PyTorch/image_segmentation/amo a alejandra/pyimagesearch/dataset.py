@@ -8,7 +8,7 @@ class SegmentationDataset(Dataset):
     and should have a __len__ and a __getitem__
     """
 
-    def __init__(self, imagePaths, maskPaths, transforms=None):
+    def __init__(self, imagePaths, maskPaths, transforms):
         """
         Initializer constructor
         imagePaths: list of image paths

@@ -46,14 +46,13 @@ def make_predictions(model, imagePath):
 
         # find the filename and generate the path to ground truth mask
         filename = imagePath.split(os.path.sep)[-1]
-        groundTruthPath = os.path.join(config.MASK_DATASET_PATH,
-                                       filename)
+        groundTruthPath = os.path.join(config.MASK_DATASET_PATH, filename)
 
-        # load the ground-truth segmentation mask in grayscale mode
-        # and resize it
+        # load the ground-truth segmentation mask in grayscale mode and resize it
         gtMask = cv2.imread(groundTruthPath, 0)
-        gtMask = cv2.resize(gtMask, (config.INPUT_IMAGE_HEIGHT,
-                                     config.INPUT_IMAGE_HEIGHT))
+
+        # Says height and height, but it does work.
+        gtMask = cv2.resize(gtMask, (config.INPUT_IMAGE_HEIGHT, config.INPUT_IMAGE_HEIGHT))
 
         # make the channel axis to be the leading one, add a batch
         # dimension, create a PyTorch tensor, and flash it to the
