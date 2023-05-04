@@ -20,6 +20,10 @@ import os
 imagePaths = sorted(list(paths.list_images(config.IMAGE_DATASET_PATH)))
 maskPaths = sorted(list(paths.list_images(config.MASK_DATASET_PATH)))
 
+if len(imagePaths) == 0:
+    print("\nGot Data?")
+    exit(1)
+
 # partition the data into training and testing splits using 85% of
 # the data for training and the remaining 15% for testing
 split = train_test_split(imagePaths, maskPaths,
