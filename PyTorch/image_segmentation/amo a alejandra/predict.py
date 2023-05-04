@@ -1,13 +1,11 @@
 # USAGE
 # python predict.py
-import os
-
-import cv2
+from pyimagesearch import config
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
-
-from pyimagesearch import config
+import cv2
+import os
 
 
 def prepare_plot(origImage, origMask, predMask):
@@ -27,6 +25,7 @@ def prepare_plot(origImage, origMask, predMask):
     # set the layout of the figure and display it
     figure.tight_layout()
     figure.show()
+    plt.show()
 
 
 def make_predictions(model, imagePath):
@@ -77,8 +76,7 @@ def make_predictions(model, imagePath):
         prepare_plot(orig, gtMask, predMask)
 
 
-# load the image paths in our testing file and randomly select 10
-# image paths
+# load the image paths in our testing file and randomly select 10 image paths
 print("\n[INFO] loading up test image paths...")
 imagePaths = open(config.TEST_PATHS).read().strip().split("\n")
 imagePaths = np.random.choice(imagePaths, size=10)

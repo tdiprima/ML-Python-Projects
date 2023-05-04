@@ -1,16 +1,14 @@
 # Import the necessary layers, modules, and activation functions from PyTorch
-import torch
-from torch.nn import Conv2d
+from . import config
 from torch.nn import ConvTranspose2d
+from torch.nn import Conv2d
 from torch.nn import MaxPool2d
 from torch.nn import Module
 from torch.nn import ModuleList
 from torch.nn import ReLU
-from torch.nn import functional as F
 from torchvision.transforms import CenterCrop
-
-from . import config
-# import config
+from torch.nn import functional as F
+import torch
 
 
 # All models or model sub-parts are required to inherit from the PyTorch Module class
@@ -20,23 +18,17 @@ class Block(Module):
     apply two convolution operations with a ReLU activation between them, and
     return the output feature map with the outChannels channels.
     """
-
     def __init__(self, inChannels, outChannels):
-        """
-        Initialize the two convolution layers (self.conv1 and self.conv2)
-        and a ReLU activation
-        """
         super().__init__()
+        # Initialize the two convolution layers (self.conv1 and self.conv2)
         self.conv1 = Conv2d(inChannels, outChannels, 3)
+        # and a ReLU activation
         self.relu = ReLU()
         self.conv2 = Conv2d(outChannels, outChannels, 3)
 
     def forward(self, x):
-        """
-        Take our feature map x, apply self.conv1 => self.relu => self.conv2
-        sequence of operations, and return the output feature map.
-        """
-
+        # Take our feature map x, apply self.conv1 => self.relu => self.conv2
+        # sequence of operations, and return the output feature map.
         return self.conv2(self.relu(self.conv1(x)))
 
 
@@ -81,9 +73,7 @@ class Encoder(Module):
 
 
 class Decoder(Module):
-    """
-    The channels gradually decrease by a factor of 2 instead of increasing.
-    """
+    # The channels gradually decrease by a factor of 2 instead of increasing.
 
     def __init__(self, channels=(64, 32, 16)):
         super().__init__()
@@ -153,18 +143,21 @@ class UNet(Module):
         """
         encChannels: gradual increase in channel dimension as our input passes through the encoder
             We start with 3 channels (RGB) and subsequently [double] the number of channels.
+
         decChannels: gradual decrease in channel dimension as our input passes through the decoder.
             We reduce the channels by a factor of 2 at every step.
+
         nbClasses: defines the number of segmentation classes where we have to classify each pixel.
             This usually corresponds to the number of channels in our output segmentation map,
             where we have one channel for each class.
             Since it's binary classification, we keep a single channel and use thresholding for classification
+
         retainDim: indicates whether we want to retain the original output dimension.
+
         outSize: spatial dimensions of the output segmentation map.
             We set this to the same dimension as our input image (config.INPUT_IMAGE_HEIGHT, config.INPUT_IMAGE_WIDTH)
         """
         super().__init__()
-
         # initialize the encoder and decoder
         self.encoder = Encoder(encChannels)
         self.decoder = Decoder(decChannels)

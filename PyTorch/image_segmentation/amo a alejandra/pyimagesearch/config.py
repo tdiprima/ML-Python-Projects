@@ -1,9 +1,8 @@
 """
 https://pyimagesearch.com/2021/11/08/u-net-training-image-segmentation-models-in-pytorch/
 """
-import os
-
 import torch
+import os
 
 # base path of the dataset
 DATASET_PATH = os.path.join("dataset", "train")
@@ -30,7 +29,7 @@ NUM_LEVELS = 3
 # initialize learning rate, number of epochs to train for, and the
 # batch size
 INIT_LR = 0.001
-# NUM_EPOCHS = 40
+# NUM_EPOCHS = 40  # TODO
 NUM_EPOCHS = 1
 BATCH_SIZE = 64
 

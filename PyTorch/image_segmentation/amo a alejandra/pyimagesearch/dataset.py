@@ -1,5 +1,5 @@
-import cv2  # image handling
 from torch.utils.data import Dataset  # all PyTorch datasets must inherit from this base class
+import cv2  # image handling
 
 
 class SegmentationDataset(Dataset):
@@ -21,16 +21,12 @@ class SegmentationDataset(Dataset):
         self.transforms = transforms
 
     def __len__(self):
-        """
-        Return the total number of image paths in our dataset (total samples)
-        """
+        # Return the total number of image paths in our dataset (total samples)
         return len(self.imagePaths)
 
     def __getitem__(self, idx):
-        """
-        Take an index as input and return the corresponding sample from the dataset
-        """
-        # simply grab the image path at the "idx" index in our list of input image paths
+        # Take an index as input and return the corresponding sample from the dataset.
+        # Simply grab the image path at the "idx" index in our list of input image paths
         imagePath = self.imagePaths[idx]
 
         # load the image from disk, swap its channels from BGR to RGB,
@@ -47,11 +43,4 @@ class SegmentationDataset(Dataset):
             mask = self.transforms(mask)
 
         # return a tuple of the image and its mask
-        return image, mask
-
-
-# Test out SegmentationDataset
-train_data = SegmentationDataset("../dataset/train/images", "../dataset/train/masks")
-
-print(train_data.getitem(1))
-print(len(train_data))
+        return (image, mask)
