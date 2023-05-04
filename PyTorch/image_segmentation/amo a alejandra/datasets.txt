@@ -1,0 +1,21 @@
+carvana = image segmentation
+
+cifar-10, mnist = image classification
+
+load_iris = linear [regression] classification
+
+Boston = linear regression, KNN regression, use CNN
+
+imdb = RNN, classify sentiment
+
+
+Got Data?
+
+seaborn has data sets, believe it or not
+
+sklearn
+
+torchvision
+
+
+By default Keras' model. fit() returns a History callback object. This object keeps track of the accuracy, loss and other training metrics, for each epoch, in the memory.
