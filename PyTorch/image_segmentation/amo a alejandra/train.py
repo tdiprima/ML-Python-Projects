@@ -16,6 +16,8 @@ import torch
 import time  # timing our training process
 import os
 
+NUM_WORKERS = 0  # os.cpu_count()
+
 # load the image and mask filepaths in a sorted manner
 imagePaths = sorted(list(paths.list_images(config.IMAGE_DATASET_PATH)))
 maskPaths = sorted(list(paths.list_images(config.MASK_DATASET_PATH)))
@@ -63,12 +65,12 @@ print(f"[INFO] found {len(testDS)} examples in the test set...")
 # of batch gradient-based optimization approaches.
 trainLoader = DataLoader(trainDS, shuffle=True,
                          batch_size=config.BATCH_SIZE, pin_memory=config.PIN_MEMORY,
-                         num_workers=os.cpu_count())
+                         num_workers=NUM_WORKERS)
 
 # create our test dataloader
 testLoader = DataLoader(testDS, shuffle=False,
                         batch_size=config.BATCH_SIZE, pin_memory=config.PIN_MEMORY,
-                        num_workers=os.cpu_count())
+                        num_workers=NUM_WORKERS)
 
 # Initialize our U-Net model and the training parameters.
 unet = UNet().to(config.DEVICE)
