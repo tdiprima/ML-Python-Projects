@@ -6,6 +6,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
 from torchvision import transforms, datasets
+import torchvision
 
 
 # Define the UNet architecture
@@ -90,10 +91,9 @@ def train(model, device, train_loader, optimizer, criterion):
         loss.backward()
         optimizer.step()
 
+        epoch = 1  # todo: define epoch
         if batch_idx % 10 == 0:
-            print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
-                epoch, batch_idx * len(data), len(train_loader.dataset),
-                       100. * batch_idx / len(train_loader), loss.item()))
+            print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(epoch, batch_idx * len(data), len(train_loader.dataset), 100.0 * batch_idx / len(train_loader), loss.item()))
 
 
 def validate(model, device, val_loader, criterion):
@@ -118,6 +118,7 @@ def visualize():
     Display sample predictions from model
     """
     pass
+
 
 def main():
     """
