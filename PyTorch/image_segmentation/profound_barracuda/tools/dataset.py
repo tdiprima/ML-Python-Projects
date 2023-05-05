@@ -43,4 +43,4 @@ class SegmentationDataset(Dataset):
             mask = self.transforms(mask)
 
         # return a tuple of the image and its mask
-        return (image, mask)
+        return image, mask

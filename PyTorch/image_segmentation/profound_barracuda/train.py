@@ -1,9 +1,9 @@
 # USAGE
 # python train.py
 # https://www.kaggle.com/code/tammydiprima/pytorch-unet/
-from bajista.dataset import SegmentationDataset
-from bajista.model import UNet
-from bajista import config
+from tools.dataset import SegmentationDataset
+from tools.model import UNet
+from tools import config
 from torch.nn import BCEWithLogitsLoss  # using binary cross-entropy loss to train our model
 from torch.optim import Adam  # to train our network
 from torch.utils.data import DataLoader
@@ -14,9 +14,8 @@ from tqdm import tqdm  # keeping track of progress during training
 import matplotlib.pyplot as plt
 import torch
 import time  # timing our training process
-# import os
 
-NUM_WORKERS = 0  # os.cpu_count()
+NUM_WORKERS = 0
 
 # load the image and mask filepaths in a sorted manner
 image_paths = sorted(list(paths.list_images(config.IMAGE_DATASET_PATH)))

@@ -1,6 +1,6 @@
 # USAGE
 # python predict.py
-from bajista import config
+from tools import config
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
