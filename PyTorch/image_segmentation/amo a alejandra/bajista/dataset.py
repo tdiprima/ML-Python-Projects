@@ -29,11 +29,11 @@ class SegmentationDataset(Dataset):
         # Simply grab the image path at the "idx" index in our list of input image paths
         image_path = self.image_paths[idx]
 
-        # load the image from disk, swap its channels from BGR to RGB,
-        # and read the associated mask from disk in grayscale mode
+        # load the image from disk, swap its channels from BGR to RGB
         image = cv2.imread(image_path)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
+        # Read the associated mask from disk in grayscale mode
         mask = cv2.imread(self.mask_paths[idx], 0)
 
         # check to see if we are applying any transformations

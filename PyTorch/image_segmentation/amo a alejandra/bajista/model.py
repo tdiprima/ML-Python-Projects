@@ -75,8 +75,8 @@ class Decoder(Module):
 
     def __init__(self, channels=(64, 32, 16)):
         super().__init__()
-        # initialize the number of channels, upsampler blocks, and
-        # decoder blocks
+
+        # initialize the number of channels, upsampler blocks, and decoder blocks
         self.channels = channels
 
         # Define a list of upsampling blocks that use the ConvTranspose2d layer
