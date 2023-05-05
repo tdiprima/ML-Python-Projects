@@ -11,12 +11,15 @@ def load_and_preprocess_data():
     end = 1
     step = 0.02
 
+    # Just stepping from zero to 1...
     X = torch.arange(start, end, step).unsqueeze(dim=1)
+    # And assuming we're doing linear regression...
     y = weight * X + bias
 
     split_position = int(0.8 * len(X))
     X_train, y_train = X[:split_position], y[:split_position]
     X_test, y_test = X[split_position:], y[split_position:]
+
     return X_train, y_train, X_test, y_test
 
 
@@ -70,5 +73,6 @@ with torch.no_grad():
     predictions = model(test_data)
 
 # Print out some results
-print('Test accuracy:', test_acc.item())
-print('Predictions:', predictions)
+print('\nTest accuracy:', test_acc.item())
+print('\nLength:', len(predictions))
+print('\nPredictions:', predictions)
