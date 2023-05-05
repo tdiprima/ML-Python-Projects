@@ -77,8 +77,10 @@ def make_predictions(model, image_path):
 
 # load the image paths in our testing file and randomly select 10 image paths
 print("\n[INFO] loading up test image paths...")
-image_paths = open(config.TEST_PATHS).read().strip().split("\n")
-image_paths = np.random.choice(image_paths, size=10)
+# image_paths = open(config.TEST_PATHS).read().strip().split("\n")
+# image_paths = np.random.choice(image_paths, size=10)
+
+image_paths = ["dataset/train/images/7cc53fe88b.png", "dataset/train/images/9ca520f895.png"]
 
 # load our model from disk and flash it to the current device
 print("\n[INFO] load up model...")
