@@ -5,7 +5,7 @@ import torch
 import os
 
 # base path of the dataset
-DATASET_PATH = os.path.join("dataset", "train")
+DATASET_PATH = os.path.join("data", "train")
 
 # define the path to the images and masks dataset
 IMAGE_DATASET_PATH = os.path.join(DATASET_PATH, "images")
@@ -29,8 +29,8 @@ NUM_LEVELS = 3
 # initialize learning rate, number of epochs to train for, and the
 # batch size
 INIT_LR = 0.001
-NUM_EPOCHS = 1  # TODO
-# NUM_EPOCHS = 40
+# NUM_EPOCHS = 1  # TODO
+NUM_EPOCHS = 40
 BATCH_SIZE = 64
 
 # define the input image dimensions
