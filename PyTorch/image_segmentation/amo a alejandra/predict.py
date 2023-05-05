@@ -1,6 +1,6 @@
 # USAGE
 # python predict.py
-from pyimagesearch import config
+from bajista import config
 import matplotlib.pyplot as plt
 import numpy as np
 import torch

@@ -1,9 +1,9 @@
 # USAGE
 # python train.py
 # https://www.kaggle.com/code/tammydiprima/pytorch-unet/
-from pyimagesearch.dataset import SegmentationDataset
-from pyimagesearch.model import UNet
-from pyimagesearch import config
+from bajista.dataset import SegmentationDataset
+from bajista.model import UNet
+from bajista import config
 from torch.nn import BCEWithLogitsLoss  # using binary cross-entropy loss to train our model
 from torch.optim import Adam  # to train our network
 from torch.utils.data import DataLoader
@@ -14,7 +14,7 @@ from tqdm import tqdm  # keeping track of progress during training
 import matplotlib.pyplot as plt
 import torch
 import time  # timing our training process
-import os
+# import os
 
 NUM_WORKERS = 0  # os.cpu_count()
 
@@ -23,7 +23,7 @@ imagePaths = sorted(list(paths.list_images(config.IMAGE_DATASET_PATH)))
 maskPaths = sorted(list(paths.list_images(config.MASK_DATASET_PATH)))
 
 if len(imagePaths) == 0:
-    print("\nGot Data?")
+    print("\nGot Data?\n")
     exit(1)
 
 # partition the data into training and testing splits using 85% of
@@ -95,54 +95,54 @@ H = {"train_loss": [], "test_loss": []}
 print("[INFO] training the network...")
 startTime = time.time()
 
-# for e in tqdm(range(config.NUM_EPOCHS)):
-#     # set the model in training mode
-#     unet.train()
-#
-#     # initialize the total training and validation loss
-#     totalTrainLoss = 0
-#     totalTestLoss = 0
-#
-#     # loop over the training set
-#     for (i, (x, y)) in enumerate(trainLoader):
-#         # send the input to the device
-#         (x, y) = (x.to(config.DEVICE), y.to(config.DEVICE))
-#         # perform a forward pass and calculate the training loss
-#         pred = unet(x)
-#         loss = lossFunc(pred, y)
-#         # first, zero out any previously accumulated gradients, then
-#         # perform backpropagation, and then update model parameters
-#         opt.zero_grad()
-#         loss.backward()
-#         opt.step()
-#
-#         # add the loss to the total training loss so far
-#         totalTrainLoss += loss
-#
-#     # switch off autograd
-#     with torch.no_grad():
-#         # set the model in evaluation mode
-#         unet.eval()
-#
-#         # loop over the validation set
-#         for (x, y) in testLoader:
-#             # send the input to the device
-#             (x, y) = (x.to(config.DEVICE), y.to(config.DEVICE))
-#             # make the predictions and calculate the validation loss
-#             pred = unet(x)
-#             totalTestLoss += lossFunc(pred, y)
-#
-#     # calculate the average training and validation loss
-#     avgTrainLoss = totalTrainLoss / trainSteps
-#     avgTestLoss = totalTestLoss / testSteps
-#
-#     # update our training history
-#     H["train_loss"].append(avgTrainLoss.cpu().detach().numpy())
-#     H["test_loss"].append(avgTestLoss.cpu().detach().numpy())
-#
-#     # print the model training and validation information
-#     print("\n[INFO] EPOCH: {}/{}".format(e + 1, config.NUM_EPOCHS))
-#     print("Train loss: {:.6f}, Test loss: {:.4f}".format(avgTrainLoss, avgTestLoss))
+for e in tqdm(range(config.NUM_EPOCHS)):
+    # set the model in training mode
+    unet.train()
+
+    # initialize the total training and validation loss
+    totalTrainLoss = 0
+    totalTestLoss = 0
+
+    # loop over the training set
+    for (i, (x, y)) in enumerate(trainLoader):
+        # send the input to the device
+        (x, y) = (x.to(config.DEVICE), y.to(config.DEVICE))
+        # perform a forward pass and calculate the training loss
+        pred = unet(x)
+        loss = lossFunc(pred, y)
+        # first, zero out any previously accumulated gradients, then
+        # perform backpropagation, and then update model parameters
+        opt.zero_grad()
+        loss.backward()
+        opt.step()
+
+        # add the loss to the total training loss so far
+        totalTrainLoss += loss
+
+    # switch off autograd
+    with torch.no_grad():
+        # set the model in evaluation mode
+        unet.eval()
+
+        # loop over the validation set
+        for (x, y) in testLoader:
+            # send the input to the device
+            (x, y) = (x.to(config.DEVICE), y.to(config.DEVICE))
+            # make the predictions and calculate the validation loss
+            pred = unet(x)
+            totalTestLoss += lossFunc(pred, y)
+
+    # calculate the average training and validation loss
+    avgTrainLoss = totalTrainLoss / trainSteps
+    avgTestLoss = totalTestLoss / testSteps
+
+    # update our training history
+    H["train_loss"].append(avgTrainLoss.cpu().detach().numpy())
+    H["test_loss"].append(avgTestLoss.cpu().detach().numpy())
+
+    # print the model training and validation information
+    print("\n[INFO] EPOCH: {}/{}".format(e + 1, config.NUM_EPOCHS))
+    print("Train loss: {:.6f}, Test loss: {:.4f}".format(avgTrainLoss, avgTestLoss))
 
 # display the total time needed to perform the training
 endTime = time.time()
