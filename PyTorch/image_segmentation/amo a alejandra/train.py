@@ -19,21 +19,21 @@ import time  # timing our training process
 NUM_WORKERS = 0  # os.cpu_count()
 
 # load the image and mask filepaths in a sorted manner
-imagePaths = sorted(list(paths.list_images(config.IMAGE_DATASET_PATH)))
-maskPaths = sorted(list(paths.list_images(config.MASK_DATASET_PATH)))
+image_paths = sorted(list(paths.list_images(config.IMAGE_DATASET_PATH)))
+mask_paths = sorted(list(paths.list_images(config.MASK_DATASET_PATH)))
 
-if len(imagePaths) == 0:
+if len(image_paths) == 0:
     print("\nGot Data?\n")
     exit(1)
 
 # partition the data into training and testing splits using 85% of
 # the data for training and the remaining 15% for testing
-split = train_test_split(imagePaths, maskPaths,
+split = train_test_split(image_paths, mask_paths,
                          test_size=config.TEST_SPLIT, random_state=42)
 
 # unpack the data split
-(trainImages, testImages) = split[:2]
-(trainMasks, testMasks) = split[2:]
+(train_images, testImages) = split[:2]
+(train_masks, testMasks) = split[2:]
 
 # write the testing image paths to disk so that we can use them when evaluating/testing our model
 print("\n[INFO] saving testing image paths...")
@@ -51,24 +51,24 @@ transforms = transforms.Compose([transforms.ToPILImage(),
 # which is originally in the range from [0, 255], to [0, 1].
 
 # create the train and test datasets
-trainDS = SegmentationDataset(imagePaths=trainImages, maskPaths=trainMasks,
+train_ds = SegmentationDataset(image_paths=train_images, mask_paths=train_masks,
                               transforms=transforms)
 
-testDS = SegmentationDataset(imagePaths=testImages, maskPaths=testMasks,
+test_ds = SegmentationDataset(image_paths=testImages, mask_paths=testMasks,
                              transforms=transforms)
 
-print(f"\n[INFO] found {len(trainDS)} examples in the training set...")
-print(f"[INFO] found {len(testDS)} examples in the test set...")
+print(f"\n[INFO] found {len(train_ds)} examples in the training set...")
+print(f"[INFO] found {len(test_ds)} examples in the test set...")
 
 # shuffle = True in the train dataloader since we want samples from all classes to be
 # uniformly present in a batch, which is important for optimal learning and convergence
 # of batch gradient-based optimization approaches.
-trainLoader = DataLoader(trainDS, shuffle=True,
+train_loader = DataLoader(train_ds, shuffle=True,
                          batch_size=config.BATCH_SIZE, pin_memory=config.PIN_MEMORY,
                          num_workers=NUM_WORKERS)
 
 # create our test dataloader
-testLoader = DataLoader(testDS, shuffle=False,
+test_loader = DataLoader(test_ds, shuffle=False,
                         batch_size=config.BATCH_SIZE, pin_memory=config.PIN_MEMORY,
                         num_workers=NUM_WORKERS)
 
@@ -76,15 +76,15 @@ testLoader = DataLoader(testDS, shuffle=False,
 unet = UNet().to(config.DEVICE)
 
 # initialize loss function and optimizer
-lossFunc = BCEWithLogitsLoss()
+loss_func = BCEWithLogitsLoss()
 
 # The Adam optimizer class takes the parameters of our model and the learning rate
 # that we will be using to train our model.
 opt = Adam(unet.parameters(), lr=config.INIT_LR)
 
 # Calculate the number of steps required to iterate over our entire train and test set.
-trainSteps = len(trainDS) // config.BATCH_SIZE
-testSteps = len(testDS) // config.BATCH_SIZE
+train_steps = len(train_ds) // config.BATCH_SIZE
+test_steps = len(test_ds) // config.BATCH_SIZE
 
 # Create an empty dictionary to keep track of our training and test loss history.
 H = {"train_loss": [], "test_loss": []}
@@ -93,23 +93,23 @@ H = {"train_loss": [], "test_loss": []}
 
 # loop over epochs
 print("[INFO] training the network...")
-startTime = time.time()
+start_time = time.time()
 
 for e in tqdm(range(config.NUM_EPOCHS)):
     # set the model in training mode
     unet.train()
 
     # initialize the total training and validation loss
-    totalTrainLoss = 0
-    totalTestLoss = 0
+    total_train_loss = 0
+    total_test_loss = 0
 
     # loop over the training set
-    for (i, (x, y)) in enumerate(trainLoader):
+    for (i, (x, y)) in enumerate(train_loader):
         # send the input to the device
         (x, y) = (x.to(config.DEVICE), y.to(config.DEVICE))
         # perform a forward pass and calculate the training loss
         pred = unet(x)
-        loss = lossFunc(pred, y)
+        loss = loss_func(pred, y)
         # first, zero out any previously accumulated gradients, then
         # perform backpropagation, and then update model parameters
         opt.zero_grad()
@@ -117,7 +117,7 @@ for e in tqdm(range(config.NUM_EPOCHS)):
         opt.step()
 
         # add the loss to the total training loss so far
-        totalTrainLoss += loss
+        total_train_loss += loss
 
     # switch off autograd
     with torch.no_grad():
@@ -125,28 +125,28 @@ for e in tqdm(range(config.NUM_EPOCHS)):
         unet.eval()
 
         # loop over the validation set
-        for (x, y) in testLoader:
+        for (x, y) in test_loader:
             # send the input to the device
             (x, y) = (x.to(config.DEVICE), y.to(config.DEVICE))
             # make the predictions and calculate the validation loss
             pred = unet(x)
-            totalTestLoss += lossFunc(pred, y)
+            total_test_loss += loss_func(pred, y)
 
     # calculate the average training and validation loss
-    avgTrainLoss = totalTrainLoss / trainSteps
-    avgTestLoss = totalTestLoss / testSteps
+    avg_train_loss = total_train_loss / train_steps
+    avg_test_loss = total_test_loss / test_steps
 
     # update our training history
-    H["train_loss"].append(avgTrainLoss.cpu().detach().numpy())
-    H["test_loss"].append(avgTestLoss.cpu().detach().numpy())
+    H["train_loss"].append(avg_train_loss.cpu().detach().numpy())
+    H["test_loss"].append(avg_test_loss.cpu().detach().numpy())
 
     # print the model training and validation information
     print("\n[INFO] EPOCH: {}/{}".format(e + 1, config.NUM_EPOCHS))
-    print("Train loss: {:.6f}, Test loss: {:.4f}".format(avgTrainLoss, avgTestLoss))
+    print("Train loss: {:.6f}, Test loss: {:.4f}".format(avg_train_loss, avg_test_loss))
 
 # display the total time needed to perform the training
-endTime = time.time()
-print("\n[INFO] total time taken to train the model: {:.2f}s".format(endTime - startTime))
+end_time = time.time()
+print("\n[INFO] total time taken to train the model: {:.2f}s".format(end_time - start_time))
 
 # plot the training loss
 plt.style.use("ggplot")

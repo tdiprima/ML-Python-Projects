@@ -8,14 +8,14 @@ import cv2
 import os
 
 
-def prepare_plot(origImage, origMask, predMask):
+def prepare_plot(orig_image, orig_mask, pred_mask):
     # initialize our figure
     figure, ax = plt.subplots(nrows=1, ncols=3, figsize=(10, 10))
 
     # plot the original image, its mask, and the predicted mask
-    ax[0].imshow(origImage)
-    ax[1].imshow(origMask)
-    ax[2].imshow(predMask)
+    ax[0].imshow(orig_image)
+    ax[1].imshow(orig_mask)
+    ax[2].imshow(pred_mask)
 
     # set the titles of the subplots
     ax[0].set_title("Image")
@@ -28,7 +28,7 @@ def prepare_plot(origImage, origMask, predMask):
     plt.show()
 
 
-def make_predictions(model, imagePath):
+def make_predictions(model, image_path):
     # set model to evaluation mode
     model.eval()
 
@@ -36,7 +36,7 @@ def make_predictions(model, imagePath):
     with torch.no_grad():
         # load the image from disk, swap its color channels, cast it
         # to float data type, and scale its pixel values
-        image = cv2.imread(imagePath)
+        image = cv2.imread(image_path)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         image = image.astype("float32") / 255.0
 
@@ -45,14 +45,14 @@ def make_predictions(model, imagePath):
         orig = image.copy()
 
         # find the filename and generate the path to ground truth mask
-        filename = imagePath.split(os.path.sep)[-1]
-        groundTruthPath = os.path.join(config.MASK_DATASET_PATH, filename)
+        filename = image_path.split(os.path.sep)[-1]
+        ground_truth_path = os.path.join(config.MASK_DATASET_PATH, filename)
 
         # load the ground-truth segmentation mask in grayscale mode and resize it
-        gtMask = cv2.imread(groundTruthPath, 0)
+        gt_mask = cv2.imread(ground_truth_path, 0)
 
         # Says height and height, but it does work.
-        gtMask = cv2.resize(gtMask, (config.INPUT_IMAGE_HEIGHT, config.INPUT_IMAGE_HEIGHT))
+        gt_mask = cv2.resize(gt_mask, (config.INPUT_IMAGE_HEIGHT, config.INPUT_IMAGE_HEIGHT))
 
         # make the channel axis to be the leading one, add a batch
         # dimension, create a PyTorch tensor, and flash it to the
@@ -63,28 +63,28 @@ def make_predictions(model, imagePath):
 
         # make the prediction, pass the results through the sigmoid
         # function, and convert the result to a NumPy array
-        predMask = model(image).squeeze()
-        predMask = torch.sigmoid(predMask)
-        predMask = predMask.cpu().numpy()
+        pred_mask = model(image).squeeze()
+        pred_mask = torch.sigmoid(pred_mask)
+        pred_mask = pred_mask.cpu().numpy()
 
         # filter out the weak predictions and convert them to integers
-        predMask = (predMask > config.THRESHOLD) * 255
-        predMask = predMask.astype(np.uint8)
+        pred_mask = (pred_mask > config.THRESHOLD) * 255
+        pred_mask = pred_mask.astype(np.uint8)
 
         # prepare a plot for visualization
-        prepare_plot(orig, gtMask, predMask)
+        prepare_plot(orig, gt_mask, pred_mask)
 
 
 # load the image paths in our testing file and randomly select 10 image paths
 print("\n[INFO] loading up test image paths...")
-imagePaths = open(config.TEST_PATHS).read().strip().split("\n")
-imagePaths = np.random.choice(imagePaths, size=10)
+image_paths = open(config.TEST_PATHS).read().strip().split("\n")
+image_paths = np.random.choice(image_paths, size=10)
 
 # load our model from disk and flash it to the current device
 print("\n[INFO] load up model...")
 unet = torch.load(config.MODEL_PATH).to(config.DEVICE)
 
 # iterate over the randomly selected test image paths
-for path in imagePaths:
+for path in image_paths:
     # make predictions and visualize the results
     make_predictions(unet, path)
