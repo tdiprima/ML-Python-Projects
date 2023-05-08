@@ -1,11 +1,16 @@
 # USAGE
 # python predict.py
 from tools import config
+import matplotlib
+matplotlib.use('Agg')
+
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
 import cv2
 import os
+
+import uuid
 
 
 def prepare_plot(orig_image, orig_mask, pred_mask):
@@ -25,6 +30,7 @@ def prepare_plot(orig_image, orig_mask, pred_mask):
     # set the layout of the figure and display it
     figure.tight_layout()
     figure.show()
+    plt.savefig(f"plot{uuid.uuid1()}.png")
     plt.show()
 
 
