@@ -14,17 +14,17 @@ import torch
 # All models or model sub-parts are required to inherit from the PyTorch Module class
 class Block(Module):
     """
-    Take an input feature map with the inChannels number of channels,
+    Take an input feature map with the in_channels number of channels,
     apply two convolution operations with a ReLU activation between them, and
-    return the output feature map with the outChannels channels.
+    return the output feature map with the out_channels channels.
     """
-    def __init__(self, inChannels, outChannels):
+    def __init__(self, in_channels, out_channels):
         super().__init__()
         # Initialize the two convolution layers (self.conv1 and self.conv2)
-        self.conv1 = Conv2d(inChannels, outChannels, 3)
+        self.conv1 = Conv2d(in_channels, out_channels, 3)
         # and a ReLU activation
         self.relu = ReLU()
-        self.conv2 = Conv2d(outChannels, outChannels, 3)
+        self.conv2 = Conv2d(out_channels, out_channels, 3)
 
     def forward(self, x):
         # Take our feature map x, apply self.conv1 => self.relu => self.conv2
