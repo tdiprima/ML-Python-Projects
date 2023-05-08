@@ -51,8 +51,8 @@ def make_predictions(model, image_path):
         # load the ground-truth segmentation mask in grayscale mode and resize it
         gt_mask = cv2.imread(ground_truth_path, 0)
 
-        # Says height and height, but it does work.
-        gt_mask = cv2.resize(gt_mask, (config.INPUT_IMAGE_HEIGHT, config.INPUT_IMAGE_HEIGHT))
+        # cv2.resize(src, dsize), dim = (width, height)
+        gt_mask = cv2.resize(gt_mask, (config.INPUT_IMAGE_WIDTH, config.INPUT_IMAGE_HEIGHT))
 
         # make the channel axis to be the leading one, add a batch
         # dimension, create a PyTorch tensor, and flash it to the
