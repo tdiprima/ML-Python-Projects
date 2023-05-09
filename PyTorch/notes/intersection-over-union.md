@@ -76,6 +76,7 @@ iou = (660 + 1e-6) / (abs(-505) + 1e-6) = 1.3069306924615234
 So, the IoU between the two sets is approximately `1.306931`
 
 <br>
+
 <span style="color:#0000dd;font-weight:bold;font-size:larger;">What is zip(inputs, targets)?</span>
 
 `zip(inputs, targets)` is a built-in Python function that takes two or more iterables (like lists or tuples) and returns an **iterator of tuples,** where the i-th tuple contains the i-th element from each of the input iterables.
