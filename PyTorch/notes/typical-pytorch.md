@@ -18,8 +18,8 @@ def load_and_preprocess_data():
     y = weight * X + bias
 
     pos = int(0.8 * len(X))
-    X_train, y_train = X[:pos], y[:pos]
-    X_test, y_test = X[pos:], y[pos:]
+    X_train, y_train = X[:pos], y[:pos]  # Get all elements up until position
+    X_test, y_test = X[pos:], y[pos:]  # Get all elements from the position, onwards.
 
     return X_train, y_train, X_test, y_test
 
@@ -32,8 +32,11 @@ batch_size = 32
 # Load and preprocess your data
 train_data, train_labels, test_data, test_labels = load_and_preprocess_data()
 
-model = nn.Sequential(nn.Linear(in_features=1, out_features=10), nn.Linear(in_features=10, out_features=10),
-    nn.Linear(in_features=10, out_features=1))
+model = nn.Sequential(
+    nn.Linear(in_features=1, out_features=10), 
+    nn.Linear(in_features=10, out_features=10), 
+    nn.Linear(in_features=10, out_features=1)
+)
 
 # Define your loss function and optimizer
 loss_fn = nn.CrossEntropyLoss()
@@ -43,7 +46,7 @@ optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 for epoch in range(num_epochs):
     for i in range(0, len(train_data), batch_size):
         # Get a batch of data and labels
-        data_batch = train_data[i:i + batch_size]
+        data_batch = train_data[i:i + batch_size]  # From i to i + batch size
         labels_batch = train_labels[i:i + batch_size]
 
         # Zero out the gradients
@@ -63,7 +66,7 @@ for epoch in range(num_epochs):
 with torch.no_grad():
     outputs = model(test_data)
     test_loss = loss_fn(outputs, test_labels)
-    test_acc = (outputs.argmax(dim=1) == test_labels).float().mean()
+    test_acc = (outputs.argmax(dim=1) == test_labels).float().mean()  # Accuracy formula
 
 # Make predictions with your model
 with torch.no_grad():
