@@ -2,7 +2,7 @@
 
 No, but you can use third-party libraries to achieve similar functionality.
 
-One popular library for this purpose is `torchsummary`, which provides a `summary` function to display a summary of the PyTorch model architecture, similar to what `model.summary()` does in TensorFlow.
+One popular library for this purpose is <span style="color:red;">torchsummary</span>, which provides a `summary` function to display a summary of the PyTorch model architecture, similar to what `model.summary()` does in TensorFlow.
 
 <mark>**This works.**</mark>
 
@@ -41,9 +41,36 @@ model = MyModel()
 summary(model, (3, 32, 32))
 ```
 
-The `summary` function takes two arguments: the PyTorch model instance and the input shape of the data. The output of the function is a summary of the model architecture, including the layer types, input and output shapes, and the number of parameters in each layer.
+<br>
 
-### This works too
+The `summary` function takes two arguments: the PyTorch **model** instance and the **input shape** of the data.
+
+The output of the function is a summary of the model architecture, including the layer types, input and output shapes, and the number of parameters in each layer.
+
+```
+----------------------------------------------------------------
+        Layer (type)               Output Shape         Param #
+================================================================
+            Conv2d-1           [-1, 64, 32, 32]           1,792
+         MaxPool2d-2           [-1, 64, 16, 16]               0
+            Conv2d-3          [-1, 128, 16, 16]          73,856
+         MaxPool2d-4            [-1, 128, 8, 8]               0
+            Linear-5                   [-1, 10]          81,930
+================================================================
+Total params: 157,578
+Trainable params: 157,578
+Non-trainable params: 0
+----------------------------------------------------------------
+Input size (MB): 0.01
+Forward/backward pass size (MB): 0.94
+Params size (MB): 0.60
+Estimated Total Size (MB): 1.55
+----------------------------------------------------------------
+```
+
+<br>
+
+## This works too
 
 ```python
 import torch
