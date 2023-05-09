@@ -3,7 +3,7 @@
 How can I create a dummy (random) tensor, and test to see if the model works?
 
 Create a dummy tensor using the PyTorch `torch.randn()` function.
- 
+
 Test the model by passing this tensor through the model.
  
 Check if it produces the expected output shape.
@@ -51,3 +51,5 @@ We pass the input tensor through the model's `forward()` method to get the outpu
 
 However, if the assertion statement fails, it means that the output tensor shape is not as expected,
 and you may need to debug your model implementation to see what went wrong.
+
+<br>
