@@ -3,6 +3,7 @@
 Here's an example of a very simple PyTorch classification model using sklearn's `make_multilabel_classification` dataset generator for input:
 
 ```python
+# This simply trains a model
 import torch
 import torch.nn as nn
 from sklearn.datasets import make_multilabel_classification
@@ -13,6 +14,7 @@ X, y = make_multilabel_classification(n_samples=100, n_features=10, n_classes=5)
 # Convert the numpy arrays to PyTorch tensors
 X = torch.tensor(X, dtype=torch.float32)
 y = torch.tensor(y, dtype=torch.float32)
+
 
 # Define a simple neural network with one hidden layer
 class Net(nn.Module):
@@ -30,6 +32,7 @@ class Net(nn.Module):
         out = self.sigmoid(out)
         return out
 
+
 # Instantiate the model with the appropriate input, hidden, and output sizes
 net = Net(input_size=10, hidden_size=5, output_size=5)
 
@@ -37,8 +40,10 @@ net = Net(input_size=10, hidden_size=5, output_size=5)
 criterion = nn.BCELoss()
 optimizer = torch.optim.SGD(net.parameters(), lr=0.1)
 
+n_epochs = 1000
+
 # Train the model for 1000 epochs
-for epoch in range(1000):
+for epoch in range(n_epochs):
     # Zero the parameter gradients
     optimizer.zero_grad()
 
@@ -51,19 +56,10 @@ for epoch in range(1000):
     optimizer.step()
 
     # Print statistics every 100 epochs
-    if (epoch+1) % 100 == 0:
-        print('Epoch [{}/{}], Loss: {:.4f}'.format(epoch+1, 1000, loss.item()))
+    # Epoch [100/1000], Loss: 0.5422
+    if (epoch + 1) % 100 == 0:
+        print('Epoch [{}/{}], Loss: {:.4f}'.format(epoch + 1, n_epochs, loss.item()))
 ```
-
-In this example, we generate a random multilabel classification dataset with 100 samples and 10 features using `make_multilabel_classification`.
-
-We then convert the numpy arrays to PyTorch tensors, define a simple neural network with one hidden layer, and train the model for 1000 epochs using binary cross-entropy loss and stochastic gradient descent optimizer.
-
-We print the loss every 100 epochs.
-
-Note that this is a very simple example, and more complex models may be necessary for real-world datasets.
-
-***Mais, bien sûr!***
 
 
 ## Visualize X and y using scatter plot
@@ -80,6 +76,7 @@ def plot_dataset(X, y):
     plt.ylabel('Feature 2')
     plt.colorbar()
 
+
 # Generate a random multilabel classification dataset with 100 samples and 2 features
 X, y = make_multilabel_classification(n_samples=100, n_features=2, n_classes=3)
 
@@ -88,12 +85,18 @@ plot_dataset(X, y)
 plt.show()
 ```
 
-In this example, we define a function `plot_dataset` to plot the dataset `X` and corresponding labels `y`.
+<br>
+
+We define a function `plot_dataset` to plot the dataset `X` and corresponding labels `y`.
 
 We generate a random multilabel classification dataset with 100 samples and 2 features using `make_multilabel_classification`, and then call `plot_dataset` to visualize the dataset.
 
 The `c` argument is set to `y` to color the points based on their labels.
 
 The resulting plot will show the distribution of the dataset with different colors representing different labels.
+
+<mark>**Note!  The plot isn't very useful.  Look &dash;**</mark>
+
+![](../../images/dumb_plot.png)
 
 <br>
