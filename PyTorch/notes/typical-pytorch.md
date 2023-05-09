@@ -5,6 +5,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
+
 def load_and_preprocess_data():
     weight = 0.7
     bias = 0.3
@@ -21,6 +22,7 @@ def load_and_preprocess_data():
     X_test, y_test = X[split_position:], y[split_position:]
     return X_train, y_train, X_test, y_test
 
+
 # Define your hyperparameters
 learning_rate = 0.01
 num_epochs = 10
@@ -29,11 +31,8 @@ batch_size = 32
 # Load and preprocess your data
 train_data, train_labels, test_data, test_labels = load_and_preprocess_data()
 
-model = nn.Sequential(
-    nn.Linear(in_features=1, out_features=10),
-    nn.Linear(in_features=10, out_features=10),
-    nn.Linear(in_features=10, out_features=1)
-)
+model = nn.Sequential(nn.Linear(in_features=1, out_features=10), nn.Linear(in_features=10, out_features=10),
+    nn.Linear(in_features=10, out_features=1))
 
 # Define your loss function and optimizer
 loss_fn = nn.CrossEntropyLoss()
@@ -72,6 +71,7 @@ with torch.no_grad():
 # Print out some results
 print('Test accuracy:', test_acc.item())
 print('Predictions:', predictions)
+
 ```
 
 <br>
@@ -115,12 +115,18 @@ model = nn.Sequential(
 ```
 
 <br>
-This architecture seems to be suitable for a classification task on the MNIST dataset, which is a collection of 28x28 grayscale images of handwritten digits (0 to 9).
+This architecture seems to be suitable for a **classification** task on the MNIST dataset, which is a collection of **28x28** grayscale images of handwritten digits **(0 to 9).**
 
-The input size of 784 corresponds to flattening the 28x28 images into a 1D tensor of length 784.
+```c
+28 * 28 = 784
+```
 
-The output size of 10 represents the number of classes (digits) in the dataset.
+The input size of **784** corresponds to flattening the 28x28 images into a 1D tensor of length 784.
 
-The ReLU activation function is commonly used in neural networks for classification tasks, and the choice of 64 hidden units in the ~~middle~~ layer is a common choice for a simple and effective architecture.
+The output size of **10** represents the number of classes (digits) in the dataset.
+
+The **ReLU** activation function is commonly used in neural networks for classification tasks.
+
+The choice of **64** hidden units in the ~~middle~~ layer is a common choice for a simple and effective architecture.
 
 <br>
