@@ -14,12 +14,13 @@ def load_and_preprocess_data():
     end = 1
     step = 0.02
 
-    X = torch.arange(start, end, step).unsqueeze(dim=1)
+    X = torch.arange(start, end, step).unsqueeze(dim=1)  # Returns a 1-D tensor with values from "start" to "end" with "step"
     y = weight * X + bias
 
-    split_position = int(0.8 * len(X))
-    X_train, y_train = X[:split_position], y[:split_position]
-    X_test, y_test = X[split_position:], y[split_position:]
+    pos = int(0.8 * len(X))
+    X_train, y_train = X[:pos], y[:pos]
+    X_test, y_test = X[pos:], y[pos:]
+
     return X_train, y_train, X_test, y_test
 
 
