@@ -21,44 +21,6 @@ X_test_regression, y_test_regression = X_test_regression.to(device), y_test_regr
 
 ```
 
-## Identify and fix the issues that are causing tensors to be on different devices
-
-To fix this error, you should ensure that **all your tensors are on the same device** (i.e., either on the CPU or GPU).
-
-1. Make sure that you're using the correct device throughout your code.
-    * You can specify the device by using the `.to()` method.
-    * For example, if you have a tensor `x` and you want to move it to the GPU, you can do `x = x.to('cuda:0')`.
-
-2. Check that you're not inadvertently creating new tensors on the CPU.
-    * For example, if you're using functions that create new tensors, make sure to move the output tensors to the same device as your input tensors.
-
-3. Check that you're not inadvertently moving tensors back to the CPU.
-    * For example, if you're using functions that return tensors on the CPU, make sure to move them to the same device as your other tensors.
-
-4. Check that you're not inadvertently using operations that only work on CPU tensors.
-    * For example, some PyTorch operations (e.g., string operations) only work on CPU tensors.
-    * Make sure to avoid using these operations on GPU tensors.
-
-## Each batch tensor in for-loop
-
-The error message suggests that some of the tensors in your forward pass are still on the CPU.
-
-As you've correctly noted, you cannot call `.to("cuda:0")` directly on the `DataLoader` object **because it is an iterable, not a tensor.**
-
-However, you can move the batches of data to the GPU by calling `.to("cuda:0")` **on each batch tensor** in the `for` loop.
-
-```scss
-for batch, (X, y) in enumerate(train_dataloader):
-    X = X.to("cuda:0")
-    y = y.to("cuda:0")
-
-    # perform forward pass
-    y_pred = model_0(X)
-
-    # rest of training loop...
-```
-
-This will ensure that both `X` and `y` are on the same device (in this case, the GPU) as the model's parameters, which should eliminate the "same device" error you're seeing.
 
 ## torch.cuda.amp.autocast()
 
