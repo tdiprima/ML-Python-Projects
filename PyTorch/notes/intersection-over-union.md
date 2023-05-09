@@ -30,6 +30,7 @@ targets = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
 ```
 
 <br>
+
 To calculate the IoU between these two sets, we first find the intersection by **multiplying** the corresponding values in each set together and adding them up:
 
 ```python
@@ -39,6 +40,7 @@ intersection = 2*0 + 4*1 + 6*2 + 8*3 + 10*4 + 12*5 + 14*6 + 16*7 + 18*8 + 20*9 =
 ```
 
 <br>
+
 Next, we find the total number of values in both sets by **adding** them together and adding up all the values:
 
 ```python
@@ -48,6 +50,7 @@ total = (0 + 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9) + (2 + 4 + 6 + 8 + 10 + 12 + 14 
 ```
 
 <br>
+
 Then, we **subtract** the intersection from the total to get the union of the two sets:
 
 ```python
@@ -57,6 +60,7 @@ union = 155 - 660 = -505  # (Note that in this case, the union is negative becau
 ```
 
 <br>
+
 Finally, we calculate the IoU using the **formula:**
 
 ```python
@@ -68,6 +72,7 @@ iou = (660 + 1e-6) / (abs(-505) + 1e-6) = 1.3069306924615234
 ```
 
 <br>
+
 So, the IoU between the two sets is approximately `1.306931`
 
 <br>
