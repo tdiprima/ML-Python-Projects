@@ -54,15 +54,15 @@ if __name__ == '__main__':
 
     # Define the loss function and optimizer
     loss_function = nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(convnet.parameters(), lr=1e-4)
+    optimizer = torch.optim.Adam(convnet.parameters(), lr=1e-4)  # 0.0001
 
-    # La la la
+    # La la la...
 
     # Run the training loop
     for epoch in range(0, 5):  # 5 epochs at maximum
-        # Lulu!
+        # Lulu...
         for i, data in enumerate(trainloader, 0):
-            # Deedee
+            # Deedee...
 
             # Perform forward pass
             outputs = convnet(inputs)
