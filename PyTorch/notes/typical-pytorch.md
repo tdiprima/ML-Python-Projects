@@ -128,6 +128,6 @@ The output size of **10** represents the number of classes (digits) in the datas
 
 The **ReLU** activation function is commonly used in neural networks for classification tasks.
 
-The choice of **64** hidden units in the ~~middle~~ layer is a common choice for a simple and effective architecture.
+The choice of **64** hidden units in the middle layer is a common choice for a simple and effective architecture.
 
 <br>
