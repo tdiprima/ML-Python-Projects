@@ -23,7 +23,7 @@ X_test_regression, y_test_regression = X_test_regression.to(device), y_test_regr
 
 You can move the batches of data to the GPU by calling `.to("cuda:0")` **on each batch tensor** in the `for` loop.
 
-```scss
+```python
 for batch, (X, y) in enumerate(train_dataloader):
     X = X.to("cuda:0")
     y = y.to("cuda:0")
