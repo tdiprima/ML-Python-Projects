@@ -115,6 +115,7 @@ model = nn.Sequential(
 ```
 
 <br>
+
 This architecture seems to be suitable for a **classification** task on the MNIST dataset, which is a collection of **28x28** grayscale images of handwritten digits **(0 to 9).**
 
 ```c
