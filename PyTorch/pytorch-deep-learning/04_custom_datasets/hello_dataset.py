@@ -1,11 +1,11 @@
+# https://www.askpython.com/python/examples/display-images-using-python
 import os
 import random
 from pathlib import Path
 
 import torch
 from PIL import Image
-# from PIL import ImageShow
-from matplotlib import image as mpimg
+from matplotlib import image as mpimg  # for imread()
 from matplotlib import pyplot as plt
 from torch.utils.data import DataLoader
 from torchvision import datasets
@@ -26,7 +26,7 @@ image_path_list = list(image_path.glob("*/*/*.jpg"))
 
 if not image_path.is_dir():
     print("Data folder doesn't exist. Exiting...")
-    exit(0)
+    exit(1)
 
 # Setup train and testing paths
 train_dir = image_path / "train"
@@ -74,10 +74,11 @@ def print_stuff():
 
 # DATA SETS => DATA LOADERS
 BATCH_SIZE = 1
-NUM_WORKERS = os.cpu_count()
+NUM_WORKERS = 0  # os.cpu_count()  # TODO
+
 train_dataloader = DataLoader(dataset=train_data,
                               batch_size=BATCH_SIZE,
-                              num_workers=1,  # How many cpu cores used to load your data
+                              num_workers=NUM_WORKERS,  # How many cpu cores used to load your data
                               shuffle=True)
 
 test_dataloader = DataLoader(dataset=test_data,
@@ -96,38 +97,43 @@ def plot_transformed_images(image_paths: list, transform, n=3, seed=None):
 
     random_image_paths = random.sample(image_paths, k=n)  # k = number of samples
 
-    for image_path in random_image_paths:
-        with Image.open(image_path) as f:
+    for img_path in random_image_paths:
+        with Image.open(img_path) as f:
             fig, ax = plt.subplots(nrows=1, ncols=2)
-            ax[0].imshow(f)
+
+            ax[0].imshow(f)  # f: PIL JpegImageFile
+            # Note: it gives you (width, height)
             ax[0].set_title(f"Original\nSize: {f.size}")
             ax[0].axis(False)
 
             # Change shape for matplotlib (C, H, W) -> (H, W, C)
             transformed_image = transform(f).permute(1, 2, 0)  # swap order of axes
-            ax[1].imshow(transformed_image)
+            ax[1].imshow(transformed_image)  # torch.Tensor
             ax[1].set_title(f"Transformed\nShape: {transformed_image.shape}")
             ax[1].axis("off")
 
-            fig.suptitle(f"Class: {image_path.parent.stem}", fontsize=16)
+            fig.suptitle(f"Class: {img_path.parent.stem}", fontsize=16)
 
             plt.show()
 
 
 def get_rand_image():
     # Get all image paths
-    image_path_list = list(image_path.glob("*/*/*.jpg"))
+    img_path_list = list(image_path.glob("*/*/*.jpg"))
 
     # Pick a random image path
-    random_image_path = random.choice(image_path_list)
+    random_image_path = random.choice(img_path_list)
 
     # Get image class from directory name
-    image_class = random_image_path.parent.stem
+    dir_name = random_image_path.parent.stem
 
-    return random_image_path, image_class
+    return random_image_path, dir_name
 
 
 def show_image_pil():
+    """
+    Display image using Pillow
+    """
     random_image_path, image_class = get_rand_image()
 
     # Open image
@@ -139,20 +145,22 @@ def show_image_pil():
     print(f"Image height: {img.height}")
     print(f"Image width: {img.width}")
 
-    # todo: Not all viewers can display the title.
-    # img.show(title="Show image with PIL")
-    # ImageShow.show(img, title="Show image with PIL")
     img.show()
 
 
 def show_image_plt():
-    # https://www.askpython.com/python/examples/display-images-using-python
+    """
+    Matplotlib
+    Display image in graphical format where each pixel lies on 2D x-y axes.
+    """
     random_image_path, image_class = get_rand_image()
+    image = mpimg.imread(random_image_path)
+
     plt.title(f"Show {image_class} with matplotlib")
     plt.xlabel("X pixel scaling")
     plt.ylabel("Y pixel scaling")
 
-    image = mpimg.imread(random_image_path)
+    # You need both:
     plt.imshow(image)
     plt.show()
 
@@ -160,10 +168,12 @@ def show_image_plt():
 # TODO:
 # show_image_pil()
 # show_image_plt()
+
 # plot_transformed_images(image_paths=image_path_list,
 #                         transform=data_transform,
 #                         n=3,
 #                         seed=None)
+
 # Display random images from the ImageFolder created Dataset
 display_random_images(train_data,
                       n=3,

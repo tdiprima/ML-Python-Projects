@@ -50,9 +50,9 @@ test_dataloader_simple = DataLoader(dataset=test_data_simple,
                                     num_workers=NUM_WORKERS)
 
 
-# Create TinyVGG model class
 class TinyVGG(nn.Module):
     """
+    Create TinyVGG model class
     Model architecture copying TinyVGG from CNN Explainer: https://poloclub.github.io/cnn-explainer/
     """
 
@@ -61,6 +61,7 @@ class TinyVGG(nn.Module):
                  hidden_units: int,
                  output_shape: int) -> None:
         super().__init__()
+
         self.conv_block_1 = nn.Sequential(
             nn.Conv2d(in_channels=input_shape,
                       out_channels=hidden_units,
@@ -77,6 +78,7 @@ class TinyVGG(nn.Module):
             nn.MaxPool2d(kernel_size=2,
                          stride=2)  # default stride value is same as kernel_size
         )
+
         self.conv_block_2 = nn.Sequential(
             nn.Conv2d(in_channels=hidden_units,
                       out_channels=hidden_units,
@@ -93,6 +95,7 @@ class TinyVGG(nn.Module):
             nn.MaxPool2d(kernel_size=2,
                          stride=2)  # default stride value is same as kernel_size
         )
+
         self.classifier = nn.Sequential(
             nn.Flatten(),
             nn.Linear(in_features=hidden_units * 13 * 13,
@@ -100,20 +103,16 @@ class TinyVGG(nn.Module):
         )
 
     def forward(self, x):
+        # print("\nInput size:", x.size())
         x = self.conv_block_1(x)
+        # print(1, "x.shape:", x.shape)
         x = self.conv_block_2(x)
+        # print(2, "x.shape:", x.shape)
         x = self.classifier(x)
-        return x
+        # print(3, "x.shape:", x.shape)
+
         # return self.classifier(self.conv_block_2(self.conv_block_1(x))) # benefits from operator fusion: https://horace.io/brrr_intro.html
-
-
-# TODO: We don't really need this.
-# torch.manual_seed(42)
-# model_0 = TinyVGG(input_shape=3,  # number of color channels in our image data
-#                   hidden_units=10,
-#                   output_shape=len(class_names)).to(device)
-# from torchinfo import summary
-# summary(model_0, input_size=[1, 3, 64, 64])
+        return x
 
 
 # Create train_step()
@@ -246,6 +245,10 @@ NUM_EPOCHS = 5
 model_0 = TinyVGG(input_shape=3,  # number of color channels of our target images
                   hidden_units=10,
                   output_shape=len(train_data_simple.classes)).to(device)
+
+from torchinfo import summary
+
+summary(model_0, input_size=[32, 3, 64, 64])
 
 # Setup loss function and optimizer
 loss_fn = nn.CrossEntropyLoss()

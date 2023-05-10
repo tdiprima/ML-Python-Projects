@@ -12,11 +12,9 @@ Overall, the choice of kernel size is dependent on the nature of the problem, th
 
 <span style="color:#0000dd;">What if it's `kernel_size=3`?  Is that shorthand for `(3, 3)`?</span>
 
-Yes, when the `kernel_size` parameter is set to an integer, such as `kernel_size=3`, it is interpreted as a square kernel of size `(3, 3)`. In other words, `kernel_size=3` is a shorthand for `kernel_size=(3, 3)`. 
+Yes. If you set `kernel_size=5`, it would be interpreted as a square kernel of size `(5, 5)`. This shorthand notation can be used when you want to use a square kernel with equal dimensions in both height and width, and you don't want to type out the tuple explicitly.
 
-Similarly, if you set `kernel_size=5`, it would be interpreted as a square kernel of size `(5, 5)`. This shorthand notation can be used when you want to use a square kernel with equal dimensions in both height and width, and you don't want to type out the tuple explicitly.
-
-It's worth noting that, in practice, using square kernels is not always necessary or optimal. Depending on the task and the input data, rectangular kernels (i.e., kernels with different dimensions for height and width) may be more appropriate. In such cases, you would need to specify the `kernel_size` as a tuple, rather than using the shorthand notation.
+In practice, using square kernels is not always necessary or optimal; you may want a rectangle, in which case you would specify the `kernel_size` as a tuple, rather than using the shorthand notation.
 
 ## Why are we multiplying by 26 squared?
 

@@ -1,3 +1,4 @@
+import os.path
 import sys
 
 import matplotlib.pyplot as plt
@@ -27,9 +28,14 @@ X_test, y_test = X[split_position:], y[split_position:]
 torch.manual_seed(42)
 
 # LOAD THE PRE-TRAINED MODEL
-PATH = "../models/my_model.pth"
-model_0 = LinearRegressionModel()
-model_0.load_state_dict(torch.load(PATH))
+path = "../models/my_model.pth"
+
+if not os.path.isfile(path):
+    print("Necesito una modela.")
+    exit(1)
+
+model = LinearRegressionModel()
+model.load_state_dict(torch.load(path))
 
 # CONTINUE FROM STEP 1
 
@@ -38,7 +44,7 @@ loss_fn = nn.L1Loss()  # Mean absolute error is same as L1Loss
 
 # Create the optimizer
 # parameters of target model to optimize
-optimizer = torch.optim.SGD(params=model_0.parameters(), lr=0.01)
+optimizer = torch.optim.SGD(params=model.parameters(), lr=0.01)
 
 """
 The testing loop involves going through the testing data and evaluating how good the patterns are that the model learned on the training data (the model never see's the testing data during training).
@@ -63,10 +69,10 @@ for epoch in range(epochs):
     # TRAINING
 
     # Put model in training mode (this is the default state of a model)
-    model_0.train()
+    model.train()
 
     # 1. Forward pass on train data using the forward() method inside
-    y_pred = model_0(X_train)
+    y_pred = model(X_train)
     # print(y_pred)
 
     # 2. Calculate the loss (how different are our models predictions to the ground truth)
@@ -84,11 +90,11 @@ for epoch in range(epochs):
     # TESTING
 
     # Put the model in evaluation mode
-    model_0.eval()
+    model.eval()
 
     with torch.inference_mode():
         # 1. Forward pass on test data
-        test_pred = model_0(X_test)
+        test_pred = model(X_test)
 
         # 2. Calculate loss on test data
         test_loss = loss_fn(test_pred, y_test.type(torch.float))
@@ -112,7 +118,7 @@ plt.legend()
 
 # Find our model's learned parameters
 print("\nThe model learned the following values for weights and bias:")
-print(model_0.state_dict())
+print(model.state_dict())
 
 print("\nAnd the original values for weights and bias are:")
 print(f"weights: {weight}, bias: {bias}")
@@ -120,21 +126,21 @@ print(f"weights: {weight}, bias: {bias}")
 # NOW, MAKE PREDICTIONS WITH IT
 
 # 1. Set the model in evaluation mode
-model_0.eval()
+model.eval()
 
 # 2. Set up the inference mode context manager
 with torch.inference_mode():
     # 3. Make sure the calculations are done with the model and data on the same device
     # in our case, we haven't setup device-agnostic code yet so our data and model are
     # on the CPU by default.
-    # model_0.to(device)
+    # model.to(device)
     # X_test = X_test.to(device)
-    y_preds = model_0(X_test)
+    y_preds = model(X_test)
 
 print("\ny_preds", y_preds)
 
 # SAVE IT
-# torch.save(model_0.state_dict(), "my_model-2.pth")
+# torch.save(model.state_dict(), "my_model-2.pth")
 
 # plot_predictions(predictions=y_preds)
 plot_predictions(X_train, y_train, X_test, y_test, predictions=y_preds)

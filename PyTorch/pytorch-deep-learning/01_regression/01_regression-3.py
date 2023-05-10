@@ -8,7 +8,7 @@ sys.path.append('../toolbox')
 from plotting import plot_predictions
 
 # Check PyTorch version
-print(torch.__version__)
+print("Torch version:", torch.__version__)
 
 # Setup device agnostic code
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -26,28 +26,28 @@ step = 0.02
 # Create X and y (features and labels)
 X = torch.arange(start, end, step).unsqueeze(dim=1)
 y = weight * X + bias
-print(X[:10], y[:10])
+# print(X[:10], y[:10])
 
 # Split data
 split_pos = int(0.8 * len(X))
 X_train, y_train = X[:split_pos], y[:split_pos]
 X_test, y_test = X[split_pos:], y[split_pos:]
-
-print(len(X_train), len(y_train), len(X_test), len(y_test))
+# print(len(X_train), len(y_train), len(X_test), len(y_test))
 
 plot_predictions(X_train, y_train, X_test, y_test)
 
 
-# Subclass nn.Module to make our model
 class LinearRegressionModelV2(nn.Module):
     def __init__(self):
         super().__init__()
+
         # Use nn.Linear() for creating the model parameters
         self.linear_layer = nn.Linear(in_features=1,
                                       out_features=1)
 
     # Define the forward computation (input data x flows through nn.Linear())
     def forward(self, x: torch.Tensor) -> torch.Tensor:
+        # print("\nInput size:", x.size())  # [40, 1]
         return self.linear_layer(x)
 
 
@@ -56,17 +56,17 @@ Set the manual seed when creating the model (this isn't always needed,
 but try commenting it out and seeing what happens)
 """
 torch.manual_seed(42)
-model_1 = LinearRegressionModelV2()
-model_1, model_1.state_dict()
+model = LinearRegressionModelV2()
+# model, model.state_dict()
 
 # Set model to GPU if it's available, otherwise it'll default to CPU
-model_1.to(device)  # the device variable was set above to be "cuda" if available or "cpu" if not
+model.to(device)  # the device variable was set above to be "cuda" if available or "cpu" if not
 
 # Create loss function
 loss_fn = nn.L1Loss()
 
 # Create optimizer
-optimizer = torch.optim.SGD(params=model_1.parameters(), lr=0.01)
+optimizer = torch.optim.SGD(params=model.parameters(), lr=0.01)
 
 torch.manual_seed(42)
 
@@ -82,10 +82,10 @@ y_test = y_test.to(device)
 
 for epoch in range(epochs):
     # Training
-    model_1.train()  # train mode is on by default after construction
+    model.train()  # train mode is on by default after construction
 
     # 1. Forward pass
-    y_pred = model_1(X_train)
+    y_pred = model(X_train)
 
     # 2. Calculate loss
     loss = loss_fn(y_pred, y_train)
@@ -100,10 +100,11 @@ for epoch in range(epochs):
     optimizer.step()
 
     # Testing
-    model_1.eval()  # put the model in evaluation mode for testing (inference)
-    # 1. Forward pass
+    model.eval()  # put the model in evaluation mode for testing (inference)
+
     with torch.inference_mode():
-        test_pred = model_1(X_test)
+        # 1. Forward pass
+        test_pred = model(X_test)
 
         # 2. Calculate the loss
         test_loss = loss_fn(test_pred, y_test)
@@ -114,18 +115,18 @@ for epoch in range(epochs):
 # Find our model's learned parameters
 from pprint import pprint  # pprint = pretty print, see: https://docs.python.org/3/library/pprint.html
 
-print("The model learned the following values for weights and bias:")
-pprint(model_1.state_dict())
+print("\nThe model learned the following values for weights and bias:")
+pprint(model.state_dict())
 print("\nAnd the original values for weights and bias are:")
 print(f"weights: {weight}, bias: {bias}")
 
 # Making predictions
 # Turn model into evaluation mode
-model_1.eval()
+model.eval()
 
 # Make predictions on the test data
 with torch.inference_mode():
-    y_preds = model_1(X_test)
+    y_preds = model(X_test)
 print("\ny_preds", y_preds)
 
 # Put data on the CPU and plot it
@@ -143,9 +144,9 @@ MODEL_NAME = "01_pytorch_workflow_model_1.pth"
 MODEL_SAVE_PATH = MODEL_PATH / MODEL_NAME
 
 # 3. Save the model state dict
-print(f"Saving model to: {MODEL_SAVE_PATH}")
+print(f"\nSaving model to: {MODEL_SAVE_PATH}")
 # Only saving the state_dict() only saves the model's learned parameters
-torch.save(obj=model_1.state_dict(), f=MODEL_SAVE_PATH)
+torch.save(obj=model.state_dict(), f=MODEL_SAVE_PATH)
 
 # Instantiate a fresh instance of LinearRegressionModelV2
 loaded_model_1 = LinearRegressionModelV2()
@@ -156,8 +157,8 @@ loaded_model_1.load_state_dict(torch.load(MODEL_SAVE_PATH))
 # Put model to target device (if your data is on GPU, model will have to be on GPU to make predictions)
 loaded_model_1.to(device)
 
-print(f"Loaded model:\n{loaded_model_1}")
-print(f"Model on device:\n{next(loaded_model_1.parameters()).device}")
+print(f"\nLoaded model:\n{loaded_model_1}")
+print(f"Model on device: {next(loaded_model_1.parameters()).device}")
 
 # Evaluate loaded model
 loaded_model_1.eval()

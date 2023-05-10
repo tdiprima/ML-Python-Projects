@@ -1,5 +1,3 @@
-# TODO: This only displays "correctly" in Jupyter notebook. Missing something.
-# Just like every bit of code was missing plt.show()
 import random
 from typing import List
 
@@ -7,12 +5,15 @@ import torch
 from matplotlib import pyplot as plt
 
 
-# Create a function to take in a dataset
 def display_random_images(dataset: torch.utils.data.Dataset,
                           classes: List[str] = None,
                           n: int = 10,
                           display_shape: bool = True,
                           seed: int = None):
+    """
+    Take in a dataset, and display random resized images.
+    """
+
     # Adjust display if n is too high
     if n > 10:
         print(f"Expected n=10; got n={n}")
@@ -35,8 +36,8 @@ def display_random_images(dataset: torch.utils.data.Dataset,
         targ_image, targ_label = dataset[targ_sample][0], dataset[targ_sample][1]
 
         # Adjust tensor dimensions for plotting
-        targ_image_adjust = targ_image.permute(1, 2,
-                                               0)  # [color_channels, height, width] -> [height, width, color_channels]
+        # [color_channels, height, width] -> [height, width, color_channels]
+        targ_image_adjust = targ_image.permute(1, 2, 0)
 
         # Plot adjusted samples
         plt.subplot(1, n, i + 1)
@@ -48,4 +49,4 @@ def display_random_images(dataset: torch.utils.data.Dataset,
                 title = title + f"\nshape: {targ_image_adjust.shape}"
         plt.title(title)
 
-        plt.show()
+    plt.show()

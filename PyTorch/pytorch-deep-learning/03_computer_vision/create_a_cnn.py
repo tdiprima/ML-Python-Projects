@@ -1,5 +1,6 @@
 import torch
 from torch import nn
+from torchinfo import summary
 
 
 class FashionMNISTModel(nn.Module):
@@ -19,59 +20,25 @@ class FashionMNISTModel(nn.Module):
         Last layer (output layer) is classifier layer (classify features into our target classes).
         """
         self.conv_block_1 = nn.Sequential(
-            nn.Conv2d(
-                in_channels=input_shape,
-                out_channels=hidden_units,
-                kernel_size=3,
-                stride=1,
-                padding=1
-            ),
+            nn.Conv2d(in_channels=input_shape, out_channels=hidden_units, kernel_size=3, stride=1, padding=1),
             nn.ReLU(),
-            nn.Conv2d(
-                in_channels=hidden_units,
-                out_channels=hidden_units,
-                kernel_size=3,
-                stride=1,
-                padding=1
-            ),
-            nn.ReLU(),
-            nn.MaxPool2d(
-                kernel_size=2
-            )
-        )
+            nn.Conv2d(in_channels=hidden_units, out_channels=hidden_units, kernel_size=3, stride=1, padding=1),
+            nn.ReLU(), nn.MaxPool2d(kernel_size=2))
 
         self.conv_block_2 = nn.Sequential(
-            nn.Conv2d(
-                in_channels=hidden_units,
-                out_channels=hidden_units,
-                kernel_size=3,
-                stride=1,
-                padding=1
-            ),
+            nn.Conv2d(in_channels=hidden_units, out_channels=hidden_units, kernel_size=3, stride=1, padding=1),
             nn.ReLU(),
-            nn.Conv2d(
-                in_channels=hidden_units,
-                out_channels=hidden_units,
-                kernel_size=3,
-                stride=1,
-                padding=1
-            ),
-            nn.ReLU(),
-            nn.MaxPool2d(
-                kernel_size=2
-            )
-        )
+            nn.Conv2d(in_channels=hidden_units, out_channels=hidden_units, kernel_size=3, stride=1, padding=1),
+            nn.ReLU(), nn.MaxPool2d(kernel_size=2))
 
-        self.classifier = nn.Sequential(
-            nn.Flatten(),  # Flatten to single feature vector
-            nn.Linear(
-                in_features=hidden_units * 7 * 7,
-                # in_features=hidden_units * 0,
-                out_features=output_shape  # The length of how many classes we have. One value for each class.
-            )
-        )
+        self.classifier = nn.Sequential(nn.Flatten(),  # Flatten to single feature vector
+                                        nn.Linear(in_features=hidden_units * 7 * 7,  # in_features=hidden_units * 0,
+                                                  out_features=output_shape
+                                                  # The length of how many classes we have. One value for each class.
+                                                  ))
 
     def forward(self, x):
+        print('\nInput size:', x.size())
         x = self.conv_block_1(x)
         print(1, "x.shape:", x.shape)
         x = self.conv_block_2(x)
@@ -81,11 +48,7 @@ class FashionMNISTModel(nn.Module):
         return x
 
 
-model = FashionMNISTModel(
-    input_shape=1,
-    hidden_units=10,
-    output_shape=10
-)
+model = FashionMNISTModel(input_shape=1, hidden_units=10, output_shape=10)
 
 # create dummy tensor
 input_tensor = torch.randn(1, 1, 28, 28)
@@ -94,6 +57,8 @@ input_tensor = torch.randn(1, 1, 28, 28)
 output_tensor = model(input_tensor)
 assert output_tensor.shape == (1, 10)
 print(f"\noutput_tensor shape: {output_tensor.shape}")
+
+summary(model, input_size=[1, 1, 28, 28])
 
 """
 1 x.shape: torch.Size([1, 10, 14, 14])

@@ -29,7 +29,7 @@ import os
 from torch.utils.data import DataLoader
 
 BATCH_SIZE = 32
-NUM_WORKERS = os.cpu_count()
+NUM_WORKERS = 0  # os.cpu_count()  # TODO
 
 torch.manual_seed(42)
 train_dataloader_augmented = DataLoader(dataset=train_data_augmented,
@@ -78,7 +78,7 @@ model_1_results = train(model=model_1,
 
 # End the timer and print out how long it took
 end_time = timer()
-print(f"Total training time for model_1: {end_time - start_time:.3f} seconds")
+print(f"\nTotal training time for model_1: {end_time - start_time:.3f} seconds")
 
 # Plot the loss curves of model 1
 plot_loss_curves(model_1_results)

@@ -1,7 +1,7 @@
 {
   "name": "kraddy",
   "version": "1.0.0",
-  "description": "",
+  "description": "Linting tools, because there is some JavaScript here.",
   "main": "index.js",
   "directories": {
     "doc": "docs"

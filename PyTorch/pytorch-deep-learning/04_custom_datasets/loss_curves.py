@@ -4,7 +4,9 @@ from matplotlib import pyplot as plt
 
 
 def plot_loss_curves(results: Dict[str, List[float]]):
-    """Plots training curves of a results dictionary."""
+    """
+    Plots training curves of a results dictionary.
+    """
     # TODO: Keys: ['train_loss', 'train_acc', 'test_loss', 'test_acc']
     # Get the loss values of the results dictionary(training and test)
     loss = results["train_loss"]
