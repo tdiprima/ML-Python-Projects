@@ -1,5 +1,5 @@
 """
-CircleModelV0 model
+CircleModelV0 model (2 layers)
 Untrained, predictions are negative numbers.
 """
 import sys
@@ -51,4 +51,5 @@ print(f"Length of test samples: {len(X_test)}, Shape: {X_test.shape}")
 # print(f"\nFirst 10 predictions:\n{torch.round(untrained_preds[:10])}")  # ROUNDED
 # print(f"\nFirst 10 test labels:\n{y_test[:10]}")
 
+print()
 summary(model, input_size=[200, 2])

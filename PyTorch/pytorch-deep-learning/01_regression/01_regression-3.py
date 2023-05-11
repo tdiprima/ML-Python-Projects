@@ -1,14 +1,18 @@
+"""
+Model/tensors to(device)
+"""
 import sys
 
 import torch
 from torch import nn
+from torchinfo import summary
 
 sys.path.append('../toolbox')
-
+from my_models import LinearRegressionModelV2
 from plotting import plot_predictions
 
-# Check PyTorch version
-print("Torch version:", torch.__version__)
+# Set the number of epochs (how many times the model will pass over the training data)
+epochs = 1000
 
 # Setup device agnostic code
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -36,21 +40,6 @@ X_test, y_test = X[split_pos:], y[split_pos:]
 
 plot_predictions(X_train, y_train, X_test, y_test)
 
-
-class LinearRegressionModelV2(nn.Module):
-    def __init__(self):
-        super().__init__()
-
-        # Use nn.Linear() for creating the model parameters
-        self.linear_layer = nn.Linear(in_features=1,
-                                      out_features=1)
-
-    # Define the forward computation (input data x flows through nn.Linear())
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        # print("\nInput size:", x.size())  # [40, 1]
-        return self.linear_layer(x)
-
-
 """
 Set the manual seed when creating the model (this isn't always needed,
 but try commenting it out and seeing what happens)
@@ -69,9 +58,6 @@ loss_fn = nn.L1Loss()
 optimizer = torch.optim.SGD(params=model.parameters(), lr=0.01)
 
 torch.manual_seed(42)
-
-# Set the number of epochs
-epochs = 1000
 
 # Put data on the available device
 # Without this, error will happen (not all model/data on device)
@@ -140,7 +126,7 @@ MODEL_PATH = Path("../models")
 MODEL_PATH.mkdir(parents=True, exist_ok=True)
 
 # 2. Create model save path
-MODEL_NAME = "01_pytorch_workflow_model_1.pth"
+MODEL_NAME = "pytorch_workflow_model1.pth"
 MODEL_SAVE_PATH = MODEL_PATH / MODEL_NAME
 
 # 3. Save the model state dict
@@ -166,3 +152,5 @@ with torch.inference_mode():
     loaded_model_1_preds = loaded_model_1(X_test)
 
 print("\nEqual?", y_preds == loaded_model_1_preds)
+
+summary(model, input_size=[40, 1])

@@ -1,5 +1,6 @@
 """
 Build a PyTorch model that learns the pattern of a straight line and matches it.
+No training in this one yet...
 """
 import sys
 

@@ -1,11 +1,15 @@
-import os
-import zipfile
-from pathlib import Path
-
+import torch
 import matplotlib.pyplot as plt
 import numpy as np
+
+from torch import nn
+
+import os
+import zipfile
+
+from pathlib import Path
+
 import requests
-import torch
 
 
 def walk_through_dir(dir_path):
@@ -25,8 +29,8 @@ def walk_through_dir(dir_path):
 
 
 def plot_decision_boundary(model: torch.nn.Module, X: torch.Tensor, y: torch.Tensor):
-    """Plots decision boundaries of model predicting on X in comparison to y.
-
+    """
+    Plots decision boundaries of model predicting on X in comparison to y.
     Source - https://madewithml.com/courses/foundations/neural-networks/ (with modifications)
     """
     # Put everything to CPU (works better with NumPy + Matplotlib)
@@ -62,12 +66,11 @@ def plot_decision_boundary(model: torch.nn.Module, X: torch.Tensor, y: torch.Ten
     plt.show()
 
 
-# Plot linear data or training and test and predictions (optional)
 def plot_predictions(
     train_data, train_labels, test_data, test_labels, predictions=None
 ):
     """
-    Plots linear training data and test data and compares predictions.
+    Plot linear data or training and test and predictions (optional)
     """
     plt.figure(figsize=(10, 7))
 
@@ -88,22 +91,19 @@ def plot_predictions(
 
 
 def accuracy_fn(y_true, y_pred):
-    """Calculates accuracy between truth labels and predictions.
-
-    Args:
-        y_true (torch.Tensor): Truth labels for predictions.
-        y_pred (torch.Tensor): Predictions to be compared to predictions.
-
-    Returns:
-        [torch.float]: Accuracy value between y_true and y_pred, e.g. 78.45
     """
-    correct = torch.eq(y_true, y_pred).sum().item()
+    Out of 100 examples, what percentage does our model get right?
+    Accuracy = True Positive / (True Positive + True Negative) * 100
+    sklearn.metrics.accuracy_score(y_true, y_pred)
+    """
+    correct = torch.eq(y_true, y_pred).sum().item()  # torch.eq() calculates where two tensors are equal
     acc = (correct / len(y_pred)) * 100
     return acc
 
 
 def print_train_time(start, end, device=None):
-    """Prints difference between start and end time.
+    """
+    Prints difference between start and end time.
 
     Args:
         start (float): Start time of computation (preferred in timeit format).
@@ -120,7 +120,8 @@ def print_train_time(start, end, device=None):
 
 def plot_loss_curves(results):
     # TODO: Keys: ['train_loss', 'train_acc', 'test_loss', 'test_acc']
-    """Plots training curves of a results dictionary.
+    """
+    Plots training curves of a results dictionary.
 
     Args:
         results (dict): dictionary containing list of values, e.g.
@@ -169,7 +170,8 @@ def pred_and_plot_image(
     transform=None,
     device: torch.device = "cuda" if torch.cuda.is_available() else "cpu",
 ):
-    """Makes a prediction on a target image with a trained model and plots the image.
+    """
+    Makes a prediction on a target image with a trained model and plots the image.
 
     Args:
         model (torch.nn.Module): trained PyTorch image classification model.
@@ -234,7 +236,8 @@ def pred_and_plot_image(
 
 
 def set_seeds(seed: int = 42):
-    """Sets random sets for torch operations.
+    """
+    Sets random sets for torch operations.
 
     Args:
         seed (int, optional): Random seed to set. Defaults to 42.
@@ -248,7 +251,8 @@ def set_seeds(seed: int = 42):
 def download_data(source: str,
                   destination: str,
                   remove_source: bool = True) -> Path:
-    """Downloads a zipped dataset from source and unzips to destination.
+    """
+    Downloads a zipped dataset from source and unzips to destination.
 
     Args:
         source (str): A link to a zipped file containing data.

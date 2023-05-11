@@ -1,15 +1,20 @@
+"""
+Loss, optimizer, train, graph.
+"""
 import os.path
 import sys
 
 import matplotlib.pyplot as plt
 import torch
 from torch import nn
+from torchinfo import summary
 
 sys.path.append('../toolbox')
-
 from my_models import LinearRegressionModel
-
 from plotting import plot_predictions
+
+# Set the number of epochs (how many times the model will pass over the training data)
+epochs = 200
 
 weight = 0.7
 bias = 0.3
@@ -21,21 +26,21 @@ step = 0.02
 X = torch.arange(start, end, step).unsqueeze(dim=1)
 y = weight * X + bias
 
-split_position = int(0.8 * len(X))
-X_train, y_train = X[:split_position], y[:split_position]
-X_test, y_test = X[split_position:], y[split_position:]
+pos = int(0.8 * len(X))
+X_train, y_train = X[:pos], y[:pos]  # Get all elements up until "position"
+X_test, y_test = X[pos:], y[pos:]  # Get all elements from the position, onwards.
 
 torch.manual_seed(42)
 
-# LOAD THE PRE-TRAINED MODEL
-path = "../models/my_model.pth"
-
-if not os.path.isfile(path):
-    print("Necesito una modela.")
-    exit(1)
-
 model = LinearRegressionModel()
-model.load_state_dict(torch.load(path))
+
+# LOAD THE PRE-TRAINED MODEL
+path = "../models/pytorch_workflow_model1.pth"
+
+if os.path.isfile(path):
+    model.load_state_dict(torch.load(path))
+else:
+    print("Necesito una modela.  Construando...\n")
 
 # CONTINUE FROM STEP 1
 
@@ -47,7 +52,8 @@ loss_fn = nn.L1Loss()  # Mean absolute error is same as L1Loss
 optimizer = torch.optim.SGD(params=model.parameters(), lr=0.01)
 
 """
-The testing loop involves going through the testing data and evaluating how good the patterns are that the model learned on the training data (the model never see's the testing data during training).
+The testing loop involves going through the testing data and evaluating how good the patterns are that
+the model learned on the training data (the model never sees the testing data during training).
 Each of these is called a "loop" because we want our model to look (loop through) at each sample in each dataset.
 """
 
@@ -55,10 +61,6 @@ Each of these is called a "loop" because we want our model to look (loop through
 # Train our model for N epochs (forward passes through the data) and we'll evaluate it every 10 epochs.
 
 torch.manual_seed(42)
-
-# Set the number of epochs (how many times the model will pass over the training data)
-# epochs = 100
-epochs = 200  # TODO: See? This is how we get our stuff to converge even more.
 
 # Create empty loss lists to track values
 train_loss_values = []
@@ -73,7 +75,6 @@ for epoch in range(epochs):
 
     # 1. Forward pass on train data using the forward() method inside
     y_pred = model(X_train)
-    # print(y_pred)
 
     # 2. Calculate the loss (how different are our models predictions to the ground truth)
     loss = loss_fn(y_pred, y_train)
@@ -108,7 +109,6 @@ for epoch in range(epochs):
             print(f"Epoch: {epoch} | MAE Train Loss: {loss} | MAE Test Loss: {test_loss} ")
 
 # Plot the loss curves
-# todo: idk why this is all fluffed up now
 plt.plot(epoch_count, train_loss_values, label="Train loss")
 plt.plot(epoch_count, test_loss_values, label="Test loss")
 plt.title("Training and test loss curves")
@@ -140,7 +140,8 @@ with torch.inference_mode():
 print("\ny_preds", y_preds)
 
 # SAVE IT
-# torch.save(model.state_dict(), "my_model-2.pth")
+torch.save(model.state_dict(), path)
 
-# plot_predictions(predictions=y_preds)
 plot_predictions(X_train, y_train, X_test, y_test, predictions=y_preds)
+
+summary(model, input_size=[40, 1])

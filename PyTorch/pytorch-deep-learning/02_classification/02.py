@@ -1,16 +1,18 @@
 """
 CircleModelV0 model
-2.1 Setup loss function and optimizer
+Loss function, optimizer, training
 """
 import sys
-from torchinfo import summary
+
 import torch
 from sklearn.datasets import make_circles
 from sklearn.model_selection import train_test_split
 from torch import nn
+from torchinfo import summary
 
 sys.path.append('../toolbox')
 from my_models import CircleModelV0
+from helper_functions import accuracy_fn
 
 n_samples = 1000
 
@@ -22,7 +24,7 @@ y = torch.from_numpy(y).type(torch.float)
 
 # Split data into train and test sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-print(len(X_train), len(X_test), len(y_train), len(y_test))
+# print(len(X_train), len(X_test), len(y_train), len(y_test))  # 800 200 800 200
 
 # Make device agnostic code
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -35,17 +37,6 @@ loss_fn = nn.BCEWithLogitsLoss()  # BCEWithLogitsLoss = sigmoid built-in
 
 # Create an optimizer
 optimizer = torch.optim.SGD(params=model.parameters(), lr=0.1)
-
-
-def accuracy_fn(y_true, y_pred):
-    """
-    Out of 100 examples, what percentage does our model get right?
-    Accuracy = True Positive / (True Positive + True Negative) * 100
-    sklearn.metrics.accuracy_score(y_true, y_pred)
-    """
-    correct = torch.eq(y_true, y_pred).sum().item()
-    acc = (correct / len(y_pred)) * 100
-    return acc
 
 
 # 3.2 Building a training and testing loop
@@ -97,13 +88,12 @@ for epoch in range(epochs):
         test_loss = loss_fn(test_logits, y_test)
         test_acc = accuracy_fn(y_true=y_test, y_pred=test_pred)
 
-    # Print out what's happening every 10 epochs
-    # if epoch % 10 == 0:
+    # Print out what's happening every 100 epochs
     if epoch % 100 == 0:
-        print(
-            f"Epoch: {epoch} | Train Loss: {loss:.5f}, Train Accuracy: {acc:.2f}% | Test loss: {test_loss:.5f}, Test acc: {test_acc:.2f}%")
+        print(f"Epoch: {epoch} | Train Loss: {loss:.5f}, Train Accuracy: {acc:.2f}% | Test loss: {test_loss:.5f}, Test acc: {test_acc:.2f}%")
 
 import matplotlib.pyplot as plt
+
 sys.path.append('../toolbox')
 from helper_functions import plot_decision_boundary
 
@@ -117,4 +107,5 @@ plt.title("Test")
 
 plot_decision_boundary(model, X_test, y_test)
 
+print()
 summary(model, input_size=[800, 2])

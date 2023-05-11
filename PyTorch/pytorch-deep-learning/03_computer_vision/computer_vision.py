@@ -1,3 +1,6 @@
+"""
+Compara 3 modelos.
+"""
 import sys
 
 import torch
@@ -6,13 +9,16 @@ from torch import nn
 from torchvision import datasets
 from torchvision.transforms import ToTensor
 
+sys.path.append('../toolbox')
+from my_models import FashionMNISTModelV0, FashionMNISTModelV1, FashionMNISTModelV2
+
 # Check versions
 print("torch:", torch.__version__)
 print("torchvision:", torchvision.__version__)
 
 train_data = datasets.FashionMNIST(
-    root="data",  # where to download data to?
-    train=True,  # do we want the training dataset?
+    root="data",    # where to download data to?
+    train=True,     # do we want the training dataset?
     download=True,  # do we want to download yes/no?
     transform=torchvision.transforms.ToTensor(),  # how do we want to transform the data?
     target_transform=None  # how do we want to transform the labels/targets?
@@ -114,24 +120,6 @@ output = flatten_model(x)  # perform forward pass
 # Print out what happened
 print(f"\nShape before flattening: {x.shape} -> [color_channels, height, width]")
 print(f"Shape after flattening: {output.shape} -> [color_channels, height*width]")
-
-
-# TODO: This model sux
-class FashionMNISTModelV0(nn.Module):
-    def __init__(self,
-                 input_shape: int,
-                 hidden_units: int,
-                 output_shape: int):
-        super().__init__()
-        self.layer_stack = nn.Sequential(
-            nn.Flatten(),
-            nn.Linear(in_features=input_shape, out_features=hidden_units),
-            nn.Linear(in_features=hidden_units, out_features=output_shape)
-        )
-
-    def forward(self, x):
-        return self.layer_stack(x)
-
 
 # Setup model with input parameters
 model_0 = FashionMNISTModelV0(
@@ -276,29 +264,6 @@ print("\nCuda available?", torch.cuda.is_available())
 # Setup device-agnostic code
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print("\nDevice:", device)
-
-
-# 6. Model 1: Building a better model with non-linearity
-# TODO: This model still sux
-# Create a model with non-linear and linear layers
-class FashionMNISTModelV1(nn.Module):
-    def __init__(self,
-                 input_shape: int,
-                 hidden_units: int,
-                 output_shape: int):
-        super().__init__()
-        self.layer_stack = nn.Sequential(
-            nn.Flatten(),  # flatten inputs into a single vector
-            nn.Linear(in_features=input_shape,
-                      out_features=hidden_units),
-            nn.ReLU(),
-            nn.Linear(in_features=hidden_units,
-                      out_features=output_shape),
-            nn.ReLU()
-        )
-
-    def forward(self, x: torch.Tensor):
-        return self.layer_stack(x)
 
 
 # Create an instance of model_1
@@ -475,65 +440,7 @@ model_1_results = eval_model(model=model_1,
 print("\nModel 1", model_1_results)
 print("\nModel 0", model_0_results)
 
-
 # 6. BUILDING A CNN
-
-# Model 2: Building a Convolutional Neural Network (CNN)
-# Create a convolutional neural network
-class FashionMNISTModelV2(nn.Module):
-    """
-    Model architecture that replicates the TinyVGG
-    model from the CNN Explainer website
-    """
-
-    # Initialize the class
-    def __init__(self, input_shape: int, hidden_units: int, output_shape: int):
-        super().__init__()
-        self.conv_block_1 = nn.Sequential(
-            nn.Conv2d(in_channels=input_shape,
-                      out_channels=hidden_units,
-                      kernel_size=3,
-                      stride=1,
-                      padding=1),
-            nn.ReLU(),
-            nn.Conv2d(in_channels=hidden_units,
-                      out_channels=hidden_units,
-                      kernel_size=3,
-                      stride=1,
-                      padding=1),
-            nn.ReLU(),
-            nn.MaxPool2d(kernel_size=2)
-        )
-        self.conv_block_2 = nn.Sequential(
-            nn.Conv2d(in_channels=hidden_units,
-                      out_channels=hidden_units,
-                      kernel_size=3,
-                      stride=1,
-                      padding=1),
-            nn.ReLU(),
-            nn.Conv2d(in_channels=hidden_units,
-                      out_channels=hidden_units,
-                      kernel_size=3,
-                      stride=1,
-                      padding=1),
-            nn.ReLU(),
-            nn.MaxPool2d(kernel_size=2)
-        )
-        self.classifier = nn.Sequential(
-            nn.Flatten(),
-            nn.Linear(in_features=hidden_units * 7 * 7,
-                      out_features=output_shape)
-        )
-
-    def forward(self, x):
-        x = self.conv_block_1(x)
-        # print(f"\nOutput shape of conv_block_1: {x.shape}")
-        x = self.conv_block_2(x)
-        # print(f"\nOutput shape of conv_block_2: {x.shape}")
-        x = self.classifier(x)
-        # print(f"\nOutput shape of classifier: {x.shape}")
-        return x
-
 
 model_2 = FashionMNISTModelV2(input_shape=1,
                               hidden_units=10,
