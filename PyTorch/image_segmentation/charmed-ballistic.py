@@ -26,22 +26,29 @@ def dual_conv(in_channel, out_channel):
 def crop_tensor(target_tensor, tensor):
     """
     Crop the image(tensor) to equal size
-    As shown in architecture image, half left side image is concatenated with right side image
+    Half left side image is concatenated with right side image
     """
+    # Note! We are assuming height and width are the same size.
     target_size = target_tensor.size()[2]
     tensor_size = tensor.size()[2]
     delta = tensor_size - target_size
     delta = delta // 2
     diff = tensor_size - delta
 
+    # [:, :,] = all dimensions
     return tensor[:, :, delta:diff, delta:diff]
 
 
 class Unet(nn.Module):
+    """
+    Original UNet Architecture
+    """
     def __init__(self):
         super(Unet, self).__init__()
-
-        # Left side (contracting path)
+        """
+        Left side (contracting path)
+        Down conv (5 layers are on the left side)
+        """
         self.dwn_conv1 = dual_conv(1, 64)
         self.dwn_conv2 = dual_conv(64, 128)
         self.dwn_conv3 = dual_conv(128, 256)
@@ -49,8 +56,10 @@ class Unet(nn.Module):
         self.dwn_conv5 = dual_conv(512, 1024)
         self.maxpool = nn.MaxPool2d(kernel_size=2, stride=2)
 
-        # Right side (expansion path)
-        # transpose convolution is used shown as green arrow in architecture image
+        """
+        Right side (expansion path)
+        Up conv; transpose convolution
+        """
         self.trans1 = nn.ConvTranspose2d(1024, 512, kernel_size=2, stride=2)
         self.up_conv1 = dual_conv(1024, 512)
         self.trans2 = nn.ConvTranspose2d(512, 256, kernel_size=2, stride=2)
@@ -64,8 +73,11 @@ class Unet(nn.Module):
         self.out = nn.Conv2d(64, 2, kernel_size=1)
 
     def forward(self, img):
+        """
+        We will forward pass the input(image) to the left side layers
+        Forward pass for Left side
+        """
         # print("\nInput size:", img.size())
-        # forward pass for Left side
         x1 = self.dwn_conv1(img)
         x2 = self.maxpool(x1)
         x3 = self.dwn_conv2(x2)
@@ -76,9 +88,12 @@ class Unet(nn.Module):
         x8 = self.maxpool(x7)
         x9 = self.dwn_conv5(x8)
 
-        # forward pass for Right side
+        """
+        Forward pass for Right side
+        """
         x = self.trans1(x9)
         y = crop_tensor(x, x7)
+        # Combine both the images using torch.cat() and pass it to up_conv()
         x = self.up_conv1(torch.cat([x, y], 1))
 
         x = self.trans2(x)
