@@ -1,23 +1,27 @@
 ## What is a Vector
 
-Okay.  I guess the opposite of scalar is vector.  They say that a vector has magnitude and direction.  So that just means... *physics*... right?
-
-That's right! In physics, we use the concept of vectors to describe things that have both magnitude (size or amount) and direction.
-
-For example, if you're driving a car, your velocity is a vector quantity because it has both a 
+If you're driving a car, your velocity is a vector quantity because it has both a 
 
 * magnitude: how fast you're going
 * direction: which way you're heading
 
-Another example of a vector quantity is force - it has both a magnitude (how strong it is) and a direction (which way it's pushing or pulling).
+### Car Velocity
 
-Vectors are really important in physics because they allow us to describe **how things are moving and interacting with each other** in a much more precise way than we could with just scalar quantities.
+"The car is moving with a velocity of 60 kilometers per hour to the east."
 
-Magnitude = _How far_ it's going
+This sentence indicates both the magnitude (60 kilometers per hour) and the direction (to the east) of the car's velocity, which are the two components necessary to fully describe velocity as a vector quantity.
 
-Direction = _Which way_ it's going
+### Force vector
 
-**A vector has more than one number.**  F* magnitude and direction.
+Here's how you might describe a force vector in a sentence:
+
+"The object experiences a force of 50 newtons directed upwards."
+
+This sentence tells us the magnitude (50 newtons) and the direction (upwards) of the force, which are the two components necessary to fully describe force as a vector quantity.
+
+<img src="https://calcworkshop.com/wp-content/uploads/ramp-force-vector.png" width="600">
+
+## Dimensions
 
 <img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/0*zcidDaCCmJeD8y-9.png" width="600">
 
@@ -25,28 +29,48 @@ Direction = _Which way_ it's going
 
 The way to remember how many dimensions a tensor has, is by **counting the number of square brackets.**
 
+### Vector
+
+Described by a torch tensor.
+
 ```py
 vector = torch.tensor([7, 7])
-vector.ndim  # 1 set of brackets
+vector.ndim   # 1 set of brackets
 vector.shape  # 2 (it's 2 by 1 elements)
+```
+
+### Matrix
+
+```py
 MATRIX = torch.tensor([[7, 8], [8, 10]])
-MATRIX.ndim. # 2 (count the number of square brackets on the outside of one side)
+MATRIX.ndim   # 2 (count the number of square brackets on the outside of one side)
 MATRIX.shape  # [2, 2] two elements deep, two elements wide
 ```
 
 <br>
+A tensor is essentially a multi-dimensional array.
 
-<img src="https://calcworkshop.com/wp-content/uploads/ramp-force-vector.png" width="600">
+Here is an HTML table that represents the 2D tensor.
+
+<table border="1">
+  <tr>
+    <td>7</td>
+    <td align="right">8</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>10</td>
+  </tr>
+</table>
+
+<br>
+Each cell in the table represents an element in the tensor, and each row of the table represents a row in the tensor.
+
+The first row of the table `[7, 8]` corresponds to the first row of the tensor, and the second row of the table `[8, 10]` corresponds to the second row of the tensor.
 
 <br>
 
-<img src="https://dr282zn36sxxg.cloudfront.net/datastreams/f-d%3Ac685e51644d615811551f3177f357abfd8e22e7c47ae9a4b02f5f567%2BIMAGE_TINY%2BIMAGE_TINY.1" width="600">
-
-<br>
-
-<img src="https://flatearth.ws/wp-content/uploads/2021/05/force-vectors.jpg" width="600">
-
-<br>
+<hr>
 
 <img src="https://thirdspacelearning.com/wp-content/uploads/2021/11/Magnitude-of-a-Vector-what-is.png" width="600">
 

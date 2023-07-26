@@ -2,7 +2,7 @@
 
 Sure thing! A scalar is a fancy word for a number that doesn't have any direction. It's just a plain old number that tells you how much of something you have.
 
-For example, if you have 3 apples, then 3 is a scalar because it just tells you how many apples you have - it doesn't tell you where the apples are or which way they're pointing or anything like that.
+For example, if you have 3 apples, then 3 is a scalar because it just tells you how many apples you have &ndash; it doesn't tell you where the apples are or which way they're pointing or anything like that.
 
 Scalars can be positive or negative, and they can be whole numbers or fractions (like 0.5 or -1.2). They're really useful in math and science because they help us describe things like speed, temperature, and weight, which don't have any direction associated with them.
 

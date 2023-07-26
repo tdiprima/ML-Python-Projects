@@ -1,10 +1,11 @@
-## Title Of The Window
+## Window Title
 
-Using matplotlib, the title bar always says "Figure 1".  How do I change that?
+You can change the title of a matplotlib figure window by using set_window_title()
+(otherwise, it'll say "Figure 1").
 
-You can change the title of a matplotlib figure window by using the `Figure.canvas.set_window_title()` method.
+![title](../../images/Window_Title.jpg)
 
-Here's an example of how to do it:
+### Example
 
 ```python
 import matplotlib.pyplot as plt
@@ -13,26 +14,32 @@ import matplotlib.pyplot as plt
 plt.plot([1, 2, 3], [4, 5, 6])
 
 # set the title of the figure window
-# plt.gcf().canvas.set_window_title('My Custom Title')
 plt.gcf().canvas.manager.set_window_title('My Custom Title')
 
 # display the plot
 plt.show()
 ```
 
-`figure = plt.gcf()`
+<br>
 
-In this example, `plt.gcf()` returns the **current figure** object, and **`canvas.manager.set_window_title()`** sets the title of the figure window to "My Custom Title".
+```c
+figure = plt.gcf()
+```
 
-<span style="color:red;font-size:larger;">FYI</span>
+<br>
+plt.gcf() returns the current figure object.
 
-Just an FYI - `plt.gcf().canvas.set_window_title` has been replaced with `plt.gcf().canvas.manager.set_window_title`.
+canvas.manager.set\_window\_title(...) sets the title of the figure window to "My Custom Title".
 
-Thank you for letting me know! You are correct, the `Figure.canvas.set_window_title()` method has been replaced with `FigureManager.set_window_title()` since version 3.3.0 of Matplotlib.
+Note that this method sets the title of the window itself, not the title of the plot within the window.
 
-## Title Of The Plot
+### FYI
 
-Note that this method sets the title of the window itself, not the title of the plot within the window. To set the title of the plot, you can use the plt.title() method. For example:
+plt.gcf().canvas.set\_window\_title has been replaced with plt.gcf().canvas.**manager**.set\_window\_title.
+
+## Plot Title
+
+To set the title of the plot, it's just `plt.title()`
 
 ```python
 import matplotlib.pyplot as plt
@@ -47,6 +54,7 @@ plt.title('My Custom Title')
 plt.show()
 ```
 
-In this example, **`plt.title()`** sets the title of the plot itself to "My Custom Title".
+<br>
+In this example, plt.title() sets the title of the plot itself to "My Custom Title".
 
 <br>

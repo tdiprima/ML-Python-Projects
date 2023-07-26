@@ -1,10 +1,18 @@
-## Install
+### Caveat
+
+Sometimes, <mark>**DON'T BOTHER WITH CONDA ENVS. JUST PIP INSTALL.**</mark>
+
+But, if you must, here's how to do it.
+
+Also note that if things go pear-shaped, you may need to uninstall or delete the env and start over.
+
+## Install PyTorch via Anaconda
+
+[pytorch.org](https://pytorch.org/get-started/locally/#mac-anaconda)
 
 ```sh
 conda install pytorch torchvision -c pytorch
 ```
-
-https://pytorch.org/get-started/locally/#mac-anaconda
 
 ### Add conda forge!
 
@@ -22,6 +30,4 @@ The `-c` flag specifies the package channel from which Conda should install the 
 
 By specifying `-c pytorch`, Conda will search for the PyTorch package in the PyTorch channel instead of the default channel.
 
-## Note!
-
-Sometimes, DON'T BOTHER WITH CONDA ENVS. JUST PIP INSTALL.
+<br>

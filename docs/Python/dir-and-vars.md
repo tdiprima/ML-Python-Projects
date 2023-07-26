@@ -1,5 +1,9 @@
 ## List attributes of dataset
 
+**`dir()`** returns a list of attributes and methods of any object.
+
+**`vars()`** returns the `__dict__` attribute of an object.<br>The `__dict__` attribute is a dictionary containing the object's changeable attributes.
+
 <span style="color:#0000dd;">I set up my training data; it's of type torchvision.datasets.mnist.FashionMNIST.</span>
 
 <span style="color:#0000dd;">It has a .classes attribute.  I wanted to see what the other attributes were.  So I did vars(train_data).  I don't even see ".classes" in the list.  Why?</span>
@@ -12,9 +16,14 @@ Instead of using `vars()`, you can use the **`dir()`** function to **list all th
 
 ```python
 print(dir(train_data))
-# OR
+
 import pprint as pp
 pp.pprint(dir(train_data))
 ```
 
+<br>
+
 This will give you a list of all the **attributes** and **methods** of `train_data`, including the `classes` property. You can then access it using `train_data.classes`.
+
+<br>
+

@@ -10,11 +10,9 @@ y-axis (vertical) = test score
 
 If the relationship between the two variables is linear, the data points will roughly form a straight line on the graph.
 
-### Linear Relationship Graph Example
-
 ![](https://media.cheggcdn.com/media/6b8/6b8d61bc-b6e1-4960-ad9f-5bcfdbe2e2ee/phpFlLi5L.png)
 
-### Non-Linear Relationship Graph Example
+## Non-Linear Relationship
 
 Let's say we're looking at the relationship between the **diameter of a pizza** and its **price.**
 
@@ -29,3 +27,5 @@ This means that there is a **non-linear relationship** between the diameter of t
 In this case, the relationship might be that as the diameter of the pizza gets larger, the price **increases at a decreasing rate.**
 
 So a larger pizza might not cost **twice** as much as a smaller pizza, but more like **1.5 times** as much.
+
+<br>
