@@ -3,7 +3,7 @@
 I'm reading a dataset from a csv to pandas dataframe.
 
 ```py
-# Select the [predicting] data
+# Select the feature data
 X = dataset.iloc[:, :-1].values
 ```
 
@@ -26,7 +26,7 @@ The resulting `X` will be a numpy array containing all the rows of `dataset` and
 <br>
 
 ```py
-# Pop the target variable
+# Pop the target data
 y = dataset.iloc[:, 4].values
 ```
 

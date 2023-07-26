@@ -1,50 +1,38 @@
 ### OOOOMGGGG
 
-Trying to install specific version.  "Equals" won't work.  Workaround:
-
-```sh
-conda install gym"<0.18.0"
-# -y if you're feeling brazen
-conda install -y gym"<0.18.0"
-```
-
-And it's still not the right version.  But close.
-
-Maybe I gotta go:
-
-```sh
-gym[version='=0.17.0']
-```
-
-Does not work:
-
-`conda install -c conda-forge gym=0.17.0`
-
-Now I gotta install atari. So it seems like I can only do this with pip.
+Trying to install specific version of gym, using conda.  Nothing worked.  And then I needed to install atari.  But it seems like I can only do that with pip.
 
 ```sh
 pip install gym==0.8.2 -e '.[atari]'
 ```
 
 
-## Brilliant
+### gym repo at version 0.17.0 didn't work
 
-The gym repo at version 0.17.0 didn't work.  I wanted to try to get the other stuff running.  So instead, I created an environment, and...
+I wanted to try to get the other stuff running.  So instead, I created an environment, and...
 
 This didn't work:
 
-`conda install -c conda-forge gym=0.17.0`
+```sh
+conda install -c conda-forge gym=0.17.0
+```
 
+<br>
 Nor did this:
 
-`gym==0.17.0`
+```sh
+gym==0.17.0
+```
 
-[I had to do](https://stackoverflow.com/questions/38411942/anaconda-conda-install-a-specific-package-version):
+## conda - install a specific package version
+
+[I had to do](https://stackoverflow.com/questions/38411942/anaconda-conda-install-a-specific-package-version)
 
 ```sh
 conda install -y gym"<0.18.0"
 ```
 
+<br>
 And it still wasn't right, but it was close.
 
 Then I had to install atari.  Nothing freakin worked.
@@ -53,21 +41,9 @@ Then I had to install atari.  Nothing freakin worked.
 pip install gym"=0.17.0" -e '.[atari]'
 ```
 
-[Pip](https://github.com/openai/gym/issues/1088).  Wonderful.
+## Installing an older version with only some environments
 
-### Ask Buddy
-
-What is the conda way of doing: `pip install gym==0.8.2 -e '.[atari]'`?
-
-The equivalent Conda command to install gym version 0.8.2 and its atari dependencies in editable mode is:
-
-```sh
-conda install -c conda-forge gym=0.8.2
-```
-
-This will install gym version 0.8.2 from the Conda Forge channel.
-
-Buddy's wrong too.
+[GitHub Gym Issue](https://github.com/openai/gym/issues/1088)
 
 To install in editable mode with the atari dependencies, you can create a Conda environment and install the package using the -e option:
 
@@ -79,6 +55,7 @@ cd gym
 pip install -e '.[atari]'
 ```
 
+<br>
 This will clone the gym repository and install it in editable mode with the atari dependencies. You can then activate the environment and use gym in your Python scripts.
 
 <br>
