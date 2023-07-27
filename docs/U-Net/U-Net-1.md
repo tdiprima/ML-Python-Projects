@@ -171,9 +171,7 @@ class UNet(nn.Module):
     # ...
 
 def display_results(model, test_image, test_mask):
-    print("test_image", test_image.shape)
     output = model(test_image)
-    print("output", output.shape)
     prediction = output.detach().cpu().numpy()
     prediction = prediction.reshape(prediction.shape[2], prediction.shape[3])  # reshape the output
 
@@ -188,7 +186,8 @@ def display_results(model, test_image, test_mask):
 
 model = UNet()
 
-test_image = Image.open("Formula1.jpg").convert("L")  # convert to grayscale
+# test_image = Image.open("Formula1.jpg").convert("L")  # convert to grayscale
+test_image = Image.open("Formula1.jpg")
 img = image.img_to_array(test_image)
 img = img.reshape((1,) + img.shape)
 tensor = torch.from_numpy(img).float()
