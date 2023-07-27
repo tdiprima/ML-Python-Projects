@@ -1,6 +1,6 @@
 <span style="font-size:x-large;">3 <sup>1</sup>/<sub>2</sub>&nbsp;&nbsp;x&nbsp;&nbsp;2 <sup>5</sup>/<sub>8</sub> &nbsp;=&nbsp; 9 <sup>3</sup>/<sub>16</sub></span>
 
-<!--To multiply mixed numbers like `3 1/2` and `2 5/8`, you can follow these steps:-->
+To multiply mixed numbers like `3 1/2` and `2 5/8`, you can follow these steps:
 
 ### Step 1:
 
@@ -32,41 +32,6 @@ Simplify the result if possible.
 
 We cannot perform the simplification, because 147 / 16 cannot be simplified.
 
-<!--
-I made an error in my calculation earlier, and I appreciate you pointing it out.
-I hope this clears things up, and thank you again for bringing this to my attention.
--->
-
-
-## Bear's Re-Do:
-
-<span style="color:#0000dd;font-size:larger;font-weight:bold;">Step 1:</span>
-
-Get rid of the whole number, so that they're both fractions.
-
-```
-3 1/2 = (3 × 2 + 1) / 2 = 7 / 2
-2 5/8 = (2 × 8 + 5) / 8 = 21 / 8
-```
-
-<span style="color:#0000dd;font-size:larger;font-weight:bold;">Step 2:</span>
-
-Reduce that to one fraction.
-
-```
-(7 / 2) × (21 / 8) = (147 / 16)
-```
-
-<span style="color:#0000dd;font-size:larger;font-weight:bold;">Step 3:</span>
-
-Do the math!  Divide!
-
-`147 / 16 = 9` 
-
-<span style="color:#0000dd;font-weight:bold">It's 9, because 9 * 16 = 144.</span>
-
-Remainder is `3`, so it's `3/16`.
-
-And the final answer is `9 3/16` or `9.1875`.
+The final answer is `9 3/16` or `9.1875`.
 
 <br>
