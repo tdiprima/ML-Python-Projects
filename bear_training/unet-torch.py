@@ -136,17 +136,22 @@ def dummy2():
     # Test the model with a sample image
     from PIL import Image
     from tensorflow.keras.preprocessing import image
-    test_image = Image.open("../TensorFlow/augmentation/ale.png")
+    test_image = Image.open("Formula1.jpg")
     img = image.img_to_array(test_image)
     img = img.reshape((1,) + img.shape)
     test_image = img
     test_mask = torch.from_numpy(test_image)
+    # Shape: [1, 256, 256, 3]
+    test_mask = test_mask.permute(0, 3, 1, 2)
+    print("shape", test_mask.shape)
+
     return test_image, test_mask
 
 
 if __name__ == "__main__":
-    test_image, test_mask = dummy1()
-    # test_image, test_mask = dummy2()
-
+    # test_image, test_mask = dummy1()
     # display_results(model, test_image)
-    display_results1(model, test_image)
+    # display_results1(model, test_image)
+
+    test_image, test_mask = dummy2()
+    display_results1(model, test_mask)
