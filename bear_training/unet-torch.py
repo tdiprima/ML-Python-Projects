@@ -116,11 +116,26 @@ def display_results1(model, test_image):
     plt.show()
 
 
+def display_results2(model, test_image, test_mask):
+    output = model(test_image)
+    prediction = output.detach().cpu().numpy()
+    prediction = prediction.reshape(prediction.shape[2], prediction.shape[3])  # reshape the output
+
+    fig, ax = plt.subplots(1, 3, figsize=(15, 5))
+    ax[0].imshow(test_image[0, 0, :, :], cmap='gray')
+    ax[0].set_title('Input Image')
+    ax[1].imshow(test_mask[0, 0, :, :], cmap='gray')
+    ax[1].set_title('Ground Truth')
+    ax[2].imshow(prediction, cmap='gray')
+    ax[2].set_title('Prediction')
+    plt.show()
+
+
 model = UNet()  # Using the defaults
 
 
 def dummy1():
-    # Test the model with a sample image
+    # Test the model with dummy image data
     test_image = torch.ones((256, 256, 3))  # shape: [256, 256, 3]
     test_mask = torch.zeros((256, 256, 3))  # shape: [256, 256, 3]
 
@@ -129,7 +144,7 @@ def dummy1():
     test_mask = test_mask.unsqueeze(0).permute(0, 3, 1, 2)
     # print(test_image.shape)  # [1, 3, 256, 256]
 
-    return test_image, test_mask
+    display_results1(model, test_image)
 
 
 def dummy2():
@@ -145,14 +160,30 @@ def dummy2():
     test_image = torch.from_numpy(test_image)  # Shape: [1, 256, 256, 3]
     test_image = test_image.permute(0, 3, 1, 2)  # Shape: [1, 3, 256, 256]
 
+    # test_mask = test_image.clone()
+    display_results1(model, test_image)
+
+
+def dummy3():
+    # And again test the model with a sample image
+    from PIL import Image
+    from tensorflow.keras.preprocessing import image
+
+    test_image = Image.open("Formula1.jpg")
+    img = image.img_to_array(test_image)
+    img = img.reshape((1,) + img.shape)
+    tensor = torch.from_numpy(img).float()
+
+    # permute the tensor to match PyTorch's expected input shape
+    test_image = tensor.permute(0, 3, 1, 2)
+
+    # I'm using test_image as test_mask for demonstration, replace it with your actual mask
     test_mask = test_image.clone()
 
-    return test_image, test_mask
+    display_results2(model, test_image, test_mask)
 
 
 if __name__ == "__main__":
-    # test_image, test_mask = dummy1()
-    # display_results1(model, test_image)
-
-    test_image, test_mask = dummy2()
-    display_results1(model, test_image)
+    # dummy1()
+    dummy2()
+    # dummy3()
