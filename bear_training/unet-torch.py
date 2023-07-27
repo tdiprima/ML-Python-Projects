@@ -101,6 +101,21 @@ def display_results(model, test_image):
         sys.exit(1)
 
 
+# Display results
+def display_results1(model, test_image):
+    output = model(test_image)
+    # Get the prediction tensor, detach it from the computation graph, move to cpu, convert to numpy array, and squeeze it
+    prediction = output.detach().cpu().numpy().squeeze()
+    print("prediction", prediction)
+
+    fig, ax = plt.subplots(1, 3, figsize=(15, 5))
+    ax[0].imshow(test_image.cpu().numpy()[0].transpose((1, 2, 0)))  # converting tensor to numpy and rearranging dims for display
+    ax[0].set_title('Input Image')
+
+    ax[2].imshow(prediction, cmap='gray')
+    ax[2].set_title('Prediction')
+    plt.show()
+
 model = UNet()  # Using the defaults
 
 
@@ -133,5 +148,5 @@ if __name__ == "__main__":
     test_image, test_mask = dummy1()
     # test_image, test_mask = dummy2()
 
-    # expected input[1, 256, 256, 3] to have 3 channels, but got 256 channels instead
-    display_results(model, test_image)
+    # display_results(model, test_image)
+    display_results1(model, test_image)
