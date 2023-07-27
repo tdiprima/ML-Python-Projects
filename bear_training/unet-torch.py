@@ -4,6 +4,8 @@ Takes a 3-channel input image and outputs a single-channel segmentation mask.
 """
 import torch
 import torch.nn as nn
+from PIL import Image
+from tensorflow.keras.preprocessing import image
 
 
 class DoubleConv(nn.Module):
@@ -74,11 +76,11 @@ class UNet(nn.Module):
 
 
 import matplotlib.pyplot as plt
-import sys
 
 
 # Display results
-def display_results(model, test_image):
+def display_results(model, test_image, test_mask):
+    import sys
     try:
         # Make a prediction on the test image
         output = model(test_image)
@@ -140,10 +142,10 @@ def dummy1():
     test_mask = torch.zeros((256, 256, 3))  # shape: [256, 256, 3]
 
     # Adding the batch dimension and rearranging the dimensions to (N, C, H, W)
-    test_image = test_image.unsqueeze(0).permute(0, 3, 1, 2)
+    test_image = test_image.unsqueeze(0).permute(0, 3, 1, 2)  # [1, 3, 256, 256]
     test_mask = test_mask.unsqueeze(0).permute(0, 3, 1, 2)
-    # print(test_image.shape)  # [1, 3, 256, 256]
 
+    # display_results(model, test_image, test_mask)
     display_results1(model, test_image)
 
 
