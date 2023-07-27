@@ -106,11 +106,13 @@ model = UNet()  # Using the defaults
 
 def dummy1():
     # Test the model with a sample image
-    test_image = torch.ones((256, 256, 3))
-    test_mask = torch.zeros((256, 256, 3))
+    test_image = torch.ones((256, 256, 3))  # shape: [256, 256, 3]
+    test_mask = torch.zeros((256, 256, 3))  # shape: [256, 256, 3]
 
-    test_image = test_image.squeeze()
-    test_mask = test_mask.squeeze()
+    # Adding the batch dimension and rearranging the dimensions to (N, C, H, W)
+    test_image = test_image.unsqueeze(0).permute(0, 3, 1, 2)
+    test_mask = test_mask.unsqueeze(0).permute(0, 3, 1, 2)
+    # print(test_image.shape)  # [1, 3, 256, 256]
 
     return test_image, test_mask
 
@@ -130,4 +132,6 @@ def dummy2():
 if __name__ == "__main__":
     test_image, test_mask = dummy1()
     # test_image, test_mask = dummy2()
+
+    # expected input[1, 256, 256, 3] to have 3 channels, but got 256 channels instead
     display_results(model, test_image)
