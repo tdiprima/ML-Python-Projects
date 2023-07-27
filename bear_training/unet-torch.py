@@ -151,9 +151,6 @@ def dummy1():
 
 def dummy2():
     # Test the model with a sample image
-    from PIL import Image
-    from tensorflow.keras.preprocessing import image
-
     test_image = Image.open("Formula1.jpg")
     img = image.img_to_array(test_image)
     img = img.reshape((1,) + img.shape)
@@ -167,10 +164,7 @@ def dummy2():
 
 
 def dummy3():
-    # And again test the model with a sample image
-    from PIL import Image
-    from tensorflow.keras.preprocessing import image
-
+    # todo: make a proper mask
     test_image = Image.open("Formula1.jpg")
     img = image.img_to_array(test_image)
     img = img.reshape((1,) + img.shape)
@@ -187,5 +181,5 @@ def dummy3():
 
 if __name__ == "__main__":
     # dummy1()
-    dummy2()
-    # dummy3()
+    # dummy2()
+    dummy3()
