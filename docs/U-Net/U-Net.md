@@ -14,7 +14,7 @@ The architecture diagram of the UNet neural network. It's a series of **convolut
 
 ## U-Net Implementation
 
-See: **unet-torch.py**
+See: [unet-torch.py](../../bear_training/unet-torch.py)
 
 A basic U-Net architecture that takes a **3-channel input image** and outputs a **single-channel segmentation mask**.
 
