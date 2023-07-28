@@ -22,7 +22,7 @@ generator.compile(loss='binary_crossentropy', optimizer=Adam(learning_rate=0.000
 
 # Define the discriminator network
 discriminator = Sequential()
-discriminator.add(Dense(128, input_dim=784))
+discriminator.add(Dense(128, input_dim=784))  # one-dimensional array of length 784 (28 x 28) pixels
 discriminator.add(LeakyReLU(alpha=0.01))
 discriminator.add(Dense(1, activation='sigmoid'))
 discriminator.compile(loss='binary_crossentropy', optimizer=Adam(learning_rate=0.0002, beta_1=0.5))
