@@ -1,7 +1,6 @@
 ## What is ResNet50
 
-<span style="color:#0000dd;font-size:larger;">A type of deep neural network used for image 
-recognition.</span>
+<span style="color:#0000dd;font-size:larger;">A type of deep neural network used for image recognition.</span>
 
 <!--<img src="https://1.cms.s81c.com/sites/default/files/2021-01-06/ICLH_Diagram_Batch_01_03-DeepNeuralNetwork-WHITEBG.png" width="600">-->
 
@@ -46,6 +45,6 @@ This makes **ResNet50** a very powerful tool for **image recognition** tasks.
 1. YOLOv3
 1. U-Net
 
-<span style="color:#0000dd;font-size:larger;">See:</span> [CNNs.md](../CNNs.md)
+<span style="color:#0000dd;font-size:larger;">See:</span> [CNNs.md](CNNs.md)
 
 <br>
