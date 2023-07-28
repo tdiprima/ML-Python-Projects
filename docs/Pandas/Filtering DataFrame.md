@@ -1,70 +1,99 @@
-## Clara
+## string.contains()
 
-How can I query the dataframe for all rows where part of the name has "Clara" in it?
+How can I query the dataframe for all rows where part of the name has "Alejandra" in it?
 
-You can use the `str.contains()` method in Pandas to check whether a string contains a specific substring, and then use this method to filter the rows based on whether the "full name" column contains the string "Clara".
+You can use the `str.contains()` method in Pandas to check whether a string contains a specific substring, and then use this method to filter the rows based on whether the "full name" column contains the string "Alejandra".
 
 ``` python
 import pandas as pd
 
 # create a sample dataframe
 df = pd.DataFrame({
-    'full name': ['Clara Smith', 'John Clarke', 'Mary Clarke', 'Robert Clark']
-})
+    "full name": [
+        "Daniella Villarreal",
+        "Paulina Villarreal",
+        "Alejandra Villarreal"
+    ]})
 
-# filter the dataframe based on whether the "full name" column contains "Clara"
-clara_df = df[df['full name'].str.contains('Clara')]
-
-print(clara_df)
+# filter the dataframe based on whether the "full name" column contains "Alejandra"
+series = df["full name"].str.contains("Alejandra")
+df1 = df[series]
 ```
 
+<br>
 This will output the following filtered dataframe:
 
 ```
-    full name
-0  Clara Smith
+              full name
+2  Alejandra Villarreal
 ```
 
-In this example, only the row with the name "Clara Smith" contains the string "Clara" in the "full name" column, so this is the only row that is returned in the filtered dataframe.
+<br>
+And Series gives you:
+
+```
+0    False
+1    False
+2     True
+Name: full name, dtype: bool
+```
+
+## Filter Names: Beatrice & Rose
 
 ```py
+# Looking for "Rose Dewitt Bukater" aka "Beatrice Wood"
 df = train_data
-# Beatrice Wood
-# Rose Dewitt Bukater
-rose_df = df[df['Name'].str.contains('Bea')]
-rose_df  # oh well.
+rose_df = df[df['Name'].str.contains('Beatrice|Rose')]
+rose_df  # Leah Rosen. Eh, wrong Rose. But she survived. :)
 ```
 
-## Women
+<br>
 
-I wanted to try to figure out what percentage of women died.  Rather than subtract 100% - survived %.
+You can filter a pandas dataframe for those rows whose 'Name' string contains either "Beatrice" or "Rose" by using the pipe operator `|` to represent the logical OR.
 
-```py
-w = train_data.loc[train_data.Sex == 'female']["Survived" == 0]
+```python
+df[df['Name'].str.contains('Beatrice|Rose')]
 ```
 
-The error you're encountering is because the **syntax for subsetting** a DataFrame in pandas is incorrect in the code you wrote.
+<br>
 
-Specifically, you're using the equality operator `==` **inside the indexing brackets** (which is wrong).
+Note that the function `str.contains()` returns a boolean Series with the same index as the original Series and this Series is used to filter the dataframe. The pipe operator `|` is a regex OR, matching a pattern either before or after the pipe.
 
-Here's how you can **fix the code** to calculate the percentage of female passengers who did not survive:
+Also, be aware that `str.contains()` is case sensitive by default. If you want to make it case insensitive, use the `case` parameter and set it to `False`:
+
+```python
+df[df['Name'].str.contains('Beatrice|Rose', case=False)]
+```
+
+<br>
+This will match "Beatrice", "BEATRICE", "beatrice", "Rose", "ROSE", "rose", etc.
+
+## Titanic 🚢
+
+<span style="color:#0000dd;">I wanted to try to figure out what percentage of women died.  Rather than subtract 100% - survived %.</span>
+
+[Kaggle.com](https://www.kaggle.com/code/tammydiprima/coherent-firebird)
+
+Calculate the percentage of female passengers who did not survive:
 
 ```python
 # Subset the data to female passengers
-female_data = train_data[train_data['Sex'] == 'female']
+f_series = train_data['Sex'] == 'female'  # True and False
+female_data = train_data[f_series]  # dataframe of only women
 
 # Count the number of females who did not survive
-num_female_died = len(female_data[female_data['Survived'] == 0])
+fs_series = female_data['Survived'] == 0
+fs_df = female_data[fs_series]
+num_female_died = len(fs_df)
 
 # Calculate the percentage of females who did not survive
 percent_female_died = num_female_died / len(female_data) * 100
 
 print(f"Percentage of female passengers who did not survive: {percent_female_died:.2f}%")
+# 25.80%
 ```
 
-<mark>**TODO:**</mark> Compare with existing Kaggle code for survival.
-
-<mark>**AND:**</mark> Compare with Tim's code.
+<br>
 
 1. Subset the data to only include female passengers
     * Create a boolean mask that filters the DataFrame based on the condition that the 'Sex' column equals 'female'.
@@ -77,6 +106,17 @@ print(f"Percentage of female passengers who did not survive: {percent_female_die
     * Divide the number of females who did not survive by the total number of females in the dataset
     * Multiply by 100.
 
-4. Print result with **two decimal places** using f-strings.
+4. Print result with two decimal places using f-strings.
+
+## Survived
+
+```py
+survived_women = train_data.loc[train_data.Sex == 'female']["Survived"]
+pct_women_survived = sum(survived_women) / len(survived_women) * 100
+# 233 / 314 * 100
+
+print("\n% of women who survived:", pct_women_survived)
+# 74.20382165605095
+```
 
 <br>
