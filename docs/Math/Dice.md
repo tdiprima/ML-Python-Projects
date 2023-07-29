@@ -1,13 +1,14 @@
-<span style="color:#0000dd;">I use the following python code to calculate cross-entropy.  Using the same probability distributions, how could I calculate a Dice score for similarity?</span>
+<span style="color:#0000dd;">I use the following code to calculate cross-entropy.  Using the same probability distributions, how could I calculate a Dice score for similarity?</span>
+
+First of all, you don't use Dice for probability distributions; Dice is for segmentations. Remember?  For the segmentation comparisons, scoring, whatever, for the stupid <!--MICCAI--> competition.  And cross-entropy is to see how close we are to the "answers"; i.e. how good our model is.
 
 ```py
+# Calculate cross-entropy
 import numpy as np
 
-# Define two probability distributions
 p = np.array([0.2, 0.3, 0.5]) # true distribution
 q = np.array([0.3, 0.3, 0.4]) # predicted distribution
 
-# Calculate cross-entropy
 cross_entropy = -np.sum(p * np.log(q))
 
 print(f"Cross-entropy: {cross_entropy:.4f}")
@@ -128,3 +129,4 @@ As a side note, while Otsu's method works perfectly for an image that includes b
 ![bimodal distribution](https://i0.wp.com/statisticsbyjim.com/wp-content/uploads/2022/03/Bimodal_histogram.png?resize=576%2C384&ssl=1)
 
 <br>
+
