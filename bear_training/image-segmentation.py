@@ -5,7 +5,6 @@ Image Segmentation.md
 import cv2
 
 # Load the image
-# img = cv2.imread('image.jpg')
 img = cv2.imread('colored-dots.jpg')
 
 # Convert to grayscale
