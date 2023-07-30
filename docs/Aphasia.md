@@ -44,7 +44,7 @@ Developing a tool to assist people with Aphasia requires a combination of machin
     * React Native
     * Xamarin
 
-![](../images/mobile-app-development.jpg)
+<img src="../images/mobile-app-development.jpg" width="450">
 
 <!-- https://buildfire.com/wp-content/uploads/2017/10/become-mobile-app-developer-1200x900.jpg -->
 <!-- https://reliasoftware.com/static/9ce8aa204a21e69716018fee472b042c/the-complete-guide-to-mobile-app-development-2021.png -->
