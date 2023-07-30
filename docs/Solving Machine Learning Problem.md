@@ -1,6 +1,4 @@
-## How to go about solving a machine learning problem
-
-Sure, I'd be happy to explain it to you.  Machine learning is a powerful tool used in many fields, including computer vision, natural language processing, and even finance.  Here are the steps you can follow:
+<div align="center" style="color:#880000;">How to go about solving a machine learning problem</div>
 
 ### Step 1: Define the Problem
 
