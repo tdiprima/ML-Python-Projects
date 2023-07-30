@@ -1,19 +1,21 @@
 ## Function annotation
 
 ```py
+import torch
+
 def forward(self, x: torch.Tensor) -> torch.Tensor:
     return self.linear_layer(x)
 ```
 
 The notation with the arrow `->` in the function signature is called a function annotation.
 
-It is used to **specify the type** of the function's input arguments and return value.
+It is used to specify the type of the function's input arguments and return value.
 
 ## Type hinting
 
-How do I indicate what data types the function parameters should be?
+<span style="color:#0000dd;">How do I indicate what data types the *parameters* should be?</span>
 
-You can indicate the expected data types for function parameters using **type hints** in Python.
+You can indicate the expected data types for function parameters using type hints.
 
 Type hints are annotations added to function arguments and return values that indicate the expected data types of these values.
 
@@ -23,6 +25,8 @@ To specify a type hint for a parameter in a function definition, you can add a c
 def add_numbers(x: int, y: int) -> int:
     return x + y
 ```
+
+<br>
 
 In this example, the `add_numbers` function takes two integer arguments (`x` and `y`) and returns an integer value.
 
@@ -34,13 +38,10 @@ You can use various data types in type hints such as `str`, `float`, `bool`, `li
 
 Type hints are **not enforced** by the Python interpreter, but they can be helpful for documenting code and catching potential type errors during development using tools like static type checkers or IDEs that support them.
 
-## Function default values
-
-### The problem is, what does this function signature mean?
+## Default values
 
 ```python
 import matplotlib.pyplot as plt
-
 
 # Plots training data, test data and compares predictions.
 def plot_predictions(train_data=X_train,
@@ -61,13 +62,12 @@ def plot_predictions(train_data=X_train,
 
 
 plot_predictions()
-
 ```
 
 <br>
-Certainly, I'd be happy to help! Here's one way you could refactor your function to make it more extensible and separate it into its own file.
+Here's one way you could refactor your function to make it more extensible and separate it into its own file.
 
-First, let's create a new Python file named `plotting.py`. In this file, we'll define a new function called `plot_predictions`:
+First, let's create a new file named `plotting.py`. In this file, we'll define a new function called `plot_predictions`:
 
 ```python
 def plot_predictions(train_data, train_labels, test_data, test_labels, predictions=None):
@@ -76,7 +76,7 @@ def plot_predictions(train_data, train_labels, test_data, test_labels, predictio
 
 <br>
 
-<mark>**Note that we've removed the default values**</mark> for the function arguments. This is because we don't want to tie the implementation of the function to specific data sets.
+**Note that we've removed the default values** for the function arguments. This is because we don't want to tie the implementation of the function to specific data sets.
 
 Now, let's modify the original file that was using the `plot_predictions` function. We'll import the new `plot_predictions` function from `plotting.py`:
 
@@ -90,15 +90,9 @@ plot_predictions(X_train, y_train, X_test, y_test)
 <br>
 By importing the function from a separate file, we can reuse it across multiple files and projects without duplicating code.
 
-I hope this helps! Let me know if you have any further questions.
-
-<span style="color:#0000dd;">You're a genius!  Thanks! :)</span>
-
-You're welcome! I'm glad I could help. Don't hesitate to ask if you have any more questions in the future!
-
 ## Oops #1
 
-Note!  `predictions` is a keyword.  So if you wanna pass predictions to the function, you're gonna have to use that specific keyword.
+Note!  `predictions` is still a keyword.  So if you wanna pass predictions to the function, you're gonna have to use that specific keyword.
 
 ```python
 plot_predictions(predictions=y_preds)
@@ -106,11 +100,10 @@ plot_predictions(predictions=y_preds)
 
 ## Oops #2
 
-`plot_predictions() missing 4 required positional arguments: 'train_data', 'train_labels', 'test_data', and 'test_labels'`
+plot_predictions() missing 4 required positional arguments: 'train_data', 'train_labels', 'test_data', and 'test_labels'
 
 Fine. <span style="font-size:27px;">🐶</span>
 
-So now we know that it's actually kinda Rico Suave to use the default values, because then they're ***all optional!***
-
+So now we know that it's actually kinda suave to use the default values, because then they're ***all optional!***
 
 <br>
