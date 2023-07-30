@@ -12,6 +12,12 @@ Just like in your brain, these artificial neurons can turn on or off depending o
 
 When we connect lots of these neurons together in a network, we can use them to solve all sorts of stuff, like recognizing handwritten letters or predicting the weather.
 
+## "ANN" stands for Artificial Neural Network. 
+
+An Artificial Neural Network is a computational model based on the neural structure of the brain that is able to learn and improve from experience. It's comprised of interconnected nodes or "neurons" arranged in layers. Information is input into the first layer, processed, and passed along to subsequent layers until it reaches the output layer. 
+
+Artificial Neural Networks can be used for a wide variety of tasks, including image recognition, speech recognition, natural language processing, and any other tasks involving pattern recognition or prediction. They're a fundamental tool in the field of machine learning and artificial intelligence.
+
 ## Inputs, Weights, and Bias
 
 <img src="https://assets-global.website-files.com/5d7b77b063a9066d83e1209c/614fc05e2486109794ed3bdc_neuron.png" width="600">
