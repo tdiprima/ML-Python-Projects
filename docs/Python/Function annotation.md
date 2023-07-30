@@ -90,20 +90,10 @@ plot_predictions(X_train, y_train, X_test, y_test)
 <br>
 By importing the function from a separate file, we can reuse it across multiple files and projects without duplicating code.
 
-## Oops #1
-
-Note!  `predictions` is still a keyword.  So if you wanna pass predictions to the function, you're gonna have to use that specific keyword.
+**Note!**  If you wanna pass predictions to the function, you're gonna have to use that keyword.
 
 ```python
-plot_predictions(predictions=y_preds)
+plot_predictions(X_train, y_train, X_test, y_test, predictions=y_preds)
 ```
-
-## Oops #2
-
-plot_predictions() missing 4 required positional arguments: 'train_data', 'train_labels', 'test_data', and 'test_labels'
-
-Fine. <span style="font-size:27px;">🐶</span>
-
-So now we know that it's actually kinda suave to use the default values, because then they're ***all optional!***
 
 <br>
