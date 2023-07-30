@@ -70,4 +70,64 @@ Here are some things you can try to diagnose the issue:
 -bash: nvidia-smi: command not found
 ```
 
+## GPU Check Methods
+
+On Red Hat Linux, there are several ways to check if the server has a GPU.
+
+1. Using `lspci` command:
+
+    `lspci` is a command-line utility that lists all the PCI devices connected to your system. Most GPUs are connected through the PCI interface, so you can use this command to check if a GPU is present on your server.
+
+    Open a terminal and run the following command:
+
+    ```sh
+    lspci | grep -i vga
+    ```
+
+    This command will search for the VGA controller, which usually indicates the presence of a GPU. If a GPU is detected, it will be listed in the output.
+
+2. Using `lshw` command:
+
+    `lshw` is another command-line utility that provides detailed information about the hardware on your system. It is not always installed by default, so you may need to install it using the package manager (`sudo dnf install lshw`).
+
+    Once installed, run the following command:
+
+    ```sh
+    sudo lshw -C display
+    ```
+
+    This command will show information about all display controllers, which should include any GPUs if they are present.
+
+3. Using NVIDIA System Management Interface (nvidia-smi):
+
+    If your server has an NVIDIA GPU and the NVIDIA drivers are installed, you can use the `nvidia-smi` command to get information about the GPU.
+
+    Simply run:
+
+    ```sh
+    nvidia-smi
+    ```
+
+    This will provide detailed information about the NVIDIA GPU, including its model, driver version, and utilization.
+
+4. Using `inxi` command:
+
+    `inxi` is a versatile system information script that can provide a wide range of details about your system, including information about GPUs.
+
+    If it's not already installed, you can install it using:
+
+    ```sh
+    sudo dnf install inxi
+    ```
+
+    Then run:
+
+    ```sh
+    inxi -G
+    ```
+
+    This will show detailed information about your GPU.
+
+These methods should help you determine whether your server has a GPU and get more information about it if one is present.
+
 <br>
