@@ -1,14 +1,6 @@
-# 🪜
-
-One way to represent the concept of logarithm in an image is to visualize it as a ladder.
-
-The base of the ladder represents the base of the logarithm, and the rungs of the ladder represent the values of the logarithm.
-
-The higher the rung, the higher the value of the logarithm.
-
 # 📊
 
-Another way to represent logarithm as an image is to use a graph with an x-axis and a y-axis.
+One way to represent the concept of logarithm as an image is to use a graph with an x-axis and a y-axis.
 
 The x-axis represents the input values, and the y-axis represents the logarithmic values.
 
