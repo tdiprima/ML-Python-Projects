@@ -1,54 +1,79 @@
-### How do you know if a PyTorch program is using the UNet architecture?
+## How do you know if it's U-Net?
 
-Here are some examples of what each of these components might look like in PyTorch code:
+* Down-sampling layer
+* Up-sampling layer
+* Skip connections
+* Symmetric architecture
 
-## Down-sampling layer:
 
-A common way to perform down-sampling in PyTorch is to use a <mark>**convolutional layer**</mark> with a stride greater than 1.
+## PyTorch CNN Downsample
 
-Here's an example of a 2D convolutional layer with a **stride of 2**, which reduces the spatial size of the input feature map by a factor of 2:
-
-```ruby
+```py
 import torch.nn as nn
 
 downsample = nn.Conv2d(in_channels=64, out_channels=128, kernel_size=3, stride=2, padding=1)
 ```
 
 <br>
+This code defines a **2D convolutional layer**, often used in deep learning, particularly for **image-related** tasks.
 
-## Up-sampling layer:
+This 2D convolutional layer, `downsample`, is named so because it effectively **reduces** the spatial resolution **(height and width)** of its input by a **factor of 2**. This is achieved by specifying a stride of 2, which means the convolutional filters move two pixels at a time instead of the default one pixel.
 
-To up-sample the feature maps, one can use a <mark>**transposed**</mark> **convolutional layer**, also known as a deconvolutional layer. 
+### Parameters
 
-Here's an example of a 2D transposed convolutional layer that doubles the spatial size of the input feature map:
+- `in_channels=64`: The number of input channels (**depth**) that the convolution layer accepts. In the context of an image, this could be 3 for an RGB image (red, green, blue) or 1 for a grayscale image.
 
-```ruby
+    But in the deeper layers of a neural network, this could be more as each channel may represent some high-level feature. Here, it's set to 64, indicating that it expects 64 different feature maps.
+
+- `out_channels=128`: The number of output channels (**filters**) that the convolution layer will learn. Each of these filters will be convolved with the input image (or feature map), producing 128 different feature maps as output.
+
+- `kernel_size=3`: The **height and width** of the convolutional window (also known as a kernel or filter). In this case, it's a 3x3 window.
+
+- `stride=2`: Reduces the spatial size of the input feature map by a factor of 2.  Stride 2 is the **step size** for moving the convolutional kernel across the input image or feature map.
+
+    A stride of 2 means the window moves 2 pixels at a time. This is what makes the layer downsample *(verb)* its input, reducing the spatial dimensions (height and width) by approximately a **factor of 2**.
+
+- `padding=1`: The number of zero-padding pixels added to **all sides** of the input. This is often used to preserve the spatial dimensions of the input, but in this case, it helps to make sure that **all pixels are visited** by the center of the convolutional kernel, while still downsampling the input due to the stride of 2.
+
+So, in summary, the code defines a convolutional layer that will downsample its input by a factor of 2, while transforming 64-dimensional input feature maps to 128-dimensional output feature maps.
+
+## Up-sampling layer
+
+All of the above, put together.
+
+To up-sample the feature maps, one can use a transposed convolutional layer, also known as a **deconvolutional** layer. 
+
+Here's an example of a 2D transposed convolutional layer that **doubles** the spatial size of the input feature map:
+
+```py
 upsample = nn.ConvTranspose2d(in_channels=128, out_channels=64, kernel_size=3, stride=2, padding=1, output_padding=1)
 ```
 
 <br>
+Same as before, except the input and output channel values are reversed now.  In 64, out 128... in 128, out 64.
 
-## Skip connection:
+## Skip connection
 
-A <mark>**skip connection**</mark> is simply a way to concatenate the feature maps from an earlier layer with those from a later layer, in order to preserve more detailed information from the input image.
+A skip connection is simply a way to concatenate the feature maps from an earlier layer with those from a later layer, in order to preserve more detailed information from the input image.
 
-```ruby
+```py
 x = downsample(input_tensor)
 y = upsample(x)
-z = torch.cat([x, y], dim=1)  # concatenate along the channel dimension
+# concatenate along the channel dimension
+z = torch.cat([x, y], dim=1)
 ```
 
-<br>
+## Symmetric architecture
 
-## Symmetric architecture:
+1. The encoder and decoder paths typically have the same number of layers
 
-1. The encoder and decoder paths typically have the **same number of layers**
+2. The number of feature maps is usually doubled or halved at each layer, respectively.
 
-2. The number of feature maps is usually **doubled** or **halved** at each layer, respectively.
+A symmetric **encoder-decoder** network:
 
-A symmetric encoder-decoder network:
+```py
+import torch.nn as nn
 
-```ruby
 class UNet(nn.Module):
     def __init__(self, in_channels, out_channels):
         super().__init__()
@@ -58,7 +83,7 @@ class UNet(nn.Module):
         self.conv2 = nn.Conv2d(64, 128, kernel_size=3, stride=2, padding=1)
         self.conv3 = nn.Conv2d(128, 256, kernel_size=3, stride=2, padding=1)
         self.conv4 = nn.Conv2d(256, 512, kernel_size=3, stride=2, padding=1)
-        
+
         # Up-sampling layers
         self.upconv1 = nn.ConvTranspose2d(512, 256, kernel_size=3, stride=2, padding=1, output_padding=1)
         self.upconv2 = nn.ConvTranspose2d(256, 128, kernel_size=3, stride=2, padding=1, output_padding=1)
@@ -71,6 +96,9 @@ class UNet(nn.Module):
         self.skip3 = nn.Conv2d(64, 64, kernel_size=1, stride=1, padding=0)  # It konked out at 'padding='.
         # Add 4th layer.
         self.skip4 = nn.Conv2d(32, 32, kernel_size=1, stride=1, padding=0)
+
+
+UNet(64, 128)
 ```
 
 <br>
