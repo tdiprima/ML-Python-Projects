@@ -17,7 +17,7 @@ In summary, it is advisable to evaluate the TensorFlow model after training it, 
 
 ## Good fit model
 
-Training and validation go parallel.
+The validation catches up with the training.
 
 ![](../../images/learning-curve-good-fit-model.jpg)
 
