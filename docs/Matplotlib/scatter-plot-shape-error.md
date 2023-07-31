@@ -39,7 +39,7 @@ Remember, the color specification in matplotlib is very flexible. It can be sing
 
 `invalid_shape_exception` that says "ValueError: 'c' argument has 500 elements, which is inconsistent with 'x' and 'y' with size 100."
 
-Fix it like this:
+Fix it like this (use a [colormap](https://matplotlib.org/stable/tutorials/colors/colormaps.html#sequential)):
 
 ```py
 import matplotlib.pyplot as plt
