@@ -62,11 +62,8 @@ Here are some things you can try to diagnose the issue:
 
 1. If you're using a virtual environment, make sure that you have installed PyTorch and CUDA inside the virtual environment.
 
-## Solved
-
-<span style="color:#0000dd;">Well, that answers it.</span>
-
 ```sh
+# I just ran nvidia-smi and gave up.
 -bash: nvidia-smi: command not found
 ```
 
