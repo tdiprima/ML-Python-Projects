@@ -59,7 +59,11 @@ fig = px.scatter(df, x='X0', y='X1', color='y')
 fig.show()
 ```
 
-In this code, I first created a Pandas DataFrame with the X and y data. I split the two dimensions of X into two separate columns (`X0` and `X1`), which is necessary because Pandas DataFrame only accepts 1-dimensional data for each column. Then I used `px.scatter()` to create the scatter plot. The DataFrame column names are used for the x, y, and color parameters. These column values will automatically be included in the hover text.
+<br>
+
+In this code, I first created a Pandas DataFrame with the X and y data.
+
+I split the two dimensions of X into two separate columns (`X0` and `X1`), which is necessary because Pandas DataFrame only accepts 1-dimensional data for each column. Then I used `px.scatter()` to create the scatter plot. The DataFrame column names are used for the x, y, and color parameters. These column values will automatically be included in the hover text.
 
 <!-- I apologize for the confusion. It looks like there was a mistake in my previous answer, as the `hover_data` parameter in Plotly Express **expects a dictionary where the values are 1-dimensional arrays.**
 
@@ -91,6 +95,8 @@ def on_add(sel):
 
 plt.show()
 ```
+
+<br>
 
 I click the outer red circle, everything is fine.  Click the blue circle, and I get a Warning. ⚡️
 
