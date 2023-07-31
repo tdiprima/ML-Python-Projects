@@ -61,7 +61,7 @@ for dirName, subdirList, fileList in os.walk(rootDir):
 
                 myTxt = stub + '_text.txt'
 
-            myCmd = 'python Python-2.py -i input/' + myPng + ' -x input/' + myXml + ' -m output/' + myMsk + ' -o output/' + myTxt
+            myCmd = 'python parse-xml-write-mask.py -i input/' + myPng + ' -x input/' + myXml + ' -m output/' + myMsk + ' -o output/' + myTxt
 
             print(myCmd)
             os.system(myCmd)
