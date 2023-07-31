@@ -75,8 +75,8 @@ num_cols = int(np.ceil(num_images / num_rows))
 fig, axs = plt.subplots(num_rows, num_cols, figsize=(12, 12))
 
 for i, image in enumerate(image_list):
-    row_idx = i // num_cols
-    col_idx = i % num_cols
+    row_idx = i // num_cols  # row index, floor division
+    col_idx = i % num_cols   # col index, modulus
     axs[row_idx, col_idx].imshow(image, cmap='gray')
 
 fig.suptitle('List of Images')
