@@ -1,8 +1,6 @@
 ## Deep Fakes <span style="font-size: 27px;">🥸</span>
 
-Have you ever seen a magic trick where a magician makes something **disappear** or someone **appear** out of nowhere? Well, deep fakes are kind of like a magic trick, but with **videos**. 📺
-
-Deep fakes are videos that have been made to look like **they show something that actually didn't happen**.
+Deep fakes are videos 📺 that have been made to look like **they show something that actually didn't happen**.
 
 For example, someone could use special computer programs to make a video of someone saying or doing something that they never actually said or did.
 
@@ -19,19 +17,17 @@ Deep Fakes are typically created using deep learning algorithms, specifically a 
 
 The generator network takes in an **input image** and **generates a new image** based on the characteristics of a dataset of **target images**.
 
-*(I think the targets is kinda like when put the little balls on the stunt people's outfits, and voila - you can doctor up their outfits with CGI or make them look like an animal.  Except instead of using film, you might have still-shots instead. Maybe.)*
-
 ### Discriminator network 🎞️ 🔍
 
 The discriminator network tries to distinguish between the **generated image** and the **real image** from the target dataset. 
 
-💡The generator network is **trained to fool** the discriminator network into thinking that the generated image is real, while the discriminator network is trained to correctly identify the real images.
+💡 The generator network is **trained to fool** the discriminator network into thinking that the generated image is real, while the discriminator network is trained to correctly identify the real images.
 
 By training the GAN on a large dataset of target images, the generator network can **learn to create realistic images** that resemble the target images.
 
 This can be used to create deep fakes by feeding in an image of a person and generating a new image that appears to be that person, but with different actions or expressions.
 
-There are also other **deep learning algorithms** used in the creation of Deep Fakes, such as:
+There are also other **deep learning algorithms** used in the creation of Deep Fakes, such as
 
 * **Autoencoders**
     * [Generative Deep Learning with Autoencoders](https://emkademy.medium.com/1-first-step-to-generative-deep-learning-with-autoencoders-22bd41e56d18)
@@ -40,7 +36,7 @@ There are also other **deep learning algorithms** used in the creation of Deep F
 
 which are used to generate latent representations of faces or other objects that can be manipulated to create new images.
 
-## Latent? 🤔
+## Latent representations? 🤔
 
 When generating latent representations of faces, we are referring to creating a lower-dimensional vector that captures the **essential characteristics** or features of a face.
 
@@ -55,8 +51,6 @@ During training, the autoencoder learns to compress the input image into a compr
 This compressed representation is known as the "latent space" or "latent code", and it **can be used to generate new images** that share the same features as the input image.
 
 ### Variational autoencoder
-
-A variational autoencoder (VAE) is a type of autoencoder that has a different architecture and training objective.
 
 In addition to encoding and decoding the input image, a VAE also learns to generate new images by **sampling from a probability distribution** over the latent space.
 
