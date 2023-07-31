@@ -1,28 +1,27 @@
 ## Plot multiple images in one figure window
 
-<!--If I wanted to iterate a list of images and plot them in one matplotlib figure window, how can I do that?-->
-
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
 
-# assume you have a list of image data, where each image is a 2D numpy array
-image_list = [np.random.rand(10,10), np.random.rand(10,10), np.random.rand(10,10)]
+# Assume you have a list of image data, where each image is a 2D numpy array
+image_list = [np.random.rand(10, 10), np.random.rand(10, 10), np.random.rand(10, 10)]
 
-# create a figure object and an array of axes objects to plot the images
+# Create a figure object and an array of axes objects to plot the images
 fig, axs = plt.subplots(1, len(image_list), figsize=(10, 5))
 
-# iterate through the list of images and plot each image in a separate axis object
+# Iterate through the list of images and plot each image in a separate axis object
 for i, image in enumerate(image_list):
     axs[i].imshow(image)
 
-# set the title and axis labels for the figure
+# Set the title and axis labels for the figure
 fig.suptitle('List of Images')
 fig.tight_layout()
 plt.show()
 ```
 
-In this example, we first import the necessary libraries and create a list of image data.
+<br>
+First, we create a list of 3 sets of image data.
 
 Then, we create a `figure` object and an array of axes objects using `subplots()`.
 
@@ -38,9 +37,7 @@ We then call `show()` to display the figure window with all the plotted images.
 
 ## Figsize
 
-Great, thanks.  I see `figsize=(10, 5)`.  So that's 10 rows, 5 columns?
-
-**No**, the figsize parameter is used to set the size of the figure in **inches**, not rows and columns.
+The figsize parameter is used to set the size of the figure in **inches**, not rows and columns.
 
 `figsize=(10, 5)` sets the width of the figure to 10 inches and the height to 5 inches.
 
@@ -60,32 +57,28 @@ This would create a figure with 2 rows and 2 columns of subplots, and you could 
 
 ## Flexible layout
 
-I suppose I could put a limit on the number of images to display, in order to fit the window we have set.  But let's suppose I don't know if we're going to display, for example, 4 images or 100 images.  Is there a method to expand and contract the window size accordingly?
+<span style="color:#0000dd;">I suppose I could put a limit on the number of images to display, in order to fit the window we have set.  But let's suppose I don't know if we're going to display, for example, 4 images or 100 images.  Is there a method to expand and contract the window size accordingly?</span>
 
-Yes, you can create a flexible layout for your figure that can automatically adjust its size based on the number of images you want to display. Here's an example code that demonstrates how you can achieve this:
+Yes, you can create a flexible layout for your figure that can automatically adjust its size based on the number of images you want to display.
 
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
 
-# assume you have a list of image data, where each image is a 2D numpy array
-image_list = [np.random.rand(10,10) for _ in range(50)]
+image_list = [np.random.rand(10, 10) for _ in range(50)]
 
-# calculate the number of rows and columns needed to display all the images
+# Calculate the number of rows and columns needed to display all the images
 num_images = len(image_list)
 num_rows = int(np.ceil(np.sqrt(num_images)))
 num_cols = int(np.ceil(num_images / num_rows))
 
-# create a figure object and an array of axes objects to plot the images
 fig, axs = plt.subplots(num_rows, num_cols, figsize=(12, 12))
 
-# iterate through the list of images and plot each image in a separate axis object
 for i, image in enumerate(image_list):
     row_idx = i // num_cols
     col_idx = i % num_cols
     axs[row_idx, col_idx].imshow(image, cmap='gray')
 
-# set the title and axis labels for the figure
 fig.suptitle('List of Images')
 fig.tight_layout()
 plt.show()
@@ -99,4 +92,6 @@ We then use a `for` loop to iterate through the list of images and plot each ima
 
 Finally, we set the title and axis labels for the figure using the `suptitle()` and `tight_layout()` methods, respectively. We then call the `show()` method to display the figure window with all the plotted images.
 
-By using this approach, the figure window will automatically adjust its size based on the number of images you want to display, and you can plot any number of images without having to manually adjust the figure size.
+By using this approach, the figure window will **automatically adjust its size** based on the number of images you want to display, and you can plot any number of images without having to manually adjust the figure size.
+
+<br>
