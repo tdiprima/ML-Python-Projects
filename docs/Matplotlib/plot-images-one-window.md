@@ -94,4 +94,28 @@ Finally, we set the title and axis labels for the figure using the `suptitle()` 
 
 By using this approach, the figure window will **automatically adjust its size** based on the number of images you want to display, and you can plot any number of images without having to manually adjust the figure size.
 
+## Floor division for row index
+
+<span style="color:#0000dd;">What is "//"?</span>
+
+The double forward slash `//` is the floor division operator. It is used to perform integer division, which means the result will be an **integer** without any fractional part.
+
+In the given code snippet:
+
+```python
+row_idx = i // num_cols
+```
+
+The line of code calculates the row index based on the value of `i` and the number of columns specified by `num_cols`. It determines in which row the element represented by `i` would be located when arranging elements in a two-dimensional structure (like a grid or a matrix).
+
+For example, let's say `i` is 7, and `num_cols` is 3. Then:
+
+```py
+row_idx = 7 // 3
+```
+
+The result of `7 // 3` is 2, as 7 divided by 3 equals 2 with a remainder of 1. So, `row_idx` will be assigned the value of 2. This means that element `i` would be in the third row (as indices are zero-based).
+
+In summary, the code calculates the row index of an element when arranging elements in a two-dimensional structure with the given number of columns.
+
 <br>
