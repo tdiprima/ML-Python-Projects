@@ -17,39 +17,44 @@ Yes, TensorFlow includes automatic differentiation and optimization algorithms t
 Create a simple neural network and train it on a dataset using the backpropagation algorithm:
 
 ```py
-import numpy as np
 import tensorflow as tf
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+
+# Load the Iris dataset
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# Convert target values to one-hot encoded format
+y = tf.keras.utils.to_categorical(y, num_classes=3)
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Define your model and loss function
 
 # Define the neural network architecture
-model = tf.keras.Sequential([
-    # no flatten
-    tf.keras.layers.Dense(16, activation='relu', input_shape=(4,)),
-    tf.keras.layers.Dense(3, activation='softmax')
-])
+model = tf.keras.Sequential([# no flatten
+    tf.keras.layers.Dense(16, activation='relu', input_shape=(4,)), tf.keras.layers.Dense(3, activation='softmax')])
 
 # Define the loss function and optimization algorithm
 loss_fn = tf.keras.losses.CategoricalCrossentropy()
 optimizer = tf.keras.optimizers.SGD(learning_rate=0.1)
 
-# Load a dataset
-iris = tf.keras.datasets.iris  # keras datasets has no attribute 'iris'
-(x_train, y_train), (x_test, y_test) = iris.load_data()
-
-# Preprocess the data
-x_train = x_train.astype(np.float32)
-x_test = x_test.astype(np.float32)
-y_train = tf.keras.utils.to_categorical(y_train, num_classes=3)
-y_test = tf.keras.utils.to_categorical(y_test, num_classes=3)
-
 # Train the model
 batch_size = 32
 epochs = 100
+
+# Lists to store test_loss and test_accuracy values
+test_losses = []
+test_accuracies = []
+
 for epoch in range(epochs):
     # Floor division
-    for batch in range(len(x_train) // batch_size):
+    for batch in range(len(X_train) // batch_size):
         start = batch * batch_size
         end = start + batch_size
-        x_batch = x_train[start:end]
+        x_batch = X_train[start:end]
         y_batch = y_train[start:end]
 
         with tf.GradientTape() as tape:
@@ -60,10 +65,29 @@ for epoch in range(epochs):
         optimizer.apply_gradients(zip(gradients, model.trainable_variables))
 
     # Evaluate the model on the test set
-    y_pred = model(x_test)
+    y_pred = model(X_test)
     test_loss = loss_fn(y_test, y_pred)
     test_accuracy = tf.keras.metrics.CategoricalAccuracy()(y_test, y_pred)
     print(f'Epoch {epoch + 1}, loss={loss:.2f}, test_loss={test_loss:.2f}, test_accuracy={test_accuracy:.2f}')
+
+    # Save test_loss and test_accuracy for plotting
+    test_losses.append(test_loss.numpy())
+    test_accuracies.append(test_accuracy.numpy())
+
+import matplotlib.pyplot as plt
+
+# Plot test_loss versus test_accuracy
+epochs_range = range(1, epochs + 1)
+
+plt.figure(figsize=(10, 5))
+plt.plot(epochs_range, test_losses, label='Test Loss')
+plt.plot(epochs_range, test_accuracies, label='Test Accuracy')
+plt.xlabel('Epochs')
+plt.ylabel('Value')
+plt.legend()
+plt.title('Test Loss and Test Accuracy over Epochs')
+plt.grid(True)
+plt.show()
 ```
 
 <br>
@@ -79,25 +103,6 @@ The model is trained for 100 epochs.
 
 For each epoch, the code evaluates the model on the test set and prints the training loss, test loss, and test accuracy.
 
-## Load Iris using scikit-learn:
-
-<span style="color:#0000dd;">I'm trying to load the Iris dataset like `iris = tf.keras.datasets.iris`, but I get an error saying "module 'keras.api._v2.keras.datasets' has no attribute 'iris'".</span>
-
-It seems like you are trying to load the Iris dataset using TensorFlow's Keras API, but the specific dataset attribute you are using (`iris`) is not available in TensorFlow's Keras datasets module.
-
-In TensorFlow, the Iris dataset is available through the `sklearn.datasets` module rather than directly in TensorFlow's Keras API. To load the Iris dataset, you should use scikit-learn (sklearn).
-
-```python
-from sklearn.datasets import load_iris
-
-# Load the Iris dataset
-iris = load_iris()
-
-# Access the features and labels
-X, y = iris.data, iris.target
-```
-
-<br>
-If you specifically need to load the dataset through TensorFlow's Keras API, you can consider using other datasets available in TensorFlow, such as MNIST or CIFAR-10. But if you want to work with the Iris dataset, using scikit-learn as shown above is a common approach.
+![](../images/Iris.jpg)
 
 <br>
