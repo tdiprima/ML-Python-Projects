@@ -19,11 +19,12 @@ Yes, TensorFlow includes automatic differentiation and optimization algorithms t
 Create a simple neural network and train it on a dataset using the backpropagation algorithm:
 
 ```py
-import tensorflow as tf
 import numpy as np
+import tensorflow as tf
 
 # Define the neural network architecture
 model = tf.keras.Sequential([
+    # no flatten
     tf.keras.layers.Dense(16, activation='relu', input_shape=(4,)),
     tf.keras.layers.Dense(3, activation='softmax')
 ])
@@ -33,7 +34,7 @@ loss_fn = tf.keras.losses.CategoricalCrossentropy()
 optimizer = tf.keras.optimizers.SGD(learning_rate=0.1)
 
 # Load a dataset
-iris = tf.keras.datasets.iris
+iris = tf.keras.datasets.iris  # keras datasets has no attribute 'iris'
 (x_train, y_train), (x_test, y_test) = iris.load_data()
 
 # Preprocess the data
@@ -46,15 +47,17 @@ y_test = tf.keras.utils.to_categorical(y_test, num_classes=3)
 batch_size = 32
 epochs = 100
 for epoch in range(epochs):
-    for batch in range(len(x_train)//batch_size):
+    # Floor division
+    for batch in range(len(x_train) // batch_size):
         start = batch * batch_size
         end = start + batch_size
         x_batch = x_train[start:end]
         y_batch = y_train[start:end]
-        
+
         with tf.GradientTape() as tape:
             y_pred = model(x_batch)
             loss = loss_fn(y_batch, y_pred)
+
         gradients = tape.gradient(loss, model.trainable_variables)
         optimizer.apply_gradients(zip(gradients, model.trainable_variables))
 
@@ -62,13 +65,20 @@ for epoch in range(epochs):
     y_pred = model(x_test)
     test_loss = loss_fn(y_test, y_pred)
     test_accuracy = tf.keras.metrics.CategoricalAccuracy()(y_test, y_pred)
-    print(f'Epoch {epoch+1}, loss={loss:.2f}, test_loss={test_loss:.2f}, test_accuracy={test_accuracy:.2f}')
+    print(f'Epoch {epoch + 1}, loss={loss:.2f}, test_loss={test_loss:.2f}, test_accuracy={test_accuracy:.2f}')
 ```
 
 <br>
-This code defines a neural network with one hidden layer and an output layer, loads the Iris dataset, preprocesses the data, and trains the model using the backpropagation algorithm. The training loop updates the model parameters using the gradients computed by tf.GradientTape, which automatically differentiates the loss function with respect to the model parameters. The optimizer applies the computed gradients to the model parameters to update them.
+This code defines a neural network with one hidden layer and an output layer.
 
-The model is trained for 100 epochs, and for each epoch, the code evaluates the model on the test set and prints the training loss, test loss, and test accuracy. This is a simple example, but you can use similar code to train more complex neural networks on more challenging datasets.
+It loads the Iris dataset, preprocesses the data, and trains the model using the backpropagation algorithm.
+
+The training loop **updates the model parameters** using the gradients computed by `tf.GradientTape`, which automatically differentiates the loss function with respect to the model parameters.
+
+The optimizer applies the computed gradients to the model parameters to update them.
+
+The model is trained for 100 epochs.
+
+For each epoch, the code evaluates the model on the test set and prints the training loss, test loss, and test accuracy.
 
 <br>
-
