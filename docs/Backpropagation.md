@@ -10,11 +10,9 @@ Let's start by thinking about how we teach a computer to recognize objects in pi
 * We update the parameters and give the network another picture to guess on.
 * We repeat this process for lots and lots of pictures, and over time the network gets better and better at recognizing objects in pictures. It's like a student who practices doing math problems until they get better at it.
 
-## Tensorflow
+## TensorFlow
 
-<span style="color:#0000dd;">Does TensorFlow do this for us?</span>
-
-Yes, TensorFlow includes automatic differentiation and optimization algorithms that can perform backpropagation for you. So you don't have to implement the backpropagation algorithm yourself.
+Yes, TensorFlow includes automatic differentiation and optimization algorithms that can **perform backpropagation for you**. So you don't have to implement the backpropagation algorithm yourself.
 
 Create a simple neural network and train it on a dataset using the backpropagation algorithm:
 
@@ -80,5 +78,26 @@ The optimizer applies the computed gradients to the model parameters to update t
 The model is trained for 100 epochs.
 
 For each epoch, the code evaluates the model on the test set and prints the training loss, test loss, and test accuracy.
+
+## Load Iris using scikit-learn:
+
+<span style="color:#0000dd;">I'm trying to load the Iris dataset like `iris = tf.keras.datasets.iris`, but I get an error saying "module 'keras.api._v2.keras.datasets' has no attribute 'iris'".</span>
+
+It seems like you are trying to load the Iris dataset using TensorFlow's Keras API, but the specific dataset attribute you are using (`iris`) is not available in TensorFlow's Keras datasets module.
+
+In TensorFlow, the Iris dataset is available through the `sklearn.datasets` module rather than directly in TensorFlow's Keras API. To load the Iris dataset, you should use scikit-learn (sklearn).
+
+```python
+from sklearn.datasets import load_iris
+
+# Load the Iris dataset
+iris = load_iris()
+
+# Access the features and labels
+X, y = iris.data, iris.target
+```
+
+<br>
+If you specifically need to load the dataset through TensorFlow's Keras API, you can consider using other datasets available in TensorFlow, such as MNIST or CIFAR-10. But if you want to work with the Iris dataset, using scikit-learn as shown above is a common approach.
 
 <br>
