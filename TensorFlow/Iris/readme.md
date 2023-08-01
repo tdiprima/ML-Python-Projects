@@ -269,7 +269,7 @@ With this change, the target values `y_train` and `y_test` will be in one-hot en
 
 ## Visualize, visualize, visualize
 
-<span style="color:#0000dd;">If I wanted to plot the test\_loss's versus the test\_accuracy's in a graph, how could I do that?  I probably needed to save those values all along?  Or does TensorFlow save that information in the model or something?</span>  <span style="color:red;">Like: History!</span>
+<span style="color:#0000dd;">If I wanted to plot the test\_loss's versus the test\_accuracy's in a graph, how could I do that?  I probably needed to save those values all along?  Or does TensorFlow save that information in the model or something?</span> <span style="color:red;">Like: History!</span><span style="color:#0000dd;">(TODO: Training loss, validation loss.)</span>
 
 To plot the `test_loss` versus the `test_accuracy` over the epochs, you can create lists to store these values during training and then use them for visualization. TensorFlow does not automatically save these values during training, so you need to explicitly collect and store them.
 
