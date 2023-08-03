@@ -1,8 +1,14 @@
-# Load titanic dataset
-# Note: you don't get names with this
+# This downloads the dataset to ~/seaborn-data
+# Note, you don't get names with this dataset
 import seaborn as sns
+import timeit
 
-titanic = sns.load_dataset('titanic')
+start_time = timeit.default_timer()
+# Load titanic dataset
+titanic = sns.load_dataset('titanic')  # Returns a pd.DataFrame
+end_time = timeit.default_timer()
+
+elapsed_time = end_time - start_time
+print(f'Data loading took {elapsed_time} seconds to complete\n')
 
 print(titanic.head())
-print(type(titanic))
