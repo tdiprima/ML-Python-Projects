@@ -119,4 +119,52 @@ print("\n% of women who survived:", pct_women_survived)
 # 74.20382165605095
 ```
 
+## YouTube
+
+I wanted to find these people from a story I watched on YouTube:
+
+**Found**
+
+* Countess of ~~Rhodes~~ Rothes
+* Señora de Satode Peñasco
+    * Of course back in the day they typed 'n' instead of 'ñ'
+* Joseph Philippe Lemercier Laroche &ndash; engineer
+* Juliette LaFargue
+* Simonne and Louise
+
+**Not found**
+
+* Violet Constance Jessop
+* Joseph Laroche
+* Charles Joughin
+* Louis Lolo
+* Dorothy Gibson
+
+```py
+series1 = train_df["Name"].str.contains("Rothes")
+series2 = train_df["Name"].str.contains("de Satode")
+series3 = train_df["Name"].str.contains("Laroche")
+
+# Combine series using bitwise OR
+combined_series = series1 | series2 | series3
+
+# Create a new DataFrame with the rows where any of the series are True
+df1 = train_df[combined_series]
+
+# Sort by the "Name" colum
+df1 = df1.sort_values(by='Name')  # Ascending
+# df1 = df1.sort_values(by='Name', ascending=False)  # Sort in descending order
+df1
+```
+
+[kaggle](https://www.kaggle.com/code/tammydiprima/coherent-firebird/edit)
+
+Please note that `sort_values()` returns a new DataFrame and does not modify the original one in-place. If you want to modify the original DataFrame, you can use the `inplace=True` argument:
+
+```python
+df1.sort_values(by='Name', inplace=True)
+```
+
+The `inplace=True` argument will cause the method to modify the DataFrame in place (do not create a new object). Changes are reflected in the original DataFrame.
+
 <br>
