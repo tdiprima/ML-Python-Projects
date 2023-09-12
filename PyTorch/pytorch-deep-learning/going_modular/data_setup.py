@@ -6,7 +6,7 @@ image classification data.
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
-# NUM_WORKERS = os.cpu_count()  # todo: freeze_support BS
+# NUM_WORKERS = os.cpu_count()  # Nope.
 NUM_WORKERS = 0
 
 

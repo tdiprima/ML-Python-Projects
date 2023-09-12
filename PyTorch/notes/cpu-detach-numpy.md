@@ -1,12 +1,14 @@
-<span style="color:#000088;font-size:larger;">What is cpu, detach, and numpy?</span>
+## What is cpu, detach, and numpy?
 
 ```ruby
-avg_train_loss.cpu().detach().numpy()
+# image_segmentation/profound_barracuda/train.py
+avg_train_loss = total_train_loss / train_steps
+history["train_loss"].append(avg_train_loss.cpu().detach().numpy())
 ```
 
 <br>
 
-In PyTorch, `avg_train_loss` is most likely a **tensor** object that represents the **average training loss** of a machine learning model. 
+In PyTorch, `avg_train_loss` is a **tensor** object that represents the **average training loss** of a machine learning model. 
 
 The `.cpu()` function is used to **transfer** the tensor from any device (such as a GPU) to the CPU.
 

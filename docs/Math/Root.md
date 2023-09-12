@@ -1,19 +1,17 @@
 ## Cube root
 
-You can calculate the cube root of a number by using the <span style="color: #000088; font-weight:bold">**</span> operator with <span style="color: #000088;">1/3 as the exponent.</span>
+You can calculate the cube root of a number by using the `**` operator with &#8531; as the exponent.
 
 ```py
 number = 64
 cube_root = number ** (1/3)
-print(cube_root)
-
-# Answer: 4.0
+print(cube_root)  # 4.0
 ```
 
 <br>
 In this example, we're calculating the cube root of 64 by raising it to the power of 1/3.
 
-Might be helpful to know that <mark>x to the 1/n power is the same as the nth root of x. </mark>
+<mark>**x to the 1/n power is the same as the nth root of x.**</mark>
 
 Note that the result is a float, not an integer, because cube roots of most numbers are not integers.
 
@@ -35,15 +33,5 @@ In decimal form, 1e-4 is equal to 0.0001.
 ```py
 learning_rate = 1e-4
 ```
-
-## Calculator
-
-There's an nth root button that looks like n√x
-
-So type 64 (that's your number), press the button, then 3 (that's your root; like cube root), and press equals.
-
-Or, you can use the exponent button.  For example, to calculate the 4th root of 81, you would press `81`, then `^`, then `1/4`, and then `=`.
-
-Or, you can enter the fraction as a decimal.  For example, to calculate the cube root of 64 on a calculator without a fraction key, you would press `64`, then `y^x`, then `0.333`, and then `=`.
 
 <br>

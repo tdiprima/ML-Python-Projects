@@ -1,6 +1,10 @@
 ## Stable diffusion in deep fakes 🥸
 
-<!-- GAN -->
+Stable Diffusion = add noise + smooth out image.
+
+Deep fakes = GAN (Generative Adversarial Network).
+
+### The End!
 
 Stable diffusion is a technique used in deep fake generation to create more realistic and high-quality videos.
 
@@ -18,7 +22,9 @@ This noise is then "smoothed out" by applying a series of filters that help to r
 
 By using stable diffusion, deep fake generators can create more convincing and realistic images that are less likely to be detected as fake.
 
-However, it's worth noting that this technique is not foolproof, and there are still ways to detect and identify deep fakes using other methods.
+However, it's worth noting that this technique is not foolproof!
+
+There are still ways to detect and identify deep fakes using other methods.
 
 
 ## Pseudo Example

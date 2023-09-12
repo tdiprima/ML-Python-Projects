@@ -4,7 +4,7 @@ Yes, it is possible to generate charts using Matplotlib in a PyTorch program run
 
 Matplotlib has a backend system that allows you to choose how to display the generated plots, including a non-interactive backend that does not require a display. One such backend is the `Agg` backend, which is designed for creating PNG files.
 
-You can <mark>**set the backend to `Agg` before importing Matplotlib**</mark> and then generate your plots as usual.
+You can <mark>**set the backend to `Agg`**</mark> and then save it using `plt.savefig`.
 
 ```python
 import matplotlib
@@ -31,3 +31,4 @@ This code will generate a sine wave plot and save it as a PNG file called "plot.
 
 This is because the backend needs to be set before any plotting code is executed.
 
+<br>

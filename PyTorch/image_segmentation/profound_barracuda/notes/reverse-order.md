@@ -1,4 +1,5 @@
 ```ruby
+# profound_barracuda/tools/model.py
 dec_features = self.decoder(
     enc_features[::-1][0],
     enc_features[::-1][1:]
@@ -14,8 +15,6 @@ Therefore, we can **reverse the order** of feature maps in this list: `enc_featu
 Now the `enc_features[::-1]` list contains the feature map outputs in reverse order (i.e., **from the last to the first** encoder block).
 
 Note that this is important since, on the **decoder** side, we will be utilizing the encoder feature maps starting from the last encoder block output to the first.
-
-(Right.  Because we're going in reverse.)
 
 Next, we pass the **output of the final** encoder block (i.e., `enc_features[::-1][0]`) and the feature map outputs of all **intermediate** encoder blocks (i.e., `enc_features[::-1][1:]`) to the decoder.
 

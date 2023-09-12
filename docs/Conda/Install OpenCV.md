@@ -21,10 +21,4 @@ There could be a number of reasons why the cv2 installation is failing, such as 
 
 3. <mark>**Install OpenCV using pip:**</mark> Instead of using Conda, try installing OpenCV using pip. Run `pip install opencv-python`.
 
-4. **Check system requirements:** Make sure your system meets the requirements for OpenCV. Check the OpenCV documentation for details on system requirements.
-
-5. **Try installing a specific version:** If the latest version of OpenCV isn't installing, try installing an older version with `conda install opencv=x.x.x` (replace x.x.x with the specific version number you want to install).
-
-If none of these steps work, you could try asking for help on the Conda or OpenCV forums or opening an issue on the respective Github repositories.
-
 <br>

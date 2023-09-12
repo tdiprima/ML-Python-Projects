@@ -34,6 +34,3 @@ print(html)
 ```
 
 <br>
-This will output the HTML table string that represents the tensor. If you're working in a Jupyter notebook or similar environment, you could then display this HTML directly in your notebook.
-
-<br>

@@ -20,9 +20,9 @@ class UNet(nn.Module):
 
 <br>
 
-The **`forward`** method of the `UNet` model includes a print statement that will display the size of the input tensor `x`. The **`size()`** method returns a tuple of integers representing the dimensions of the tensor.
+The **`size()`** method returns a tuple of integers representing the dimensions of the tensor.
 
-### Model Summary
+## Model Summary
 
 Now when you go to do your summary, everything is beautiful.
 
@@ -38,7 +38,7 @@ summary(model,
 )
 ```
 
-### TensorFlow
+## TensorFlow
 
 In a U-Net model implemented in Python, you can find the input size of the model by looking at the **definition of the input layer.** 
 

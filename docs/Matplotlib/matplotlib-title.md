@@ -1,7 +1,6 @@
 ## Window Title
 
-You can change the title of a matplotlib figure window by using set_window_title()
-(otherwise, it'll say "Figure 1").
+You can change the title of a matplotlib figure window by using `set_window_title()` (otherwise, it'll say "Figure 1").
 
 ![title](../../images/Window_Title.jpg)
 
@@ -27,15 +26,12 @@ figure = plt.gcf()
 ```
 
 <br>
-plt.gcf() returns the current figure object.
 
-canvas.manager.set\_window\_title(...) sets the title of the figure window to "My Custom Title".
+`plt.gcf()` returns the current figure object.
 
-Note that this method sets the title of the window itself, not the title of the plot within the window.
+`canvas.manager.set_window_title(...)` sets the title of the figure window to "My Custom Title".
 
-### FYI
-
-plt.gcf().canvas.set\_window\_title has been replaced with plt.gcf().canvas.**manager**.set\_window\_title.
+Note that this method sets the title of the window itself, not the title of the plot within the window. So...
 
 ## Plot Title
 
@@ -55,6 +51,6 @@ plt.show()
 ```
 
 <br>
-In this example, plt.title() sets the title of the plot itself to "My Custom Title".
+In this example, `plt.title()` sets the title of the plot itself to "My Custom Title".
 
 <br>

@@ -1,4 +1,4 @@
-## Quick lesson
+## Tensorboard PyTorch
 
 Just look at the rest of the [code](https://github.com/christianversloot/machine-learning-articles/blob/main/how-to-use-tensorboard-with-pytorch.md#a-simple-convnet-to-start-with).
 

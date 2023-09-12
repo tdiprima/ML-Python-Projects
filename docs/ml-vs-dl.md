@@ -4,7 +4,7 @@
 
 So deep learning is a *subset* of machine learning.  And you're gonna use *deep* neural networks, with **many layers.**  Voilà.
 
-<img src="../images/neural-networks.jpg" width="600">
+<img src="../images/neural-networks.jpg" width="700">
 
 [Deep Learning Fundamentals](https://shashwatsh27.hashnode.dev/deep-learning-fundamentals)
 

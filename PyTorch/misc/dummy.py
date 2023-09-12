@@ -1,3 +1,8 @@
+# Test PyTorch Model
+# Create a dummy tensor using the PyTorch `torch.randn()` function.
+# Test the model by passing this tensor through the model.
+# Check if it produces the expected output shape.
+
 import torch
 import torch.nn as nn
 
@@ -25,12 +30,16 @@ class MyModel(nn.Module):
 model = MyModel()
 
 # create dummy tensor
-input_tensor = torch.randn(1, 1)
+input_tensor = torch.randn(1, 1)  # [[0.6867]], size [1, 1]
 
 # pass through model and check output shape
 output_tensor = model(input_tensor)
-assert output_tensor.shape == (1, 10)
+
 print("\noutput_tensor shape:", output_tensor.shape)
+
+assert output_tensor.shape == (1, 10)
+
+print("\nIf there are no errors, it succeeded.")
 
 # ===============================
 

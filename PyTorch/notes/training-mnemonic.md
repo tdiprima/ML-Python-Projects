@@ -38,7 +38,7 @@ One possible mnemonic device for remembering the order in which the model is tra
 * **Loss backwards:** the gradients of the loss are calculated with respect to the model's parameters using backpropagation.
 * **Progress optimizer:** the optimizer uses the gradients to update the model's parameters and improve its performance.
 
-Using a memorable phrase like **"FLOZP"** can help you remember the sequence of steps more easily, especially if you repeat it to yourself several times while you're learning the process.
+Using a memorable phrase like **"FLOZP"** can help you remember the sequence of steps more easily.
 
 * Training mode
 * Forward pass

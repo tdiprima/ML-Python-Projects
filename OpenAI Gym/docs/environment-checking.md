@@ -12,7 +12,7 @@ I got an error message that says the environment has a **wrapper applied to it**
 
 The recommended solution is to use the **raw environment** for `check_env` using `env.unwrapped`.  
 
-How?
+## How?
 
 **`unwrapped`** returns the underlying raw environment with all the **wrappers removed.**
 

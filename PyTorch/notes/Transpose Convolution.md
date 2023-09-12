@@ -8,4 +8,4 @@ So you take an image and put it under a microscope, sort of.  If you put it unde
 
 This is really useful in deep learning because sometimes we want to work with images or data that are bigger than the ones we have. The transpose convolution layer helps us do that by making the images or data bigger **so we can work with them more easily.**
 
-<br>
+### Modify, Magnify, Minify

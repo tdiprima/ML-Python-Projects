@@ -1,6 +1,5 @@
-## Quick lesson
-
-```py
+# tensorboard --logdir=runs
+# Running locally: http://localhost:6006/
 import datetime
 
 import tensorflow as tf
@@ -47,12 +46,3 @@ model.fit(
     epochs=5,
     validation_data=(x_test, y_test),
     callbacks=[tensorboard_callback, hparams_callback])
-```
-
-```sh
-tensorboard --logdir=runs
-```
-
-Running locally: http://localhost:6006/
-
-<br>

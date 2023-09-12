@@ -1,5 +1,7 @@
 ## Torch Flow
 
+Basically, what to do:
+
 1. Get data ready
 2. Build a model
     * Pick loss function & optimizer

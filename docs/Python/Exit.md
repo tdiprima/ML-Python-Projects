@@ -4,9 +4,9 @@
 
 Of course put a **`print`** statement to make sure we're even getting there.
 
-Jupyter notebooks **intercept** calls to `exit()` to prevent them from terminating the program.
+Jupyter notebooks **intercept** calls to `exit()` to prevent them from terminating the program.  (And apparently PyTorch.)
 
-But apparently, `sys.exit(1)` would be more appropriate anyway.
+But `sys.exit(1)` would be more appropriate anyway.
 
 All I want is the script to exit when an exception occurs.
 

@@ -8,6 +8,7 @@ When you define a tuple, you use parentheses instead of square brackets:
 my_tuple = (1, 2, 3)
 ```
 
+<br>
 "Tuple Unpacking" means you can assign the values of a tuple to separate variables all at once.
 
 ### Tuple Unpacking

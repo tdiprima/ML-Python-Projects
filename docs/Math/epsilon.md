@@ -4,9 +4,7 @@ Epsilon (**&#949;**) represents a very small number that's close to zero, but no
 
 In math, we use epsilon to talk about how close two numbers are to each other. If two numbers are really close, but not exactly the same, we can say they're "epsilon apart".
 
-Remember the "approximately equal" function?
-
-
+<br>
 For example, let's say you have two numbers: 3 and 3.0001. These numbers are really close, but not exactly the same. We could say they're epsilon apart, because the difference between them is very small (less than epsilon).
 
 In science, epsilon is often used to talk about errors or uncertainties in measurements. When we measure something, it's not always possible to get the exact value. There can be small errors or uncertainties that creep in. We use epsilon to talk about how much wiggle room there is in our measurements.

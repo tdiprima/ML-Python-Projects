@@ -1,4 +1,6 @@
-<span style="color:#0000dd;">If I use sklearn datasets' make\_multilabel\_classification, and I say samples=100, features=10, classes=5, tell me what that means.  Like &ndash; what y correlates to what X?  And if I wanted to plot it visually, is that possible, or am I just gonna be looking at a bunch of meaningless dots?</span>
+## sklearn datasets' make\_multilabel\_classification
+
+<span style="color:#0000dd;">samples=100, features=10, classes=5</span>
 
 We're creating a simulated dataset with certain characteristics.
 
@@ -25,6 +27,12 @@ And the first instance in `y` has the classes `[0, 1, 0, 1, 0]`.
 
 That means that the first instance belongs to classes 2 and 4, but not to classes 1, 3, or 5.
 
-If you wanted to plot the dataset visually, you could try using dimensionality reduction techniques like PCA or t-SNE to reduce the 10-dimensional feature space down to 2 or 3 dimensions that can be visualized on a plot. However, since the data is generated randomly, it's unlikely that there will be any meaningful structure or patterns in the plot. It's possible that you would just see a bunch of dots scattered randomly with no clear clusters or groups.
+### Plot
+
+If you wanted to plot the dataset visually, you could try using dimensionality reduction techniques like PCA or t-SNE to reduce the 10-dimensional feature space down to 2 or 3 dimensions that can be visualized on a plot.
+
+However, since the data is generated randomly, **it's unlikely that there will be any meaningful structure or patterns in the plot.**
+
+It's possible that you would just see a bunch of dots scattered randomly with no clear clusters or groups.
 
 <br>

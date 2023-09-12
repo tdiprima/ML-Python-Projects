@@ -1,4 +1,4 @@
-## CommandNotFoundError
+## Command Not Found Error
 
 ```sh
 conda activate
@@ -7,7 +7,7 @@ conda activate
 <br>
 CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
 
-## Solution
+## Solution 1
 
 ```sh
 conda init
