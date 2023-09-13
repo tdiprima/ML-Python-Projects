@@ -4,33 +4,7 @@ TensorFlow.js is a library that allows you to run machine learning models direct
 
 Here is an example of how to use TensorFlow.js to train a simple model to recognize handwritten digits:
 
-```js
-const tf = require('@tensorflow/tfjs-node');
-
-// Define the model architecture
-const model = tf.sequential();
-model.add(tf.layers.dense({ units: 16, activation: 'relu', inputShape: [784] }));
-model.add(tf.layers.dense({ units: 10, activation: 'softmax' }));
-
-// Compile the model
-model.compile({ loss: 'categoricalCrossentropy', optimizer: 'adam', metrics: ['accuracy'] });
-
-// Prepare the data
-const data = tf.data.generator(function*() {
-  while (true) {
-    const { xs, ys } = getNextBatch();
-    yield [xs, ys];
-  }
-}).batch(32);
-
-// Train the model
-await model.fitDataset(data, { epochs: 10 });
-
-// Make a prediction
-const input = tf.tensor2d([[...]]);
-
-// Stopped at 185 digits.
-```
+<a href="example-1.py">example 1</a> stopped at 185 digits.
 
 It tried it again, this time, it stopped after 245 digits.
 
@@ -38,32 +12,7 @@ Apparently, your array has too many digits for the browser to render.  Can you w
 
 Sure, here's an updated code example that generates the input array using a loop:
 
-```js
-const tf = require('@tensorflow/tfjs-node');
-
-// Define the model
-const model = tf.sequential();
-model.add(tf.layers.dense({units: 1, inputShape: [100]}));
-
-// Compile the model
-model.compile({optimizer: 'sgd', loss: 'meanSquaredError'});
-
-// Train the model
-const xs = tf.tensor2d(new Array(100).fill(0).map((_, i) => {
-  return new Array(100).fill(0).map((_, j) => {
-    return i === j ? 1 : 0;
-  });
-}));
-const ys = tf.tensor2d(new Array(100).fill(0).map((_, i) => [i]));
-model.fit(xs, ys, {epochs: 100}).then(() => {
-  // Make a prediction
-  const input = tf.tensor2d(new Array(100).fill(0));
-  const output = model.predict(input);
-
-  // Print the output
-  output.print();
-});
-```
+<a href="example-2.py">example 2</a>
 
 In this updated code, we use a loop to generate an **identity matrix** as the **input** `xs` tensor, and an array of **consecutive numbers** as the **output** `ys` tensor.
 
@@ -117,33 +66,8 @@ const xs = tf.tensor2d(new Array(100).fill(0).map((_, i) => {
 
 Here is an alternative way of writing that line of code that might be easier to understand:
 
-```js
-const tf = require('@tensorflow/tfjs-node');
+<a href="create-100x100.js">create-100x100.js</a>
 
-// Create an empty array to hold the rows of our 2D tensor
-const rows = [];
-
-// Loop over 100 times (for the 100 rows of the tensor)
-for (let i = 0; i < 100; i++) {
-  // Create an empty array to represent one row of the tensor
-  const row = [];
-  // Loop over 100 times (for the 100 columns of the tensor)
-  for (let j = 0; j < 100; j++) {
-    // If we're at the diagonal of the tensor (i === j), set this element to 1,
-    // otherwise set it to 0
-    if (i === j) {
-      row.push(1);
-    } else {
-      row.push(0);
-    }
-  }
-  // Add the row to our array of rows
-  rows.push(row);
-}
-
-// Create a tensor from our array of rows
-const xs = tf.tensor2d(rows);
-```
 
 This code does the same thing as the previous code, but it's broken down into smaller steps to make it easier to understand. Here's what it does:
 
@@ -183,26 +107,7 @@ In this example, we're including TensorFlow.js from the jsDelivr CDN using the s
 
 After you've included TensorFlow.js in your HTML file, you can write your TensorFlow.js code directly in a `<script>` tag. For example:
 
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>TensorFlow.js Example</title>
-  </head>
-  <body>
-    <h1>TensorFlow.js Example</h1>
-    <!-- That ain't it -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.8.0/dist/tf.min.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
-    <script>
-      // Create a tensor with some data
-      const input = tf.tensor2d([[1, 2], [3, 4]]);
-      // Log the tensor to the console
-      input.print();
-    </script>
-  </body>
-</html>
-```
+<a href="index.html">index.html</a>
 
 This code will create a 2D tensor with some data and log it to the console. You can open this HTML file in your browser to see the results!
 
@@ -210,16 +115,7 @@ This code will create a 2D tensor with some data and log it to the console. You 
 
 No problem!  In vanilla JavaScript, you can get the shape of an array using the `.length` property of each dimension:
 
-```js
-// Create a 2D array
-const arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
-
-// Get the shape of the array
-const shape = [arr.length, arr[0].length];
-
-// Log the shape to the console
-console.log(shape); // Output: [3, 3]
-```
+<a href="get-shape.js">function vanilla</a>
 
 In this example, we're creating a 2D array with some data, getting its shape by getting the `.length` property of each dimension and storing them in an array.
 
@@ -230,27 +126,8 @@ If the rows have different lengths, you'll need to modify this code to handle th
 
 ## Here's an example of a 3D array
 
-```js
-// Create a 3D array
-const arr = [
-  [
-    [1, 2],
-    [3, 4],
-    [5, 6]
-  ],
-  [
-    [7, 8],
-    [9, 10],
-    [11, 12]
-  ]
-];
+<a href="get-shape.js">function tree\_dee</a>
 
-// Get the shape of the array
-const shape = [arr.length, arr[0].length, arr[0][0].length];
-
-// Log the shape to the console
-console.log(shape); // Output: [2, 3, 2]
-```
 
 In this example, we're creating a 3D array with some data.
 
@@ -261,8 +138,6 @@ We're getting the shape of the array by getting the `.length` property of each d
 Note that we're assuming that all "sheets", "rows", and "columns" have the same length, so we're getting the `.length` property of the first "row" and "column" of the first "sheet" to get the number of "rows" and "columns".
 
 If any of the dimensions have different lengths, you'll need to modify this code to handle that case.
-
-<br>
 
 ## Here's the adult version
 
@@ -279,6 +154,8 @@ const xs = tf.tensor2d(new Array(100).fill(0).map((_, i) => {
   });
 }));
 ```
+
+<br>
 
 We're creating a 2D tensor (`xs`) with a shape of `[100, 100]` using the `tf.tensor2d()` function. This tensor will be used as the input to our machine learning model.
 

@@ -75,4 +75,6 @@ So, the **"logits layer"** is just a step in the process of teaching the compute
 
 **deep learning:** is a fancy way of saying you're teaching the computer to learn by example.
 
+See also: <a href="../../docs/logits.md">another logits</a>
+
 <br>

@@ -1,4 +1,4 @@
-## Make nice display
+## Make a nice display
 
 When you make predictions with a model, the output is usually a set of numbers. The exact format of these numbers depends on the problem you are trying to solve.
 
@@ -68,7 +68,9 @@ pred length: 10000, type: <class 'numpy.ndarray'>
 <br>
 If both `y_test` and `predictions` have the same length and contain 10,000 values, then it is likely that the error message is being caused by another issue in your code.
 
-One possibility is that you have not imported the necessary libraries. Make sure that you have imported `matplotlib.pyplot` using the following command at the beginning of your code:
+One possibility is that you have not imported the necessary libraries.
+
+Make sure that you have imported `matplotlib.pyplot` using the following command at the beginning of your code:
 
 ```py
 import matplotlib.pyplot as plt
@@ -112,6 +114,7 @@ This will give you an array of predicted labels with shape (10000,).
 Now, you can plot the true outputs vs. the predicted outputs as follows:
 
 ```py
+# troubleshooting.py
 plt.scatter(y_test, predicted_labels)
 plt.xlabel("True outputs")
 plt.ylabel("Predicted outputs")
@@ -123,9 +126,11 @@ This should plot the true outputs 🆚 the predicted outputs without any errors.
 
 Note that the predicted labels will be integers between 0 and 9 (inclusive) corresponding to the 10 classes in your target variable.
 
-### I see dots scattered everywhere in a box...
+## Interpret the graph
 
-<span style="color:#000088; font-weight:bold">That worked!  I am now looking at a scatterplot.  How do I interpret this graph?  Like, specifically, if I see a dot at x=1, y=2, what does that tell me?</span>
+I see dots scattered everywhere in a box...
+
+<span style="color:#0000dd; font-weight:bold">That worked!  I am now looking at a scatterplot.  How do I interpret this graph?  Like, specifically, if I see a dot at x=1, y=2, what does that tell me?</span>
 
 Great to hear that the plot is working!
 
@@ -151,21 +156,19 @@ You can also use metrics like mean squared error, mean absolute error, or **corr
 
 ![](../images/Scott_Crawford.jpg)
 
-### Is it possible that a scatterplot is not the best way to display results for the keras MNIST dataset?
+### a scatterplot is not the best way to display the results for the Keras MNIST dataset
 
-*What is the MNIST dataset anyway?*
+While a scatterplot can be useful for visualizing the performance of a **regression** model, the MNIST dataset is actually a classification problem, not a regression problem.
 
-Yes, it is possible that a scatterplot is not the best way to display the results for the Keras MNIST dataset.
-
-While a scatterplot can be useful for visualizing the performance of a regression model, the MNIST dataset is actually a classification problem, not a regression problem.
-
-In a classification problem, the target variable is a categorical variable (e.g., in MNIST, the categories are the digits 0 to 9), and the goal is to predict the category of a new observation based on the values of the input features.
+In a **classification** problem, the target variable is a categorical variable (e.g., in MNIST, the categories are the digits 0 to 9), and the goal is to predict the category of a new observation based on the values of the input features.
 
 For a classification problem like MNIST, a confusion matrix or a classification report can be more informative for evaluating the model's performance.
 
-A confusion matrix is a table that shows the number of correct and incorrect predictions for each class, while a classification report provides several evaluation metrics such as precision, recall, and F1-score for each class.
+A **confusion matrix** is a table that shows the number of correct and incorrect predictions for each class, while a classification report provides several evaluation metrics such as precision, recall, and F1-score for each class.
 
-Regarding the MNIST dataset, it is a dataset of handwritten digits, commonly used for training and evaluating machine learning models.
+*What is the MNIST dataset anyway?*
+
+It is a dataset of handwritten digits, commonly used for training and evaluating machine learning models.
 
 The MNIST dataset contains a total of 70,000 images of handwritten digits, divided into 60,000 training images and 10,000 test images.
 

@@ -1,4 +1,4 @@
-## GrowCut (grow, damn it)
+## GrowCut
 
 Sure, here's an implementation of the GrowCut algorithm in Python:
 

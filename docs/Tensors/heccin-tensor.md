@@ -49,7 +49,7 @@ Expected size 64 but got size 32 for tensor number 1 in the list.
 ```
 
 <br>
-<span style="color: #000088; font-size:larger">I have one torch tensor of shape [64, 64, 64, 64], and another torch tensor of shape [64, 64, 32, 32].  How do I make the sizes of tensors match?</span>
+<span style="color: #0000dd; font-size:larger">I have one torch tensor of shape [64, 64, 64, 64], and another torch tensor of shape [64, 64, 32, 32].  How do I make the sizes of tensors match?</span>
 
 To make the sizes of the two tensors match, you can use the `torch.nn.functional.interpolate()` function to upsample or downsample the second tensor to the same shape as the first tensor. Here's an example code snippet that upsamples the second tensor to the shape of the first tensor:
 

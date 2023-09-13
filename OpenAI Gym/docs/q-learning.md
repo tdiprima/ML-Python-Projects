@@ -2,7 +2,7 @@
 
 <img src="https://res.cloudinary.com/dyd911kmh/image/upload/v1666973295/Q_Learning_Process_134331efc1.png" alt="datacamp.com intro Q learning">
 
-<!--https://www.datacamp.com/tutorial/introduction-q-learning-beginner-tutorial-->
+<a href="https://www.datacamp.com/tutorial/introduction-q-learning-beginner-tutorial">introduction-q-learning-beginner-tutorial</a>
 
 Q-learning is a popular algorithm used in **Reinforcement Learning**, a subfield of machine learning.
 

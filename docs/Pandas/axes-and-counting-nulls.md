@@ -1,15 +1,12 @@
 ## Create dataframe
 
-
-```python
+```ruby
 import pandas as pd
 
 df = pd.DataFrame({'A': [1, 2, None], 'B': [4, None, None], 'C': [7, 8, 9]})
-df
 ```
 
-
-
+<br>
 
 <div>
 <style scoped>
@@ -57,10 +54,15 @@ df
 </table>
 </div>
 
+<br>
+
 ## Axes
 
-* axis=0 is column
-* axis=1 is row
+`axis=0` is column
+
+`axis=1` is row
+
+<br>
 
 ## Counting Null Values
 
@@ -68,19 +70,18 @@ Calculate the sum of null values for
 
 ### Each column of the dataframe
 
-
-```python
+```ruby
 df.isnull().sum(axis=0)
 ```
 
+<br>
 
-
-
-    A    1
-    B    2
-    C    0
-    dtype: int64
-
+```c
+A    1
+B    2
+C    0
+dtype: int64
+```
 
 <br>
 <span style="font-weight:bold">Meaning:</span><br>
@@ -90,30 +91,20 @@ C - none are null<br>
 
 Note that the `isnull().sum()` operation is counting the number of missing values (NaN) in each column or row of the dataframe.
 
-### Check for null values in each row
+<br>
+
+## Check for null values in each row
 
 You would use `axis=1` instead.
 
 This would return a **pandas.Series** with the count of null values for each row.
 
 
-```python
+```ruby
 result = df.isnull().sum(axis=1)
-
-print(type(result), "\n")
-
-print(result)
 ```
 
-    <class 'pandas.core.series.Series'> 
-    
-    0    0
-    1    1
-    2    2
-    dtype: int64
-
-
-It just so happens to be that the row index values and the calculated results are the same. :/
+<br>
 
 ## How to check which is which
 
@@ -122,16 +113,15 @@ You can display the index value of the axis by calling the `index` attribute of 
 For example, to display the index value of `axis=0`, you can use the following code:
 
 
-```python
+```ruby
 df.isnull().sum(axis=0).index
 ```
 
+<br>
 
-
-
-    Index(['A', 'B', 'C'], dtype='object')
-
-
+```c
+Index(['A', 'B', 'C'], dtype='object')
+```
 
 The `Index` object contains the column names of the dataframe, which confirms that `axis=0` refers to the "columns" axis.
 
@@ -142,14 +132,15 @@ The `Index` object contains the column names of the dataframe, which confirms th
 df.isnull().sum(axis=1).index
 ```
 
+<br>
 
+```c
+RangeIndex(start=0, stop=3, step=1)
+```
 
+<br>
 
-    RangeIndex(start=0, stop=3, step=1)
-
-
-
-### See: Index and RangeIndex
+## See: Index and RangeIndex
 
 `RangeIndex` is a class in pandas that represents a range of consecutive integers as an index.
 

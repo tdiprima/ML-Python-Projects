@@ -1,6 +1,12 @@
-## Run 1 image through U-Net
+# Run 1 image through U-Net
 
-**Load** the image: You can use a library like OpenCV or PIL to load the image into memory.
+Means: Run it through our model.  So...
+
+## Need a pre-trained model for this
+
+<mark>**TL;DR: Using the pre-trained model at the end didn't work.  You would have to create your own.  Maybe a segmentation model.**</mark>
+
+**Load the image:** You can use a library like OpenCV or PIL to load the image into memory.
 
 ### Pillow
 
@@ -19,8 +25,11 @@ print(test_image.size)  # (750, 1294)
 
 ```py
 # num batches = 1
-img = image.img_to_array(test_image)  # (1294, 750, 3)
-img = img.reshape((1,) + img.shape)   # (1, 1294, 750, 3)
+img = image.img_to_array(test_image)
+print(img.shape)   # (1294, 750, 3)
+
+img = img.reshape((1,) + img.shape)
+print(img.shape)   # (1, 1294, 750, 3)
 ```
 
 <br>
@@ -30,6 +39,8 @@ Pass the image through the **network:** U-Net consists of an encoder, a decoder,
 **Postprocess** the output: The output of U-Net is typically a probability map that assigns a probability to each pixel indicating the likelihood of it belonging to a certain class. You may need to threshold the probability map to generate a binary segmentation mask.
 
 ## CV2 + TensorFlow ⏳
+
+**TODO:** Need saved model unet.h5!
 
 ```py
 import cv2
@@ -110,6 +121,8 @@ In PyTorch, you can pass the preprocessed image through the model and get the ou
 3. **Convert** the image to a PyTorch tensor: You can use the `torch.from_numpy()` function to convert the preprocessed image to a PyTorch tensor.
 
 4. Pass the tensor through the **model:** You can use the `.forward()` method of the model to pass the tensor through the model and get the output.
+
+**TODO:** Need pre-trained model unet.pt
 
 ```py
 import cv2

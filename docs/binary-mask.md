@@ -3,6 +3,7 @@
 ```py
 from PIL import Image
 from tensorflow.keras.preprocessing import image
+
 test_image = Image.open("Formula1.jpg").convert("L")  # Do grayscale this time
 img = image.img_to_array(test_image)
 img = img.reshape((1,) + img.shape)

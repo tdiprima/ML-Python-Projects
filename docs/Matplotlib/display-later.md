@@ -1,4 +1,4 @@
-## Plotting PyTorch with Matplotlib
+## Calculate now, display later
 
 Yes, it is possible to generate charts using Matplotlib in a PyTorch program running on a machine with no visual display capabilities, and save them as PNG files to be displayed on a different machine.
 

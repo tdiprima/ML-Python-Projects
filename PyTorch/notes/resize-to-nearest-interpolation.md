@@ -1,44 +1,37 @@
-## Resize to nearest interpolation
+## Resize image with Python
 
-Resizing an image to the nearest interpolation means that each pixel in the new image is assigned the value of the nearest pixel in the original image. This is the simplest type of interpolation method used in image resizing.
+Alright, let's break this down into simpler terms! First of all, when we talk about "resizing an image," we're usually talking about changing the number of pixels that make up an image. Imagine you have a picture that is 100 pixels wide and 100 pixels tall, and you want to make it 200 pixels wide and 200 pixels tall. That's resizing!
 
-For example, let's say you have a **4x4** pixel image that you want to resize to a **2x2** pixel image. When you resize the image using nearest interpolation, each pixel in the new image is assigned the value of the nearest pixel in the original image. In this case, the new image would be:
+Now, the tricky part is figuring out what the new pixels should look like since you're either stretching or shrinking the image. There are several ways to do this, and one of the ways is called "interpolation."
 
-```
-Original Image        Resized Image
-[1 2 3 4]             [1 3]
-[5 6 7 8]   -->       [5 7]
-[9 10 11 12]          [9 11]
-[13 14 15 16]
-```
+Interpolation is a fancy word for estimating what's in between two things. Let's say you know how tall you are on your 12th birthday and how tall you'll be on your 13th birthday. If someone asks how tall you are halfway between those birthdays, you'd probably guess a height that's right in the middle, right? That's interpolation!
 
-<br>
+In terms of resizing an image, interpolation is used to estimate what color new pixels should be based on the colors of the pixels around them. For example, if there's a blue pixel next to a green pixel, an interpolation method might decide to put a blue-green pixel in between them.
 
-The pixel values of the new image are assigned based on the nearest pixel in the original image. The pixel (1,1) in the new image is assigned the value of pixel (1,1) in the original image, the pixel (1,2) in the new image is assigned the value of pixel (1,3) in the original image, and so on.
+"Nearest interpolation" is the simplest form of interpolation. Imagine you're making a small image bigger, and you've got a new, empty pixel that needs a color. What color should it be? With "nearest interpolation," you simply look for the closest original pixel and say, "I'll just use that color!"
 
-## Code example
+So, when you "resize an image to the nearest interpolation" in Python, you're saying: "Hey Python, make this image bigger or smaller for me, and when you're not sure what color a new pixel should be, just use the color of the nearest original pixel!"
 
-You can use the `PIL` (Python Imaging Library) library in Python to resize an image to the nearest interpolation.
+Here's a short Python code example using the PIL library to resize an image with nearest neighbor interpolation:
 
 ```python
 from PIL import Image
 
-# Open the original image
-image = Image.open("original_image.jpg")
+# Open an existing image
+image = Image.open("example.jpg")
 
-# Resize the image to the nearest interpolation
-new_size = (300, 200)
-# resized_image = image.resize(new_size, resample=Image.NEAREST)
-resized_image = image.resize(new_size, resample=Image.Resampling.NEAREST)
+# Resize the image using nearest neighbor interpolation
+new_image = image.resize((200, 200), Image.NEAREST)
+# resized_image = image.resize(new_size, resample=Image.Resampling.NEAREST)
 
-
-# Save the resized image
-resized_image.save("resized_image.jpg")
+# Save the new image
+new_image.save("example_resized.jpg")
 ```
 
-<br>
+"Nearest neighbor" &mdash; get it?
 
-We use the `resize()` method to resize the image to the nearest interpolation using ~~Image.NEAREST~~ <span style="color:#0000dd;">Image.Resampling.NEAREST</span> as the **resampling filter.**
+And that's it! That's what it means to "resize an image to the nearest interpolation" in Python.
+
 
 ## THREE.NearestFilter
 

@@ -4,7 +4,15 @@ from sklearn.model_selection import train_test_split
 
 # Load the Iris dataset
 iris = load_iris()
-X, y = iris.data, iris.target
+
+# Access the features and labels
+# X, y = iris.data, iris.target
+
+# The features (input data) are already in np.float64 format
+X = iris.data
+
+# The target values (labels) are in np.int64 format
+y = iris.target
 
 # Convert target values to one-hot encoded format
 y = tf.keras.utils.to_categorical(y, num_classes=3)
@@ -12,7 +20,7 @@ y = tf.keras.utils.to_categorical(y, num_classes=3)
 # Split the dataset into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Define your model and loss function
+# Define your model and loss function:
 
 # Define the neural network architecture
 model = tf.keras.Sequential([# no flatten

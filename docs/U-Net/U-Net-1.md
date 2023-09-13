@@ -2,14 +2,7 @@
 
 <span style="color:#0000dd;">RuntimeError: Given groups=1, weight of size [64, 3, 3, 3], expected input[1, 256, 256, 3] to have 3 channels, but got 256 channels instead.</span>
 
-```py
-# Test the model with a sample image
-test_image = torch.ones((256, 256, 3))
-test_mask = torch.zeros((256, 256, 3))
-
-test_image = test_image.squeeze()
-test_mask = test_mask.squeeze()
-```
+<a href="../../bear_training/unet-torch.py">bear_training/unet-torch.py</a>
 
 <br>
 It appears that the error is due to the incorrect dimensions of the input data. The input shape to the Conv2d layer should be in the form of (N, C, H, W) where:
@@ -66,19 +59,12 @@ If you want to visualize the prediction, you should convert it into a numpy arra
 
 You should modify your `display_results` function like so:
 
+<a href="../../bear_training/unet-torch.py">bear_training/unet-torch.py</a>
+
 ```python
 # Display results
 def display_results(model, test_image):
-    output = model(test_image)
-    # Get the prediction tensor, detach it from the computation graph, move to cpu, convert to numpy array, and squeeze it
-    prediction = output.detach().cpu().numpy().squeeze()
-
-    fig, ax = plt.subplots(1, 3, figsize=(15, 5))
-    ax[0].imshow(test_image.cpu().numpy()[0].transpose((1, 2, 0)))  # converting tensor to numpy and rearranging dims for display
-    ax[0].set_title('Input Image')
-
-    ax[2].imshow(prediction, cmap='gray')
-    ax[2].set_title('Prediction')
+    # Lala
     plt.show()
 ```
 
@@ -99,7 +85,7 @@ This will properly display the input and the prediction. Also, please note that 
 
 The issue here is that PyTorch's conv2d operation is receiving a numpy array where it expects a PyTorch tensor. PyTorch is designed to operate on its own tensor data structures, not numpy arrays. 
 
-You need to convert your numpy array to a PyTorch tensor. Here is an example of how to do it:
+You need to convert your numpy array to a PyTorch tensor:
 
 ```python
 import torch
@@ -157,54 +143,29 @@ Looking at the code, it seems there are a few points that can cause problems. He
 
 Here is your modified code:
 
+<a href="../../bear_training/unet-torch.py">bear_training/unet-torch.py</a>
+
 ```python
-import torch
-import torch.nn as nn
-from PIL import Image
-from tensorflow.keras.preprocessing import image
-
-
-class DoubleConv(nn.Module):
-    # ...
-
-class UNet(nn.Module):
-    # ...
-
 def display_results(model, test_image, test_mask):
-    output = model(test_image)
-    prediction = output.detach().cpu().numpy()
-    prediction = prediction.reshape(prediction.shape[2], prediction.shape[3])  # reshape the output
-
-    fig, ax = plt.subplots(1, 3, figsize=(15, 5))
-    ax[0].imshow(test_image[0, 0, :, :], cmap='gray')
-    ax[0].set_title('Input Image')
-    ax[1].imshow(test_mask[0, 0, :, :], cmap='gray')
-    ax[1].set_title('Ground Truth')
-    ax[2].imshow(prediction, cmap='gray')
-    ax[2].set_title('Prediction')
+    # Etc.
     plt.show()
 
 model = UNet()
 
-# test_image = Image.open("Formula1.jpg").convert("L")  # convert to grayscale
-test_image = Image.open("Formula1.jpg")
-img = image.img_to_array(test_image)
-img = img.reshape((1,) + img.shape)
-tensor = torch.from_numpy(img).float()
+# dummy3
+test_image = Image.open("Formula1.jpg").convert("L")  # convert to grayscale
 
-# permute the tensor to match PyTorch's expected input shape
-test_image = tensor.permute(0, 3, 1, 2)
-
-# I'm using test_image as test_mask for demonstration, replace it with your actual mask
-test_mask = test_image.clone()
+# lala
 
 display_results(model, test_image, test_mask)
 ```
 
 <br>
 
-Remember to replace `test_mask` with your actual mask when you run this in your environment. The input and mask should be preprocessed in the same way.
+The input and mask should be preprocessed in the same way.
 
-Also, the line `test_image = Image.open("Formula1.jpg").convert("L")` converts the image to grayscale. If your actual inputs are color images and your model is designed to handle color inputs, you should remove the `.convert("L")` part.
+The line `test_image = Image.open("Formula1.jpg").convert("L")` converts the image to grayscale.
+
+If your actual inputs are color images and your model is designed to handle color inputs, you should remove the `.convert("L")` part.
 
 <br>

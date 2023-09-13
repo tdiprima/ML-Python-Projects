@@ -1,3 +1,5 @@
+I'm guessing this may have been from: <a href="https://www.datacamp.com/tutorial/introduction-q-learning-beginner-tutorial">introduction-q-learning-beginner-tutorial</a>
+
 ```ruby
 decay_factor = 1 - learning_rate
 
@@ -170,6 +172,9 @@ state_index = np.ravel_multi_index([np.digitize(s, bins) for s, bins in zip(stat
 # Print the state and its corresponding index
 print(f"State: {state}")
 print(f"State index: {state_index}")
+
+# State: [-0.01424464  0.0207026  -0.01617126 -0.01462725]
+# State index: 30839
 ```
 
 In this example, we first define the number of bins and the range for each state variable. We then use `numpy.linspace()` to compute the bin edges for each state variable.

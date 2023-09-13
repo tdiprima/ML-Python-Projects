@@ -36,4 +36,6 @@ Logit: "The (unnormalized) score for a label or (functional confidence) for a sp
 
 Logit is referred to **the output of a function** (e.g. a Neural Net) **just before its normalization** (which we usually use the softmax).
 
+See also: <a href="../PyTorch/notes/logits.md">another logits</a>
+
 <br>

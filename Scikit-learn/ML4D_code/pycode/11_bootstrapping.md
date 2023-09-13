@@ -1,14 +1,8 @@
 ## Out-of-Bootstrap Error Rate
 
-This code generates a bootstrapped sample and calculates an out-of-bootstrap estimate of the error rate of the sample.
+Bootstrapping Out-of-Sample Simulation
 
-First, the code imports the necessary libraries `random` and `numpy`. Then, a variable `n` is set to 1000, which represents the number of examples. A set `examples` is created with the range of `n`, i.e., `examples` contains integers from 0 to 999.
-
-The `for` loop runs 10,000 times, and in each iteration, a boostrapped sample of size `n` is generated using the `randint` function from the `random` library. The list `chosen` contains the indices of the examples in the boostrapped sample.
-
-Then, the code calculates the out-of-bootstrap error rate for this sample. This is done by finding the intersection of the original set of examples (`examples`) and the boostrapped sample (`chosen`), and subtracting the size of the intersection from the size of the original set. The result is divided by `n` to get the proportion of examples that are not in the intersection. This calculation is performed for each iteration of the `for` loop, and the resulting error rates are stored in the list `results`.
-
-Finally, the mean of the error rates in `results` is calculated using `np.mean` from the `numpy` library and printed as a percentage.
+The Python code is simulating a process called bootstrapping, which is a statistical resampling technique used to estimate sampling distributions. The code is focused on computing the out-of-bootstrap percentage, which is a measure of the examples not selected during bootstrapping.
 
 ```py
 from random import randint
@@ -23,7 +17,7 @@ results = list()
 
 for j in range(10000):
     # your bootstrapped sample
-    chosen = [randint(0, n) for k in range(n)]
+    chosen = [randint(0, n-1) for k in range(n)]
 
     # out-of-sample
     results.append((1000 - len(set(chosen) & examples)) / float(n))
@@ -33,20 +27,54 @@ print("\nOut-of-boostrap: %0.1f %%" % (np.mean(results) * 100))
 # Out-of-boostrap: 36.8 %
 ```
 
-## Summary
+## Here's a breakdown of what each part does:
 
-This code creates a pretend group of 1000 things. Then it takes a smaller sample from that group, like choosing 10 things out of 1000, and does that 10,000 times.
+1. Import relevant libraries:
 
-Next, it checks how many of the things from the pretend group were not picked in any of those 10,000 samples. This is called the "out-of-bootstrap error rate".
+    - Importing the `randint` function to generate random integers.
 
-The code calculates this rate and shows it as a percentage. This is a way to estimate how well a sample represents the whole group.
+    - Importing the NumPy library for numerical operations.
 
-## What do the results mean?
+2. Define variables:
 
-If the out-of-bootstrap error rate is 36.8%, it means that on average, 36.8% of the things in the pretend group were not selected in any of the 10,000 samples.
+    - `n = 1000`: Sets the total number of examples to 1000.
 
-A higher error rate indicates that the samples are less representative of the whole group, meaning that the sample is less reliable in reflecting the characteristics of the whole group.
+    - `examples = set(range(n))`: Creates a set of examples ranging from 0 to 999.
 
-So, in this case, a higher error rate suggests that the sample may not be a very good representation of the whole group.
+    - `results = list()`: Initializes an empty list to store out-of-bootstrap percentages.
+
+3. Loop to generate bootstrapped samples:
+
+    - The loop runs 10,000 times.
+
+    - Within each iteration, it creates a bootstrapped sample `chosen` by randomly selecting `n` integers between 0 and `n`. Note that some integers might be picked multiple times, and some might not be picked at all.
+
+    - It calculates the number of examples that were not selected (`1000 - len(set(chosen) & examples)`) and divides it by `n` to get a ratio. This ratio is appended to the `results` list.
+
+4. Calculate and print the average out-of-bootstrap percentage:
+
+    - The code computes the mean of all out-of-bootstrap percentages collected in `results` using NumPy's `np.mean()` function.
+
+    - It then multiplies the mean by 100 to express it as a percentage and prints it.
+
+The output will be the average percentage of examples that are not included in each bootstrap sample across 10,000 iterations.
+
+**Note:** The line `chosen = [randint(0, n) for k in range(n)]` should probably be `chosen = [randint(0, n-1) for k in range(n)]` to be consistent with the original set of examples ranging from 0 to 999. Otherwise, the bootstrap sample could contain the integer 1000, which is not in the original set. <span style="color:lime;">&check; Updated.</span>
+
+### ¿Por qué? set(chosen) & examples
+
+The expression `set(chosen) & examples` is performing a set intersection between `set(chosen)` and `examples`. In Python, the `&` operator when applied to sets returns a new set containing all the elements that are common to both sets.
+
+In this code:
+
+- `set(chosen)`: This converts the list `chosen` into a set. This list `chosen` contains the bootstrapped sample, which means it has `n` elements selected randomly from the range `[0, n-1]` (we corrected the off-by-one error).
+  
+- `examples`: This is the original set of examples, containing integers from 0 to `n-1` (i.e., 0 to 999 if `n = 1000`).
+
+So, `set(chosen) & examples` will result in a set containing all the numbers that are in both `set(chosen)` and `examples`.
+
+After that, `len(set(chosen) & examples)` returns the number of elements in this intersection set. This gives us the count of original examples that are also present in the bootstrapped sample `chosen`.
+
+The expression `1000 - len(set(chosen) & examples)` then calculates the number of original examples that are NOT in the bootstrapped sample. This is divided by `n` (1000) to get the ratio of out-of-bootstrap examples, which is then appended to the `results` list.
 
 <br>

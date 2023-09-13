@@ -1,67 +1,12 @@
 ## Setting number of workers
 
-<mark>**Note: This code sux, and it literally takes forever. Use the PyTorch one.**</mark>
+<mark>**TL;DR: This code sux, and it literally takes forever. Use the PyTorch one.**</mark>
 
-### The End.
+Removed code for non-confusion.  And I'm assuming I mean <a href="../../../PyTorch/image_segmentation/unet-carvana/using-model-2.ipynb">unet-carvana</a> or any of those in `image_segmentation`.
 
 [Image Seg Carvana](https://towardsdatascience.com/image-segmentation-predicting-image-mask-with-carvana-data-32829ca826a0)
 
 [GitHub](https://github.com/ZeeTsing/Carvana_challenge.git)
-
-In TensorFlow, the number of workers is typically set when using a distributed computing approach, such as in a **multi-node** or **multi-GPU** environment.
-
-Here's how to set the number of workers in TensorFlow when using the `tf.distribute` module for distributed training:
-
-```python
-import tensorflow as tf
-
-# Set the number of worker nodes
-num_workers = 4
-
-# Define the distribution strategy
-strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy(num_workers=num_workers)
-
-# Build and compile the model within the distribution strategy scope
-with strategy.scope():
-    model = tf.keras.Sequential([...])
-    model.compile([...])
-```
-
-* We set the `num_workers` variable to 4 to indicate that we have **4 worker nodes.**
-
-* We then create a `MultiWorkerMirroredStrategy` object with this value, which will enable us to distribute the training across multiple worker nodes.
-
-* Finally, we **build and compile** the model within the distribution strategy scope using `strategy.scope()`, which will ensure that the model is **replicated and trained in parallel** across all the worker nodes.
-
-## Nope.
-
-`_CollectiveAllReduceStrategyExperimental.__init__()` got an unexpected keyword argument 'num_workers'
-
-<span style="color:red;">I ain't usin' that, I'm usin' MultiWorkerMirroredStrategy.</span>
-
-The `CollectiveAllReduceStrategyExperimental` is a TensorFlow strategy that can be used for distributed training. However, it does not have a `num_workers` argument in its constructor.
-
-The `CollectiveAllReduceStrategyExperimental` strategy **uses all available devices** on a single machine to perform synchronous training.
-
-When using this strategy, there is **no need to specify** the number of workers since it automatically uses all available devices.
-
-```python
-import tensorflow as tf
-
-# Create the strategy
-strategy = tf.distribute.experimental.CollectiveAllReduceStrategy()
-
-# Define and compile the model within the strategy scope
-with strategy.scope():
-    model = tf.keras.Sequential([...])
-    model.compile([...])
-```
-
-<span style="color:red;">It didn't like this one, either.</span>
-
-* First, we create an instance of the `CollectiveAllReduceStrategyExperimental` strategy, which will use all available devices on a single machine for training.
-
-* Then we **define and compile the model** within the strategy scope, which will ensure that the model is replicated and trained in parallel across all available devices.
 
 ## Take part of the dataset
 

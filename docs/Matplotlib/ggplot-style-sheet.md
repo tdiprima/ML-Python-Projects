@@ -1,6 +1,6 @@
 ## Python Plotting with Matplotlib
 
-<img width="600" src="https://matplotlib.org/stable/_images/sphx_glr_ggplot_001_2_00x.png" />
+<img width="700" src="https://matplotlib.org/stable/_images/sphx_glr_ggplot_001_2_00x.png" />
 
 [matplotlib.org](https://matplotlib.org/stable/gallery/style_sheets/ggplot.html)
 

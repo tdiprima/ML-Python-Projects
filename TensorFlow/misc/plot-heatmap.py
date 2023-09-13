@@ -1,3 +1,4 @@
+# TODO: YOU NEED PRE-TRAINED MODEL my_model.h5
 import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf

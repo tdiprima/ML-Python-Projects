@@ -19,25 +19,25 @@ For example, if you're trying to predict whether an image contains a cat or a do
 
 <span style="color:#0000dd;font-size:larger;">But aren't all outputs between 0 and 1 anyway?</span>
 
-Good point!
+### Good point!
 
 In many cases, the outputs of machine learning models are indeed already constrained to the range between 0 and 1, such as in the case of probability estimates.
 
 But there are still situations where it can be useful to apply a sigmoid activation function.
 
-One example is in binary classification tasks, where the goal is to predict one of two possible outcomes, such as "yes" or "no".
+1. One example is in **binary classification** tasks, where the goal is to predict one of two possible outcomes, such as "yes" or "no".
 
-In such cases, the final output of the model can be interpreted as the probability of the positive outcome (e.g., **the probability of "yes"**).
+    In such cases, the final output of the model can be interpreted as the probability of the positive outcome (e.g., the probability of "yes").
 
-By applying a sigmoid activation function to the final output, we can <mark>**ensure**</mark> that the resulting probability estimate is **always between 0 and 1.**
+    By applying a sigmoid activation function to the final output, we can <mark>**ensure**</mark> that the resulting probability estimate is always between 0 and 1.
 
-Another example is in cases where we want the model to have a nonlinear response to its inputs.
+2. Another example is in cases where we want the model to have a **nonlinear response to its inputs.**
 
-The sigmoid function is a nonlinear function that can introduce **curvature** into the model's decision boundary, which can help it learn more complex patterns in the data.
+    The sigmoid function is a nonlinear function that can introduce curvature into the model's decision boundary, which can help it learn more complex patterns in the data.
 
-### Linear / Nonlinear
+## Linear / Nonlinear
 
-The sigmoid function is a nonlinear function, which means that it can introduce curvature into the output.
+The sigmoid function is a nonlinear function, which means that it can **introduce curvature** into the output.
 
 This curvature can help the model learn more complex patterns in the data that a linear function (like multiplication by a constant) might not be able to capture.
 
