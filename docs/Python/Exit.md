@@ -19,9 +19,9 @@ import sys
 
 try:
     doSomethingBad()
-except Exception as e:
+except Exception:
     exc_type, exc_obj, exc_tb = sys.exc_info()
-    print("\nType", exc_type)
+    print("\nType:", exc_type)
     print("\nErr:", exc_obj)
     print("\nLine:", exc_tb.tb_lineno)
     sys.exit(1)
@@ -34,9 +34,9 @@ except Exception as e:
 x = [1, 2, 3]
 
 try:
-  basic_sigmoid(x) # you will see this give an error when you run it, because x is a vector.
+    basic_sigmoid(x) # you will see this give an error when you run it, because x is a vector.
 except Exception as ex:
-  print("An exception occurred.", ex)
+    print("An exception occurred.", ex)
 ```
 
 <br>
