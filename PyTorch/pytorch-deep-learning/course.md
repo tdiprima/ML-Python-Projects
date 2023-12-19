@@ -10,6 +10,8 @@ Daniel Bourke
 
 [PyTorch](https://pytorch.org/)
 
+[Forums](https://discuss.pytorch.org/)
+
 [Torch Hub](https://pytorch.org/hub/)
 
 * [Get models](https://pytorch.org/vision/stable/models.html)
