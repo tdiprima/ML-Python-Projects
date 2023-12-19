@@ -12,6 +12,8 @@ Daniel Bourke
 
 [Forums](https://discuss.pytorch.org/)
 
+[Google Colab](https://colab.research.google.com/)
+
 [Torch Hub](https://pytorch.org/hub/)
 
 * [Get models](https://pytorch.org/vision/stable/models.html)
