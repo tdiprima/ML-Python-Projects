@@ -18,3 +18,5 @@ Basically, what to do:
 3. Cook the dish according to the recipe (similar to fitting the model to the data)
 4. Taste the dish and adjust seasoning as necessary (similar to making predictions and evaluating the model)
 5. Store the leftover dish for later (similar to saving the model)
+
+![](../../images/torchflow.png)
