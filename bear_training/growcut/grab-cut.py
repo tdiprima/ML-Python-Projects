@@ -9,11 +9,11 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 # Image is loaded with imread
-# image = cv2.imread('../images/input.png')
-# image = cv2.imread('../images/lights_02.png')
-# image = cv2.imread('../images/match.png')
-# image = cv2.imread('../images/retina-noise.png')
-image = cv2.imread('../images/dragonball.jpg')
+# image = cv2.imread('../../images/input.png')
+# image = cv2.imread('../../images/lights_02.png')
+# image = cv2.imread('../../images/match.png')
+# image = cv2.imread('../../images/retina-noise.png')
+image = cv2.imread('../../images/dragonball.jpg')
 
 # Create a simple mask image, similar to the loaded image, with the shape and return type
 mask = np.zeros(image.shape[:2], np.uint8)
@@ -35,7 +35,7 @@ These coordinates are according to the input image.
 rectangle = (20, 100, 150, 150)
 
 """
-Apply the grabcut algorithm with appropriate values as parameters, 
+Apply the grabcut algorithm with appropriate values as parameters,
 number of iterations = 3.
 cv2.GC_INIT_WITH_RECT is used because the rectangle mode is used.
 """
