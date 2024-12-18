@@ -119,7 +119,7 @@ def hey_dummies(data_train=None):
 def target_encoding():
     """
     pip install category_encoders
-    TODO: Wth is "label"?
+    TODO: What is "label"?
     """
     import category_encoders as ce
 
