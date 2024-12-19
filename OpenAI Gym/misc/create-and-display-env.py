@@ -1,5 +1,5 @@
 """
-Just create an environment and display it. Close after 5 seconds.
+This script creates a gym environment for a game, renders it, waits for 5 seconds and then closes the environment.
 """
 import time
 

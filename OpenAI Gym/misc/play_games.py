@@ -1,6 +1,6 @@
 """
-This is a quick display and animation, using random steps.
-See: CartPole-error.md
+Visually renders 10 episodes of the predefined environment ("CliffWalking-v0") in the OpenAI Gym library
+with random actions at each step, displaying the number of timesteps at the end of each episode.
 """
 import time
 

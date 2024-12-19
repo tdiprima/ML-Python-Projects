@@ -1,3 +1,7 @@
+"""
+Creates an environment for a selected game using OpenAI's Gym toolkit, then randomly selects
+actions to execute in the game for 1000 steps, while also rendering the game's visual output.
+"""
 import gym
 
 game = "Pong-v4"

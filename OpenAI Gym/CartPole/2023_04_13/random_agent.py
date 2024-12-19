@@ -1,4 +1,8 @@
 """
+This script runs some random games in the CartPole-v1 environment of OpenAI's gym, where for each frame in each game,
+it samples an action (either 0 or 1, which corresponds to the pole moving left or right), executes the action in the
+environment, and prints the reward if the game is done.
+
 https://github.com/openai/gym/issues/762
 https://pythonprogramming.net/static/downloads/ipynbs/Reinforcement+Learning+-+Playing+Games+with+Neural+Networks+and+Artificial+Intelligence.html
 """

@@ -1,6 +1,6 @@
 """
-See: surface-quit.md
-NOTE!  The problem only occurs when using jupyter notebook
+Creates a gym environment, performs random actions until the episode finishes, then attempts to close the environment and pygame.
+It also includes a function that waits for a pygame quit event before quitting pygame.
 """
 import gym
 import pygame

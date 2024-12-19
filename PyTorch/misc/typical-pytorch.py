@@ -1,3 +1,7 @@
+"""
+A simple implementation of a neural network using PyTorch for linear regression,
+training it on randomly generated data, and making predictions on test data.
+"""
 import torch
 import torch.nn as nn
 import torch.optim as optim

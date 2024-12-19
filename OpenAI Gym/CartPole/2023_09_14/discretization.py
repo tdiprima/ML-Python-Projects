@@ -1,5 +1,10 @@
+"""
+Implements Q-learning algorithm for the CartPole-v1 environment in OpenAI Gym,
+using discretized state space, and epsilon-greedy policy for action selection.
+"""
 import gym
 import numpy as np
+
 
 # Discretize the state space
 def discretize(state, bins):
@@ -9,23 +14,20 @@ def discretize(state, bins):
         state_indices.append(state_index)
     return tuple(state_indices)
 
+
 # Define the Q-learning hyperparameters
-alpha = 0.1           # learning rate
-gamma = 0.99          # discount factor
-epsilon = 0.1         # exploration rate
+alpha = 0.1  # learning rate
+gamma = 0.99  # discount factor
+epsilon = 0.1  # exploration rate
 num_episodes = 10000  # number of episodes to run
-max_steps = 500       # maximum number of steps per episode
+max_steps = 500  # maximum number of steps per episode
 
 # Create the CartPole environment
 env = gym.make('CartPole-v1')
 
 # Initialize the Q-table with zeros
-num_bins = [
-    np.linspace(-4.8, 4.8, 24),
-    np.linspace(-4, 4, 24),
-    np.linspace(-0.418, 0.418, 48),
-    np.linspace(-4, 4, 48),
-]
+num_bins = [np.linspace(-4.8, 4.8, 24), np.linspace(-4, 4, 24), np.linspace(-0.418, 0.418, 48),
+    np.linspace(-4, 4, 48), ]
 Q = np.zeros(tuple(len(b) + 1 for b in num_bins) + (env.action_space.n,))
 
 # Loop over episodes

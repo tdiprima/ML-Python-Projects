@@ -1,8 +1,12 @@
-# Test PyTorch Model
-# Create a dummy tensor using the PyTorch `torch.randn()` function.
-# Test the model by passing this tensor through the model.
-# Check if it produces the expected output shape.
+"""
+Defines two neural network models, MyModel and MyModel1, which are used to process input tensors
+of specific shapes, and then prints and asserts the shapes of the output tensors.
 
+How to Test a PyTorch Model
+Create a dummy tensor using the PyTorch `torch.randn()` function.
+Test the model by passing this tensor through the model.
+Check if it produces the expected output shape.
+"""
 import torch
 import torch.nn as nn
 

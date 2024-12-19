@@ -1,4 +1,7 @@
 """
+Implements a Q-Learning algorithm to control a CartPole in OpenAI's gym environment, iteratively updating its policy
+to maximize the obtained reward by exploring and exploiting the environment using epsilon-greedy strategy.
+
 https://medium.com/swlh/using-q-learning-for-openais-cartpole-v1-4a216ef237df
 """
 import math  # needed for calculations

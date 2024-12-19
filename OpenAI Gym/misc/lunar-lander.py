@@ -1,4 +1,7 @@
 """
+Creates a LunarLander-v2 environment using OpenAI Gym, performs 1000 random actions
+in that environment, and resets the environment when it terminates or truncates.
+
 Compare to do_1000
 https://www.gymlibrary.dev/content/basic_usage/
 """

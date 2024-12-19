@@ -1,3 +1,7 @@
+"""
+Creates and runs a Gym environment 'CartPole-v1', recording video of each episode
+and terminating the environment if the episode finishes.
+"""
 import gym
 # pip install moviepy
 from gym.wrappers.record_video import RecordVideo

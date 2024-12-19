@@ -1,3 +1,9 @@
+"""
+Contains two functions - `play_frozen()` and `play_cliffwalker()` which each simulate a specific agent's journey in the
+'FrozenLake-v1' and 'CliffWalking-v0' environments from OpenAI's Gym respectively, execute certain actions in each
+environment, print out the new state, reward, completion status and info after each step, reset the environment and then
+close it after a delay.
+"""
 import time
 
 import gym
