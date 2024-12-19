@@ -1,5 +1,7 @@
 """
-This is what you do
+Trains a PyTorch neural network model using stochastic gradient descent optimizer and binary cross-entropy loss,
+logs gradients and performance metrics using WandB, and visualizes the model's performance over the training epochs.
+
 pip install wandb
 See: wandb.me/intro-pt
 """

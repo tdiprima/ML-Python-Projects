@@ -1,5 +1,6 @@
 """
-Visualize the agent moving on the map
+This script uses a pre-defined Q-table to navigate an agent in a 'FrozenLake-v1' Gym environment by selecting the
+highest-value action for each state, and visualizes the agent's movement on the map.
 """
 import sys
 import time

@@ -1,5 +1,7 @@
 """
 q-learning seeks to learn a policy that maximizes the total reward
+Implementing a Q-learning algorithm to train an agent to play the 'FrozenLake-v1' game in OpenAI's Gym, adjusting its
+epsilon-greedy strategy over time while keeping track of rewards and displaying the training progress graphically.
 """
 # import random
 

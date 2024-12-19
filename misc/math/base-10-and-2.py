@@ -1,4 +1,7 @@
-# Logarithm ladder or graph.md
+"""
+Generates a logarithmic graph with two axes, one representing the base 10 logarithm and the other
+representing the base 2 logarithm, with 100 data points between 0 and 10 on the x-axis.
+"""
 import matplotlib.pyplot as plt
 import numpy as np
 

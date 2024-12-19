@@ -1,6 +1,6 @@
 """
-Works.
-Image Segmentation.md
+Applies image segmentation techniques to a colored image, converting it to grayscale, applying thresholding to create
+a binary image, and then drawing circles around detected contours to segment the image into its individual components.
 """
 import cv2
 

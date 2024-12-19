@@ -1,4 +1,4 @@
-// Train a simple model to recognize handwritten digits:
+// Trains a TensorFlow.js model using a simple identity matrix to predict sequential numbers from 0 to 99.
 const tf = require('@tensorflow/tfjs-node');
 
 const input_size = 100;

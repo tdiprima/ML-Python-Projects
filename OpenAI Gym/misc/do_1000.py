@@ -1,5 +1,7 @@
 """
 Compare to Lunar Lander
+Uses the gymnasium library to run a simulation of the game Space Invaders, taking
+random actions, and resetting the environment when a game ends.
 https://gymnasium.farama.org/content/basic_usage/
 """
 import gymnasium as gym

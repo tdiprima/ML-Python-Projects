@@ -1,3 +1,7 @@
+"""
+Creates an agent that learns to play the game 'MountainCar-v0' from the Gym environment
+using Q-learning, visualizes the results, and saves the Q-table and scores.
+"""
 # import time
 # import random
 from collections import deque

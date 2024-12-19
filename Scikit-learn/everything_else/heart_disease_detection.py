@@ -1,11 +1,11 @@
-#!/usr/bin/env python
-# coding: utf-8
-
 """
+Reads data from a cardiovascular dataset, explores and cleans it, and visualizes the distribution of heart disease
+across different ages. The program checks correlations among features, drops unnecessary columns, and normalizes the data.
+Finally, it uses a Random Forest Classifier to predict whether someone has heart disease, evaluating the model's accuracy
+on training data and validating it using a confusion matrix on test data.
+
 https://youtu.be/kySc5Wg1Gxw
 https://www.mayoclinic.org/diseases-conditions/heart-disease/symptoms-causes/syc-20353118
-FYI FOR LATER
-https://github.com/PacktPublishing/Hands-On-Machine-Learning-with-Python-and-Scikit-Learn/blob/master/code/Heart%20Disease.ipynb
 """
 
 import pandas as pd

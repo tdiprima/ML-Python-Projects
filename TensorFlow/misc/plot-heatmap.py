@@ -1,4 +1,9 @@
-# TODO: YOU NEED PRE-TRAINED MODEL my_model.h5
+"""
+Loads a pre-trained model to predict digit labels on the MNIST test dataset, then analyzes
+prediction results by creating and visualizing a confusion matrix using a heatmap.
+
+TODO: YOU NEED PRE-TRAINED MODEL my_model.h5
+"""
 import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf

@@ -1,4 +1,8 @@
 """
+Implements a reinforcement learning algorithm using a simple neural network to teach an AI to play the game Pong from
+OpenAI's gym, preprocessing images of the game screen, deciding actions based on the current state, and learning from
+the outcomes of the actions to improve over time.
+
 https://therobotcamp.com/2020/04/21/tutorial-teach-ai-to-play-pong-from-scratch-with-reinforcement-learning/
 Same old brokenness.
 """

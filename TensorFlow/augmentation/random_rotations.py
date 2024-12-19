@@ -1,3 +1,4 @@
+# This script opens an image, applies various random augmentations like rotation, zoom, flip etc. using Keras ImageDataGenerator and displays the augmented images.
 """
 https://www.analyticsvidhya.com/blog/2020/08/image-augmentation-on-the-fly-using-keras-imagedatagenerator/
 """
@@ -7,7 +8,7 @@ from keras.preprocessing.image import ImageDataGenerator
 # from keras.preprocessing import image
 from tensorflow.keras.preprocessing import image
 
-test_image = Image.open("ale.png")
+test_image = Image.open("formula_one.png")
 img = image.img_to_array(test_image)  # (289, 512, 4)
 img = img.reshape((1,) + img.shape)  # (1, 289, 512, 4)
 # img = img.unsqueeze(1)  # can't unsqueeze a numpy array

@@ -1,3 +1,4 @@
+// Creates a 100x100 identity matrix using TensorFlow.js and prints its shape.
 // Generate an identity matrix as the input tensor
 const tf = require('@tensorflow/tfjs-node');
 

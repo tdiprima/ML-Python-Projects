@@ -1,3 +1,4 @@
+// Logs the TensorFlow.js version and all information regarding the currently installed TensorFlow.js package.
 const tf = require('@tensorflow/tfjs-node');
 
 // Version

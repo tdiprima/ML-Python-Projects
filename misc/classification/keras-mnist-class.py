@@ -1,6 +1,6 @@
 """
-Works.
-CNNs.md
+Trains a convolutional neural network (CNN) to classify handwritten digits (0-9) using the MNIST dataset and
+prints the model's accuracy on the test set.
 """
 from keras.datasets import mnist
 from keras.layers import Dense, Flatten

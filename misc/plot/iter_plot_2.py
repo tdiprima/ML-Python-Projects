@@ -1,8 +1,7 @@
 """
+Creates a matplotlib figure with a grid of subplots to display multiple 2D images in a window.
 TODO: Scrollbar
 https://stackoverflow.com/questions/42622146/scrollbar-on-matplotlib-showing-page
-The window showing the matplotlib figure does not have the option to add scrollbars.
-An option would be to build a custom window which does have this ability. For that purpose, one can use PyQt.
 """
 import matplotlib.pyplot as plt
 import numpy as np

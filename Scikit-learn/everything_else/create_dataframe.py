@@ -1,3 +1,7 @@
+"""
+Loads the breast cancer dataset, extracts features and target data, creates pandas dataframes of either one specified column
+or all columns, and provides various information about the data - including class names, feature names, and value counts.
+"""
 import pandas as pd
 from sklearn.datasets import load_breast_cancer
 

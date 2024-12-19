@@ -1,3 +1,7 @@
+"""
+Loads an existing machine learning model, uses it to predict labels for the MNIST test dataset,
+visualizes the true versus predicted labels with a scatter plot, and prints a classification report.
+"""
 # import json
 
 import matplotlib.pyplot as plt

@@ -1,3 +1,7 @@
+"""
+Builds a model for binary image segmentation using the Carvana dataset with PyTorch, providing functions for loading
+datasets, saving and loading model states, checking model accuracy, and saving model predictions as images.
+"""
 import torch
 import torchvision
 from torch.utils.data import DataLoader

@@ -1,5 +1,7 @@
-# This downloads the dataset to ~/seaborn-data
-# Note, you don't get names with this dataset
+"""
+Loads the Titanic dataset from Seaborn, measures how long it takes to load,
+and prints the time taken and the first five rows of the dataset.
+"""
 import seaborn as sns
 import timeit
 

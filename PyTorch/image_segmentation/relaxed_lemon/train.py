@@ -1,5 +1,8 @@
 """
 Main code; start here.
+This script trains a U-Net model for image segmentation on a given dataset, applies transformations to the training and
+validation data, and saves the model and prediction examples after each epoch.
+
 https://github.com/AladdinPerzon/Machine-Learning-Collection/blob/master/ML/Pytorch/image_segmentation/semantic_segmentation_unet/
 """
 import os

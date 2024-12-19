@@ -1,5 +1,6 @@
 """
-Easy - just don't train the model.
+Easy - just don't train the model :-D
+Defines, compiles and tests a U-Net model for binary image segmentation, and displays the test results.
 """
 import matplotlib.pyplot as plt
 import tensorflow as tf

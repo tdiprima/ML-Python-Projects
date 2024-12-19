@@ -1,5 +1,7 @@
-# USAGE
-# python predict.py
+"""
+This script uses a trained model to predict segmentation masks for a set of test images, and then creates a
+visualization plot for each original image, its ground truth mask, and the predicted mask.
+"""
 from tools import config
 import matplotlib
 matplotlib.use('Agg')

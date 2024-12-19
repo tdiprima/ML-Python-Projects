@@ -1,4 +1,9 @@
-# TODO: Save or load, take your pick.
+"""
+Loads a pre-trained model to predict handwritten digits from the MNIST dataset, calculates and prints
+F1 score and classification report, and plots a normalized and non-normalized confusion matrix.
+
+TODO: Save or load.
+"""
 import tensorflow as tf
 from sklearn.metrics import f1_score, confusion_matrix, classification_report
 from tensorflow import keras

@@ -1,3 +1,4 @@
+# This code imports the Iris dataset, prepares the data, builds and trains a neural network model using TensorFlow, evaluates its performance on the test set throughout training, and produces a graph comparing test loss and accuracy over epochs.
 import tensorflow as tf
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split

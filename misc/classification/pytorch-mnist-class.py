@@ -1,6 +1,6 @@
 """
-Works, but run on server if increase hyper-parameters
-Multi-class classification
+Defines and trains a multi-class neural network using the MNIST dataset, with a convolutional network followed
+by two fully connected layers, and evaluates its performance on the test set.
 """
 import torch
 import torchvision.datasets as datasets

@@ -1,3 +1,7 @@
+"""
+Loads MNIST data, loads a pre-trained neural network model, predicts classes for test data, and calculates
+and prints the F1 score, classification report, and confusion matrix for the predictions.
+"""
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras

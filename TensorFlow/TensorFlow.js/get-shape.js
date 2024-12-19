@@ -1,4 +1,5 @@
-// What is the JavaScript equivalent of Python's array.shape?
+// Demonstrates how to get the shape of 2D and 3D arrays, as well as tensors,
+// which echoes Python's array.shape functionality.
 
 function vanilla() {
   // Create a 2D array

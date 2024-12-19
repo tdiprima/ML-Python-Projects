@@ -1,3 +1,7 @@
+"""
+Loads a dataset of images and their associated labels, and trains a Fully Convolutional Network
+(FCN) model for slide image segmentation.
+"""
 import os
 
 import torch

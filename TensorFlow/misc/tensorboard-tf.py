@@ -1,5 +1,11 @@
-# tensorboard --logdir=runs
-# Running locally: http://localhost:6006/
+"""
+Trains a simple neural network on the MNIST dataset, logs the training process and hyperparameters
+using TensorBoard, and stores these logs in a directory timestamped with the current date and time.
+
+tensorboard --logdir=runs
+Running locally: http://localhost:6006/
+"""
+
 import datetime
 
 import tensorflow as tf

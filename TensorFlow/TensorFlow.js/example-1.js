@@ -1,5 +1,5 @@
-// Train a simple model to recognize handwritten digits (unfinished)
-// Plus "await" troubles.
+// Defines, compiles and prepares to train a TensorFlow.js model to recognize handwritten digits,
+// but doesn't complete the task due to an await error.
 const tf = require('@tensorflow/tfjs-node');
 
 // Define the model architecture

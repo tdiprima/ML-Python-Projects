@@ -1,4 +1,10 @@
-# https://stackoverflow.com/questions/74406936/knn-python-implementation#74407750
+"""
+Loads the Iris dataset, performs a train-test split, applies standard scaling to the features, conducts a K-Nearest
+Neighbors classification with k=5, generates a confusion matrix and classification report, and plots the error rate
+against varying K values from 1 to 40.
+
+https://stackoverflow.com/questions/74406936/knn-python-implementation#74407750
+"""
 from warnings import simplefilter
 
 import matplotlib.pyplot as plt

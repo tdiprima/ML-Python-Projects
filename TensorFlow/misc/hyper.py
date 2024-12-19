@@ -1,5 +1,6 @@
 """
-loss_fn and optimizer are separate, rather than inline
+Trains, tests, and makes predictions using a simple neural network on the MNIST dataset,
+while also tracking the training time.
 """
 from timeit import default_timer as timer
 

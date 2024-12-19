@@ -1,4 +1,8 @@
-#!/usr/bin/env python
+"""
+Implements the U-Net model for image segmentation tasks on a dataset, providing options for data augmentation, and
+includes utilities for data loading, model training with callbacks for checkpoints, early stopping and learning rate
+reduction, as well as handling errors and saving the trained model.
+"""
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt

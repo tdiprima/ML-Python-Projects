@@ -1,3 +1,4 @@
+# This script loads the Iris dataset, splits it into training and testing datasets, defines a fully-connected neural network model using Tensorflow and trains the model with the categorical cross-entropy loss.
 # Fully-connected neural network model
 import tensorflow as tf
 from sklearn.datasets import load_iris

@@ -1,7 +1,10 @@
-#!/usr/bin/env python
-# coding: utf-8
+"""
+This script uses machine learning algorithms (KNeighborsClassifier, DecisionTreeClassifier, RandomForestClassifier)
+to classify breast cancer types from a dataset, gauges their performance by checking prediction accuracy, and
+visualizes the feature correlations utilizing a heatmap.
 
-# FYI: Random Forest ended up working better than KNeighborsClassifier.
+FYI: Random Forest ended up working better than KNeighborsClassifier.
+"""
 
 import random
 from warnings import simplefilter

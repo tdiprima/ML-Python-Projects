@@ -1,5 +1,8 @@
-#!/usr/bin/env python
 """
+Trains a U-Net model for image segmentation, specifically for identifying parts of a car in images. It includes
+functionalities to load images, preprocess them, set up the model structure, train the model with given data,
+and test the model with unseen data, outputting predictions to local files. It also plots images for visual insight.
+
 Does not successfully complete yet.
 """
 import numpy as np
@@ -110,7 +113,7 @@ def _get_image_data_pil(image_id, image_type, return_exif_md=False, return_shape
         return img, img_pil._getexif()
 
 
-# Load trained Unet model (OK great; where's "load_model" then?)
+# Load trained Unet model (where's "load_model" then?)
 def dice_coef(y_true, y_pred):
     smooth = 1.
     y_true_f = flatten(y_true)
@@ -143,7 +146,7 @@ def up(input_layer, residual, filters):
 filters = 64
 # https://www.tensorflow.org/api_docs/python/tf/keras/layers/Conv2D
 #  (batch_size, height, width, channels)
-input_layer = Input(shape=[HEIGHT, WIDTH, 3])  # But here - don't put batch_size)
+input_layer = Input(shape=[HEIGHT, WIDTH, 3])  # But here - don't put batch_size
 layers = [input_layer]
 residuals = []
 

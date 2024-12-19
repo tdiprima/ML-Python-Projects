@@ -1,4 +1,9 @@
+"""
+This script plays the 'CartPole-v1' game on OpenAI's gym by selecting actions based on the pole's angle, where it moves
+left if the angle is less than 0 and right otherwise, until the game is over.
+"""
 import gym
+
 
 def choose_action(state):
     angle, _, pole_velocity, _ = state
@@ -6,6 +11,7 @@ def choose_action(state):
         return 0  # move left
     else:
         return 1  # move right
+
 
 # Create the CartPole environment
 env = gym.make('CartPole-v1')

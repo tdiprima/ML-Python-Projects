@@ -1,4 +1,8 @@
-# Atención: Conversion to mask took a long time for some reason
+"""
+Atención: Conversion to mask took a long time for some reason
+Reads an image, converts it to a binary mask based on a threshold, and then displays the mask using matplotlib.
+"""
+
 import torch
 from PIL import Image
 from tensorflow.keras.preprocessing import image

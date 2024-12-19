@@ -1,3 +1,7 @@
+"""
+Trains a neural network model on the MNIST dataset to classify handwritten digits, evaluates its performance
+using F1 score, classification report, and confusion matrix, and prints the results.
+"""
 import numpy as np
 import tensorflow as tf
 from sklearn.metrics import f1_score, confusion_matrix, classification_report

@@ -1,9 +1,6 @@
 """
-If we take the natural logarithm of an exponential function,
-we get a curved line.
-
-Display a plot with two subplots side by side, one showing the
-exponential function, and the other showing its natural logarithm.
+Displays a plot with two subplots side by side, one showing the exponential function and its values over a range of
+x values, and the other showing the natural logarithm of the function's values.
 """
 import matplotlib.pyplot as plt
 import numpy as np

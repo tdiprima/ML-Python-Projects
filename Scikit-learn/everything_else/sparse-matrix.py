@@ -1,9 +1,8 @@
 """
-Sparse Matrices
-By zeroing out the majority of the elements in the matrix, we can reduce memory
-usage and improve the efficiency of computations that involve the matrix.
+Generates a random data matrix, enforces a threshold value, creates corresponding labels, counts unique labels and then
+flips the labels, aiming to perform training on a data set and test the accuracy of a model. However, with the small
+size of this data set, the model performance may not be satisfactory.
 """
-
 import numpy as np
 
 # Create 10 samples with 5 feature-sets each
@@ -30,9 +29,3 @@ for i in range(len(arr)):
         arr[i] = 'M'
 
 print(f"arr: {arr}")
-
-"""
-Perform training with training-data set.
-Check accuracy of our model using testing-data set.
-Since it's such a small data-set, the models gonna do terribly.
-"""

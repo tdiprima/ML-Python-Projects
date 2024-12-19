@@ -1,7 +1,7 @@
 """
-Works.
+Extracts the foreground of an image using the GrabCut algorithm from OpenCV, and then segments the foreground from the
+background, displaying the resulting segmented image with a color-bar.
 https://www.geeksforgeeks.org/python-foreground-extraction-in-an-image-using-grabcut-algorithm/
-Foreground extraction using GrabCut algorithm
 """
 
 import cv2
@@ -9,11 +9,10 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 # Image is loaded with imread
-# image = cv2.imread('../../images/input.png')
-# image = cv2.imread('../../images/lights_02.png')
-# image = cv2.imread('../../images/match.png')
-# image = cv2.imread('../../images/retina-noise.png')
-image = cv2.imread('../../images/dragonball.jpg')
+# image = cv2.imread('lights_02.png')
+# image = cv2.imread('match.png')
+# image = cv2.imread('.retina-noise.png')
+image = cv2.imread('dragonball.jpg')
 
 # Create a simple mask image, similar to the loaded image, with the shape and return type
 mask = np.zeros(image.shape[:2], np.uint8)

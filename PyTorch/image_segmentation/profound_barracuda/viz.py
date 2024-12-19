@@ -1,3 +1,6 @@
+"""
+Display four images — two original images and their corresponding mask images.
+"""
 import matplotlib.pyplot as plt
 
 from PIL import Image

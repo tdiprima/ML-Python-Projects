@@ -1,5 +1,7 @@
-#!/usr/bin/env python
 """
+Builds and trains a convolutional neural network model to classify MRI images into four categories of brain tumors
+('glioma_tumor', 'meningioma_tumor', 'no_tumor', 'pituitary_tumor'), and tests the model on a sample image.
+
 TODO:
 1. `mkdir -p data/brain-tumor-classification-mri`
 2. Download data from https://www.kaggle.com/datasets/sartajbhuvaji/brain-tumor-classification-mri/download?datasetVersionNumber=2
@@ -124,7 +126,7 @@ Model Fit `tf.keras.model`
 Trains the model for a fixed number of epochs (dataset iterations).
 validation_split
 Float between 0 and 1. Fraction of the training data to be used as validation data.
-The model will set apart this fraction of the training data, will not train on it, 
+The model will set apart this fraction of the training data, will not train on it,
 and will evaluate the loss and any model metrics on this data at the end of each epoch.
 """
 

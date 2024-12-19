@@ -1,4 +1,9 @@
-# https://github.com/JackFurby/CartPole-v0/blob/master/cartPole.py
+"""
+This script trains a model for the CartPole-v1 game on OpenAI Gym using Q-learning, with an epsilon-decay strategy
+for exploration-exploitation balance, and outputs performance metrics for each run in a graph.
+
+https://github.com/JackFurby/CartPole-v0/blob/master/cartPole.py
+"""
 import gym
 import matplotlib.pyplot as plt
 import numpy as np

@@ -1,14 +1,9 @@
-#!/usr/bin/env python3
+"""
+Demonstrates various categorical feature encoding techniques using sklearn's preprocessing module and the
+'category_encoders' library. It encodes the 'type' feature of training and testing dataframes using methods like
+Label Encoding, Ordinal Encoding, One-Hot Encoding, Target Encoding, Count Frequency Encoding, Binary Encoding, and Hash Encoding.
 
-"""Because fireside chat.
 https://towardsdatascience.com/feature-encoding-techniques-in-machine-learning-with-python-implementation-dbf933e64aa
-
-The encoder must be fitted on only the training data, such that the encoder
-only learns the categories that exist in the training set, and then be used
-to transform the validation/test data. Do not fit the encoder on the whole dataset!
-
-Save your Encoders
-
 https://scikit-learn.org/stable/modules/classes.html#module-sklearn.preprocessing
 https://contrib.scikit-learn.org/category_encoders/
 """
