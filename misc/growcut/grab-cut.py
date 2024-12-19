@@ -11,7 +11,7 @@ from matplotlib import pyplot as plt
 # Image is loaded with imread
 # image = cv2.imread('lights_02.png')
 # image = cv2.imread('match.png')
-# image = cv2.imread('.retina-noise.png')
+# image = cv2.imread('retina-noise.png')
 image = cv2.imread('dragonball.jpg')
 
 # Create a simple mask image, similar to the loaded image, with the shape and return type
