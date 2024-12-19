@@ -1,6 +1,7 @@
 """
-Basic U-Net architecture
 Takes a 3-channel input image and outputs a single-channel segmentation mask.
+The code implements the U-Net architecture, a deep learning model for image segmentation, and includes functions to test
+the model with dummy images and a sample image from a file, displaying the input image, ground truth mask, and predicted mask.
 """
 import torch
 import torch.nn as nn

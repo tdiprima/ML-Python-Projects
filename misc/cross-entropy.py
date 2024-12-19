@@ -1,11 +1,10 @@
 """
-Works.
-Cross-entropy.md
+Calculates the cross-entropy between two probability distributions and prints the result.
 """
 import numpy as np
 
 
-def werk(p1, q1):
+def process(p1, q1):
     # Calculate cross-entropy
     cross_entropy = -np.sum(p1 * np.log(q1))
 
@@ -15,8 +14,8 @@ def werk(p1, q1):
 # Define two probability distributions
 p = np.array([0.2, 0.3, 0.5])  # true distribution
 q = np.array([0.3, 0.3, 0.4])  # predicted distribution
-werk(p, q)
+process(p, q)
 
 p = np.array([0.9, 0.9, 0.9])
 q = np.array([0.3, 0.3, 0.4])
-werk(p, q)
+process(p, q)

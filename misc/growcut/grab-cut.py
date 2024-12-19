@@ -1,7 +1,7 @@
 """
-Works.
+Extracts the foreground of an image using the GrabCut algorithm from OpenCV, and then segments the foreground from the
+background, displaying the resulting segmented image with a color-bar.
 https://www.geeksforgeeks.org/python-foreground-extraction-in-an-image-using-grabcut-algorithm/
-Foreground extraction using GrabCut algorithm
 """
 
 import cv2

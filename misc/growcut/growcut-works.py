@@ -1,5 +1,6 @@
 """
-GrowCut-works.md
+Implements the GrowCut algorithm, a segmentation technique that iteratively updates the labels of an input image based on
+the mean intensity difference between foreground and background pixels, with optional connected component removal.
 """
 import matplotlib.pyplot as plt
 import numpy as np

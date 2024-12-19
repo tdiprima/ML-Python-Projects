@@ -1,3 +1,6 @@
+"""
+Generates a plot displaying a list of random 10x10 images stacked horizontally, with the title "List of Images".
+"""
 import matplotlib.pyplot as plt
 import numpy as np
 

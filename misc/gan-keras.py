@@ -1,7 +1,5 @@
 """
-GAN.md
-Deep Fake Using GAN
-Epoch: 0, Discriminator Loss: 0.6365200877189636, Generator Loss: 0.7656040191650391
+Trains a Generative Adversarial Network (GAN) to generate synthetic images of MNIST handwritten digits.
 """
 import numpy as np
 from keras.datasets import mnist
@@ -10,14 +8,15 @@ from keras.models import Sequential, Model
 from keras.optimizers import Adam
 
 # Define the generator network
-generator = Sequential()
-generator.add(Dense(128, input_dim=100))
-generator.add(LeakyReLU(alpha=0.01))
-generator.add(BatchNormalization())
-generator.add(Dense(784, activation='tanh'))
+latent_dim = 100  # Dimension of the noise vector
+generator = Sequential([
+    Dense(128, input_dim=latent_dim),
+    LeakyReLU(alpha=0.01),
+    BatchNormalization(),
+    Dense(784, activation='tanh')
+])
 
-# todo: lr deprecated, use learning_rate
-# generator.compile(loss='binary_crossentropy', optimizer=Adam(lr=0.0002, beta_1=0.5))
+# generator.compile(loss='binary_crossentropy', optimizer='adam')
 generator.compile(loss='binary_crossentropy', optimizer=Adam(learning_rate=0.0002, beta_1=0.5))
 
 # Define the discriminator network
@@ -43,7 +42,7 @@ X_train = X_train / 127.5 - 1.
 X_train = np.reshape(X_train, (X_train.shape[0], 784))
 
 # Train the GAN
-# epochs = 10000 # todo: This is the one.
+# epochs = 10000  # todo: Train it 10K times.
 epochs = 200
 batch_size = 128
 for epoch in range(epochs):
@@ -66,4 +65,34 @@ for epoch in range(epochs):
     if epoch % 100 == 0:
         print(f"Epoch: {epoch}, Discriminator Loss: {d_loss}, Generator Loss: {g_loss}")
 
-    # TODO: output & display
+import matplotlib.pyplot as plt
+
+
+# Function to generate and visualize synthetic MNIST digit images
+def generate_and_visualize(generator, num_samples=16):
+    """
+    Generates synthetic MNIST digit images using the generator and visualizes them with matplotlib.
+    :param generator: Trained generator model.
+    :param num_samples: Number of samples to generate and display (default is 16).
+    """
+    noise = np.random.normal(0, 1, (num_samples, latent_dim))  # Random noise input
+    generated_images = generator.predict(noise)
+
+    # Rescale images to [0, 1] for visualization
+    generated_images = 0.5 * generated_images + 0.5
+    generated_images = generated_images.reshape(num_samples, 28, 28)  # Reshape to 28x28
+
+    # Plot the images
+    fig, axs = plt.subplots(4, 4, figsize=(8, 8))
+    cnt = 0
+    for i in range(4):
+        for j in range(4):
+            axs[i, j].imshow(generated_images[cnt], cmap='gray')
+            axs[i, j].axis('off')
+            cnt += 1
+    plt.show()
+
+
+# Call the visualization function after training the generator
+# Assuming the generator has been trained
+generate_and_visualize(generator)

@@ -1,3 +1,7 @@
+"""
+Generates a plot with two subplots, one showing the exponential function exp(x) and its domain from -5 to 2,
+and the second showing the natural logarithm of exp(x) with the x-axis representing the values of exp(x).
+"""
 import matplotlib.pyplot as plt
 import numpy as np
 

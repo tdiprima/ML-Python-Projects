@@ -1,3 +1,6 @@
+"""
+Creates a simple line plot with a custom window title and plot title, then displays the plot using the matplotlib library.
+"""
 import matplotlib.pyplot as plt
 
 # create a plot
