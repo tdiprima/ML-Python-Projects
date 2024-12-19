@@ -7,7 +7,7 @@ from keras.preprocessing.image import ImageDataGenerator
 # from keras.preprocessing import image
 from tensorflow.keras.preprocessing import image
 
-test_image = Image.open("ale.png")
+test_image = Image.open("formula_one.png")
 img = image.img_to_array(test_image)  # (289, 512, 4)
 img = img.reshape((1,) + img.shape)  # (1, 289, 512, 4)
 # img = img.unsqueeze(1)  # can't unsqueeze a numpy array
