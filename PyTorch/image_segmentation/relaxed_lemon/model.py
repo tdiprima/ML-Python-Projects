@@ -1,5 +1,7 @@
 """
-A U-Net network has two parts: an encoder (downsampler) and decoder (upsampler).
+Defines a U-Net architecture for binary image segmentation and includes a test function to verify its functionality.
+The U-Net is composed of an encoder (downsampling path) and decoder (upsampling path), with a bottleneck layer in between.
+The architecture also includes skip connections for preserving detailed input information.
 """
 import torch
 import torch.nn as nn
@@ -94,7 +96,7 @@ class UNET(nn.Module):
                 x = TF.resize(x, size=skip_connection.shape[2:])
 
             # Add along channel dimension (batch, channel, height, width)
-            # Concatenate the feature maps from an earlier layer with those from a later layer, 
+            # Concatenate the feature maps from an earlier layer with those from a later layer,
             # in order to preserve more detailed information from the input image.
             concat_skip = torch.cat((skip_connection, x), dim=1)
             # Get skip, concatenate, run it through double-conv.

@@ -1,3 +1,7 @@
+"""
+Defines a PyTorch Dataset class for image segmentation tasks, which reads images and their corresponding masks from disk,
+optionally applies transformations to them, and allows indexing access to individual pairs.
+"""
 from torch.utils.data import Dataset  # all PyTorch datasets must inherit from this base class
 import cv2  # image handling
 

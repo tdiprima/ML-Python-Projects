@@ -1,4 +1,8 @@
-# Import the necessary layers, modules, and activation functions from PyTorch
+"""
+This code implements the U-Net architecture for image segmentation, using encoder-decoder pairs with convolutions,
+ReLU activations, and a max pool operation, and upsampling and cropping techniques to maintain spatial dimensions
+throughout the network.
+"""
 from . import config
 from torch.nn import ConvTranspose2d
 from torch.nn import Conv2d

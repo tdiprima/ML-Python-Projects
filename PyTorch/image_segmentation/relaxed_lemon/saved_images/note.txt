@@ -1,7 +1,0 @@
-It will put some saved predictions here so you can see what it looks like.
-
-Example: pred_317.png
-
-1938 × 326
-
-RGB

@@ -1,3 +1,8 @@
+"""
+Defines a custom `Dataset` class for the Carvana data set, which loads images and corresponding mask images from
+specified directories, converts and normalizes data, applies optional transformations for data augmentation, and
+provides methods to get the length of the data set and retrieve an image-mask pair by index.
+"""
 import os
 
 import numpy as np

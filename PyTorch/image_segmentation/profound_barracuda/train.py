@@ -1,8 +1,9 @@
-# USAGE
-# python train.py
-# https://www.kaggle.com/code/tammydiprima/pytorch-unet/
-# TODO: the tools module is defined in the same project as the code that is using it.
-#  You banana.
+"""
+Trains a U-Net model for image segmentation by splitting images and masks into training and test datasets,
+applying necessary transformations, and tracking the model's performance through loss during each epoch of training.
+
+https://www.kaggle.com/code/tammydiprima/pytorch-unet/
+"""
 from tools.dataset import SegmentationDataset
 from tools.model import UNet
 from tools import config

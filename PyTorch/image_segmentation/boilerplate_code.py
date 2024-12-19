@@ -1,5 +1,6 @@
 """
-PyTorch UNet Image Segmentation
+Defines, trains, and validates a U-Net architecture for image segmentation
+using CIFAR-10 dataset.  It also displays some sample predictions.
 """
 import torch
 import torch.nn as nn

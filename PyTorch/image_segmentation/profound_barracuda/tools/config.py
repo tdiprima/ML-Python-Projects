@@ -1,4 +1,7 @@
 """
+Sets up global configurations for training an image segmentation model using U-Net in PyTorch, including paths for
+input data and output, model parameters, and training settings, among others.
+
 https://pyimagesearch.com/2021/11/08/u-net-training-image-segmentation-models-in-pytorch/
 """
 import torch

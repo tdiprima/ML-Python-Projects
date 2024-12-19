@@ -1,5 +1,9 @@
 """
 Create random tensor and run it through unet model.
+Implements the original U-Net architecture for image segmentation, which includes a sequence of down-convolutions
+(contracting path) and up-convolutions (expansive path), along with functions to handle the double 3x3 convolution and
+crop tensor to an equal size.
+
 https://becominghuman.ai/implementing-unet-in-pytorch-8c7e05a121b4
 https://github.com/spctr01/UNet/blob/master/Unet.py
 """
