@@ -1,3 +1,7 @@
+"""
+Sets various configuration options for displaying and saving Matplotlib plots,
+printing Numpy arrays, and displaying Pandas DataFrames.
+"""
 from IPython.display import set_matplotlib_formats, display
 import pandas as pd
 import numpy as np

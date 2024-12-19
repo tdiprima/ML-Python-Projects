@@ -1,7 +1,7 @@
 """
-Unfortunately, there is no show() method for Seaborn plots.
-Then what the hecc is this?  seaborn.objects.Plot.show
-In Seaborn, you can use the matplotlib.pyplot functions to show your plot.
+Loads the "tips" dataset from seaborn library
+Creates a count plot of the 'day' column using seaborn
+Displays it using matplotlib
 """
 import matplotlib.pyplot as plt
 import seaborn as sns

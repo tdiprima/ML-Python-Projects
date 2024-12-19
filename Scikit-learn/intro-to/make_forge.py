@@ -1,5 +1,8 @@
-# -*- coding: utf-8 -*-
 """
+Creates a dataset using the make_blobs method from sklearn, applies some transformations, fits a Logistic Regression
+model to it, and visualizes the dataset using matplotlib. Also showing the shape of the dataset and predicting the
+class and probability for the first instance.
+
 https://www.tarleton.edu/faculty/agapie/documents/cosc4360/make_forge.txt
 https://github.com/amueller/mglearn/blob/master/mglearn/datasets.py#L12
 """

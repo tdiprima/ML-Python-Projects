@@ -1,7 +1,7 @@
 """
-Traditional example dog vs cat classification
-3 images of dogs and 3 images of cats; images have only 2 pixel values x, y (so we can easily plot them)
-Import -> Initialize -> Fit(Train) -> Predict
+Visualizes a training set of 'Dog' and 'Cat' data, classifies new data with the
+K-Nearest Neighbors algorithm, and outputs the prediction.
+
 https://medium.com/@parthvadhadiya424/hello-world-program-with-scikit-learn-a869beb55deb
 """
 from warnings import simplefilter

@@ -1,6 +1,10 @@
-# OP: https://stackoverflow.com/questions/74406936/knn-python-implementation
-# https://machinelearningmastery.com/how-to-fix-futurewarning-messages-in-scikit-learn/
-# import warnings filter
+"""
+Implements the k-Nearest Neighbors (KNN) machine learning algorithm to classify Iris species from the Iris dataset
+using Euclidean distance and evaluates its performance using accuracy score.
+
+OP: https://stackoverflow.com/questions/74406936/knn-python-implementation
+https://machinelearningmastery.com/how-to-fix-futurewarning-messages-in-scikit-learn/
+"""
 from warnings import simplefilter
 
 import numpy as np
