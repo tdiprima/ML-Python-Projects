@@ -1,7 +1,0 @@
-{
-  "name": "tensorflow",
-  "version": "1.0.0",
-  "devDependencies": {
-    "@tensorflow/tfjs-node": "^4.2.0"
-  }
-}
