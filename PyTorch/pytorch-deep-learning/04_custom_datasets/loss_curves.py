@@ -1,3 +1,6 @@
+"""
+Visualizes the training and test loss and accuracy of a model over epochs using matplotlib.
+"""
 from typing import Dict, List
 
 from matplotlib import pyplot as plt

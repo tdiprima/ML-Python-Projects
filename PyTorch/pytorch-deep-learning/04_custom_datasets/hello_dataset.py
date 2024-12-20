@@ -1,4 +1,9 @@
-# https://www.askpython.com/python/examples/display-images-using-python
+"""
+Loads, transforms, and displays images from a specific directory for machine learning training and testing, with the
+ability to handle image datasets and perform operations such as resizing, random flipping and tensor conversion.
+
+https://www.askpython.com/python/examples/display-images-using-python
+"""
 import os
 import random
 from pathlib import Path

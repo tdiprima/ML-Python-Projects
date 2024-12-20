@@ -1,4 +1,7 @@
 """
+Trains and evaluates a classification model, CircleModelV1, using SGD optimizer and BCEWithLogitsLoss for the created
+synthetic circle dataset, and visualizes the model's decision boundary for both training and test sets.
+
 CircleModelV1 model (3 layers)
 Improving a model (from a model perspective)
 """

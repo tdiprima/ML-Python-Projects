@@ -1,4 +1,7 @@
 """
+Builds a linear regression model, generates data following a straight line pattern, splits this data into
+training and testing sets, makes predictions using the model, and plots the predicted vs actual values.
+
 Build a PyTorch model that learns the pattern of a straight line and matches it.
 No training in this one yet...
 """

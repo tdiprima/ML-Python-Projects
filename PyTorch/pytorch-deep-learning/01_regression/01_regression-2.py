@@ -1,5 +1,6 @@
 """
-Loss, optimizer, train, graph.
+Defines a linear regression model, trains and tests it, charts loss curves over epochs, makes predictions,
+saves the model, and summarizes it, all while managing torch tensors on CPU by default.
 """
 import os.path
 import sys

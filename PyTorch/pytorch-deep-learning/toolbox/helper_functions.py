@@ -1,3 +1,9 @@
+"""
+Contains various utility functions to support deep learning tasks, including data downloading and unzipping,
+setting seeds for reproducibility, function for accurate model predictions, plotting loss curve and predictions,
+printing training time, calculating accuracy, plotting decision boundaries for torch models, and walking through
+directories to print out details.
+"""
 import torch
 import matplotlib.pyplot as plt
 import numpy as np

@@ -1,5 +1,5 @@
 """
-File containing various utility functions for PyTorch model training.
+Provides a utility function to save a PyTorch model's state_dict to a specified directory.
 """
 from pathlib import Path
 

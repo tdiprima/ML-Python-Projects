@@ -1,3 +1,7 @@
+"""
+Implements a basic PyTorch training pipeline for a TinyVGG image classification model, training and evaluating it on a
+custom dataset of pizza, steak, and sushi images while also reporting model performance metrics.
+"""
 from pathlib import Path
 
 import torch

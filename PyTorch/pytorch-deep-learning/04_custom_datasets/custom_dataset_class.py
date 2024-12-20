@@ -1,3 +1,7 @@
+"""
+Loads pizza, steak, and sushi images from defined paths, applies transforms, and organizes them into
+custom datasets for train and test scenarios, displaying dataset sizes and class information.
+"""
 import os
 import pathlib
 from pathlib import Path

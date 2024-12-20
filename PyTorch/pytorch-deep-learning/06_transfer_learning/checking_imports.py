@@ -1,4 +1,9 @@
-# For this code to run with updated APIs, we need torch 1.12+ and torchvision 0.13+
+"""
+Checks for and installs necessary versions of torch and torchvision, installs torchinfo if not found,
+and imports or downloads necessary modules from the 'going_modular' directory.
+
+For this code to run with updated APIs, we need torch 1.12+ and torchvision 0.13+
+"""
 try:
     import torch
     import torchvision

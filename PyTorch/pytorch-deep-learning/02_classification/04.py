@@ -1,4 +1,7 @@
 """
+Creates, trains, and tests a simple neural network to fit a straight line to noisy circular data,
+using pytorch and sklearn, and plots the results.
+
 SEQUENTIAL
 model = nn.Sequential
 Basically, we didn't need to do all that (with the class); all we had to do is this.

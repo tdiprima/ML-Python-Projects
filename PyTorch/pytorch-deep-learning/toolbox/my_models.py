@@ -1,3 +1,8 @@
+"""
+Defines several classes implementing various machine learning models, including linear regression, multi-layer perceptron
+for circle dataset, and convolutional neural network for FashionMNIST dataset.
+Each class features an initializer for setting up the layers and a forward method for performing the forward pass calculation.
+"""
 import torch
 from torch import nn  # nn contains all of PyTorch's building blocks for neural networks
 

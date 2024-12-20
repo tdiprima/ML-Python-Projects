@@ -1,3 +1,6 @@
+"""
+Visualizes training data, testing data, and predictions (if any) using matplotlib library.
+"""
 import matplotlib.pyplot as plt
 
 

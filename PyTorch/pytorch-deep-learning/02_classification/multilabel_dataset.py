@@ -1,5 +1,8 @@
 """
-Generate a random multilabel classification dataset with 100 samples and 10 features
+Generates a random multilabel classification dataset, trains a simple neural network model
+with one hidden layer on it, and estimates the model's performance on a test set.
+
+Dataset has 100 samples and 10 features
 """
 import torch
 import torch.nn as nn

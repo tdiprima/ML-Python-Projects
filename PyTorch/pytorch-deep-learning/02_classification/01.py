@@ -1,4 +1,7 @@
 """
+Generates a scatter plot of synthetic circular data, creates an untrained neural network model, splits the data into
+training and test sets, then outputs the pre-training predictions of the model and a summary of the model itself.
+
 CircleModelV0 model (2 layers)
 Untrained, predictions are negative numbers.
 """

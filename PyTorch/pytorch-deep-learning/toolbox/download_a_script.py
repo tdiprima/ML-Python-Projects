@@ -1,3 +1,6 @@
+"""
+Checks if 'helper_functions.py' file exists in the directory. If not, it downloads it from a specified URL.
+"""
 from pathlib import Path
 
 import requests

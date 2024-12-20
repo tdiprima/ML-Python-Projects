@@ -1,5 +1,8 @@
-#!/usr/bin/env python
-# coding: utf-8
+"""
+Generates a synthetic dataset with multiple classes using blobs, splits the data into train and test sets, builds and
+trains a multi-class classification model and evaluates its accuracy, visualizes the decision boundaries, and uses
+TorchMetrics to calculate accuracy.
+"""
 import sys
 import torch
 import matplotlib.pyplot as plt

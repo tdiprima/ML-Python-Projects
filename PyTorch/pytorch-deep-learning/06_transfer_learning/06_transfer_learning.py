@@ -1,3 +1,9 @@
+"""
+Trains an EfficientNet_B0 model to classify food images (pizza, steak, sushi) using PyTorch and torchvision, checks the
+versions of torch and torchvision, downloads missing modules and data from GitHub, prepares the dataset, updates the
+output layers, defines loss and optimizer, and finally, evaluates the model by plotting loss curves and making
+predictions on test and custom images.
+"""
 import sys
 
 import torch
@@ -229,7 +235,7 @@ for image_path in test_image_path_sample:
 
 # Making predictions on a custom image
 # Setup custom image path
-custom_image_path = data_path / "modified-pbbffft.jpeg"
+custom_image_path = data_path / "modified-pizza.jpeg"
 print("\ncustom_image_path:", custom_image_path)
 
 # Predict on custom image

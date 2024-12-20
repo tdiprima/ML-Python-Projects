@@ -1,4 +1,6 @@
 """
+Trains a neural network to classify synthetic circular data, report its accuracy, and visualize its decision boundary.
+
 CircleModelV0 model
 Loss function, optimizer, training
 """

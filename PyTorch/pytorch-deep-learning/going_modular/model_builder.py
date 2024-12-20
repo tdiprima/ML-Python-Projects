@@ -1,5 +1,6 @@
 """
-Contains PyTorch model code to instantiate a TinyVGG model from the CNN Explainer website.
+Creates a PyTorch implementation of the TinyVGG model, a two-block VGG architecture used for deep learning tasks, which
+takes as input a number of channels, hidden units, and output units, and performs a forward pass on given data.
 """
 import torch
 

@@ -1,5 +1,5 @@
 """
-Create dummy tensor to test model (from my_models)
+Creates a dummy tensor to test the output shape of a FashionMNISTModel.
 """
 import sys
 

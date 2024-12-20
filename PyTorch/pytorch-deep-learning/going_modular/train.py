@@ -1,5 +1,6 @@
 """
-Trains a PyTorch image classification model using device-agnostic code.
+Trains an image classification model using a TinyVGG architecture, using a dataset of images of pizza, steak, and sushi.
+Handles exceptions, and saves the trained model.
 """
 import sys
 from timeit import default_timer as timer

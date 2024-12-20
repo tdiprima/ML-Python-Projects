@@ -1,4 +1,5 @@
 """
+Implements a linear regression model, trains it on a generated dataset, evaluates it, and then saves and loads the model.
 Model/tensors to(device)
 """
 import sys

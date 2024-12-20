@@ -1,4 +1,9 @@
 """
+Downloads the FashionMNIST dataset, uses it to train three different neural network models
+(two fully-connected neural networks and one convolutional neural network), and compares
+their performance and training time.
+It also includes functionality for visualizing the data and the performance of the models.
+
 Compara 3 modelos.
 """
 import sys

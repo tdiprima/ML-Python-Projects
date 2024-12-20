@@ -1,4 +1,7 @@
 """
+Prepares datasets with and without data augmentation, loads them for training, creates a TinyVGG model, sets up a
+loss function and an optimizer, trains the model, measures training duration, and then plots the loss curves.
+
 Data Augmentation: A way to help with overfitting.
 This is just code to use; it doesn't run or anything.
 """

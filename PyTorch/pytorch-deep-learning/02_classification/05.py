@@ -1,4 +1,7 @@
 """
+Trains a CircleModelV2 on a generated non-linearly separable dataset,
+evaluates its performance, and visualizes the model's decision boundary.
+
 CircleModelV2
 The missing piece: non-linearity
 """

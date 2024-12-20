@@ -1,5 +1,8 @@
 """
-Le sugiero que ejecute esto en segundo plano.
+Provides the functionality for training, testing, evaluating, and making predictions using a FashionMNISTModelV2 model
+on the FashionMNIST dataset, and it also includes the generation of a confusion matrix to check model performance.
+
+I suggest running this in the background.
 """
 import random
 import sys

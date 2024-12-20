@@ -1,8 +1,13 @@
-# https://www.learnpytorch.io/07_pytorch_experiment_tracking/
-# 🤦‍♀️ Forget this guy.  Read this:
-# https://towardsdatascience.com/a-complete-guide-to-using-tensorboard-with-pytorch-53cb2301e8c3
+"""
+Carries out data transformation, then prepares, trains and tests a model for image classification using a pre-trained
+EfficientNet_B0 and records the results using TensorBoard for visualization.
 
-# For this notebook to run with updated APIs, we need torch 1.12+ and torchvision 0.13+
+For this notebook to run with updated APIs, we need torch 1.12+ and torchvision 0.13+
+
+https://www.learnpytorch.io/07_pytorch_experiment_tracking/
+https://towardsdatascience.com/a-complete-guide-to-using-tensorboard-with-pytorch-53cb2301e8c3
+"""
+
 try:
     import torch
     import torchvision

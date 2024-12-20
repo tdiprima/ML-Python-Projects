@@ -1,6 +1,6 @@
 """
-Contains functionality for creating PyTorch DataLoader's for
-image classification data.
+Generates PyTorch DataLoaders (for both training and testing data) in an image classification context from directories
+specified by the user, and returns these along with the data's class names.
 """
 
 from torch.utils.data import DataLoader

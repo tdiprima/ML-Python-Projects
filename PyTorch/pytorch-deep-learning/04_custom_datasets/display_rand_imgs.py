@@ -1,3 +1,7 @@
+"""
+Displays a random selection of images from a provided dataset using matplotlib,
+with the option to label by class and display image dimensions.
+"""
 import random
 from typing import List
 

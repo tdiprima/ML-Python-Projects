@@ -1,3 +1,6 @@
+"""
+Calculates and prints elapsed training time on a specified device (default is CPU).
+"""
 from timeit import default_timer as timer
 
 import torch

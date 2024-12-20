@@ -1,5 +1,6 @@
 """
-Contains functions for training and testing a PyTorch model.
+Trains, tests, and evaluates a PyTorch model across several epochs using provided data loaders, optimizer, loss function,
+and device, returning a dictionary of evaluation metrics after each epoch.
 """
 from typing import Dict, List, Tuple
 

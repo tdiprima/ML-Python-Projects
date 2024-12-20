@@ -1,3 +1,6 @@
+"""
+Sets up a colored logging system and generates debug, info, warning, error, and critical logs.
+"""
 import logging
 import sys
 

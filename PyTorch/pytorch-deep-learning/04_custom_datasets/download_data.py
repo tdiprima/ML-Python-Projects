@@ -1,3 +1,7 @@
+"""
+Downloads and extracts an image dataset of pizzas, steaks, and sushi from an
+online source if it does not already exist in the specified local directory.
+"""
 import os
 import zipfile
 from pathlib import Path
